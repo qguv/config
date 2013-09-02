@@ -3,11 +3,11 @@
 ## Installation
 
 - Put this directory in your .conf
-- Move zshrc in this folder to your home directory.
+- Create symlink to zshrc in your home directory
 
     mv -r . ~/.conf
     cd ~/.conf
-    mv zshrc ~
+    ln -s ~/.conf/zshrc ~/.zshrc
 
 I got sick of hidden files crapping up my home directory. I've overhauled local
 settings storage locations, so rc files and settings aren't where you'd expect them
