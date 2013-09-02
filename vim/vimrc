@@ -1,0 +1,19 @@
+#!/usr/bin/vim
+" vim rc file
+" mostly just sets vim to respect XDG and runs custom commands in this folder
+
+let mydir=substitute(system('echo "$XDG_CONFIG_HOME"'),'\n','','').'/vim'
+
+" thanks to http://tlvince.com/vim-respect-xdg
+set directory=$XDG_CACHE_HOME/vim,~/,/tmp
+set backupdir=$XDG_CACHE_HOME/vim,~/,/tmp
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+
+" run custom rc files
+exec ":set viminfo='1000,f1,<500,n".mydir.'/viminfo'
+
+exec ':so ' . mydir . '/settings'
+exec ':so ' . mydir . '/functions'
+exec ':so ' . mydir . '/aliases'
+exec ':so ' . mydir . '/events'

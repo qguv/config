@@ -1,0 +1,1003 @@
+rm -rf shulgin-conf/wmfs
+rm -rf shulgin-conf/lilyterm
+rm .zshrc
+mv shulgin-conf/.zshrc .
+reload
+ls -A .conf
+mv shulgin-conf/.conf/zsh .conf/zsh
+source .zshrc
+reload
+la shulgin-conf
+la shulgin-conf/.conf
+cat .conf/git/config
+cat shulgin-conf/.conf/git/config
+rm -rf shulgin-conf/.conf/git
+la shulgin-conf/.conf
+rm -rf shulgin-conf/.conf/lilyterm
+rm -rf shulgin-conf/.conf/lilyterm/wmfs
+rm -rf shulgin-conf/.conf/wmfs
+la shulgin-conf/.conf
+vim ABOUT
+cd shulgin-conf
+cd .conf
+mv -f vim ~/.conf
+vim ~/.conf/vim
+ls ~/.conf/vim
+rm -rf ~/.conf/vim
+mv -f vim ~/.conf
+reload
+la
+vim ABOUT
+mv -f * ~/.conf
+reload
+ls -A
+cd ..
+ls
+la
+cd ..
+ls
+rm -rf shulgin-conf
+rm -rf shulgin-conf.tgz
+reload
+exit
+python --version
+python2 --version
+exit
+vim .conf/zsh/system
+exit
+man brew
+brew update
+reload
+update
+update
+exit
+ssh chomsky
+ls
+cd .ssh
+cd ..
+mv .ssh .conf/ssh
+ssh chomsky
+vim .ssh/config
+ls .ssh
+ls -A .ssh
+rm -rf .ssh
+ls .conf
+ls .conf/ssh
+vim .conf/ssh/config
+ssh chomsky
+exit
+cd dev/rpcalc
+cd
+cd dev
+cd rpcalc
+cd resources
+cd ..
+py rpn.py
+open README.md
+py rpn.py
+exit
+ssh 192.168.1.100
+ssh user@192.168.1.100
+ssh 192.168.1.100
+sftp 192.168.1.100
+cd Desktop
+mkdir transfer
+sftp 192.168.1.100
+exit
+tmux
+clear
+ssh chomsky
+vim .conf/ssh/config
+c
+ssh chomsky
+exit
+cd dev/rpcalc
+py rpn.py
+exit
+tmux
+tmux attach
+exit
+ssh chomsky
+ls
+ls -A
+tar czvf conf.tgz .conf .zshrc
+vim .vimrc
+rm .vimrc
+ls
+vim nvWatch.rb
+ls
+la -A
+ls -A
+ls .ssh
+rm -rf .ssh
+sftp chomsky
+sftp chomsky
+vim .zshrc
+man ln
+rm -rf .ssh
+ln -s .conf/ssh .ssh
+ssh chomsky
+sftp chomsky
+ssh chomsky
+ssh chomsky
+ssh chomsky
+ssh chomsky
+exit
+ssh chomsky
+exit
+ssh chomsky
+exit
+lua
+brew install lua
+lua
+exit
+ssh chomsky
+exit
+ssh chomsky
+cd dev/rpcalc
+git pull
+git checkout master
+git pull
+git checkout develop
+git diff master
+git checkout -b hotfix-0.3.2
+vim changelog.md
+vim changelog.md
+git diff master
+vim develop.md
+vim changelog.md
+git checkout master
+git checkout master
+git commit -am "Branched documentation improvements from develop"
+git push --set-origin master/hotfix-0.3.2
+git push origin hotfix-0.3.2
+git push
+git diff master
+cat develop.md
+git checkout master
+git merge --no-ff hotfix-0.3.2
+git tag -a v0.3.2 -m 'Documentation Improvements from Public Feedback"
+git tag -a v0.3.2 -m 'Documentation Improvements from Public Feedback'
+git checkout develop
+git merge --no-ff hotfix-0.3.2
+git branch -d hotfix-0.3.2
+git branch -d :hotfix-0.3.2
+git push origin :hotfix-0.3.2
+git push
+git push --tags
+exit
+exit
+ssh chomsky
+cd dev/rpcalc
+cd ..
+ls
+cd .
+ssh chomsky
+cd
+cd dev/rpcalc
+vim rpn.py
+vim rpn.py
+py rpn.py
+exit
+py test.py
+py test.py
+ls | grep matrix
+cd matrix
+vim mat.py
+ls
+vim vec.py
+exit
+vim test.py
+rm test.py
+exit
+vim
+sudo chmod u+x test.py
+py test.py
+vim
+py test.py
+tmux
+exit
+touch test.py
+rm -rf test.py
+touch test.py
+rm -rf test.py
+touch test.py
+rm -rf test.py
+py dev/rpcalc/rpn.py
+echo "LaTeX\
+
+echo "LaTeX\
+"
+echo 'LaTeX!'
+exit()\
+
+exit
+lua
+function print(text)
+lua
+lua; exit
+lua
+lua; exit
+lua
+lua; c; exit
+c; lua; exit
+c; lua; exit
+c; lua; exit
+c; lua; exit
+c; lua; exit
+cd dev/rpcalc
+py rpn.py
+exit
+la
+ls
+rm lovelace-conf.tgz
+rm conf.tgz
+ls
+ls -A
+cd notes
+ls
+vim momGeld.txt
+exit
+irssi
+exit
+vim notes/momGeld.txt
+cups
+print
+print Hi
+exit
+ln -s notes Documents/notes
+exit
+cd
+ls
+ln -s notes Documents/notes
+rm Documents/notes
+ln -s ~/notes Documents/notes
+exit
+cd dev/rpcalc
+py rpn.py
+vim operators.py
+diff master
+git diff master
+git diff master
+exit
+ssh chomsky
+exit
+ssh chomsky
+cd dev/rpcalc
+py rpn.py
+exit
+cd dev/rpcalc
+git pull
+git diff master develop
+git diff develop master
+py rpn.py
+exit
+cd dev/rpcalc
+git checkout -b aur-dist
+vim setup.py
+exit
+ls
+cd dev/rpcalc
+ls
+vim rpn.py
+py rpn.py
+py rpn.py
+git stash
+vim changelog.md
+git checkout -b hotfix-0.3.3
+git push origin hotfix-0.3.3
+git apply stash
+git stash apply
+git diff master
+vim rpn.py
+git diff master
+git commit -m 'fixed duplication bug'
+vim changelog.md
+open changelog.md
+git diff master
+vim rpn.py
+git diff master
+git status
+git commit -am 'fixed duplication bug'
+git push
+git diff master
+git checkout master
+git merge --no-ff hotfix-0.3.3
+git tag -a 'v0.3.3' -m 'Hotfix release: Duplication with Return key'
+git push --tags
+git checkout develop
+git merge --no-ff hotfix-0.3.3
+git push
+vim changelog.md
+git status
+git diff master
+git commit -am 'preparing changelog for next release'
+git push
+git branch -d hotfix-0.3.3
+git push origin :hotfix-0.3.3
+git push
+git branch
+py rpn.py
+py rpn.py
+python
+python
+ircii
+irssi
+exit
+cd dev/rpcalc
+git status
+git status
+vim setup.py
+python --version
+py3
+py
+py2
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | py3
+mkdir dist
+cd dist
+curl -O https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+python ez_setup.py --user
+ls
+cd ..
+rm -rf dist
+ls
+vim setup.py
+exit
+cd dev/rpcalc
+mkdir arch
+cd arch
+cd ..
+md aur
+vim PKGBUILD
+vim PKGBUILD
+rm PKGBUILD
+vim PKGBUILD
+vim PKGBUILD
+git describe
+git checkout master
+git describe
+git describe --always
+vim PKGBUILD
+git describe --always | sed -e 's|-|.|g' -e '1s|^.||'
+git describe --always | sed -e 's|-|.|g' -e '1s|^.||'
+git describe --always | sed -e 's|-|.|g' -e '1s|^.||'
+git checkout hotfix-0.3.3
+git branch
+git checkout aur-dist
+git describe --always | sed -e 's|-|.|g' -e '1s|^.||'
+git diff
+git diff
+git diff master
+git diff develop
+c
+git diff develop
+git commit -am 'added setup.py instructions to develop.md'
+git diff develop
+ls
+ls -A
+cd ..
+ls
+git diff develop
+c
+ls
+ls -A
+git status
+git add setup.py aur
+git status
+git commit -m 'added arch user repository data'
+git describe
+ssh chomsky
+vim aur/PKGBUILD
+vim aur/PKGBUILD
+exit
+cd dev/rpcalc
+ls
+rm *.pyc
+ls
+cd arch
+ls
+cd ..
+rm -rf arch
+ls aur
+cd aur
+sftp chomsky
+ssh chomsky
+vim setup.py
+ls
+cd ..
+ls
+vim setup.py
+ls
+diff origin/master
+git diff origin/master
+ls
+ssh chomsky
+man watch
+watch
+exit
+ssh chomsky
+git checkout master
+cd dev/rpcalc
+git checkout develop
+git reset
+git checkout develop
+git reset --
+git checkout develop
+man git-reset
+git branch -d
+git branch -d aur-dist
+git reset --hard
+git checkout develop
+git branch -d aur-dist
+git branch -D aur-dist
+git pull
+git diff master
+vim rpn.py
+vim rpn.py
+vim rpn.py
+vim rpn.py
+vim rpn.py
+py rpn.py
+vim rpn.py :50
+py rpn.py
+vim rpn.py :50
+man vim
+vim rpn.py +78
+exit
+vim rpn.py
+py rpn.py
+exit
+py rpn.py
+exit
+py rpn.py; exit
+exit
+python
+exit
+python rpn.py
+exit
+python rpn.py
+python rpn.py
+python rpn.py
+exit
+py rpn.py
+exit
+py rpn.py
+py rpn.py
+exit
+cd dev/rpcalc
+vim rpn.py
+vim rpn.py rpn.py
+man vim
+man vim
+vim -O rpn.py rpn.py
+vim -O rpn.py rpn.py
+git status
+git commit -am 'significant technical improvements'
+git push
+git pull
+py rpn.py
+vim rpn.py
+vim operators.py
+vim readme.md
+git status
+git add README.md
+git commit -m 'readme formatting improvements'
+git push
+vim operators.py
+vim help.py
+vim help.py
+exit
+py rpn.py
+exit
+ssh chomsky
+exit
+cd dev/rpcalc
+vim rpn.py
+py rpn.py
+py rpn.py
+py rpn.py
+exit
+cd dev/rpcalc
+vim rpn.py
+git status
+git add help.py
+git add rpn.py
+git add operators.py
+vim changelog.md; git add changelog.md
+git status
+vim README.md
+git add README.md
+git log
+git diff b03c7
+git commit
+git push
+exit
+ssh chomsky
+exit
+cd dev/rpcalc
+py rpn.py
+exit
+python --version
+python3 --version
+py
+exit
+py rpn.py
+cd dev/rpcalc
+py rpn.py
+py rpn.py
+vim rpn.py
+py rpn.py
+py rpn.py
+py3 rpn.py
+vim rpn.py
+vim todo.txt
+exit
+pianobar
+brew install pianobar
+pianopub
+pianobar
+python
+python3
+py3 --version
+cd dev/rpcalc
+py3 rpn.py
+vim rpn.py
+py3 rpn.py
+vim rpn.py
+vim rpn.py
+git status
+git commit -am 'fixed error-handling and backspace'
+git push
+exit
+which python
+which python3
+exit
+cd dev/rpcalc
+vim rpn.py
+open develop.md
+vim changelog.md
+open changelog.md
+git checkout -b release-0.4
+git push origin release-0.4
+git push
+vim changelog.md
+git status
+git commit -am 'bump version number'
+git push
+git checkout master
+git merge --no-ff release-0.4
+git revert
+git reset --hard
+log
+git log
+git reset --hard
+git reset --hard adaddb
+ls
+cd ..
+cd rpcalc
+ls
+vim todo.txt
+cd ..
+rm -rf rpcalc
+mkdir rpcalc
+git clone https://github.com/qguv/rpcalc.git
+ls
+cd rpcalc
+ls
+git checkout release-0.4
+git log --oneline
+vim rpn.py
+git diff develop
+git checkout develop
+git checkout release-0.4
+git diff develop
+git checkout master
+git merge --no-ff release-0.4
+git tag -a v0.4 -m 'Interactive Help'
+git checkout develop
+git merge --no-ff release-0.4
+vim changelog.md
+git commit -am 'readied for further development'
+git branch -d release-0.4
+git push origin :release-0.4
+git push
+git push --tags
+git checkout master
+py3 rpn.py
+git checkout -b aur-dist
+ls
+mkdir src
+mv *.md src
+mv src/*.md .
+ls
+mv *.py src
+ls
+rm -rf __pycache__
+ls
+vim setup.py
+touch src/__init__.py
+mv src lib
+ls
+vim setup.py
+mv lib src
+vim setup.py
+cd src
+ls
+cd ..
+ls
+vim setup.py
+vim setup.py
+py3 setup.py sdist
+vim setup.py
+py3 setup.py sdist
+ls
+cd dist
+ls
+vim -R MAN
+vim -R MANIFEST
+vim -R ../MANIFEST
+ls
+mv rpcalc-0.4.tar.gz ~
+cd
+tar xvf rpcalc-0.4.tar.gz
+cd rpcalc-0.4
+py3 setup.py install
+ls
+rpcalc
+python
+cd build
+ls
+cd lib
+ls
+cd rpcalc
+ls
+python rpn.py
+exit
+ls
+cd rpcalc-0.4
+ls
+cd ..
+rm -rf rpcalc-0.4
+tar xvf rpcalc-0.4.tar.gz
+cd rpcalc-0.4
+py3 setup.py bdist --help-formats
+ls
+exit
+cd dev/rpcalc
+ls
+rm -rf dist
+vim .gitignore
+vim .gitignore
+git push origin aur-dist
+git commit -am 'changed file hierarchy'
+ls
+cd src
+ls
+cd ..
+ls
+git status
+git add setup.py src
+git commit -amend
+git commit --amend
+git push
+ls
+la
+cd ..
+ls rpcalc
+rm -rf MANIFEST
+ls
+cd rpcalc
+rm MANIFEST
+ls
+git status
+exit
+vim rpn.py
+cd dev/rpcal
+cd dev/rpcalc
+vim setup.py
+py3 setup.py install
+rpcalc
+vim src/rpn.py
+vim src/rpn.py
+vim setup.py
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+rpcalc
+rpn
+rpn.py
+python3
+vim src/__init__.py
+vim src/__init__.py
+vim setup.py
+ls
+mkdir scripts
+rm scripts
+rm -rf scripts
+vim rpcalc.py
+vim setup.py
+vim setup.py
+ls
+vim rpcalc.py
+rpcalc.py
+py3 rpcalc.py
+vim rpcalc.py
+py3 rpcalc.py
+cd rpcalc
+cd src
+ls
+vim __init__.py
+vim setup.py
+vim ../setup.py
+cd ..
+py3 rpcalc.py
+ls
+rm -rf build
+ls
+cd src
+ls
+cd ..
+ls
+vim setup.py
+ls
+mv src rpcalc
+vim setup.py
+py3 setup.py install
+vim rpcalc/__init__.py
+py3 setup.py install
+ls
+cd rpcalc
+ls
+vim help.py
+vim inout.py
+vim help.py
+vim operators.py
+vim rpn.py
+vim rpn.py
+vim stack.py
+py3 setup.py install
+cd ..
+py3 setup.py install
+vim rpn.py
+vim rpcalc/rpn.py
+py3 setup.py install
+rpcalc
+rpcalc.py
+py3 setup.py install
+python3
+rpcalc
+cd
+rpcalc.py
+py3 setup.py install
+cd dev/rpcalc
+py3 setup.py remove
+py3 setup.py uninstall
+py3 setup.py install
+cd
+rpcalc
+rpcalc.py
+ls
+cd rpcalc-0.4
+cd ..
+rm -rf rpcalc-0.4
+rm -rf rpcalc-0.4.tar.gz
+ls
+cd dev/rpcalc
+ls
+rm -rf __pycache__
+ls
+rm -rf build
+ls
+mkdir scripts
+ln -s scripts/rpcalc rpcalc.py
+ln -s rpcalc.py scripts/rpcalc
+vim setup.py
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+ls
+cd scripts
+ls
+vim rpcalc
+ls -l
+rm -rf rpcalc
+ln -s ../rpcalc.py rpcalc
+ls
+vim rpcalc
+cd ..
+py3 setup.py install
+rpcalc
+vim rpcalc/__init__.py
+py3 setup.py install
+vim setup.py
+vim rpcalc.py
+py3 rpcalc.py
+py3 rpcalc.py
+vim setup.py
+py3 setup.py install
+vim setup.py
+py3 setup.py install
+rpcalc
+rpcalc
+vim rpcalc.py
+vim setup.py
+cd /usr/local/lib/python3.3/site-packages/
+ls
+rm -rf rpcalc
+rm -rf rpcalc-0.4-py3.3.egg-info
+cd
+cd dev/rpcalc
+py3 setup.py install
+rpcalc
+python3
+ls
+vim setup.py
+vim setup.py
+vim rpcalc/__init__.py
+cd /usr/local/lib/python3.3/site-packages/
+ls
+rm -rf rpcalc
+rm -rf rpcalc-0.4-py3.3.egg-info
+cd ~/dev/rpcalc
+ls
+vim rpcalc/__init__.py
+ls rpcalc
+ls
+vim rpcalc/__init__.py
+python3
+ls
+whereis rpcalc
+which rpcalc
+rm -rf /usr/local/bin/rpcalc
+rm -rf /usr/local/bin/rpcalc.py
+rm -rf /usr/local/bin/rpcalc.py
+c
+ls
+cd ..
+python3
+cd ..
+python
+python3
+cd dev/rpcalc
+ls
+vim setup.py
+py3 setup.py install
+rpcalc
+rpcalc
+exit
+cd usr/local/lib/python3.3/site-packages/
+cd /usr/local/lib/python3.3/site-packages/
+ls
+rm -rf rpcalc
+rm -rf rpcalc-0.4-py3.3.egg-info
+ls
+exit
+cd dev/rpcalc
+ls
+py3 setup.py install
+ls
+rm -rf build
+mkdir aur
+vim aur/PKGBUILD
+vim aur/PKGBUILD
+git status
+git add aur
+git add rpcalc.py
+git add rpcalc
+git add scripts
+git checkout -am 'progress on arch building system'
+git commit -am 'progress on arch building system'
+git status
+git push origin aur-dist
+exit
+ssh chomsky
+exit
+ssh chomsky
+exit
+ssh chomsky
+exit
+ssh thequintus
+sftp thequintus
+cd Desktop
+ls
+sftp thequitnus
+sftp thequintus
+ssh thequintus
+ssh chomsky
+ssh thequintus
+cd Desktop
+sftp thequintus
+ssh thequintus
+exit
+ssh thequintus
+exit
+pianobar
+exit
+pianobar
+pianobar
+ls
+ls -A
+cd dev/rpcalc
+ls
+git pull
+git branch --set-upstream aur-dist origin/aur-dist
+git pull
+git checkout master
+py3 rpcalc.py
+ls
+git checkout aur-dist
+py3 rpcalc.py
+git checkout develop
+vim operators.py
+git commit -am 'clear operator requires no stack entries'
+git push
+vim changelog.md
+git commit -am 'documented clear'
+git push
+git checkout master
+py3 rpn.py
+cd ..
+cd
+cd .conf/vim
+ls
+mkdir plugins
+cd plugins
+git clone https://github.com/tpope/vim-surround.git
+ls
+cd vim-surround
+ls
+cd plugin
+ls
+mv surround.vim ../..
+cd ../..
+ls
+rm -rf vim-surround
+ls
+cd ..
+ls
+vim settings
+vim settings
+mv plugins plugin
+ls
+cd ..
+vim
+vim vimrc
+cd vim
+ls
+vim vimrc
+vim vimrc
+ls
+vim
+vim vimrc
+vim vimrc
+vim
+ls
+cd ..
+ls
+cd ..
+ls
+cd .conf
+ls
+cd ..
+ls
+vim .zshrc
+cp .zshrc .conf/zsh/zshrc
+vim .conf/zsh/zshrc
+vim .zshrc
+zsh
+c
+exit
+zsh
+zsh
+zsh
+c
+exit
+c
+exit

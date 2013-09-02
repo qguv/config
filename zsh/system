@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+# zsh system-specific commands
+
+PYTHON3NAME='python3'
+PYTHON2NAME='python'
+SYSTEMUPDATE='brew update; brew upgrade'

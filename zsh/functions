@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+# zsh custom functions
+
+# Command Combinations
+function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\"" && eval echo "Switching to" `pwd` "..." ; } # Combines mkdir, cd, pwd

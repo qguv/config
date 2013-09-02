@@ -1,0 +1,53 @@
+" Non-compatable settings
+set nocompatible
+set ruler
+set showcmd
+set incsearch
+set wildmenu
+
+" Syntax-highlighting
+filetype plugin indent on
+syntax enable
+colorscheme elflord
+
+" Other programming niceties
+set number
+set fdm=manual
+set fdn=0
+
+" Fixing some elflord oddities
+hi PreProc term=underline ctermfg=Magenta guifg=#ff80ff
+hi Special ctermfg=11
+"hi link NonText PreProc
+"hi link SpecialKey PreProc
+hi SpecialKey ctermfg=13
+hi LineNr ctermfg=3
+hi NonText ctermfg=3
+
+" Setting Proper Indent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Setting Strong Cryptography with :X
+set cm=blowfish 
+
+" Custom Leader Bindings Below... "
+" [t]abify (vt): open window as new tab
+nm <Leader>t  :wincmd T<CR>
+" [c]leanslate (vt): close current tab and open a new one
+noremap <Leader>c  :tabe<CR>gT:x<CR>
+" [w/W]indowify (vt): push current tab into previous window
+nnoremap <Leader>w :call MoveToPrevTab()<CR>
+nnoremap <Leader>W :call MoveToNextTab()<CR>
+" [p]astetoggle (vt): open file for pas
+nmap <Leader>p :set paste! paste?<cr>
+
+" Folding with Space
+nnoremap <space> za
+vnoremap <space> zf
+
+" Running Files with <F5>
+autocmd BufRead *.py nmap <F5> :w<CR>:!python3 %<CR>
+autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>

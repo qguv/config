@@ -1,0 +1,13 @@
+Host chomsky
+    HostName mine.nascifi.com
+    User quintus
+    IdentityFile ~/.conf/ssh/id_dsa
+
+Host thequintus
+    HostName thequintus.com
+    User quintus314
+
+Host shulgin
+    HostName 192.168.1.101
+    User quintus
+    IdentityFile ~/.conf/ssh/id_dsa
