@@ -1,0 +1,20 @@
+#!/usr/bin/zsh
+# zsh custom aliases
+
+# Use system-specific commands
+source $XDG_CONFIG_HOME/zsh/system
+
+# Abbreviations
+alias c='clear'
+alias la='ls -A'
+alias md='mkdircd'
+alias py='python'
+alias py3="$PYTHON3NAME"
+alias py2="$PYTHON2NAME"
+alias unix='date "+%s"'
+alias view='vim -R'
+
+# System tasks
+alias reload='source ~/.zshrc'
+alias update="$SYSTEMUPDATE"
+alias svim="sudo vim -u $SUDO_USER/.vimrc"

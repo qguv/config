@@ -1,0 +1,7 @@
+ssh/*.pub
+ssh/*_rsa
+ssh/*_dsa
+ssh/known_hosts
+zsh/.zcompdump
+vim/.netrwhist
+vim/viminfo
