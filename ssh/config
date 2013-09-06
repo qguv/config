@@ -11,3 +11,8 @@ Host shulgin
     HostName 192.168.1.101
     User quintus
     IdentityFile ~/.conf/ssh/id_dsa
+
+Host cao
+    HostName crawl.akrasiac.org
+    User joshua
+    IdentityFile ~/.conf/ssh/akrasiac_rsa
