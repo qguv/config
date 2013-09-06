@@ -13,6 +13,9 @@ alias py3="$PYTHON3NAME"
 alias py2="$PYTHON2NAME"
 alias unix='date "+%s"'
 alias view='vim -R'
+alias tgz='tar czvf'
+alias detgz='tar xvf'
+alias untgz='tar xvf'
 
 # System tasks
 alias reload='source ~/.zshrc'
