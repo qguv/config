@@ -29,7 +29,7 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "no";
-    password = "quintus:adgjadgj";
+    password = "quintus:notmypassword";
   },
   {
     address = "irc.solidirc.com";
@@ -37,7 +37,7 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "no";
-    autosendcmd = "wait 2000;/msg nickserv identify adgjadgj;wait 2000";
+    autosendcmd = "wait 2000;/msg nickserv identify notmypassword;wait 2000";
   }
 );
 
