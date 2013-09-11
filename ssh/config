@@ -1,7 +1,7 @@
 Host chomsky
     HostName mine.nascifi.com
     User quintus
-    IdentityFile ~/.conf/ssh/id_ecdsa
+    IdentityFile ~/.conf/ssh/chomsky_rsa
 
 Host thequintus
     HostName thequintus.com
@@ -10,7 +10,7 @@ Host thequintus
 Host shulgin
     HostName 192.168.1.101
     User quintus
-    IdentityFile ~/.conf/ssh/id_dsa
+    IdentityFile ~/.conf/ssh/shulgin_rsa
 
 Host cao
     HostName crawl.akrasiac.org
