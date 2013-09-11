@@ -8,7 +8,7 @@ source $XDG_CONFIG_HOME/zsh/system
 alias c='clear'
 alias la='ls -A'
 alias md='mkdircd'
-alias py='python'
+alias py='python' # System's default python installation
 alias py3="$PYTHON3NAME"
 alias py2="$PYTHON2NAME"
 alias unix='date "+%s"'
