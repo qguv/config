@@ -1,7 +1,7 @@
 Host chomsky
     HostName mine.nascifi.com
     User quintus
-    IdentityFile ~/.conf/ssh/id_dsa
+    IdentityFile ~/.conf/ssh/id_ecdsa
 
 Host thequintus
     HostName thequintus.com
