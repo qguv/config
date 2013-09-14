@@ -1,0 +1,5 @@
+editor="${EDITOR:-vim}"
+editpkgbuild=false
+editinstall=false
+secure=true
+sudoloop=true
