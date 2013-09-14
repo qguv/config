@@ -13,7 +13,7 @@ endif
 let g:loaded_simplenote_vim = 1
 
 " check for python
-if !has("python2")
+if !has("python")
   echoerr "Simplenote: Plugin needs vim to be compiled with python support."
   finish
 endif
