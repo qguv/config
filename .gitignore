@@ -2,6 +2,7 @@ ssh/*.pub
 ssh/*_rsa
 ssh/*_dsa
 ssh/known_hosts
+ssh/authorized_keys
 vim/.netrwhist
 vim/viminfo
 vim/simplenoterc

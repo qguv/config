@@ -1,3 +1,5 @@
 [user]
 	name = Quintus
 	email = devqqq@gmail.com
+[push]
+	default = simple
