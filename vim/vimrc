@@ -13,6 +13,7 @@ let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 " run custom rc files
 exec ":set viminfo='1000,f1,<500,n".mydir.'/viminfo'
 
+exec ':so ' . mydir . '/vundlerc'
 exec ':so ' . mydir . '/settings'
 exec ':so ' . mydir . '/functions'
 exec ':so ' . mydir . '/aliases'
