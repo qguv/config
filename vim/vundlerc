@@ -15,8 +15,7 @@
  Bundle 'tpope/vim-repeat'
  Bundle 'tpope/vim-markdown'
  Bundle 'tarmack/vim-python-ftplugin'
- Bundle 'file:///usr/local/go/misc/vim'
- " Please don't forget to `git init` go's vim directory!
+ Bundle 'jnwhiteh/vim-golang'
 
  filetype plugin indent on     " required!
  "
