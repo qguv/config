@@ -9,14 +9,16 @@ vim/simplenoterc
 vim/plugin
 vim/bundle
 !vim/bundle/vundle
+!vim/bundle/vundle/*
 zsh/.zcompdump
 zsh/history
+
 akonadi
 dconf
 gtk-3.0
 oxygen-gtk
 pulse
+Trolltech.conf
 user-dirs.dirs
 user-dirs.locale
 yelp
-Trolltech.conf
