@@ -8,7 +8,9 @@ vim/viminfo
 vim/simplenoterc
 vim/plugin
 !vim/bundle/vundle/
+!vim/bundle/vundle/*
 vim/bundle/
+vim/bundle/*
 zsh/.zcompdump
 zsh/history
 
