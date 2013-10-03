@@ -1,8 +1,11 @@
+git/config
+
 ssh/*.pub
 ssh/*_rsa
 ssh/*_dsa
 ssh/known_hosts
 ssh/authorized_keys
+
 vim/.netrwhist
 vim/viminfo
 vim/simplenoterc
@@ -10,9 +13,11 @@ vim/plugin
 vim/bundle/*
 !vim/bundle/vundle
 !vim/bundle/vundle/*
+
 zsh/.zcompdump
 zsh/history
 
+# OpenSUSE CSCI Department Config "Presents"
 akonadi
 dconf
 gtk-3.0
