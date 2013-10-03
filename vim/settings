@@ -12,6 +12,7 @@ colorscheme elflord
 
 " Other programming niceties
 set number
+set smartcase
 set fdm=manual
 set fdn=0
 
