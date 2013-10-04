@@ -53,4 +53,4 @@ vnoremap <space> zf
 autocmd BufRead *.py nmap <F5> :w<CR>:!python3 %<CR>
 autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:silent !csc %<CR>:!./%:r & rm %:r<CR>
-autocmd BufRead *.py nmap <F5> :w<CR>:!go run %<CR>
+autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
