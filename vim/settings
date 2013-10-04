@@ -15,6 +15,7 @@ set number
 set smartcase
 set fdm=manual
 set fdn=0
+set shell=/bin/zsh
 
 " Fixing some elflord oddities
 hi PreProc term=underline ctermfg=Magenta guifg=#ff80ff
@@ -44,6 +45,8 @@ nnoremap <Leader>w :call MoveToPrevTab()<CR>
 nnoremap <Leader>W :call MoveToNextTab()<CR>
 " [p]astetoggle (vt): open file for pas
 nmap <Leader>p :set paste! paste?<cr>
+" jk: substitute for escape
+inoremap jk <Esc>
 
 " Folding with Space
 nnoremap <space> za
