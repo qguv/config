@@ -6,3 +6,4 @@ source $XDG_CONFIG_HOME/zsh/initcommands
 source $XDG_CONFIG_HOME/zsh/functions
 source $XDG_CONFIG_HOME/zsh/aliases
 source $XDG_CONFIG_HOME/zsh/events
+source $XDG_CONFIG_HOME/zsh/system
