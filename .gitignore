@@ -1,5 +1,7 @@
 git/config
 
+irssi/config
+
 ssh/*.pub
 ssh/*_rsa
 ssh/*_dsa
