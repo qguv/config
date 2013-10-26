@@ -16,3 +16,7 @@ Host cao
     HostName crawl.akrasiac.org
     User joshua
     IdentityFile ~/.conf/ssh/akrasiac_rsa
+
+Host csci
+    HostName pepe.cs.wm.edu
+    User quintus
