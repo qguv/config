@@ -4,6 +4,7 @@ set ruler
 set showcmd
 set incsearch
 set wildmenu
+set backspace=2
 
 " Syntax-highlighting
 filetype plugin indent on
