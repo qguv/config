@@ -22,3 +22,4 @@ alias untgz='tar xvf'
 alias reload='source ~/.zshrc'
 alias update="$SYSTEMUPDATE"
 alias svim="sudo vim -u $SUDO_USER/.vimrc"
+alias load="$LOADAVERAGES"
