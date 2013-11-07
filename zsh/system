@@ -4,3 +4,4 @@
 PYTHON3NAME='python3'
 PYTHON2NAME='python'
 SYSTEMUPDATE='brew update; brew upgrade'
+LOADAVERAGES='uptime | cut -d":" -f4- | sed s/,//g'
