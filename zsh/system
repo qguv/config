@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 # zsh system-specific commands
 
-PYTHON3NAME='python3'
-PYTHON2NAME='python'
-SYSTEMUPDATE='brew update; brew upgrade'
+export PYTHON3NAME='python3'
+export PYTHON2NAME='python'
+export SYSTEMUPDATE='brew update; brew upgrade'
+export GOPATH="$HOME/dev/go/"
+
+export PATH="$HOME/dev/go/bin/:$PATH"
