@@ -18,6 +18,7 @@ vim/bundle/*
 
 zsh/.zcompdump
 zsh/history
+zsh/system
 
 # OpenSUSE CSCI Department Config "Presents"
 akonadi
