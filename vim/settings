@@ -9,7 +9,8 @@ set backspace=2
 " Syntax-highlighting
 filetype plugin indent on
 syntax enable
-colorscheme elflord
+set background=dark
+colorscheme solarized
 
 " Other programming niceties
 set number
@@ -19,13 +20,11 @@ set fdn=0
 set shell=/bin/zsh
 
 " Fixing some elflord oddities
-hi PreProc term=underline ctermfg=Magenta guifg=#ff80ff
-hi Special ctermfg=11
-"hi link NonText PreProc
-"hi link SpecialKey PreProc
-hi SpecialKey ctermfg=13
-hi LineNr ctermfg=3
-hi NonText ctermfg=3
+" hi PreProc term=underline ctermfg=Magenta guifg=#ff80ff
+" hi Special ctermfg=11
+" hi SpecialKey ctermfg=13
+" hi LineNr ctermfg=3
+" hi NonText ctermfg=3
 
 " Setting Proper Indent
 set smartindent

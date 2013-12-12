@@ -15,6 +15,7 @@
  Bundle 'tpope/vim-repeat'
  Bundle 'tpope/vim-markdown'
  Bundle 'jnwhiteh/vim-golang'
+ Bundle 'altercation/vim-colors-solarized'
 
  filetype plugin indent on     " required!
  "
