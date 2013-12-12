@@ -20,6 +20,9 @@ zsh/.zcompdump
 zsh/history
 zsh/system
 
+# OSX "Presents"
+.DS_Store
+
 # OpenSUSE CSCI Department Config "Presents"
 akonadi
 dconf
