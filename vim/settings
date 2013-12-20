@@ -56,7 +56,7 @@ nnoremap <space> za
 vnoremap <space> zf
 
 " Running Files with <F5>
-autocmd BufRead *.py nmap <F5> :w<CR>:!python3 %<CR>
+autocmd BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
