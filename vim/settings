@@ -63,6 +63,7 @@ autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
 
 " Formatting code with <F7>
+autocmd FileType python map <buffer> <F7> :call Autopep8()<CR>
 let g:gofmt_command="gofmt -tabs=false -tabwidth=4"
 autocmd BufRead *.go nmap <F7> :w<CR>:Fmt<CR>
 
