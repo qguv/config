@@ -16,6 +16,7 @@
  Bundle 'tpope/vim-markdown'
  Bundle 'jnwhiteh/vim-golang'
  Bundle 'altercation/vim-colors-solarized'
+ Bundle 'tell-k/vim-autopep8'
 
  filetype plugin indent on     " required!
  "
