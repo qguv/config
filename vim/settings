@@ -60,3 +60,4 @@ autocmd BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
+autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
