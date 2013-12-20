@@ -61,3 +61,8 @@ autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
+
+" Formatting code with <F7>
+let g:gofmt_command="gofmt -tabs=false -tabwidth=4"
+autocmd BufRead *.go nmap <F7> :w<CR>:Fmt<CR>
+
