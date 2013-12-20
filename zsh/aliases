@@ -4,7 +4,7 @@
 # Use system-specific commands
 source $XDG_CONFIG_HOME/zsh/system
 
-# Abbreviations
+# UNIX Abbreviations
 alias c='clear'
 alias la='ls -A'
 alias md='mkdircd'

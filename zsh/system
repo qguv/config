@@ -7,3 +7,4 @@ export SYSTEMUPDATE='brew update; brew upgrade'
 export GOPATH="$HOME/dev/go/"
 
 export PATH="$HOME/dev/go/bin/:$PATH"
+export EDITOR="vim"
