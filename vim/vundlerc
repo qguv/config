@@ -17,6 +17,8 @@
  Bundle 'jnwhiteh/vim-golang'
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'tell-k/vim-autopep8'
+ Bundle 'jelera/vim-javascript-syntax'
+ Bundle 'JavaScript-Indent'
 
  filetype plugin indent on     " required!
  "
