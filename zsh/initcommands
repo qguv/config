@@ -1,7 +1,12 @@
 #!/usr/bin/zsh
 # zsh program initialization command aliases
 
-alias ls='ls -G'
+uname=`uname`
+if [[ $uname == "Darwin" ]]; then;
+    alias ls='ls -G'
+elif [[ $uname == "Linux" ]]; then;
+    alias ls='ls --color=auto'
+fi
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
 alias less="less -m -k $XDG_CONFIG_HOME/less/less"
