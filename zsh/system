@@ -5,6 +5,7 @@ export PYTHON3NAME='python3'
 export PYTHON2NAME='python'
 export SYSTEMUPDATE='brew update; brew upgrade'
 export GOPATH="$HOME/dev/go/"
+export BEEPCOMMAND='tput bel'
 
 export PATH="$HOME/dev/go/bin/:$PATH"
 export EDITOR="vim"
