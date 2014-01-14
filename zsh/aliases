@@ -19,7 +19,7 @@ alias detgz='tar xvf'
 alias untgz='tar xvf'
 alias beep="$BEEPCOMMAND"
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
-alias ddg="sr duckduckgo"
+alias ddg="surfraw duckduckgo"
 
 # System tasks
 alias reload='source ~/.zshrc'
