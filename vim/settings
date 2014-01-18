@@ -50,6 +50,8 @@ vnoremap <space> zf
 
 " Running Files with <F5>
 autocmd BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
+autocmd BufRead *.py2 nmap <F5> :w<CR>:w !python2<CR>
+autocmd BufRead *.py3 nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
