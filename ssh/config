@@ -1,5 +1,5 @@
 Host chomsky
-    HostName mine.nascifi.com
+    HostName chomsky.nascifi.com
     User quintus
     IdentityFile ~/.conf/ssh/chomsky_rsa
 
