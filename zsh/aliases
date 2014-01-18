@@ -25,4 +25,3 @@ alias ddg="surfraw duckduckgo"
 # System tasks
 alias reload='source ~/.zshrc'
 alias update="$SYSTEMUPDATE"
-alias svim="sudo vim -u $SUDO_USER/.vimrc"
