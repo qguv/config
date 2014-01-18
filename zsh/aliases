@@ -6,6 +6,7 @@ source $XDG_CONFIG_HOME/zsh/system
 
 # UNIX Abbreviations
 alias c='clear'
+alias s='sudo'
 alias la='ls -A'
 alias md='mkdircd'
 alias sn="vim +'Simplenote -l'"
