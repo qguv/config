@@ -19,13 +19,6 @@ set fdm=manual
 set fdn=0
 set shell=/bin/zsh
 
-" Fixing some elflord oddities
-" hi PreProc term=underline ctermfg=Magenta guifg=#ff80ff
-" hi Special ctermfg=11
-" hi SpecialKey ctermfg=13
-" hi LineNr ctermfg=3
-" hi NonText ctermfg=3
-
 " Setting Proper Indent
 set smartindent
 set tabstop=4
