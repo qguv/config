@@ -50,10 +50,13 @@ vnoremap <space> zf
 
 " Running Files with <F5>
 autocmd BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
-autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
+
+" Rendering text with <F5>
+autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
+autocmd BufRead *.tex nmap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %:r.pdf<CR>:redraw!<CR>
 
 " Formatting code with <F7>
 autocmd FileType python map <buffer> <F7> :call Autopep8()<CR>
