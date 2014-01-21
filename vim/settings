@@ -48,6 +48,10 @@ inoremap jk <Esc>
 nnoremap <space> za
 vnoremap <space> zf
 
+" Rendering text with <F5>
+autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
+autocmd BufRead *.tex nmap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %:r.pdf<CR>:redraw!<CR>
+
 " Running Code with <F5>
 autocmd BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufRead *.py2 nmap <F5> :w<CR>:w !python2<CR>
@@ -55,10 +59,6 @@ autocmd BufRead *.py3 nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufRead *.js nmap <F5> :w<CR>:w !node<CR>
-
-" Rendering text with <F5>
-autocmd BufRead *.md nmap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
-autocmd BufRead *.tex nmap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %:r.pdf<CR>:redraw!<CR>
 
 " Interpreting Code with <F6>
 autocmd BufRead *.py nmap <F6> :w<CR>:w !python3 -i<CR>
