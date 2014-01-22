@@ -54,16 +54,12 @@ autocmd BufRead *.tex nmap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %:r.p
 
 " Running Code with <F5>
 autocmd BufNewFile,BufRead *.py nmap <F5> :w<CR>:w !python3<CR>
-autocmd BufNewFile,BufRead *.py2 nmap <F5> :w<CR>:w !python2<CR>
-autocmd BufNewFile,BufRead *.py3 nmap <F5> :w<CR>:w !python3<CR>
 autocmd BufNewFile,BufRead *.scm nmap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufNewFile,BufRead *.go nmap <F5> :w<CR>:!go run %<CR>
 autocmd BufNewFile,BufRead *.js nmap <F5> :w<CR>:w !node<CR>
 
 " Interpreting Code with <F6>
 autocmd BufNewFile,BufRead *.py nmap <F6> :w<CR>:w !python3 -i<CR>
-autocmd BufNewFile,BufRead *.py2 nmap <F6> :w<CR>:w !python2 -i<CR>
-autocmd BufNewFile,BufRead *.py3 nmap <F6> :w<CR>:w !python3 -i<CR>
 autocmd BufNewFile,BufRead *.js nmap <F6> :w<CR>:w !node -i<CR>
 autocmd BufNewFile,BufRead *.hs nmap <F6> :w<CR>:!ghci "%"<CR>
 
@@ -72,3 +68,8 @@ let g:gofmt_command="gofmt -tabs=false -tabwidth=4"
 autocmd BufNewFile,BufRead *.go nmap <F7> :w<CR>:Fmt<CR>
 autocmd FileType python map <buffer> <F7> :call Autopep8()<CR>
 
+" Running weird versions with <F8>
+autocmd BufNewFile,BufRead *.py nmap <F8> :w<CR>:w !python2<CR>
+
+" Interpreting weird versions with <F9>
+autocmd BufNewFile,BufRead *.py nmap <F9> :w<CR>:w !python2 -i<CR>
