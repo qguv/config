@@ -57,6 +57,7 @@ autocmd BufNewFile,BufRead *.py nnoremap <F5> :w<CR>:w !python3 -B<CR>
 autocmd BufNewFile,BufRead *.scm nnoremap <F5> :w<CR>:w !csi -q<CR>
 autocmd BufNewFile,BufRead *.go nnoremap <F5> :w<CR>:!go run "%"<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <F5> :w<CR>:w !node<CR>
+autocmd BufNewFile,BufRead *.hs nnoremap <F5> :w<CR>:!runghc "%"<CR>
 
 " Interpreting Code with <F6>
 autocmd BufNewFile,BufRead *.py nnoremap <F6> :w<CR>:w !python3 -Bi<CR>
