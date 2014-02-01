@@ -55,7 +55,7 @@ autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %
 " Running Code with <F5>
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :w<CR>:w !python3 -B<CR>
 autocmd BufNewFile,BufRead *.scm nnoremap <F5> :w<CR>:w !csi -q<CR>
-autocmd BufNewFile,BufRead *.go nnoremap <F5> :w<CR>:!go run %<CR>
+autocmd BufNewFile,BufRead *.go nnoremap <F5> :w<CR>:!go run "%"<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <F5> :w<CR>:w !node<CR>
 
 " Interpreting Code with <F6>
