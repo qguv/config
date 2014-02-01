@@ -69,8 +69,8 @@ let g:gofmt_command="gofmt -tabs=false -tabwidth=4"
 autocmd BufNewFile,BufRead *.go nnoremap <F7> :w<CR>:Fmt<CR>
 autocmd FileType python nnoremap <buffer> <F7> :call Autopep8()<CR>
 
-" Running weird versions with <F8>
-autocmd BufNewFile,BufRead *.py nnoremap <F8> :w<CR>:w !python2 -B<CR>
+" Running weird versions with <F11>
+autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
 
-" Interpreting weird versions with <F9>
-autocmd BufNewFile,BufRead *.py nnoremap <F9> :w<CR>:w !python2 -Bi<CR>
+" Interpreting weird versions with <F12>
+autocmd BufNewFile,BufRead *.py nnoremap <F12> :w<CR>:w !python2 -Bi<CR>
