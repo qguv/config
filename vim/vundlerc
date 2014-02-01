@@ -19,6 +19,7 @@
  Bundle 'tell-k/vim-autopep8'
  Bundle 'jelera/vim-javascript-syntax'
  Bundle 'JavaScript-Indent'
+ Bundle 'yaifa.vim'
 
  filetype plugin indent on     " required!
  "
