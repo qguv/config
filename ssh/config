@@ -3,10 +3,10 @@ Host chomsky
     User quintus
     IdentityFile ~/.conf/ssh/chomsky_rsa
 
-Host src.nascifi.com
+Host src
     IdentityFile ~/.conf/ssh/src_nascifi_rsa
 
-Host thequintus
+Host dreamhost
     HostName thequintus.com
     User quintus314
 
