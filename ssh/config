@@ -21,7 +21,7 @@ Host cao
     IdentityFile ~/.conf/ssh/akrasiac_rsa
 
 Host csci
-    HostName pepe.cs.wm.edu
+    HostName gpu2.cs.wm.edu
     User quintus
 
 Host gwicks
