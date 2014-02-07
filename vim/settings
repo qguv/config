@@ -60,7 +60,6 @@ autocmd BufNewFile,BufRead *.js nnoremap <F5> :w<CR>:w !node<CR>
 autocmd BufNewFile,BufRead *.hs nnoremap <F5> :w<CR>:!runghc "%"<CR>
 
 " Interpreting Code with <F6>
-autocmd BufNewFile,BufRead *.py nnoremap <F6> :w<CR>:w !python3 -Bi<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <F6> :w<CR>:w !node -i<CR>
 autocmd BufNewFile,BufRead *.hs nnoremap <F6> :w<CR>:!ghci "%"<CR>
 
@@ -71,6 +70,3 @@ autocmd FileType python nnoremap <buffer> <F7> :call Autopep8()<CR>
 
 " Running weird versions with <F11>
 autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
-
-" Interpreting weird versions with <F12>
-autocmd BufNewFile,BufRead *.py nnoremap <F12> :w<CR>:w !python2 -Bi<CR>
