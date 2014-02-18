@@ -20,6 +20,7 @@
  Bundle 'jelera/vim-javascript-syntax'
  Bundle 'JavaScript-Indent'
  Bundle 'yaifa.vim'
+ Bundle 'Floobits'
 
  filetype plugin indent on     " required!
  "
