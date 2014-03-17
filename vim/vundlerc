@@ -21,6 +21,8 @@
  Bundle 'JavaScript-Indent'
  Bundle 'yaifa.vim'
  Bundle 'Floobits'
+ Bundle 'dag/vim2hs'
+ Bundle 'ehamberg/vim-cute-python'
 
  filetype plugin indent on     " required!
  "
