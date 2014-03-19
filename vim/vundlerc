@@ -23,6 +23,7 @@
  Bundle 'Floobits'
  Bundle 'dag/vim2hs'
  Bundle 'ehamberg/vim-cute-python'
+ Bundle 'kchmck/vim-coffee-script'
 
  filetype plugin indent on     " required!
  "
