@@ -15,8 +15,6 @@ colorscheme solarized
 " Other programming niceties
 set number
 set smartcase
-set fdm=manual
-set fdn=0
 set shell=/bin/zsh
 set concealcursor=c
 set conceallevel=1
@@ -48,6 +46,9 @@ nmap <Leader>p :set paste! paste?<cr>
 inoremap jk <Esc>
 
 " Folding with Space
+set foldmethod=indent
+set foldcolumn=1
+set nofoldenable " don't automatically fold
 nnoremap <space> za
 vnoremap <space> zf
 
