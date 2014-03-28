@@ -1,38 +1,36 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
+set nocompatible
+filetype off
 
- set rtp+=~/.conf/vim/bundle/vundle/
- call vundle#rc()
+set rtp+=~/.conf/vim/bundle/vundle/
+call vundle#rc()
 
- " let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
 
- " My Bundles here:
- "
- Bundle 'mrtazz/simplenote.vim'
- Bundle 'tpope/vim-surround'
- Bundle 'tpope/vim-repeat'
- Bundle 'tpope/vim-markdown'
- Bundle 'jnwhiteh/vim-golang'
- Bundle 'altercation/vim-colors-solarized'
- Bundle 'tell-k/vim-autopep8'
- Bundle 'jelera/vim-javascript-syntax'
- Bundle 'JavaScript-Indent'
- Bundle 'yaifa.vim'
- Bundle 'Floobits'
- Bundle 'dag/vim2hs'
- Bundle 'ehamberg/vim-cute-python'
- Bundle 'kchmck/vim-coffee-script'
+" generic bundles
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'yaifa.vim'
 
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+" python bundles
+Bundle 'tell-k/vim-autopep8'
+Bundle 'ehamberg/vim-cute-python'
 
+" js & friends bundles
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'JavaScript-Indent'
+
+" go
+Bundle 'jnwhiteh/vim-golang'
+" haskell
+Bundle 'dag/vim2hs'
+" coffeescript
+Bundle 'kchmck/vim-coffee-script'
+" haxe
+Bundle 'jdonaldson/vaxe'
+
+" misc
+Bundle 'tpope/vim-markdown'
+Bundle 'mrtazz/simplenote.vim'
+
+filetype plugin indent on     " required!
