@@ -7,7 +7,7 @@ Host src
     IdentityFile ~/.conf/ssh/src_nascifi_rsa
 
 Host dreamhost
-    HostName thequintus.com
+    HostName nascifi.com
     User quintus314
 
 Host shulgin
