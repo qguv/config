@@ -1,3 +1,4 @@
+" vim:syn=vim
 " Non-compatable settings
 set nocompatible
 set ruler

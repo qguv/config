@@ -1,4 +1,4 @@
-#!/usr/bin/vim
+" vim:syn=vim
 " vim rc file
 " mostly just sets vim to respect XDG and runs custom commands in this folder
 

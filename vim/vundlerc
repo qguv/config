@@ -1,3 +1,4 @@
+" vim:syn=vim
 set nocompatible
 filetype off
 
