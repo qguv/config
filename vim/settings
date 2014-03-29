@@ -47,7 +47,6 @@ inoremap jk <Esc>
 
 " Folding with Space
 set foldmethod=indent
-set foldcolumn=1
 set nofoldenable " don't automatically fold
 nnoremap <space> za
 vnoremap <space> zf
