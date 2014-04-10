@@ -310,8 +310,4 @@ mainwindows = {
 };
 logs = { };
 hilights = ( { text = "quintus"; nick = "no"; word = "yes"; } );
-ignores = (
-  { mask = "Sizzell"; level = "ALL"; },
-  { mask = "Gretell"; level = "ALL"; },
-  { mask = "Henzell"; level = "ALL"; }
-);
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
