@@ -21,6 +21,7 @@ alias untgz='tar xvf'
 alias beep="$BEEPCOMMAND"
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias ddg="surfraw duckduckgo"
+alias resolve='cd "$(pwd -P)"'
 
 # System tasks
 alias reload='source ~/.zshrc'
