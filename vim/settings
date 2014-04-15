@@ -45,6 +45,8 @@ nnoremap <Leader>W :call MoveToNextTab()<CR>
 nmap <Leader>p :set paste! paste?<CR>
 " jk: alternative for escape
 inoremap jk <Esc>
+" kj: escape and return
+inoremap kj <Esc>`[
 
 " Folding with Space
 set foldmethod=indent
