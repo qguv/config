@@ -34,16 +34,16 @@ set cm=blowfish
 set hlsearch
 
 " Custom Leader Bindings Below... "
-" [t]abify (vt): open window as new tab
-nm <Leader>t  :wincmd T<CR>
-" [c]leanslate (vt): close current tab and open a new one
+" [t]abify: open window as new tab
+nnoremap <Leader>t  :wincmd T<CR>
+" [c]leanslate: close current tab and open a new one
 noremap <Leader>c  :tabe<CR>gT:x<CR>
-" [w/W]indowify (vt): push current tab into previous window
+" [w/W]indowify: push current tab into previous window
 nnoremap <Leader>w :call MoveToPrevTab()<CR>
 nnoremap <Leader>W :call MoveToNextTab()<CR>
-" [p]astetoggle (vt): open file for pas
-nmap <Leader>p :set paste! paste?<cr>
-" jk: substitute for escape
+" [p]astetoggle: toggle paste mode
+nmap <Leader>p :set paste! paste?<CR>
+" jk: alternative for escape
 inoremap jk <Esc>
 
 " Folding with Space
