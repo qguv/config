@@ -32,6 +32,5 @@ Bundle 'jdonaldson/vaxe'
 
 " misc
 Bundle 'tpope/vim-markdown'
-Bundle 'mrtazz/simplenote.vim'
 
 filetype plugin indent on     " required!
