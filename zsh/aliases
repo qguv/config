@@ -22,6 +22,7 @@ alias beep="$BEEPCOMMAND"
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias ddg="surfraw duckduckgo"
 alias resolve='cd "$(pwd -P)"'
+alias lsaf='find . -type f -exec ls {} \;'
 
 # System tasks
 alias reload='source ~/.zshrc'
