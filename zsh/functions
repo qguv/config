@@ -10,5 +10,5 @@ function mkdircd () {
 
 # Quickly edit programs in your $PATH
 function editex () {
-    eval "$EDITOR" "$(which $1)"
+    eval "$EDITOR" "$(which $1)" ${@:2}
 }
