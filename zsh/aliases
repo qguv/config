@@ -11,7 +11,6 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-alias md='mkdircd'
 alias py='python' # System's default python installation
 alias p3="$PYTHON3NAME"
 alias p2="$PYTHON2NAME"
@@ -25,6 +24,10 @@ alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias ddg="surfraw duckduckgo"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
+
+# zsh/functions
+alias md='mkdircd'
+alias edex='editex'
 
 # System tasks
 alias reload='source ~/.zshrc'
