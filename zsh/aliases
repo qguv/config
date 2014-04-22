@@ -8,8 +8,10 @@ source $XDG_CONFIG_HOME/zsh/system
 alias c='clear'
 alias s='sudo'
 alias la='ls -A'
+alias ll='ls -l'
+alias lal='ls -Al'
+alias lla='ls -Al'
 alias md='mkdircd'
-alias sn="vim +'Simplenote -l'"
 alias py='python' # System's default python installation
 alias p3="$PYTHON3NAME"
 alias p2="$PYTHON2NAME"
