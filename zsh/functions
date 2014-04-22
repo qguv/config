@@ -1,5 +1,14 @@
 #!/usr/bin/zsh
 # zsh custom functions
 
-# Command Combinations
-function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\"" && eval echo "Switching to" `pwd` "..." ; } # Combines mkdir, cd, pwd
+# Combines mkdir, cd, pwd
+function mkdircd () {
+    mkdir -p "$@" &&
+    eval cd "\"\$$#\"" &&
+    eval echo "Switching to $(pwd)...";
+}
+
+# Quickly edit programs in your $PATH
+function editex () {
+    eval "$EDITOR" "$(which $1)"
+}
