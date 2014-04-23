@@ -32,3 +32,7 @@ alias edex='editex'
 # System tasks
 alias reload='source ~/.zshrc'
 alias update="$SYSTEMUPDATE"
+
+# Clipboard
+alias cbc="$CLIPBOARDCOPY"
+alias cbp="$CLIPBOARDPASTE"
