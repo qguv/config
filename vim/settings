@@ -33,7 +33,7 @@ set cm=blowfish
 " Highlight search results
 set hlsearch
 
-" Custom Leader Bindings Below... "
+" Leader bindings
 " [t]abify: open window as new tab
 nnoremap <Leader>t  :wincmd T<CR>
 " [c]leanslate: close current tab and open a new one
@@ -43,6 +43,10 @@ nnoremap <Leader>w :call MoveToPrevTab()<CR>
 nnoremap <Leader>W :call MoveToNextTab()<CR>
 " [p]astetoggle: toggle paste mode
 nmap <Leader>p :set paste! paste?<CR>
+" [m]inify
+nnoremap <Leader>m :%left<CR>:%g:^#:d<CR>:g:^$:d<CR>:noh<CR>ggVGgJ
+
+" non-Leader bindings
 " jk: alternative for escape
 inoremap jk <Esc>
 " kj: escape and return
