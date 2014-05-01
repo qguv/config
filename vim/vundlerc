@@ -12,6 +12,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'yaifa.vim'
+Bundle 'Shougo/neocomplete.vim'
 
 " python bundles
 Bundle 'tell-k/vim-autopep8'
