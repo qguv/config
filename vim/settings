@@ -20,6 +20,7 @@ set shell=/bin/zsh
 set concealcursor=c
 set conceallevel=1
 set fileformats=mac,unix,dos
+set fileformat=unix
 let g:haskell_conceal_wide=1
 
 " Setting Proper Indent
