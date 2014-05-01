@@ -28,3 +28,7 @@ Host gwicks
     HostName 107.20.177.55
     IdentityFile ~/.conf/ssh/gwicks_amazon_rsa
     User ubuntu
+
+Host feynman
+    HostName 128.239.40.147
+    User quintus

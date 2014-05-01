@@ -1,4 +1,0 @@
-#!/usr/bin/vim
-let g:SimplenoteUsername = 'devqqq@gmail.com'
-let g:SimplenoteFiletype = 'markdown'
-let g:SimplenotePassword = 'notmypassword'
