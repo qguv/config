@@ -30,5 +30,5 @@ Host gwicks
     User ubuntu
 
 Host feynman
-    HostName 128.239.40.147
+    HostName 128.239.54.39
     User quintus
