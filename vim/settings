@@ -24,7 +24,6 @@ set fileformat=unix
 let g:haskell_conceal_wide=1
 
 " Setting Proper Indent
-set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
