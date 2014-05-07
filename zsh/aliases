@@ -36,3 +36,6 @@ alias update="$SYSTEMUPDATE"
 # Clipboard
 alias cbc="$CLIPBOARDCOPY"
 alias cbp="$CLIPBOARDPASTE"
+
+# Internet
+alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
