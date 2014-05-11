@@ -4,26 +4,30 @@
 # Use system-specific commands
 source $XDG_CONFIG_HOME/zsh/system
 
-# UNIX Abbreviations
+# UNIX
 alias c='clear'
 alias s='sudo'
 alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-alias py='python' # System's default python installation
-alias p3="$PYTHON3NAME"
-alias p2="$PYTHON2NAME"
 alias unix='date "+%s"'
 alias view='vim -R'
 alias tgz='tar czvf'
 alias detgz='tar xvf'
 alias untgz='tar xvf'
 alias beep="$BEEPCOMMAND"
-alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
-alias ddg="surfraw duckduckgo"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
+
+# versioning
+alias py='python' # System's default python installation
+alias p3="$PYTHON3NAME"
+alias p2="$PYTHON2NAME"
+
+# tool functionality
+alias ddg="surfraw duckduckgo"
+alias tmuxdr="tmux attach || tmux new"
 
 # zsh/functions
 alias md='mkdircd'
@@ -38,4 +42,5 @@ alias cbc="$CLIPBOARDCOPY"
 alias cbp="$CLIPBOARDPASTE"
 
 # Internet
+alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
