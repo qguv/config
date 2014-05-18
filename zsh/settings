@@ -6,6 +6,9 @@ HISTFILE="$XDG_CONFIG_HOME/zsh/history"
 SAVEHIST=1000
 HISTSIZE=1000
 
+# vi-style command editing
+set -o vi
+
 # git prompt and completion
 setopt prompt_subst
 autoload -Uz vcs_info
