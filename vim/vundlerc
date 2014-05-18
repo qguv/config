@@ -33,5 +33,6 @@ Bundle 'jdonaldson/vaxe'
 
 " misc
 Bundle 'tpope/vim-markdown'
+Bundle 'ingydotnet/yaml-vim'
 
 filetype plugin indent on     " required!
