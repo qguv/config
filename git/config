@@ -1,0 +1,27 @@
+[user]
+	name = Quint Guvernator
+	email = quintus.public@gmail.com
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[sendemail]
+	from = Quint Guvernator <quintus.public@gmail.com>
+	smtpserver = smtp.gmail.com
+	smtpuser = quintus.public@gmail.com
+	smtpencryption = tls
+	chainreplyto = false
+	smtpserverport = 587
+	confirm = auto
+[alias]
+	g = grep --break --heading --line-number
+	se = send-email --annotate --cover-letter --signoff
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+[interactive]
+	singlekey = true
+[http]
+	postBuffer = 524288000
+[core]
+	autocrlf = input
+[push]
+	default = simple
