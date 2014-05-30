@@ -44,3 +44,10 @@ alias cbp="$CLIPBOARDPASTE"
 # Internet
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
+
+# Arch
+alias pa="pacaur"
+alias pm="pacman"
+alias spm="sudo pacman"
+alias sc="systemctl"
+alias ssc="sudo systemctl"
