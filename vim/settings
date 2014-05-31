@@ -46,6 +46,10 @@ nnoremap <Leader>W :call MoveToNextTab()<CR>
 nmap <Leader>p :set paste! paste?<CR>
 " [m]inify
 nnoremap <Leader>m :%left<CR>:%g:^#:d<CR>:g:^$:d<CR>:noh<CR>ggVGgJ
+" [r]eplace variable name
+nnoremap <Leader>r gd[{V%::s/<C-R>///g<left><left>
+" [R]eplace variable name globally
+nnoremap <Leader>R gD:%s/<C-R>///g<left><left>
 
 " non-Leader bindings
 " jk: alternative for escape
