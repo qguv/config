@@ -12,3 +12,14 @@ function mkdircd () {
 function editex () {
     eval "$EDITOR" "$(which $1)" ${@:2}
 }
+
+# Run a locally hosted godoc.org at given port
+function hostgodoc () {
+    if [ -z $1 ]; then
+        PORT="6060"
+    else
+        PORT="$1"
+    fi
+
+    eval "godoc" "-http=:$PORT"
+}
