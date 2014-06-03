@@ -10,24 +10,30 @@ Bundle 'gmarik/vundle'
 " generic bundles
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'yaifa.vim'
 Bundle 'Shougo/neocomplete.vim'
+
+" color schemes
+Bundle 'altercation/vim-colors-solarized'
+
+" external tool interfaces
+Bundle 'tpope/vim-fugitive'
 
 " python bundles
 Bundle 'tell-k/vim-autopep8'
 Bundle 'ehamberg/vim-cute-python'
 
-" js & friends bundles
+" js & derivatives
 Bundle 'jelera/vim-javascript-syntax'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'JavaScript-Indent'
 
 " go
 Bundle 'jnwhiteh/vim-golang'
+
 " haskell
 Bundle 'dag/vim2hs'
-" coffeescript
-Bundle 'kchmck/vim-coffee-script'
+
 " haxe
 Bundle 'jdonaldson/vaxe'
 
