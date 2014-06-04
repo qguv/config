@@ -10,5 +10,5 @@ export TERM='xterm-256color'
 
 export PATH="$HOME/bin:$HOME/dev/go/bin/:$PATH"
 export EDITOR="vim"
-export CLIPBOARDCOPY=""
-export CLIPBOARDPASTE=""
+export CLIPBOARDCOPY="xclip -selection clipboard"
+export CLIPBOARDPASTE="xclip -o -selection clipboard"
