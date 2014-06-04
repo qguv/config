@@ -25,3 +25,5 @@
 	autocrlf = input
 [push]
 	default = simple
+[credential]
+	helper = cache
