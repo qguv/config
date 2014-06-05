@@ -23,6 +23,7 @@
 	postBuffer = 524288000
 [core]
 	autocrlf = input
+	editor = vim
 [push]
 	default = simple
 [credential]
