@@ -13,6 +13,7 @@
 	smtpserverport = 587
 	confirm = auto
 [alias]
+	lo = log --oneline
 	g = grep --break --heading --line-number
 	se = send-email --annotate --cover-letter --signoff
 	ignore = update-index --assume-unchanged
