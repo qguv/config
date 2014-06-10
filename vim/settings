@@ -50,6 +50,9 @@ nnoremap <Leader>m :%left<CR>:%g:^#:d<CR>:g:^$:d<CR>:noh<CR>ggVGgJ
 nnoremap <Leader>r gd[{V%::s/<C-R>///g<left><left>
 " [R]eplace variable name globally
 nnoremap <Leader>R gD:%s/<C-R>///g<left><left>
+" [u]ncomment lines (with given comment prepender)
+command! -nargs=1 -bar UncommentLines %g:^<args>::s
+nnoremap <Leader>u :UncommentLines<space>
 
 " non-Leader bindings
 " jk: alternative for escape
