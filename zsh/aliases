@@ -39,6 +39,7 @@ alias tmuxdr="tmux attach || tmux new"
 # zsh/functions
 alias md='mkdircd'
 alias edex='editex'
+alias gpa='pushallremotes'
 
 # System tasks
 alias reload='source ~/.zshrc'

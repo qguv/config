@@ -23,3 +23,10 @@ function hostgodoc () {
 
     eval "godoc" "-http=:$PORT"
 }
+
+# Push to all remotes in git
+function pushallremotes () {
+    for r in $(git remote); do
+        git push "--repo=$r" "$@"
+    done
+}
