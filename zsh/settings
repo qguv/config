@@ -81,3 +81,5 @@ else
 fi
 
 promptinit
+
+source plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
