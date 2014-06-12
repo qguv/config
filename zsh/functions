@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 # zsh custom functions
 
+# Use system-specific variables
+source $XDG_CONFIG_HOME/zsh/system
+
 # Combines mkdir, cd, pwd
 function mkdircd () {
     mkdir -p "$@" &&
@@ -29,4 +32,24 @@ function pushallremotes () {
     for r in $(git remote); do
         git push "--repo=$r" "$@"
     done
+}
+
+function texide () {
+    INFILE="$1"
+    TEXFILE="$INFILE.tex"
+    DVIFILE="$INFILE.dvi"
+    PDFFILE="$INFILE.pdf"
+
+    STATUS=0
+    while [ $STATUS -eq 0 ]; do
+        vim "$TEXFILE"
+        let STATUS=$?
+        "latex" "$INFILE"
+        "bibtex" "$INFILE"
+        "latex" "$INFILE"
+        "latex" "$INFILE"
+        "dvipdf" "$DVIFILE"
+        "$OPENCOMMAND" "$PDFFILE"
+    done
+    return 0
 }

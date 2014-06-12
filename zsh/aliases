@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 # zsh custom aliases
 
-# Use system-specific commands
+# Use system-specific variables
 source $XDG_CONFIG_HOME/zsh/system
 
 # UNIX
