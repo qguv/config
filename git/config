@@ -17,6 +17,7 @@
 	g = grep --break --heading --line-number
 	se = send-email --annotate --cover-letter --signoff
 	ignore = update-index --assume-unchanged
+	noignore = update-index --no-assume-unchanged
 	unignore = update-index --no-assume-unchanged
 [interactive]
 	singlekey = true
