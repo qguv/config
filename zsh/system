@@ -3,7 +3,7 @@
 
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python'
-export SYSTEMUPDATE='brew update; brew upgrade'
+export SYSTEMUPDATE=''
 export GOPATH="$HOME/dev/go/"
 export BEEPCOMMAND='tput bel'
 export TERM='xterm-256color'
