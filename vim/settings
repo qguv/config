@@ -98,6 +98,7 @@ autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
 
 " Quicker multi-word variable names
 " camelCase & PascalCase languages
-autocmd BufNewFile,BufRead {*.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim} inoremap jf <C-R>=substitute(input("variableName: "), ' \(\w\)', '\U\1', 'g')<CR>
+autocmd BufNewFile,BufRead {*.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim} inoremap jf <C-R>=VariableMangler(" ")<CR>
+
 " underscore_variable languages
-autocmd BufNewFile,BufRead {*.rb,*.ruby,*.c,*.cpp} inoremap jf <C-R>=substitute(input("variable_name: "), ' ', '_', 'g')<CR>
+autocmd BufNewFile,BufRead {*.rb,*.ruby,*.c,*.cpp} inoremap jf <C-R>=VariableMangler("_")<CR>
