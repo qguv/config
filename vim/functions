@@ -44,3 +44,81 @@ function MoveToNextTab()
   "opening current buffer in new window
   exe "b".l:cur_buf
 endfunc
+
+function CharIsUppercase(charnum)
+  "65: A, 90: Z
+  return a:charnum >= 65 && a:charnum <= 90
+endfunc
+
+function CharIsLowercase(charnum)
+  "97: a, 122: z
+  return a:charnum >= 97 && a:charnum <= 122
+endfunc
+
+function CharIsLetter(charnum)
+  return CharIsLowercase(a:charnum) || CharIsUppercase(a:charnum)
+endfunc
+
+function CharCapitalize(charnum)
+  if CharIsLowercase(a:charnum)
+    "97: a, 65: A
+    return a:charnum + (65 - 97)
+  else
+    return a:charnum
+  endif
+endfunc
+
+
+" Fancy variable substitution
+" mode is underscore for underscore mode or space for camelcase mode
+function VariableMangler(mode)
+
+  echo ""
+  let l:variable = ""
+  let l:inchar = getchar()
+
+  "13: CR
+  "32: SPACE
+
+  while (CharIsLetter(l:inchar) || l:inchar == 32 || l:inchar is# "\<BS>")
+
+    if (l:inchar == 32)
+
+      " we entered a space: handle it
+      if (a:mode is "_")
+        let l:variable = l:variable . "_"
+      else
+        let l:inchar = getchar()
+        let l:variable = l:variable . nr2char(CharCapitalize(l:inchar))
+      endif
+
+    " we entered a backspace
+    elseif (l:inchar is# "\<BS>")
+
+      if (l:variable is "")
+      " nothing to delete
+        return ""
+      else
+        let l:variable = substitute(l:variable, '\(.*\).$', '\1', 'g')
+      endif
+
+    " we entered a normal character
+    else
+      let l:variable = l:variable . nr2char(l:inchar)
+    endif
+
+    echo l:variable
+    let l:inchar = getchar()
+  endwhile
+
+  " ended with a CR
+  if (l:inchar == 13)
+    let l:variable = l:variable . " "
+
+  " ended with something else
+  else
+    let l:variable = l:variable . nr2char(l:inchar)
+  endif
+  
+  return l:variable
+endfunc 
