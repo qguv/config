@@ -73,7 +73,11 @@ endfunc
 " mode is underscore for underscore mode or space for camelcase mode
 function VariableMangler(mode)
 
-  echo ""
+  if (a:mode is "_")
+    echo "-- variable_mode --"
+  else
+    echo "-- variableMode --"
+  endif
   let l:variable = ""
   let l:inchar = getchar()
 
@@ -107,7 +111,7 @@ function VariableMangler(mode)
       let l:variable = l:variable . nr2char(l:inchar)
     endif
 
-    echo l:variable
+    echo "var: " . l:variable
     let l:inchar = getchar()
   endwhile
 
