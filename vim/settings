@@ -89,7 +89,6 @@ autocmd BufNewFile,BufRead *.js nnoremap <F6> :w<CR>:w !node -i<CR>
 autocmd BufNewFile,BufRead *.hs nnoremap <F6> :w<CR>:!ghci "%"<CR>
 
 " Formatting code with <F7>
-let g:gofmt_command="gofmt -tabs=false -tabwidth=4"
 autocmd BufNewFile,BufRead *.go nnoremap <F7> :w<CR>:Fmt<CR>
 autocmd FileType python nnoremap <buffer> <F7> :call Autopep8()<CR>
 
