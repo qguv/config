@@ -1,4 +1,5 @@
 irssi/config
+irssi/away.log
 
 ssh/*.pub
 ssh/*_rsa
