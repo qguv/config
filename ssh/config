@@ -32,3 +32,8 @@ Host gwicks
 Host feynman
     HostName 128.239.54.39
     User quintus
+
+Host arches
+    HostName arches.uccs.edu
+    User quintus
+    IdentityFile ~/.conf/ssh/uccs_arches_rsa
