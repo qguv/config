@@ -9,6 +9,19 @@ HISTSIZE=1000
 # vi-style command editing
 set -o vi
 
+# the glorious calendar
+autoload calendar
+autoload calendar_add
+autoload calendar_edit
+autoload calendar_lockfiles
+autoload calendar_parse
+autoload calendar_read
+autoload calendar_scandate
+autoload calendar_show
+autoload calendar_showdate
+autoload calendar_sort
+
+
 # git prompt and completion
 setopt prompt_subst
 autoload -Uz vcs_info
