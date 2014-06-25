@@ -21,7 +21,7 @@ autoload calendar_show
 autoload calendar_showdate
 autoload calendar_sort
 zstyle ':datetime:*' reformat-date 'yes'
-zstyle ':datetime:*' done-file '' # don't maintain a done file
+zstyle ':datetime:*' done-file '/dev/null'
 zstyle ':datetime:*' warn-time '30 minutes'
 
 # git prompt and completion
