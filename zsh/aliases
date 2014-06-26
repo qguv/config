@@ -11,7 +11,6 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-alias unix='date "+%s"'
 alias view='vim -R'
 alias tgz='tar czvf'
 alias detgz='tar xvf'
@@ -54,6 +53,14 @@ alias cbp="$CLIPBOARDPASTE"
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias textme='mailx -s autotext devqqq+autotext@gmail.com'
+
+# Number systems
+alias 2dec="printf '%d\n'"
+alias 2hex="printf '%x\n'"
+
+# Time
+alias unix='date "+%s"'
+alias hext='printf "%x\n" "$(date +%s)"' # or 2hex `unix`
 
 # Arch
 alias pa="pacaur"
