@@ -74,9 +74,9 @@ endfunc
 function VariableMangler(mode)
 
   if (a:mode is "_")
-    echo "-- variable_mode --"
+    echo "-- variable --"
   else
-    echo "-- variableMode --"
+    echo "-- variable --"
   endif
   let l:variable = ""
   let l:inchar = getchar()
@@ -86,14 +86,35 @@ function VariableMangler(mode)
 
   while (CharIsLetter(l:inchar) || l:inchar == 32 || l:inchar is# "\<BS>")
 
+    " we entered a space: handle it
     if (l:inchar == 32)
 
-      " we entered a space: handle it
+      " we're in underscore mode
       if (a:mode is "_")
-        let l:variable = l:variable . "_"
+
+        " there was no first space; append an underscore and move on
+        if (matchstr(l:variable, "\_$") == "")
+          let l:variable = l:variable . "_"
+
+        " we've entered a second space; return the whole thing
+        else
+          return l:variable . " "
+        endif
+
+      " we're in camelCase mode, wait for the next character
       else
+        echo "var: " . l:variable . "^"
         let l:inchar = getchar()
-        let l:variable = l:variable . nr2char(CharCapitalize(l:inchar))
+
+        " we've entered a second space; return the whole thing
+        if (l:inchar == 32)
+          return l:variable . " "
+
+        " we've entered a new variable name
+        else
+          let l:variable = l:variable . nr2char(CharCapitalize(l:inchar))
+        endif
+
       endif
 
     " we entered a backspace
@@ -115,14 +136,8 @@ function VariableMangler(mode)
     let l:inchar = getchar()
   endwhile
 
-  " ended with a CR
-  if (l:inchar == 13)
-    let l:variable = l:variable . " "
-
-  " ended with something else
-  else
-    let l:variable = l:variable . nr2char(l:inchar)
-  endif
+  " ended with a symbol
+  let l:variable = l:variable . nr2char(l:inchar)
   
   return l:variable
 endfunc 

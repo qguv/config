@@ -99,7 +99,9 @@ autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
 
 " Quicker multi-word variable names
 " camelCase & PascalCase languages
-autocmd BufNewFile,BufRead {*.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim} inoremap jf <C-R>=VariableMangler(" ")<CR>
-
+" namely *.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim
+" but it should really be default
+autocmd BufNewFile,BufRead,VimEnter * inoremap jf <C-R>=VariableMangler(" ")<CR>
 " underscore_variable languages
+" mostly the exception
 autocmd BufNewFile,BufRead {*.rb,*.ruby,*.c,*.cpp} inoremap jf <C-R>=VariableMangler("_")<CR>
