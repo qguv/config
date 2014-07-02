@@ -1,0 +1,8 @@
+set tabstop 4
+set datetimeformat {%Y/%m/%d %H:%M:%S}
+set bgcolor #002b36
+set fgcolor #fdf6e3
+set colors {green red blue magenta darkgrey brown orange}
+set diffcolors {{#dc322f} #859900 #268bd2}
+set markbgcolor #657b83
+set selectbgcolor #657b83
