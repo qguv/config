@@ -110,6 +110,7 @@ function movetotrash() {
     mv "$1" "$dest"
     [ "$?" -eq 0 ] || return 1
     echo "$dest"
+    echo "$filename:\t$(pwd)/$1" >> "$TRASHDIR/sources.txt"
 
     shift
   done
