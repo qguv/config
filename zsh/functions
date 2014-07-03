@@ -6,50 +6,113 @@ source $XDG_CONFIG_HOME/zsh/system
 
 # Combines mkdir, cd, pwd
 function mkdircd () {
-    mkdir -p "$@" &&
-    eval cd "\"\$$#\"" &&
-    eval echo "Switching to $(pwd)...";
+
+  mkdir -p "$@" &&
+  eval cd "\"\$$#\"" &&
+  eval echo "Switching to $(pwd)...";
+
 }
+
 
 # Quickly edit programs in your $PATH
 function editex () {
-    eval "$EDITOR" "$(which $1)" ${@:2}
+  eval "$EDITOR" "$(which $1)" ${@:2}
 }
+
 
 # Run a locally hosted godoc.org at given port
 function hostgodoc () {
-    if [ -z $1 ]; then
-        PORT="6060"
-    else
-        PORT="$1"
-    fi
 
-    eval "godoc" "-http=:$PORT"
+  if [ -z $1 ]; then
+    PORT="6060"
+  else
+    PORT="$1"
+  fi
+
+  eval "godoc" "-http=:$PORT"
+
 }
+
 
 # Push to all remotes in git
 function pushallremotes () {
-    for r in $(git remote); do
-        git push "--repo=$r" "$@"
-    done
+  for r in $(git remote); do
+    git push "--repo=$r" "$@"
+  done
 }
 
 function texide () {
-    INFILE="$1"
-    TEXFILE="$INFILE.tex"
-    DVIFILE="$INFILE.dvi"
-    PDFFILE="$INFILE.pdf"
+  INFILE="$1"
+  TEXFILE="$INFILE.tex"
+  DVIFILE="$INFILE.dvi"
+  PDFFILE="$INFILE.pdf"
 
-    STATUS=0
-    while [ $STATUS -eq 0 ]; do
-        vim "$TEXFILE"
-        let STATUS=$?
-        "latex" "$INFILE"
-        "bibtex" "$INFILE"
-        "latex" "$INFILE"
-        "latex" "$INFILE"
-        "dvipdf" "$DVIFILE"
-        "$OPENCOMMAND" "$PDFFILE"
-    done
-    return 0
+  STATUS=0
+  while [ $STATUS -eq 0 ]; do
+    vim "$TEXFILE"
+    let STATUS=$?
+    "latex" "$INFILE"
+    "bibtex" "$INFILE"
+    "latex" "$INFILE"
+    "latex" "$INFILE"
+    "dvipdf" "$DVIFILE"
+    "$OPENCOMMAND" "$PDFFILE"
+  done
+
+  return 0
+}
+
+# modified from original at:
+# http://www.commandlinefu.com/commands/view/13242/a-trash-function-for-bash
+function movetotrash() {
+
+  # Filenames will be append with a timestamp
+  timestamp=$(date "+%s")
+
+  # You can define your own if you want, but NO TRAILING SLASH
+  TRASHDIR="/tmp/trash"
+
+  if [[ -z "$*" ]] ; then
+    echo "Usage: mt [files...]"
+    return 2
+  fi
+
+  # Test if TRASHDIR exists and proceed with deleting files if it
+  # exists. If it does not exist, e.g. after a restart, create the
+  # directory and proceed.
+  if [ ! -d "$TRASHDIR" ]; then
+    mkdir "$TRASHDIR"
+
+    # if unsuccessful, crash
+    [ "$?" -eq 0 ] || return 3
+
+    touch "$TRASHDIR/sources.txt"
+    echo "$TRASHDIR initialized"
+  fi
+
+  # TBD: Do not move every file separately, but
+  # mv all files at once... don't know how...
+  while [ $# -ne 0 ]; do
+
+    # Scrub input for parts
+    filename="$(basename $1)"
+    extension="${filename##*.}"
+    filename="${filename%.*}"
+
+    # Make whitespaces underscores
+    filename="$(echo $filename | sed 's:\s:_:g')"
+
+    # Append timestamp and combine
+    filename="${filename}_$timestamp.$extension.backup"
+    dest="$TRASHDIR/$filename"
+
+    # Move files to /tmp/trash
+    mv "$1" "$dest"
+    [ "$?" -eq 0 ] || return 1
+    echo "$dest"
+
+    shift
+  done
+
+  return 0
 }
