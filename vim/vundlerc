@@ -2,8 +2,8 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.conf/vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.conf/vim/vundle/
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 
@@ -20,7 +20,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 
 " python bundles
-Bundle 'tell-k/vim-autopep8'
+Bundle 'klen/python-mode'
 Bundle 'ehamberg/vim-cute-python'
 
 " js & derivatives
