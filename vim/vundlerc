@@ -5,40 +5,41 @@ filetype off
 set rtp+=~/.conf/vim/vundle/
 call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " generic bundles
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'yaifa.vim'
-Bundle 'Shougo/neocomplete.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'yaifa.vim'
+Plugin 'Shougo/neocomplete.vim'
 
 " color schemes
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " external tool interfaces
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " python bundles
-Bundle 'klen/python-mode'
-Bundle 'ehamberg/vim-cute-python'
+Plugin 'klen/python-mode'
+Plugin 'ehamberg/vim-cute-python'
 
 " js & derivatives
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'JavaScript-Indent'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'JavaScript-Indent'
 
 " go
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'jnwhiteh/vim-golang'
 
 " haskell
-Bundle 'dag/vim2hs'
+Plugin 'dag/vim2hs'
 
 " haxe
-Bundle 'jdonaldson/vaxe'
+Plugin 'jdonaldson/vaxe'
 
 " misc
-Bundle 'tpope/vim-markdown'
-Bundle 'ingydotnet/yaml-vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'ingydotnet/yaml-vim'
 
+call vundle#end()
 filetype plugin indent on     " required!
