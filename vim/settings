@@ -28,10 +28,13 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" pymode uses pep8 & co.
-let g:pymode_lint_checkers=['pep8', 'pep257']
+" pymode lint is broken at the moment.
+let g:pymode_lint = 0
 
-" pymode's autopep8 ignores the dumber pep8 guidelines
+" pymode rebinds one of my leaders. unacceptable.
+let g:pymode_run=0
+
+" autopep8 ignores the dumber pep8 guidelines
 " 501: lines less than 80 characters
 "   * dumb because this ain't 1970
 " 201-2: every list, comprehension or not, has cozy square brackets
@@ -39,11 +42,7 @@ let g:pymode_lint_checkers=['pep8', 'pep257']
 " 301-3: weird arbitrary rules on newlines
 "   * dumb because it's hard to tell '\n' from '\n+'
 " the rest of the rules are really good; let's stick to those
-let g:pymode_lint_ignore="E501,E201,E202,E301,E302,E303"
-let g:pymode_lint_select="W"
-
-" pymode rebinds one of my leaders. unacceptable.
-let g:pymode_run=0
+let g:autopep8_ignore="E501,E201,E202,E301,E302,E303"
 
 " Setting Strong Cryptography with :X
 set cm=blowfish 
