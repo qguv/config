@@ -1,6 +1,6 @@
-[submodule "vim/vundle"]
-	path = vim/vundle
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vim/vundle"]
+	path = vim/vundle
+	url = https://github.com/gmarik/Vundle.vim.git

@@ -11,9 +11,6 @@ vim/.netrwhist
 vim/viminfo
 vim/simplenoterc
 vim/plugin
-vim/bundle/*
-!vim/bundle/vundle
-!vim/bundle/vundle/*
 
 zsh/.zcompdump
 zsh/history
