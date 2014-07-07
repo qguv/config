@@ -21,6 +21,7 @@ Plugin 'tpope/vim-fugitive'
 
 " python bundles
 Plugin 'klen/python-mode'
+Plugin 'tell-k/vim-autopep8'
 Plugin 'ehamberg/vim-cute-python'
 
 " js & derivatives
