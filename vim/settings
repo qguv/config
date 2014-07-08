@@ -81,10 +81,13 @@ inoremap jk <Esc>
 inoremap kj <Esc>`[
 
 " Folding with Space
-set foldmethod=manual
+set foldmethod=syntax
 set nofoldenable " don't automatically fold
 nnoremap <space> za
 vnoremap <space> zf
+
+" text documents should have linebreaks, since newlines imply paragraphs
+autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
 
 " Rendering text with <F5>
 autocmd BufRead *.md nnoremap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
@@ -111,8 +114,8 @@ autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
 " Quicker multi-word variable names
 " camelCase & PascalCase languages
 " namely *.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim
-" but it should really be default
+" but it should really be default, as much as I hate to admit it
 autocmd BufNewFile,BufRead,VimEnter * inoremap jf <C-R>=VariableMangler(" ")<CR>
 " underscore_variable languages
-" mostly the exception
+" mostly the exception; I can't fight this for much longer :-(
 autocmd BufNewFile,BufRead {*.rb,*.ruby,*.c,*.cpp} inoremap jf <C-R>=VariableMangler("_")<CR>
