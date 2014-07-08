@@ -42,6 +42,17 @@ function pushallremotes () {
 }
 
 function texide () {
+  if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    echo "Usage:"
+    echo "  texide <project-name>"
+    echo
+    echo "texide will open and render LaTeX projects on the fly in vim, rendering and"
+    echo "displaying text each time vim is closed. Use :cq in vim to stop rendering."
+    echo
+    echo "Do not include an extension on <project-name>. We'll figure it out."
+    return 0
+  fi
+
   INFILE="$1"
   TEXFILE="$INFILE.tex"
   DVIFILE="$INFILE.dvi"
@@ -49,7 +60,7 @@ function texide () {
 
   STATUS=0
   while [ $STATUS -eq 0 ]; do
-    vim "$TEXFILE"
+    vim "$TEXFILE" -c "normal! g\`\""
     let STATUS=$?
     "latex" "$INFILE"
     "bibtex" "$INFILE"
