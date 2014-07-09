@@ -19,6 +19,7 @@
 	ignore = update-index --assume-unchanged
 	noignore = update-index --no-assume-unchanged
 	unignore = update-index --no-assume-unchanged
+    ls = ls-tree --name-only HEAD
 [interactive]
 	singlekey = true
 [http]
