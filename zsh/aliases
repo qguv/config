@@ -25,6 +25,7 @@ alias gs="git status -s"
 alias gss="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gdw="git-diff-words"  # see zsh/functions
 
 # versioning
 alias py='python' # System's default python installation

@@ -128,3 +128,15 @@ function movetotrash() {
 
   return 0
 }
+
+function git-diff-words() {
+  if [ "$1" ]; then
+    ref="$1"
+  else
+    ref="HEAD"
+  fi
+
+  git show --color-words "$ref" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
+
+  return $?
+}
