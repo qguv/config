@@ -20,7 +20,7 @@
 	noignore = update-index --no-assume-unchanged
 	unignore = update-index --no-assume-unchanged
 	ls = ls-tree --name-only HEAD
-	graph = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	graph = log --graph --decorate --pretty=oneline --abbrev-commit
 [interactive]
 	singlekey = true
 [http]
