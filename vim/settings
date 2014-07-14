@@ -91,7 +91,7 @@ autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
 
 " Rendering text with <F5>
 autocmd BufRead *.md nnoremap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
-autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !open %:r.pdf<CR>:redraw!<CR>
+autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !"$OPENCOMMAND" %:r.pdf<CR>:redraw!<CR>
 
 " Running Code with <F5>
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :w<CR>:w !python3 -B<CR>
