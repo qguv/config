@@ -35,7 +35,7 @@ function hostgodoc () {
 
 
 # Push to all remotes in git
-function pushallremotes () {
+function git-push-all () {
   for r in $(git remote); do
     git push "--repo=$r" "$@"
   done
