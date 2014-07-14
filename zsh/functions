@@ -130,13 +130,14 @@ function movetotrash() {
 }
 
 function git-diff-words() {
+  declare -a options
   if [ "$1" ]; then
-    ref="$1"
+    options="$@"
   else
-    ref="HEAD"
+    options=("HEAD")
   fi
 
-  git show --color-words "$ref" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
+  git show --color-words ${options} | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
 
   return $?
 }
