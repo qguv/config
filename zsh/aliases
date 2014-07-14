@@ -25,7 +25,9 @@ alias gs="git status -s"
 alias gss="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
-alias gdw="git-diff-words"  # see zsh/functions
+# in zsh/functions:
+alias gdw="git-diff-words"
+alias gpa='git-push-all'
 
 # versioning
 alias py='python' # System's default python installation
@@ -39,7 +41,6 @@ alias tmuxdr="tmux attach || tmux new"
 # zsh/functions
 alias md='mkdircd'
 alias edex='editex'
-alias gpa='pushallremotes'
 
 # System tasks
 alias reload='source ~/.zshrc'
