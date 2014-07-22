@@ -6,11 +6,13 @@ set realname = "Quint Guvernator"
 
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
-set postponed="+[Gmail]/Drafts"
+set postponed = "+[Gmail]/Drafts"
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 set certificate_file=~/.mutt/certificates
 
 set move = no
-set sort = 'threads'
+set sort = threads # default sort messages by thread
+set sort_aux = last-date-received # showing threads with youngest message last
+#set sort_browser = reverse-date # showing mbox list default to newest first
