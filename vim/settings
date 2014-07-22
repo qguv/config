@@ -23,9 +23,9 @@ set fileformat=unix
 set fileformats=unix,mac,dos
 let g:haskell_conceal_wide=1
 
-" Setting Proper Indent
-set tabstop=4
-set shiftwidth=4
+" setting default indent
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " pymode lint is broken at the moment.
@@ -88,6 +88,10 @@ vnoremap <space> zf
 
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
+
+" spaces/tabs settings
+autocmd BufNewFile,BufRead *.py set ts=4 sw=4 expandtab
+autocmd BufNewFile,BufRead *.go set ts=2 sw=2 noexpandtab " I don't care about 8-space whatever; I just want everything on-screen
 
 " Rendering text with <F5>
 autocmd BufRead *.md nnoremap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
