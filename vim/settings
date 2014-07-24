@@ -93,9 +93,16 @@ autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
 autocmd BufNewFile,BufRead *.py set ts=4 sw=4 expandtab
 autocmd BufNewFile,BufRead *.go set ts=2 sw=2 noexpandtab " I don't care about 8-space whatever; I just want everything on-screen
 
+" latex gets its own F-key bindings
+" <F5> renders and shows the document
+" <F6> just renders the document
+" <F8> runs Bibtex on the document and its references
+autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !"$OPENCOMMAND" %:r.pdf<CR>:redraw!<CR>
+autocmd BufRead *.tex nnoremap <F6> :w<CR>:silent !pdflatex %<CR>:redraw!<CR>
+autocmd BufRead *.tex nnoremap <F8> :w<CR>:silent !bibtex %:r<CR>:redraw!<CR>
+
 " Rendering text with <F5>
 autocmd BufRead *.md nnoremap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
-autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !"$OPENCOMMAND" %:r.pdf<CR>:redraw!<CR>
 
 " Running Code with <F5>
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :w<CR>:w !python3 -B<CR>
