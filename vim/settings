@@ -6,6 +6,7 @@ set showcmd
 set incsearch
 set wildmenu
 set backspace=2
+set nojoinspaces " no double-spacing after full stops when joining lines
 
 " Syntax-highlighting
 filetype plugin indent on
