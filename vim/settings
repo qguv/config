@@ -82,10 +82,8 @@ inoremap jk <Esc>
 inoremap kj <Esc>`[
 
 " Folding with Space
-set foldmethod=syntax
+set foldmethod=manual
 set nofoldenable " don't automatically fold
-nnoremap <space> za
-vnoremap <space> zf
 
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
