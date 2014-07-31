@@ -130,14 +130,11 @@ function movetotrash() {
 }
 
 function git-diff-words() {
-  declare -a options
-  if [ "$1" ]; then
-    options="$@"
-  else
-    options=("HEAD")
-  fi
+  git diff --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
+  return $?
+}
 
-  git show --color-words ${options} | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
-
+function git-show-words() {
+  git show --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
   return $?
 }

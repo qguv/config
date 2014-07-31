@@ -27,6 +27,7 @@ alias gd="git diff"
 alias gdc="git diff --cached"
 # in zsh/functions:
 alias gdw="git-diff-words"
+alias gsw="git-show-words"
 alias gpa='git-push-all'
 
 # versioning
