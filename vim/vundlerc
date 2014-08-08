@@ -20,7 +20,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 
 " python bundles
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode' "rope is broken on typing 'csv.'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'ehamberg/vim-cute-python'
 
