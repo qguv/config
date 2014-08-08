@@ -96,8 +96,8 @@ autocmd BufNewFile,BufRead *.go set ts=2 sw=2 noexpandtab " I don't care about 8
 " <F5> renders and shows the document
 " <F6> just renders the document
 " <F8> runs Bibtex on the document and its references
-autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex %<CR>:silent !"$OPENCOMMAND" %:r.pdf<CR>:redraw!<CR>
-autocmd BufRead *.tex nnoremap <F6> :w<CR>:silent !pdflatex %<CR>:redraw!<CR>
+autocmd BufRead *.tex nnoremap <F5> :w<CR>:silent !pdflatex --enable-pipes --shell-escape %<CR>:silent !"$OPENCOMMAND" %:r.pdf<CR>:redraw!<CR>
+autocmd BufRead *.tex nnoremap <F6> :w<CR>:silent !pdflatex --enable-pipes --shell-escape %<CR>:redraw!<CR>
 autocmd BufRead *.tex nnoremap <F8> :w<CR>:silent !bibtex %:r<CR>:redraw!<CR>
 
 " Rendering text with <F5>
