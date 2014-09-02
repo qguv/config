@@ -73,15 +73,13 @@ function texide () {
   return 0
 }
 
-# modified from original at:
-# http://www.commandlinefu.com/commands/view/13242/a-trash-function-for-bash
 function movetotrash() {
 
   # Filenames will be append with a timestamp
   timestamp=$(date "+%s")
 
   # You can define your own if you want, but NO TRAILING SLASH
-  TRASHDIR="~/.trash"
+  TRASHDIR="$HOME/.trash"
 
   if [[ -z "$*" ]] ; then
     echo "Usage: mt [files...]"
@@ -97,7 +95,7 @@ function movetotrash() {
     # if unsuccessful, crash
     [ "$?" -eq 0 ] || return 3
 
-    touch "$TRASHDIR/sources.txt"
+    touch "$TRASHDIR/sources"
     echo "$TRASHDIR initialized"
   fi
 
@@ -107,21 +105,20 @@ function movetotrash() {
 
     # Scrub input for parts
     filename="$(basename $1)"
-    extension="${filename##*.}"
-    filename="${filename%.*}"
 
     # Make whitespaces underscores
     filename="$(echo $filename | sed 's:\s:_:g')"
 
     # Append timestamp and combine
-    filename="${filename}_$timestamp.$extension.backup"
+    filename="${filename}_$timestamp.tar.xz"
     dest="$TRASHDIR/$filename"
 
     # Move files to /tmp/trash
-    mv "$1" "$dest"
+    tar cJf "$dest" "$1"
     [ "$?" -eq 0 ] || return 1
+    rm -rf "$1"
     echo "$dest"
-    echo "$filename:\t$(pwd)/$1" >> "$TRASHDIR/sources.txt"
+    echo "$filename:\t$(pwd)/$1" >> "$TRASHDIR/sources"
 
     shift
   done
