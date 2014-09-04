@@ -1,0 +1,73 @@
+# TWM settings
+
+Notitle {
+  "xclock"
+  "xload"
+}
+
+IconManagerDontShow {
+  "xclock"
+  "xload"
+}
+
+Function "move-or-lower" { f.move f.deltastop f.lower } 
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+Button1 = : root : f.menu "exec"
+Button2 = : root : f.menu "twm-meta"
+Button3 = : root : f.menu "windowops" 
+
+Button1 = m : window|icon : f.function "move-or-lower"
+Button2 = m : window|icon : f.iconify
+Button3 = m : window|icon : f.function "move-or-raise"
+
+Button1 = : title : f.function "move-or-raise"
+Button2 = : title : f.raiselower
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+
+menu "twm-meta" {
+  "TWM Functions"     f.title
+  "Show Icon Manager" f.showiconmgr
+  "Hide Icon Manager" f.hideiconmgr
+  "Exit"              f.menu "Quit-Verify"
+}
+
+menu "Quit-Verify" {
+  "Really quit twm?" f.title
+  "No, restart twm"  f.restart
+  "Yes, really quit" f.quit
+}
+
+menu "windowops" {
+  "Window Ops" f.title
+  "Iconify"    f.iconify
+  "Resize"     f.resize
+  "Move"       f.move
+  "Raise"      f.raise
+  "Lower"      f.lower
+  ""           f.nop
+  "Focus"      f.focus
+  "Unfocus"    f.unfocus
+  ""           f.nop
+  "Delete"     f.delete
+  "Destroy"    f.destroy
+}
+
+"Tab" = m : all : f.raiselower
+"F1" = : all : f.exec "konsole &"
+"Return" = s : all : f.fullzoom
+
+menu "exec" {
+  "GUI Execute..." f.title
+  "konsole"        f.exec "konsole &"
+  "firefox"        f.exec "firefox &"
+  "xclock"         f.exec "xclock &"
+  "xload"          f.exec "xload &"
+  "xterm"          f.exec "xterm &"
+}
