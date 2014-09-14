@@ -81,7 +81,7 @@ function movetotrash() {
   timestamp=$(date "+%s")
 
   # You can define your own if you want, but NO TRAILING SLASH
-  TRASHDIR="/tmp/trash"
+  TRASHDIR="~/.trash"
 
   if [[ -z "$*" ]] ; then
     echo "Usage: mt [files...]"
