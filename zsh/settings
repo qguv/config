@@ -1,14 +1,6 @@
 #!/usr/bin/zsh
 # zsh settings (e.g. variable assignments, prompts, etc.)
 
-# history files
-HISTFILE="$XDG_CONFIG_HOME/zsh/history"
-SAVEHIST=1000
-HISTSIZE=1000
-
-# vi-style command editing
-set -o vi
-
 # the glorious calendar
 autoload calendar
 autoload calendar_add
