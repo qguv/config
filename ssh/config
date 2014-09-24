@@ -1,39 +1,25 @@
+Host cao
+    HostName crawl.akrasiac.org
+    User joshua
+    IdentityFile ~/.ssh/akrasiac_rsa
+
+Host gwicks
+    HostName 107.20.177.55
+    IdentityFile ~/.ssh/gwicks_amazon_rsa
+    User ubuntu
+
 Host chomsky
     HostName chomsky.nascifi.com
     User quintus
-    IdentityFile ~/.conf/ssh/chomsky_rsa
-
-Host src
-    IdentityFile ~/.conf/ssh/src_nascifi_rsa
 
 Host dreamhost
     HostName nascifi.com
     User quintus314
 
-Host shulgin
-    HostName 192.168.1.101
-    User quintus
-    IdentityFile ~/.conf/ssh/shulgin_rsa
-
-Host cao
-    HostName crawl.akrasiac.org
-    User joshua
-    IdentityFile ~/.conf/ssh/akrasiac_rsa
-
 Host csci
-    HostName pepe.cs.wm.edu
+    HostName zippy.cs.wm.edu
     User quintus
-
-Host gwicks
-    HostName 107.20.177.55
-    IdentityFile ~/.conf/ssh/gwicks_amazon_rsa
-    User ubuntu
 
 Host feynman
     HostName 128.239.54.39
     User quintus
-
-Host arches
-    HostName arches.uccs.edu
-    User quintus
-    IdentityFile ~/.conf/ssh/uccs_arches_rsa
