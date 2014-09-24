@@ -85,6 +85,13 @@ inoremap kj <Esc>`[
 set foldmethod=manual
 set nofoldenable " don't automatically fold
 
+" C and Go functions have { on the same line as the declaration
+" see ':help section' for details
+map [[ ?{<CR>w99[{
+map ][ /}<CR>b99]}
+map ]] j0[[%/{<CR>
+map [] k$][%?}<CR>
+
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
 
