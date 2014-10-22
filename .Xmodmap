@@ -1,2 +1,3 @@
-remove Lock = Caps_Lock
+remove Lock = 66
 keycode 66 = BackSpace
+keycode 127 = Multi_key
