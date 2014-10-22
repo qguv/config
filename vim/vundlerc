@@ -30,7 +30,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'JavaScript-Indent'
 
 " go
-Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 
 " haskell
 Plugin 'dag/vim2hs'
