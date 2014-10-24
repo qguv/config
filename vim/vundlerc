@@ -11,7 +11,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'yaifa.vim'
-Plugin 'Shougo/neocomplete.vim'
 
 " color schemes
 Plugin 'altercation/vim-colors-solarized'
