@@ -7,7 +7,7 @@ export SYSTEMUPDATE=''
 export GOPATH="$HOME/dev/go/"
 export BEEPCOMMAND='tput bel'
 
-export PATH="$HOME/bin:$HOME/dev/go/bin/:$PATH"
+export PATH="$HOME/.built/bin:$HOME/dev/go/bin/:$PATH"
 export EDITOR="vim"
 export CLIPBOARDCOPY="xclip -selection clipboard"
 export CLIPBOARDPASTE="xclip -o -selection clipboard"
