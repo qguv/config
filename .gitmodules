@@ -4,6 +4,3 @@
 [submodule "vim/vundle"]
 	path = vim/vundle
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "kde4/share/apps/konsole"]
-	path = kde4/share/apps/konsole
-	url = https://github.com/phiggins/konsole-colors-solarized.git
