@@ -6,7 +6,7 @@ export PYTHON2NAME='python'
 export SYSTEMUPDATE=''
 export GOPATH="$HOME/dev/go/"
 export BEEPCOMMAND='tput bel'
-
+export TERMINAL='xterm'
 export PATH="$HOME/.built/bin:$HOME/dev/go/bin/:$PATH"
 export EDITOR="vim"
 export CLIPBOARDCOPY="xclip -selection clipboard"
