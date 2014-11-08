@@ -103,12 +103,17 @@ function VariableMangler(mode)
         " but we haven't changed anything so we'll let it slide
 
       " we've entered a new variable character
-      else
+      elseif (CharIsLetter(l:inchar))
         if (l:camelcase)
           let l:variable = l:variable . nr2char(CharCapitalize(l:inchar))
         else
           let l:variable = l:variable . a:mode . nr2char(l:inchar)
         endif
+
+      " we've entered a symbol BUT we also owe them a space
+      else
+        return l:variable . " " . nr2char(l:inchar)
+
       endif
 
     " we entered a backspace
