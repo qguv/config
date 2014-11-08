@@ -70,12 +70,13 @@ endfunc
 
 
 " Fancy variable substitution
-" mode is underscore for underscore mode or space for camelcase mode
+" mode is 'camelCase' or any string to insert between words
 function VariableMangler(mode)
 
   echo "-- variable --"
   let l:variable = ""
   let l:inchar = getchar()
+  let l:camelcase = (a:mode is "camelCase")
 
   "13: CR
   "32: SPACE
@@ -85,32 +86,29 @@ function VariableMangler(mode)
     " we entered a space: handle it
     if (l:inchar == 32)
 
-      " we're in underscore mode
-      if (a:mode is "_")
-
-        " there was no first space; append an underscore and move on
-        if (matchstr(l:variable, "\_$") == "")
-          let l:variable = l:variable . "_"
-
-        " we've entered a second space; return the whole thing
-        else
-          return l:variable . " "
-        endif
-
       " we're in camelCase mode, wait for the next character
-      else
+      if (l:camelcase)
         echo "var: " . l:variable . "^"
-        let l:inchar = getchar()
+      else
+        echo "var: " . l:variable . a:mode
+      endif
+      let l:inchar = getchar()
 
-        " we've entered a second space; return the whole thing
-        if (l:inchar == 32)
-          return l:variable . " "
+      " we've entered a second space; return the whole thing
+      if (l:inchar == 32)
+        return l:variable . " "
 
-        " we've entered a new variable name
-        else
+      " we've backspaced
+      elseif (l:inchar is# "\<BS>")
+        " but we haven't changed anything so we'll let it slide
+
+      " we've entered a new variable character
+      else
+        if (l:camelcase)
           let l:variable = l:variable . nr2char(CharCapitalize(l:inchar))
+        else
+          let l:variable = l:variable . a:mode . nr2char(l:inchar)
         endif
-
       endif
 
     " we entered a backspace
