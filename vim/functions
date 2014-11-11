@@ -69,33 +69,41 @@ function CharCapitalize(charnum)
 endfunc
 
 
-" Fancy variable substitution
-" mode is 'camelCase' or any string to insert between words
+" Fancy variable-mode. Allows insertion of camelCase, PascalCase, snake_case, and scheme-style variables
 function VariableMangler(mode)
 
-  echo "-- variable --"
-  let l:variable = ""
-  let l:inchar = getchar()
   let l:camelcase = (a:mode is "camelCase")
 
-  "13: CR
-  "32: SPACE
+  " Show the variable-mode prompt.
+  echo "-- variable --"
+  let l:variable = ""
 
-  while (CharIsLetter(l:inchar) || l:inchar == 32 || l:inchar is# "\<BS>")
+  " Read exactly one character of input.
+  let l:inchar = getchar()
 
-    " we entered a space: handle it
-    if (l:inchar == 32)
+  " the spacebar is character 32
+  let l:char_space = 32
 
-      " we're in camelCase mode, wait for the next character
+  while (CharIsLetter(l:inchar) || l:inchar == l:char_space || l:inchar is# "\<BS>")
+
+    " A space was entered. Since double-space gets out of the mode, figure out
+    " whether this space is a real variable space or part of a mode-exiting
+    " double-space sequence.
+    if (l:inchar == l:char_space)
+
+      " camelCase mode appends a caret to the prompt to indicate that the next character will be capitalized.
       if (l:camelcase)
         echo "var: " . l:variable . "^"
+
+      " other mode shows what between-character would be inserted
       else
         echo "var: " . l:variable . a:mode
+
       endif
       let l:inchar = getchar()
 
       " we've entered a second space; return the whole thing
-      if (l:inchar == 32)
+      if (l:inchar == l:char_space)
         return l:variable . " "
 
       " we've backspaced
