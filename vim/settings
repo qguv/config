@@ -11,7 +11,7 @@ set nojoinspaces " no double-spacing after full stops when joining lines
 " Syntax-highlighting
 filetype plugin indent on
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 
 " Other programming niceties
