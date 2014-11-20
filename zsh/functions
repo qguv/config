@@ -147,7 +147,7 @@ function shreddir() {
       return 301
     fi
 
-    find "$1" -type f -execdir shred -u '{}' \;
+    find "$1" -type f -execdir shred -fuz '{}' \;
 
     if [ $? -ne 0 ]; then
       return $?
