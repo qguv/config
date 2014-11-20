@@ -135,3 +135,28 @@ function git-show-words() {
   git show --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
   return $?
 }
+
+function shreddir() {
+  while [ $# -ne 0 ]; do
+    read -q "ok?Shredding \"$1\" and children, okay? [y/N] "
+    echo
+
+    # Y or y end up 'y' with zsh's `read -q`
+    if [ "$ok" != "y" ]; then
+      echo "Didn't remove $1!"
+      return 301
+    fi
+
+    find "$1" -type f -execdir shred -u '{}' \;
+
+    if [ $? -ne 0 ]; then
+      return $?
+    fi
+
+    rm -rf "$1"
+
+    shift
+  done
+
+  return 0
+}
