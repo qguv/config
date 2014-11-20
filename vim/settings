@@ -125,6 +125,9 @@ autocmd BufNewFile,BufRead *.hs nnoremap <F6> :w<CR>:!ghci "%"<CR>
 autocmd BufNewFile,BufRead *.go nnoremap <F7> :w<CR>:Fmt<CR>
 autocmd FileType python nnoremap <buffer> <F7> :call Autopep8()<CR>
 
+" Tag-bar for ctags
+nnoremap <silent> <F9> :TagbarToggle<CR>
+
 " Running weird versions with <F11>
 autocmd BufNewFile,BufRead *.py nnoremap <F11> :w<CR>:w !python2 -B<CR>
 
