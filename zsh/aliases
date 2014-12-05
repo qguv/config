@@ -47,6 +47,7 @@ alias edex='editex'
 alias reload='source ~/.zshrc'
 alias update="$SYSTEMUPDATE"
 alias mt="$TRASHCOMMAND"
+alias opn="$OPENCOMMAND"
 
 # Clipboard
 alias cbc="$CLIPBOARDCOPY"
