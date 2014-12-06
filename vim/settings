@@ -29,6 +29,13 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" arrow keys switch between split windows
+" they don't do anything else anyway
+nnoremap <silent> <Right> <c-w>l
+nnoremap <silent> <Left> <c-w>h
+nnoremap <silent> <Up> <c-w>k
+nnoremap <silent> <Down> <c-w>j
+
 " pymode lint is broken at the moment.
 let g:pymode_lint = 0
 
@@ -53,9 +60,9 @@ set hlsearch
 
 " Leader bindings
 " [t]abify: open window as new tab
-nnoremap <Leader>t  :wincmd T<CR>
+nnoremap <Leader>t :wincmd T<CR>
 " [c]leanslate: close current tab and open a new one
-noremap <Leader>c  :tabe<CR>gT:x<CR>
+noremap <Leader>c :tabe<CR>gT:x<CR>
 " [w/W]indowify: push current tab into previous window
 nnoremap <Leader>w :call MoveToPrevTab()<CR>
 nnoremap <Leader>W :call MoveToNextTab()<CR>
