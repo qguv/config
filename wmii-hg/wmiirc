@@ -189,30 +189,29 @@ Key $MODKEY-s # Set column to stack mode
 Key $MODKEY-m # Set column to max mode
 	wmiir xwrite /tag/sel/ctl colmode sel stack+max
 
-Key $MODKEY-y # shrink horizontally
-  wmiir xwrite /tag/sel/ctl grow sel sel right -10
-  wmiir xwrite /tag/sel/ctl grow sel sel left -10
-Key $MODKEY-o # grow horizontally
+KeyGroup Growing columns; adjacent columns shrink
+Key $MODKEY-o # Coarse adjustment
   wmiir xwrite /tag/sel/ctl grow sel sel right 10
   wmiir xwrite /tag/sel/ctl grow sel sel left 10
-Key $MODKEY-i # shrink vertically
-  wmiir xwrite /tag/sel/ctl grow sel sel down -10
-  wmiir xwrite /tag/sel/ctl grow sel sel up -10
-Key $MODKEY-u # grow vertically
-  wmiir xwrite /tag/sel/ctl grow sel sel down 10
-  wmiir xwrite /tag/sel/ctl grow sel sel up 10
-Key $MODKEY-Shift-y # shrink horizontally
-  wmiir xwrite /tag/sel/ctl grow sel sel right -2
-  wmiir xwrite /tag/sel/ctl grow sel sel left -2
-Key $MODKEY-Shift-o # grow horizontally
+Key $MODKEY-Shift-o # Fine adjustment
   wmiir xwrite /tag/sel/ctl grow sel sel right 2
   wmiir xwrite /tag/sel/ctl grow sel sel left 2
-Key $MODKEY-Shift-i # shrink vertically
-  wmiir xwrite /tag/sel/ctl grow sel sel down -2
-  wmiir xwrite /tag/sel/ctl grow sel sel up -2
-Key $MODKEY-Shift-u # grow vertically
+
+KeyGroup Growing tiled windows; adjacent windows shrink
+Key $MODKEY-u # Coarse adjustment
+  wmiir xwrite /tag/sel/ctl grow sel sel down 10
+  wmiir xwrite /tag/sel/ctl grow sel sel up 10
+Key $MODKEY-Shift-u # Fine adjustment
   wmiir xwrite /tag/sel/ctl grow sel sel down 2
   wmiir xwrite /tag/sel/ctl grow sel sel up 2
+
+KeyGroup Shrink tiled windows; adjacent windows grow
+Key $MODKEY-i # Coarse adjustment
+  wmiir xwrite /tag/sel/ctl grow sel sel down -10
+  wmiir xwrite /tag/sel/ctl grow sel sel up -10
+Key $MODKEY-Shift-i # Fine adjustment
+  wmiir xwrite /tag/sel/ctl grow sel sel down -2
+  wmiir xwrite /tag/sel/ctl grow sel sel up -2
 
 KeyGroup Running programs
 Key $MODKEY-a      # Open wmii actions menu
