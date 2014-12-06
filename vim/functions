@@ -148,3 +148,33 @@ function VariableMangler(mode)
   
   return l:variable
 endfunc 
+
+function SplitHeader()
+
+  " get the current file extension
+  let l:ext = expand('%:t:e')
+  let l:clike = (l:ext =~ '^[cC]\(pp\|PP\|++\)\?$')
+
+  " get outta here if it's not c-like
+  if (!l:clike)
+    return
+  endif
+
+  " obvious extensions
+  if (l:ext ==# 'c')
+    let l:header = 'h'
+  elseif (l:ext ==# 'C')
+    let l:header = 'H'
+
+  " should give us something interesting
+  else
+    let l:extext = substitute(l:ext, '^[cC]\(pp\|PP\|++\)\?$', '\1', 'g')
+    if (l:ext =~ '$C')
+      let l:header = 'H' . l:extext
+    else
+      let l:header = 'h' . l:extext
+    endif
+  endif
+
+  exe 'sp ' . expand('%:r') . '.' . l:header
+endfunc
