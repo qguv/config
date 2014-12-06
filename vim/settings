@@ -30,11 +30,16 @@ set shiftwidth=2
 set expandtab
 
 " arrow keys switch between split windows
+" (and shifted versions move those windows around)
 " they don't do anything else anyway
-nnoremap <silent> <Right> <c-w>l
-nnoremap <silent> <Left> <c-w>h
-nnoremap <silent> <Up> <c-w>k
-nnoremap <silent> <Down> <c-w>j
+nnoremap <silent> <Right>   :wincmd l
+nnoremap <silent> <Left>    :wincmd h
+nnoremap <silent> <Up>      :wincmd k
+nnoremap <silent> <Down>    :wincmd j
+nnoremap <silent> <S-Right> :wincmd L
+nnoremap <silent> <S-Left>  :wincmd H
+nnoremap <silent> <S-Up>    :wincmd K
+nnoremap <silent> <S-Down>  :wincmd J
 
 " pymode lint is broken at the moment.
 let g:pymode_lint = 0
