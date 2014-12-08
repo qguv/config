@@ -1,2 +1,2 @@
-#xbanish
+#xbanish &
 exec wmii
