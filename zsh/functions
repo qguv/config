@@ -160,3 +160,21 @@ function shreddir() {
 
   return 0
 }
+
+function promptloop() {
+  if [ -z "$1" ]; then
+    echo "promptloop <command>"
+    echo "  Run <command> over and over again, asking each time whether to continue."
+    return 2
+  fi
+
+  while true; do
+    "$1"
+    laststatus="$?"
+    echo -n "\nContinue? [y/N] "
+    read -q || break
+  done
+
+  echo
+  return laststatus
+}
