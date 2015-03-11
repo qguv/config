@@ -7,6 +7,8 @@ if [[ $uname == "Darwin" ]]; then;
 elif [[ $uname == "Linux" ]]; then;
     alias ls='ls --color=auto'
 fi
+alias mv="mv -i"
+alias cp="cp -i"
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
 alias less="less -m -k $XDG_CONFIG_HOME/less/less"
