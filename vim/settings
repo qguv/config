@@ -128,9 +128,9 @@ autocmd BufRead *.md nnoremap <F5> :w<CR>:silent !open %<CR>:redraw!<CR>
 " Running Code with <F5>
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :w<CR>:w !python3 -B<CR>
 autocmd BufNewFile,BufRead *.scm nnoremap <F5> :w<CR>:w !csi -q<CR>
-autocmd BufNewFile,BufRead *.go nnoremap <F5> :w<CR>:!go run "%"<CR>
+autocmd BufNewFile,BufRead *.go nnoremap <F5> :w<CR>:!go run %"<CR>"
 autocmd BufNewFile,BufRead *.js nnoremap <F5> :w<CR>:w !node<CR>
-autocmd BufNewFile,BufRead *.hs nnoremap <F5> :w<CR>:!runghc "%"<CR>
+autocmd BufNewFile,BufRead *.hs nnoremap <F5> :w<CR>:!runghc %"<CR>"
 
 " Interpreting Code with <F6>
 autocmd BufNewFile,BufRead *.js nnoremap <F6> :w<CR>:w !node -i<CR>
