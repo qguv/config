@@ -1,7 +1,7 @@
 # Quint's Dotfiles
 
 The goal here is to package all the dotfiles in such a way as to respect XDG's
-"XDG_CONFIG_HOME" environment variable.
+environment variables, especially `XDG_CONFIG_HOME`.
 
 ## Installation
 
@@ -11,7 +11,10 @@ The goal here is to package all the dotfiles in such a way as to respect XDG's
 - Create symlinks for the shells you use based on the location of this
   directory
 
-    ln -s ~/.config/zshrc ~/.zshrc
+```
+ln -s ~/.config/zshrc ~/.zshrc
+ln -s ~/.config/bashrc ~/.bashrc
+```
 
 I owe much thanks to woegjiub for all their [bash XDG overrides][1].
 
