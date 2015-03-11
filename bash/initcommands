@@ -67,7 +67,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 alias ag="ag -p $XDG_CONFIG_HOME/ag/agignore"
 alias mutt="mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/ncmpcpp/config"
-alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
+alias startx="startx $XDG_CONFIG_HOME/Xorg/xinitrc"
 alias rtorrent="rtorrent -n -o import=$XDG_CONFIG_HOME/rtorrent/conf"
 
 # Disgusting hacks
