@@ -1,18 +1,5 @@
-#!/usr/bin/zsh
-# zsh-specific settings (e.g. variable assignments, prompts, etc.)
-
-# git prompt and completion
-setopt prompt_subst
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats       \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git cvs svn
-
-setopt prompt_subst
-autoload -U promptinit
+#!/usr/bin/env bash
+# prompt settings
 
 function prompt_char {
     git branch >/dev/null 2>/dev/null && echo '± ' && return
@@ -70,7 +57,3 @@ else
     export PS1='# '
     export RPS1='%~ (%n)'
 fi
-
-promptinit
-
-source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
