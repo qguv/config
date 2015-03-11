@@ -148,6 +148,10 @@ function VariableMangler(mode)
   return l:variable
 endfunc 
 
+function VarMode(mode)
+  execute "inoremap jf <C-R>=VariableMangler(\"" . a:mode . "\")<CR>"
+endfunc
+
 function SplitHeader()
 
   " get the current file extension
