@@ -75,8 +75,8 @@ nnoremap <Leader>t :wincmd T<CR>
 " [c]leanslate: close current tab and open a new one
 noremap <Leader>c :tabe<CR>gT:x<CR>
 " [w/W]indowify: push current tab into previous window
-nnoremap <Leader>w :call MoveToPrevTab()<CR>
-nnoremap <Leader>W :call MoveToNextTab()<CR>
+nnoremap <Leader>w :call MoveToNextTab()<CR>
+nnoremap <Leader>W :call MoveToPrevTab()<CR>
 " [p]astetoggle: toggle paste mode
 nmap <Leader>p :set paste! paste?<CR>
 " [m]inify
