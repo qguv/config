@@ -1,12 +1,6 @@
-#!/usr/bin/zsh
-# zsh .conf system initialization
+#!/usr/bin/env zsh
+# zsh-specific initialization
 
-export XDG_CONFIG_HOME="$HOME/.conf"
-
-source $XDG_CONFIG_HOME/zsh/system
-source $XDG_CONFIG_HOME/zsh/settings
-source $XDG_CONFIG_HOME/zsh/compinstall
-source $XDG_CONFIG_HOME/zsh/initcommands
-source $XDG_CONFIG_HOME/zsh/functions
-source $XDG_CONFIG_HOME/zsh/aliases
-source $XDG_CONFIG_HOME/zsh/events
+source "$XDG_CONFIG_HOME/bash/bashrc"
+source "$XDG_CONFIG_HOME/zsh/settings"
+source "$XDG_CONFIG_HOME/zsh/compinstall"

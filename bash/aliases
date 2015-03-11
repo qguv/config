@@ -1,8 +1,8 @@
-#!/usr/bin/zsh
-# zsh custom aliases
+#!/usr/bin/env bash
+# shell custom aliases
 
 # Use system-specific variables
-source $XDG_CONFIG_HOME/zsh/system
+source "$XDG_CONFIG_HOME/bash/system"
 
 # UNIX
 alias c='clear'
@@ -25,7 +25,8 @@ alias gs="git status -s"
 alias gss="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
-# in zsh/functions:
+
+# git, in zsh/functions
 alias gdw="git-diff-words"
 alias gsw="git-show-words"
 alias gpa='git-push-all'

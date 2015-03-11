@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# shell initialization
+
+source "$XDG_CONFIG_HOME/bash/system"
+source "$XDG_CONFIG_HOME/bash/initcommands"
+source "$XDG_CONFIG_HOME/bash/functions"
+source "$XDG_CONFIG_HOME/bash/aliases"

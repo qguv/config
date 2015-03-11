@@ -1,5 +1,5 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 # zsh respect XDG_CONFIG_HOME
 
-export XDG_CONFIG_HOME="$HOME/.conf"
-source $XDG_CONFIG_HOME/zsh/zshrc
+export XDG_CONFIG_HOME="$HOME/.config"
+source "$XDG_CONFIG_HOME/zsh/zshrc"
