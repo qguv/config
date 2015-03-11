@@ -29,6 +29,12 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+if system('uname') =~ 'Darwin.*'
+  nmap <silent> K <Plug>DashSearch
+  autocmd BufNewFile,BufRead {*.coffee} DashKeywords javascript underscore coffeescript
+  autocmd BufNewFile,BufRead {*.js} DashKeywords javascript underscore
+endif
+
 " arrow keys switch between split windows
 " (and shifted versions move those windows around)
 " they don't do anything else anyway

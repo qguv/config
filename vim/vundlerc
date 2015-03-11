@@ -18,6 +18,7 @@ Plugin 'altercation/vim-colors-solarized'
 " external tool interfaces
 Plugin 'tpope/vim-fugitive' " git
 Plugin 'majutsushi/tagbar'  " ctags
+Plugin 'rizzatti/dash.vim'  " Dash.app (mac-only)
 
 " python bundles
 Plugin 'tell-k/vim-autopep8'      " style formatter, uses PEP8
