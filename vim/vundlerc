@@ -3,7 +3,7 @@
 " Vundle boilerplate: don't edit this paragraph
 set nocompatible
 filetype off
-set rtp+=~/.conf/vim/vundle/
+set rtp+=$XDG_CONFIG_HOME/vim/vundle/
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 

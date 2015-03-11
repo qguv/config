@@ -1,5 +1,5 @@
-#!/usr/bin/zsh
-# zsh system-specific commands
+#!/usr/bin/env bash
+# system-specific commands
 
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python'

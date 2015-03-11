@@ -1,20 +1,5 @@
 #!/usr/bin/zsh
-# zsh settings (e.g. variable assignments, prompts, etc.)
-
-# the glorious calendar
-autoload calendar
-autoload calendar_add
-autoload calendar_edit
-autoload calendar_lockfiles
-autoload calendar_parse
-autoload calendar_read
-autoload calendar_scandate
-autoload calendar_show
-autoload calendar_showdate
-autoload calendar_sort
-zstyle ':datetime:*' reformat-date 'yes'
-zstyle ':datetime:*' done-file '' # don't maintain a done file
-zstyle ':datetime:*' warn-time '30 minutes'
+# zsh-specific settings (e.g. variable assignments, prompts, etc.)
 
 # git prompt and completion
 setopt prompt_subst
@@ -57,29 +42,28 @@ function __git_prompt {
             git diff --quiet >& /dev/null
             if [[ $? == 1 ]]
             then
-                echo -n $DIRTY
+                echo -n "$DIRTY"
             else
                 git diff --cached --quiet >& /dev/null
                 if [[ $? == 1 ]]
                 then
-                    echo -n $DIRTY
+                    echo -n "$DIRTY"
                 else
-                    echo -n $CLEAN
+                    echo -n "$CLEAN"
                 fi
             fi
         else
-            echo -n $UNMERGED
+            echo -n "$UNMERGED"
         fi
         echo -n `git branch | grep '* ' | sed 's/..//'`
-        echo -n $RESET
+        echo -n "$RESET"
         echo -n '- '
     else
         echo -n ' '
     fi
 }
 
- 
-if [[ $USER != 'root' ]]; then
+if [[ "$USER" != 'root' ]]; then
     export PS1='$(__prompt_char) '
     export RPS1='%~$(__git_prompt)(%n@%m)'
 else

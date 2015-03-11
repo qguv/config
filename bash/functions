@@ -1,38 +1,30 @@
-#!/usr/bin/zsh
-# zsh custom functions
+#!/usr/bin/env bash
+# shell custom functions
 
 # Use system-specific variables
-source $XDG_CONFIG_HOME/zsh/system
+source "$XDG_CONFIG_HOME/bash/system"
 
 # Combines mkdir, cd, pwd
 function mkdircd () {
-
   mkdir -p "$@" &&
   eval cd "\"\$$#\"" &&
   eval echo "Switching to $(pwd)...";
-
 }
-
 
 # Quickly edit programs in your $PATH
 function editex () {
   eval "$EDITOR" "$(which $1)" ${@:2}
 }
 
-
 # Run a locally hosted godoc.org at given port
 function hostgodoc () {
-
   if [ -z $1 ]; then
     PORT="6060"
   else
     PORT="$1"
   fi
-
   eval "godoc" "-http=:$PORT"
-
 }
-
 
 # Push to all remotes in git
 function git-push-all () {
@@ -128,12 +120,12 @@ function movetotrash() {
 
 function git-diff-words() {
   git diff --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
-  return $?
+  return "$?"
 }
 
 function git-show-words() {
   git show --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
-  return $?
+  return "$?"
 }
 
 function shreddir() {
@@ -150,7 +142,7 @@ function shreddir() {
     find "$1" -type f -execdir shred -fuz '{}' \;
 
     if [ $? -ne 0 ]; then
-      return $?
+      return "$?"
     fi
 
     rm -rf "$1"
