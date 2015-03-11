@@ -1,4 +1,5 @@
 # The following lines were added by compinstall
+# ...and modified a bit by its user
 
 zstyle ':completion:*' auto-description 'specify %d'
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
@@ -21,7 +22,7 @@ zstyle ':completion:*' prompt '%e...? '
 zstyle ':completion:*' select-prompt '%S%l (%p)%s'
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' use-compctl false
-zstyle :compinstall filename '/home/quintus/.conf/zsh/compinstall'
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/compinstall"
 
 autoload -Uz compinit
 compinit

@@ -2,5 +2,5 @@
 # zsh-specific initialization
 
 source "$XDG_CONFIG_HOME/bash/bashrc"
-source "$XDG_CONFIG_HOME/zsh/settings"
 source "$XDG_CONFIG_HOME/zsh/compinstall"
+source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

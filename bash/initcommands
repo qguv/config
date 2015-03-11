@@ -2,11 +2,13 @@
 # initialization command aliases
 
 uname="$(uname)"
-if [[ "$uname" == "Darwin" ]]; then;
+
+if [[ "$uname" == "Darwin" ]]; then
     alias ls='ls -G'
-elif [[ "$uname" == "Linux" ]]; then;
+elif [[ "$uname" == "Linux" ]]; then
     alias ls='ls --color=auto'
 fi
+
 alias mv="mv -i"
 alias cp="cp -i"
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
