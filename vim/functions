@@ -68,7 +68,6 @@ function CharCapitalize(charnum)
   endif
 endfunc
 
-
 " Fancy variable-mode. Allows insertion of camelCase, PascalCase, snake_case, and scheme-style variables
 function VariableMangler(mode)
 

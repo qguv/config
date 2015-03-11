@@ -1,7 +1,6 @@
 " vim:syn=vim
 
-" Vundle boilerplate
-" don't edit this paragraph
+" Vundle boilerplate: don't edit this paragraph
 set nocompatible
 filetype off
 set rtp+=~/.conf/vim/vundle/
@@ -18,10 +17,10 @@ Plugin 'altercation/vim-colors-solarized'
 
 " external tool interfaces
 Plugin 'tpope/vim-fugitive' " git
-Plugin 'majutsushi/tagbar' " ctags
+Plugin 'majutsushi/tagbar'  " ctags
 
 " python bundles
-Plugin 'tell-k/vim-autopep8' " style formatter, uses PEP8
+Plugin 'tell-k/vim-autopep8'      " style formatter, uses PEP8
 Plugin 'ehamberg/vim-cute-python' " unicode conceals
 
 " js & derivatives
@@ -42,7 +41,6 @@ Plugin 'jdonaldson/vaxe'
 Plugin 'tpope/vim-markdown'
 Plugin 'ingydotnet/yaml-vim'
 
-" Vundle boilerplate
-" don't edit this paragraph
+" Vundle boilerplate: don't edit this paragraph
 call vundle#end()
 filetype plugin indent on
