@@ -1,2 +1,0 @@
-#xbanish &
-exec wmii

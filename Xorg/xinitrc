@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+#xbanish &
+xmodmap "$XDG_CONFIG_HOME/Xorg/Xmodmap"
+exec wmii
