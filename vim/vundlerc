@@ -41,6 +41,7 @@ Plugin 'jdonaldson/vaxe'
 " misc
 Plugin 'tpope/vim-markdown'
 Plugin 'ingydotnet/yaml-vim'
+Plugin 'ebnf.vim'
 
 " Vundle boilerplate: don't edit this paragraph
 call vundle#end()
