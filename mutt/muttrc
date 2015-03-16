@@ -1,3 +1,5 @@
+color index color214 default ~O
+
 set imap_user = "quintus.public@gmail.com"
 
 set smtp_url = "smtp://quintus.public@smtp.gmail.com:587/"
