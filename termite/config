@@ -2,6 +2,7 @@
 
 [options]
 font = Monospace 13
+font = Droid Sans Mono 13
 
 [colors]
 foreground = #839496
