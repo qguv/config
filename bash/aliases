@@ -18,6 +18,7 @@ alias untgz='tar xvf'
 alias beep="$BEEPCOMMAND"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
+alias resume="$RESUMECOMMAND"
 
 # git
 alias g="git"
