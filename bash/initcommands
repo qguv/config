@@ -7,7 +7,6 @@ if [[ "$uname" == "Darwin" ]]; then
 	alias ls='ls -G'
 elif [[ "$uname" == "Linux" ]]; then
 	alias ls='ls --color=auto'
-	alias firefox="firefox -profile $XDG_CONFIG_HOME/firefox"
 fi
 
 # safe mv/cp
