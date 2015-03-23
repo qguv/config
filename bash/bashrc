@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # shell initialization
 
+set -o vi
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"
