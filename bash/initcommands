@@ -29,8 +29,6 @@ alias scp="scp $SSH_ALIAS_OPTIONS"
 export GIT_SSH_COMMAND="ssh $SSH_ALIAS_OPTIONS "$@" 2>/dev/null"
 
 # other XDG_CONFIG_HOME remedies, courtesy <github.com/woegjiub>
-export GEM_HOME="$HOME/.local/lib/gems"
-export GEM_PATH="$HOME/.local/bin"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 # Note: gstreamer registry is usually per-arch.
