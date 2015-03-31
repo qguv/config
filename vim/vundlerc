@@ -32,6 +32,9 @@ Plugin 'JavaScript-Indent'
 " go
 Plugin 'fatih/vim-go'
 
+" rust
+Plugin 'wting/rust.vim'
+
 " haskell
 Plugin 'dag/vim2hs'
 
