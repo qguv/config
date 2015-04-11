@@ -4,6 +4,8 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[init]
+	templatedir = ~/.config/git/templates
 [sendemail]
 	from = Quint Guvernator <quintus.public@gmail.com>
 	smtpserver = smtp.gmail.com
