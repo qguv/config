@@ -29,5 +29,7 @@
 	editor = vim
 [push]
 	default = simple
+[hub]
+	protocol = https
 [credential]
 	helper = cache
