@@ -1,3 +1,19 @@
+# OSX "Presents"
+.DS_Store
+
+# OpenSUSE CSCI Department Config "Presents"
+akonadi
+dconf
+gtk-3.0
+libreoffice
+oxygen-gtk
+pulse
+Trolltech.conf
+user-dirs.dirs
+user-dirs.locale
+yelp
+hub
+
 irssi/config
 irssi/away.log
 
@@ -14,23 +30,9 @@ vim/viminfo
 vim/simplenoterc
 vim/plugin
 
+wmii-hg/history.*
+w3m/
+
 zsh/.zcompdump
 zsh/history
 zsh/system
-
-# OSX "Presents"
-.DS_Store
-
-# OpenSUSE CSCI Department Config "Presents"
-akonadi
-dconf
-gtk-3.0
-libreoffice
-oxygen-gtk
-pulse
-Trolltech.conf
-user-dirs.dirs
-user-dirs.locale
-yelp
-w3m/
-wmii-hg/history.*
