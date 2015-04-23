@@ -8,3 +8,6 @@ Font=DejaVu Sans Mono [bitstream],17,-1,0,25,0,0,0,0,0
 Command=/bin/zsh
 Name=Zsh
 Parent=FALLBACK/
+
+[Scrolling]
+ScrollBarPosition=2
