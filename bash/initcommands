@@ -16,6 +16,10 @@ alias cp="cp -i"
 # not horrible terminal output
 alias screen="screen -T $TERM"
 
+# so dc doesn't round everything
+# use \dc if piping input
+alias dc="dc -e 10k -"
+
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
