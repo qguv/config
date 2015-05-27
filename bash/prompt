@@ -51,6 +51,7 @@ function __git_prompt {
 }
 
 if [[ "$USER" != 'root' ]]; then
+    setopt prompt_subst
     export PS1='$(__prompt_char) '
     export RPS1='%~$(__git_prompt)(%n@%m)'
 else
