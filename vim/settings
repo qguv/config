@@ -36,6 +36,9 @@ if system('uname') =~ 'Darwin.*'
   autocmd BufNewFile,BufRead {*.js} DashKeywords javascript underscore
 endif
 
+" disable Ex mode; who needs this anyway?
+map Q <Nop>
+
 " arrow keys switch between split windows
 " (and shifted versions move those windows around)
 " they don't do anything else anyway
