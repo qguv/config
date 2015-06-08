@@ -20,6 +20,7 @@ set smartcase
 set shell=/bin/zsh
 set concealcursor=c
 set conceallevel=1
+set confirm
 set fileformat=unix
 set fileformats=unix,mac,dos
 let g:haskell_conceal_wide=1
