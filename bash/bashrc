@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 # shell initialization
 
+# CONFIG FILES #####################
 set -o vi
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 source "$XDG_CONFIG_HOME/bash/prompt"
+
+# INTERACTIVITY ####################
+[[ $- != *i* ]] && return # ensure interactive status
+
+# If tmux is installed...
+if which tmux >/dev/null 2>&1; then
+
+    # ...and not already started, attach or create a session.
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
