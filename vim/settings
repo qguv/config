@@ -96,6 +96,9 @@ nnoremap <Leader>u :UncommentLines<space>
 noremap <silent> <Leader>v :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 " open [h]eader associated with file
 nnoremap <silent> <Leader>h :call SplitHeader()<CR>
+" dump current settings to hidden session file
+nnoremap <Leader>s :mksession! .session.vim<CR>
+nnoremap <silent> <Leader>S :!rm -f .session.vim<CR>
 
 " set python [b]reakpoint
 let g:pymode_breakpoint_bind = '<leader>b'
