@@ -20,6 +20,7 @@
 	se = send-email --annotate --cover-letter --signoff
 	ignore = update-index --assume-unchanged
 	track = update-index --no-assume-unchanged
+	flog = log --decorate --notes --stat
 	ls = ls-tree --name-only HEAD
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
 [interactive]
