@@ -15,7 +15,7 @@ set background=dark
 colorscheme solarized
 
 " Other programming niceties
-set number
+set relativenumber
 set smartcase
 set shell=/bin/zsh
 set concealcursor=c
