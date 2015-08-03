@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
-#xbanish &
+# avoid the rodent
+xbanish &
+
+# capslock is backspace
 xmodmap "$XDG_CONFIG_HOME/Xorg/Xmodmap"
-exec wmii
+
+# set the wallpaper
+xsetroot -solid "#555" # dark gray
+#xli -quiet -fullscreen -onroot ~/wallpaper.jpg
+
+# dwm status bar
+while true; do
+  DT="$(date '+%a %d %b %H:%M')"
+  LOAD="$(load)"
+  xsetroot -name "$LOAD  |  $DT"
+  sleep 5
+done &
+
+# start dwm
+exec dwm
