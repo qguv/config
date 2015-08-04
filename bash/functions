@@ -170,3 +170,9 @@ function promptloop() {
   echo
   return laststatus
 }
+
+function docker-clean() {
+  docker rm `docker ps -aq` > /dev/null 2>&1 || echo "No stale containers.\n"
+  docker rmi -f `docker images | grep '^<none>' | awk '{print $3}'` || echo "\nNo stale containers; IGNORE ABOVE ERRORS."
+  echo "All clean."
+}
