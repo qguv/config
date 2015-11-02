@@ -183,3 +183,8 @@ function docker-clean() {
   echo "\nAll clean."
 }
 
+function chase() {
+  mv "$@"
+  for lastarg in $@; do :; done
+  cd "$lastarg"
+}
