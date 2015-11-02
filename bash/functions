@@ -172,7 +172,14 @@ function promptloop() {
 }
 
 function docker-clean() {
-  docker rm `docker ps -aq` > /dev/null 2>&1 || echo "No stale containers.\n"
-  docker rmi -f `docker images | grep '^<none>' | awk '{print $3}'` || echo "\nNo stale containers; IGNORE ABOVE ERRORS."
-  echo "All clean."
+  echo "\nRemoving dangling images..."
+  docker rmi -f $(docker images -qf 'dangling=true')
+  echo "\nRemoving exited containers..."
+  docker rm $(docker ps -aq --filter 'status=exited') > /dev/null 2>&1 || echo "No exited containers.\n"
+  echo "\nRemoving stale containers..."
+  docker rm $(docker ps -aq) > /dev/null 2>&1 || echo "No stale containers.\n"
+  echo "\nRemoving intermediate images..."
+  docker rmi -f $(docker images -a | grep '<none>' | awk '{print $3}')
+  echo "\nAll clean."
 }
+

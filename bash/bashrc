@@ -11,5 +11,3 @@ source "$XDG_CONFIG_HOME/bash/prompt"
 
 # if running interactively...
 [[ $- != *i* ]] && return
-
-# add interactive stuff here
