@@ -106,9 +106,9 @@ chatnets = {
   SILC = { type = "SILC"; };
   Freenode = {
     type = "IRC";
-    nick = "quintus";
-    username = "quintus";
-    realname = "Quintus";
+    nick = "qguv";
+    username = "qguv";
+    realname = "qguv";
     usermode = "+w";
   };
   SolidIRC = { type = "IRC"; };
@@ -136,7 +136,7 @@ aliases = {
   WI = "whois";
   WII = "whois $0 $0";
   WW = "whowas";
-  W = "who";
+  W = "window";
   N = "names";
   M = "msg";
   T = "topic";
@@ -168,8 +168,6 @@ aliases = {
   ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
-  afk = "nick quintus-afk";
-  bk = "nick quintus";
 };
 
 statusbar = {
@@ -291,7 +289,7 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "Quintus"; user_name = "user"; nick = "quintus"; };
+  core = { real_name = "qguv"; user_name = "user"; nick = "qguv"; };
   "fe-text" = { actlist_sort = "refnum"; scrollback_lines = "10000"; };
   "fe-common/core" = {
     autolog = "yes";
@@ -309,5 +307,5 @@ mainwindows = {
   #2 = { first_line = "1"; lines = "7"; };
 };
 logs = { };
-hilights = ( { text = "quintus"; nick = "no"; word = "yes"; } );
+hilights = ( { text = "qguv"; nick = "no"; word = "yes"; } );
 ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
