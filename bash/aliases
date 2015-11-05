@@ -23,9 +23,8 @@ alias lsaf='find . -type f -exec ls {} \;'
 alias resume="$RESUMECOMMAND"
 
 # git
-alias g="git"
-alias gs="git status -s"
-alias gss="git status"
+alias gss="git status -s"
+alias gst="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
 
