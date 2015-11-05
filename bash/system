@@ -4,12 +4,12 @@
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python'
 export SYSTEMUPDATE=''
-export GOPATH="$HOME/dev/go/"
+export GOPATH="$HOME/dev/go"
 export BEEPCOMMAND='tput bel'
-export TERMINAL='xterm'
-export EDITOR='vim'
+export TERMINAL='st'
+export EDITOR='nvim'
 export BROWSER='w3m'
-export PATH="$HOME/.built/bin:$HOME/dev/go/bin/:$PATH"
+export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$PATH"
 export CLIPBOARDCOPY='xclip -selection clipboard'
 export CLIPBOARDPASTE='xclip -o -selection clipboard'
 export OPENCOMMAND='xdg-open'
