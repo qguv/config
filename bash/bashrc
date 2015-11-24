@@ -9,5 +9,8 @@ source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 source "$XDG_CONFIG_HOME/bash/prompt"
 
+# detect shellshock bug over ssh
+export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
+
 # if running interactively...
 [[ $- != *i* ]] && return
