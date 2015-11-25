@@ -1,6 +1,9 @@
 # OSX "Presents"
 .DS_Store
 
+gnupg/*
+!gnupg/gpg.conf
+
 irssi/config
 irssi/away.log
 
