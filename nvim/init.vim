@@ -22,6 +22,7 @@ Plug 'wting/rust.vim'
 Plug 'dag/vim2hs'
 Plug 'tpope/vim-markdown'
 Plug 'ingydotnet/yaml-vim'
+Plug 'lepture/vim-jinja'
 
 call plug#end()
 
@@ -36,6 +37,10 @@ set fileformat=unix
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set list
+
+" better filename completion in command-line
+set wildmenu
 
 " disable Ex mode; who needs this anyway?
 map Q <Nop>
@@ -60,3 +65,6 @@ map <F10> :NERDTreeToggle<CR>
 
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
+
+" pipe-cursor in insert mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
