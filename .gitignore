@@ -30,6 +30,8 @@ vim/viminfo
 vim/simplenoterc
 vim/plugin
 
+nvim/plugged
+
 wmii-hg/history.*
 w3m/
 

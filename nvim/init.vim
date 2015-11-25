@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 
 " generic bundles
 Plug 'tpope/vim-surround'
