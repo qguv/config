@@ -1,19 +1,6 @@
 # OSX "Presents"
 .DS_Store
 
-# OpenSUSE CSCI Department Config "Presents"
-akonadi
-dconf
-gtk-3.0
-libreoffice
-oxygen-gtk
-pulse
-Trolltech.conf
-user-dirs.dirs
-user-dirs.locale
-yelp
-hub
-
 irssi/config
 irssi/away.log
 
