@@ -22,6 +22,8 @@ ssh/*_rsa
 ssh/*.rsa
 ssh/*_dsa
 ssh/*.dsa
+ssh/*_ecdsa
+ssh/*.ecdsa
 ssh/known_hosts
 ssh/authorized_keys
 
