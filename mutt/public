@@ -1,15 +1,23 @@
 color index color214 default ~O
 
+# incoming
 set imap_user = "quintus.public@gmail.com"
-
-set smtp_url = "smtp://quint@guvernator.net@mail.guvernator.net:587/"
-set from = "quint@guvernator.net"
-set realname = "Quint Guvernator"
-
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set postponed = "+[Gmail]/Drafts"
+set postpone = yes
 
+# composing
+set record = "+[Gmail]/Sent Mail"
+set copy = yes
+
+# outgoing
+set smtp_url = "smtps://quint@guvernator.net@mail.guvernator.net:465/"
+set from = "quint@guvernator.net"
+set realname = "Quint Guvernator"
+set certificate_file = "~/.config/mutt/certificates"
+
+# viewing
 set move = no
 set sort = threads # default sort messages by thread
 set sort_aux = last-date-received # showing threads with youngest message last
