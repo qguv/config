@@ -188,3 +188,11 @@ function chase() {
   for lastarg in $@; do :; done
   cd "$lastarg"
 }
+
+function somafm() {
+  if [ "$1" = "stop" ]; then
+    killall mpg123 > /dev/null 2>&1
+    return
+  fi
+  mpg123 -@ "http://somafm.com/startstream=$1.pls" > /dev/null 2>&1 &
+}
