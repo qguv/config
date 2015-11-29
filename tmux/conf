@@ -1,4 +1,7 @@
+# change prefix to ^A
 unbind C-b
 set -g prefix C-a
+bind C-a send-prefix
+
 set -g default-terminal screen-256color
 set -sg escape-time 1 #ms after esc is pressed to interpret keys as meta+key
