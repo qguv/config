@@ -64,6 +64,3 @@ map <F10> :NERDTreeToggle<CR>
 
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
-
-" pipe-cursor in insert mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
