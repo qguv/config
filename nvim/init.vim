@@ -27,8 +27,7 @@ Plug 'lepture/vim-jinja'
 call plug#end()
 
 " solarize
-colo solarized
-set background=dark
+colo elflord
 
 " basic settings
 set relativenumber
