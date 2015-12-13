@@ -20,6 +20,16 @@ alias screen="screen -T $TERM"
 # use \dc if piping input
 alias dc="dc -e 10k -"
 
+# autopep8 ignores the dumber pep8 guidelines
+# 501: lines less than 80 characters
+#   * dumb because this ain't 1970
+# 201-2: every list, comprehension or not, has cozy square brackets
+#   * dumb because comprehensions should have breathing room
+# 301-3: weird arbitrary rules on newlines
+#   * dumb because it's hard to tell '\n' from '\n+'
+# the rest of the rules are really good; let's stick to those
+alias autopep8="autopep8 --ignore 'E501,E201,E202,E301,E302,E303'"
+
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
