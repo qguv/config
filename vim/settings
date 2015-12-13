@@ -12,7 +12,7 @@ set nojoinspaces " no double-spacing after full stops when joining lines
 filetype plugin indent on
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme elflord
 
 " Other programming niceties
 set relativenumber
@@ -29,12 +29,6 @@ let g:haskell_conceal_wide=1
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-if system('uname') =~ 'Darwin.*'
-  nmap <silent> K <Plug>DashSearch
-  autocmd BufNewFile,BufRead {*.coffee} DashKeywords javascript underscore coffeescript
-  autocmd BufNewFile,BufRead {*.js} DashKeywords javascript underscore
-endif
 
 " disable Ex mode; who needs this anyway?
 map Q <Nop>
@@ -57,18 +51,8 @@ let g:pymode_lint = 0
 " pymode rebinds one of my leaders. unacceptable.
 let g:pymode_run=0
 
-" autopep8 ignores the dumber pep8 guidelines
-" 501: lines less than 80 characters
-"   * dumb because this ain't 1970
-" 201-2: every list, comprehension or not, has cozy square brackets
-"   * dumb because comprehensions should have breathing room
-" 301-3: weird arbitrary rules on newlines
-"   * dumb because it's hard to tell '\n' from '\n+'
-" the rest of the rules are really good; let's stick to those
-let g:autopep8_ignore="E501,E201,E202,E301,E302,E303"
-
 " Setting Strong Cryptography with :X
-set cm=blowfish 
+set cm=blowfish
 
 " Highlight search results
 set hlsearch
