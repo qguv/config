@@ -1,46 +1,44 @@
 var MARGIN = 22;
-var DOCK_CORRECTION = 4;
 
 slate.config("keyboardLayout", "colemak");
 
 // Fullscreen
 slate.bind('return:cmd,alt', function(w) {
-    // ±4 to account for hidden Dock on left of screen.
-    w.doOperation(S.op('move', {
-		'x': 'screenOriginX - ' + DOCK_CORRECTION + ' + ' + MARGIN,
+  w.doOperation(S.op('move', {
+		'x': 'screenOriginX + ' + MARGIN,
 		'y': 'screenOriginY + ' + MARGIN,
-		'width': 'screenSizeX + ' + DOCK_CORRECTION + ' - ' + (MARGIN * 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2)
+		'width': 'screenSizeX - ' + (MARGIN * 2),
+		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
 });
 
 // Fullscreen without gap
 slate.bind('return:cmd,alt,shift', function(w) {
 	w.doOperation(S.op('move', {
-		'x': 'screenOriginX - ' + DOCK_CORRECTION,
+		'x': 'screenOriginX',
 		'y': 'screenOriginY',
-		'width': 'screenSizeX + ' + DOCK_CORRECTION,
-		'height': 'screenSizeY'
+		'width': 'screenSizeX',
+		'height': 'screenSizeY',
 	}));
 });
 
 // Push Right
 slate.bind('right:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
-		'x': '(screenSizeX + ' + DOCK_CORRECTION +') / 2 + ' + (MARGIN / 2),
+		'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
 		'y': 'screenOriginY + ' + MARGIN,
-		'width': '(screenSizeX + ' + DOCK_CORRECTION + ') / 2 - ' + (MARGIN * 3 / 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2)
+		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
+		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
 });
 
 // Push Left
 slate.bind('left:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
-		'x': 'screenOriginX - ' + DOCK_CORRECTION + ' + ' + MARGIN,
+		'x': 'screenOriginX + ' + MARGIN,
 		'y': 'screenOriginY + ' + MARGIN,
-		'width': '(screenSizeX + ' + DOCK_CORRECTION + ') / 2 - ' + (MARGIN * 3 / 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2)
+		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
+		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
 });
 
