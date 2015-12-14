@@ -4,8 +4,8 @@ slate.config("keyboardLayout", "colemak");
 
 function center(w, xmin, xsize, ymin, ysize) {
   w.move({
-    'x': '(' + xmin + ') + ((' + xsize + ') - (' + w.size().width + ')) / 2',
-    'y': '(' + ymin + ') + ((' + ysize + ') - (' + w.size().height + ')) / 2',
+    'x': '(' + xmin + ') + ((' + xsize + ') - windowSizeX) / 2',
+    'y': '(' + ymin + ') + ((' + ysize + ') - windowSizeY) / 2',
   });
 }
 
@@ -63,22 +63,26 @@ slate.bind('left:cmd,alt', function(w) {
 
 // push to the bottom half of the current panel/screen
 slate.bind('down:cmd,alt', function(w) {
-	w.doOperation(S.op('move', {
-		'x': 'windowTopLeftX',
-		'y': 'screenSizeY / 2 + ' + MARGIN / 2,
+  w.resize({
 		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
 		'width': 'windowSizeX'
-	}));
+	});
+	w.move({
+		'x': 'windowTopLeftX',
+		'y': 'screenSizeY - ' + MARGIN + ' - windowSizeY',
+  });
 });
 
 // push to the top half of the current panel/screen
 slate.bind('up:cmd,alt', function(w) {
-	w.doOperation(S.op('move', {
+  w.resize({
+		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
+		'width': 'windowSizeX',
+  });
+	w.move({
 		'x': 'windowTopLeftX',
 		'y': MARGIN,
-		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
-		'width': 'windowSizeX'
-	}));
+	});
 });
 
 // show window hints
