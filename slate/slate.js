@@ -11,6 +11,8 @@ function center(w, xmin, xsize, ymin, ysize) {
 
 // try fullscreen with gaps
 slate.bind('return:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
   w.doOperation(S.op('move', {
 		'x': 'screenOriginX + ' + MARGIN,
 		'y': 'screenOriginY + ' + MARGIN,
@@ -24,6 +26,8 @@ slate.bind('return:cmd,alt', function(w) {
 
 // try fullscreen without gaps
 slate.bind('return:cmd,alt,shift', function(w) {
+  if (typeof w == 'undefined') { return; }
+
 	w.doOperation(S.op('move', {
 		'x': 'screenOriginX',
 		'y': 'screenOriginY',
@@ -37,6 +41,8 @@ slate.bind('return:cmd,alt,shift', function(w) {
 
 // try to fill the right panel
 slate.bind('right:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
 	w.doOperation(S.op('move', {
 		'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
 		'y': 'screenOriginY + ' + MARGIN,
@@ -50,6 +56,8 @@ slate.bind('right:cmd,alt', function(w) {
 
 // try to fill the left panel
 slate.bind('left:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
 	w.doOperation(S.op('move', {
 		'x': 'screenOriginX + ' + MARGIN,
 		'y': 'screenOriginY + ' + MARGIN,
@@ -63,6 +71,8 @@ slate.bind('left:cmd,alt', function(w) {
 
 // push to the bottom half of the current panel/screen
 slate.bind('down:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
   w.resize({
 		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
 		'width': 'windowSizeX',
@@ -75,6 +85,8 @@ slate.bind('down:cmd,alt', function(w) {
 
 // push to the top half of the current panel/screen
 slate.bind('up:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
   w.resize({
 		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
 		'width': 'windowSizeX',
@@ -87,11 +99,15 @@ slate.bind('up:cmd,alt', function(w) {
 
 // show window hints
 slate.bind('/:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
   w.doOperation(S.op('hint', {'characters': 'tsradpfwq'}));
 });
 
 // relaunch slate and reload configuration
 slate.bind('1:cmd,alt,shift', function(w) {
+  if (typeof w == 'undefined') { return; }
+
 	w.doOperation(S.op('relaunch'));
 });
 
