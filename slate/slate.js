@@ -2,7 +2,14 @@ var MARGIN = 22;
 
 slate.config("keyboardLayout", "colemak");
 
-// Fullscreen
+function center(w, xmin, xsize, ymin, ysize) {
+  w.move({
+    'x': '(' + xmin + ') + ((' + xsize + ') - (' + w.size().width + ')) / 2',
+    'y': '(' + ymin + ') + ((' + ysize + ') - (' + w.size().height + ')) / 2',
+  });
+}
+
+// try fullscreen with gaps
 slate.bind('return:cmd,alt', function(w) {
   w.doOperation(S.op('move', {
 		'x': 'screenOriginX + ' + MARGIN,
@@ -10,9 +17,12 @@ slate.bind('return:cmd,alt', function(w) {
 		'width': 'screenSizeX - ' + (MARGIN * 2),
 		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
+
+  // put whatever size remains in the middle of the screen
+  center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
 });
 
-// Fullscreen without gap
+// try fullscreen without gaps
 slate.bind('return:cmd,alt,shift', function(w) {
 	w.doOperation(S.op('move', {
 		'x': 'screenOriginX',
@@ -20,9 +30,12 @@ slate.bind('return:cmd,alt,shift', function(w) {
 		'width': 'screenSizeX',
 		'height': 'screenSizeY',
 	}));
+
+  // put whatever size remains in the middle of the screen
+  center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
 });
 
-// Push Right
+// try to fill the right panel
 slate.bind('right:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
 		'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
@@ -30,9 +43,12 @@ slate.bind('right:cmd,alt', function(w) {
 		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
 		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
+
+  // put whatever size remains in the middle of the right panel
+  center(w, 'screenOriginX + screenSizeX / 2', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
 });
 
-// Push Left
+// try to fill the left panel
 slate.bind('left:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
 		'x': 'screenOriginX + ' + MARGIN,
@@ -40,9 +56,12 @@ slate.bind('left:cmd,alt', function(w) {
 		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
 		'height': 'screenSizeY - ' + (MARGIN * 2),
 	}));
+
+  // put whatever size remains in the middle of the left panel
+  center(w, 'screenOriginX', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
 });
 
-// Push Down
+// push to the bottom half of the current panel/screen
 slate.bind('down:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
 		'x': 'windowTopLeftX',
@@ -52,7 +71,7 @@ slate.bind('down:cmd,alt', function(w) {
 	}));
 });
 
-// Push Up
+// push to the top half of the current panel/screen
 slate.bind('up:cmd,alt', function(w) {
 	w.doOperation(S.op('move', {
 		'x': 'windowTopLeftX',
@@ -62,15 +81,14 @@ slate.bind('up:cmd,alt', function(w) {
 	}));
 });
 
-// Find
+// show window hints
 slate.bind('/:cmd,alt', function(w) {
-    w.doOperation(S.op('hint', {
-        'characters': 'fdsagrewq',
-        'display': 'tsradpfwq'
-    }));
+  w.doOperation(S.op('hint', {
+    'characters': 'tsradpfwq'
+  }));
 });
 
-// Reload Slate
+// relaunch slate and reload configuration
 slate.bind('1:cmd,alt,shift', function(w) {
 	w.doOperation(S.op('relaunch'));
 });
