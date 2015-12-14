@@ -65,7 +65,7 @@ slate.bind('left:cmd,alt', function(w) {
 slate.bind('down:cmd,alt', function(w) {
   w.resize({
 		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
-		'width': 'windowSizeX'
+		'width': 'windowSizeX',
 	});
 	w.move({
 		'x': 'windowTopLeftX',
@@ -87,9 +87,7 @@ slate.bind('up:cmd,alt', function(w) {
 
 // show window hints
 slate.bind('/:cmd,alt', function(w) {
-  w.doOperation(S.op('hint', {
-    'characters': 'tsradpfwq'
-  }));
+  w.doOperation(S.op('hint', {'characters': 'tsradpfwq'}));
 });
 
 // relaunch slate and reload configuration
