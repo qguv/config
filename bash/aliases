@@ -78,4 +78,4 @@ alias spm="sudo pacman"
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 
-alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=cat.pdf -dBATCH'
+alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
