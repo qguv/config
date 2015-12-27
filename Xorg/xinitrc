@@ -5,6 +5,7 @@ xbanish &
 
 # capslock is backspace
 xmodmap "$XDG_CONFIG_HOME/Xorg/Xmodmap"
+setxkbmap us colemak
 
 # set the wallpaper
 xsetroot -solid "#555" # dark gray
