@@ -42,6 +42,9 @@ alias p2="$PYTHON2NAME"
 alias ddg="surfraw duckduckgo"
 alias tmuxdr="tmux attach || tmux new"
 
+# iTerm2's `imgcat` doesn't scale for the terminal
+alias thumb="convert -resize 600x300 - - | imgcat"
+
 # zsh/functions
 alias md='mkdircd'
 alias edex='editex'
