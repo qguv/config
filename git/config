@@ -1,18 +1,17 @@
 [user]
 	name = Quint Guvernator
-	email = quintus.public@gmail.com
+	email = quint@guvernator.net
 [grep]
 	extendRegexp = true
 	lineNumber = true
 [init]
 	templatedir = ~/.config/git/templates
 [sendemail]
-	from = Quint Guvernator <quintus.public@gmail.com>
-	smtpserver = smtp.gmail.com
-	smtpuser = quintus.public@gmail.com
-	smtpencryption = tls
+	from = Quint Guvernator <quint@guvernator.net>
+	smtpserver = mail.guvernator.net
+	smtpuser = quint@guvernator.net
 	chainreplyto = false
-	smtpserverport = 587
+	smtpserverport = 465
 	confirm = auto
 [alias]
 	lo = log --oneline
