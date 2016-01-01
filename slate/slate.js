@@ -39,21 +39,6 @@ slate.bind('return:cmd,alt,shift', function(w) {
   center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
 });
 
-// try to fill the right panel
-slate.bind('right:cmd,alt', function(w) {
-  if (typeof w == 'undefined') { return; }
-
-  w.doOperation(S.op('move', {
-    'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
-    'y': 'screenOriginY + ' + MARGIN,
-    'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
-    'height': 'screenSizeY - ' + (MARGIN * 2),
-  }));
-
-  // put whatever size remains in the middle of the right panel
-  center(w, 'screenOriginX + screenSizeX / 2', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
-});
-
 // try to fill the left panel
 slate.bind('left:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
@@ -61,7 +46,7 @@ slate.bind('left:cmd,alt', function(w) {
   w.doOperation(S.op('move', {
     'x': 'screenOriginX + ' + MARGIN,
     'y': 'screenOriginY + ' + MARGIN,
-    'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
+    'width': '(screenSizeX - ' + (MARGIN * 3) + ') / 2',
     'height': 'screenSizeY - ' + (MARGIN * 2),
   }));
 
@@ -69,19 +54,19 @@ slate.bind('left:cmd,alt', function(w) {
   center(w, 'screenOriginX', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
 });
 
-// push to the bottom half of the current panel/screen
-slate.bind('down:cmd,alt', function(w) {
+// try to fill the right panel
+slate.bind('right:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
-  w.resize({
-    'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
-    'width': 'windowSizeX',
-  });
+  w.doOperation(S.op('move', {
+    'x': 'screenOriginX + (screenSizeX / 2) + ' + (MARGIN / 2),
+    'y': 'screenOriginY + ' + MARGIN,
+    'width': '(screenSizeX - ' + (MARGIN * 3) + ') / 2',
+    'height': 'screenSizeY - ' + (MARGIN * 2),
+  }));
 
-  w.move({
-    'x': 'windowTopLeftX',
-    'y': 'screenSizeY - ' + MARGIN + ' - windowSizeY',
-  });
+  // put whatever size remains in the middle of the right panel
+  center(w, 'screenOriginX + screenSizeX / 2', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
 });
 
 // push to the top half of the current panel/screen
@@ -89,13 +74,28 @@ slate.bind('up:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
   w.resize({
-    'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
+    'height': '(screenSizeY - ' + (MARGIN * 3) + ') / 2',
     'width': 'windowSizeX',
   });
 
   w.move({
     'x': 'windowTopLeftX',
-    'y': MARGIN,
+    'y': 'screenOriginY + ' + MARGIN,
+  });
+});
+
+// push to the bottom half of the current panel/screen
+slate.bind('down:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+
+  w.resize({
+    'height': '(screenSizeY - ' + (MARGIN * 3) + ') / 2',
+    'width': 'windowSizeX',
+  });
+
+  w.move({
+    'x': 'windowTopLeftX',
+    'y': 'screenOriginY + screenSizeY / 2 + ' + (MARGIN + MARGIN / 2),
   });
 });
 
@@ -103,6 +103,27 @@ slate.bind('up:cmd,alt', function(w) {
 slate.bind('/:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
   w.doOperation(S.op('hint', {'characters': 'tsradpfwq'}));
+});
+
+function to_screen(w, which) {
+  w.move({
+    'x': 'screenOriginX',
+    'y': 'screenOriginY',
+    'screen': which,
+  });
+  center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
+}
+
+// move to previous screen
+slate.bind(',:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+  to_screen(w, 'previous');
+});
+
+// move to next screen
+slate.bind('.:cmd,alt', function(w) {
+  if (typeof w == 'undefined') { return; }
+  to_screen(w, 'next');
 });
 
 // relaunch slate and reload configuration
