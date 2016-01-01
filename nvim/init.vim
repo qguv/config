@@ -36,7 +36,6 @@ set fileformat=unix
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set list
 
 " better filename completion in command-line
 set wildmenu
