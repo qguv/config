@@ -14,11 +14,11 @@ slate.bind('return:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
   w.doOperation(S.op('move', {
-		'x': 'screenOriginX + ' + MARGIN,
-		'y': 'screenOriginY + ' + MARGIN,
-		'width': 'screenSizeX - ' + (MARGIN * 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2),
-	}));
+    'x': 'screenOriginX + ' + MARGIN,
+    'y': 'screenOriginY + ' + MARGIN,
+    'width': 'screenSizeX - ' + (MARGIN * 2),
+    'height': 'screenSizeY - ' + (MARGIN * 2),
+  }));
 
   // put whatever size remains in the middle of the screen
   center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
@@ -28,12 +28,12 @@ slate.bind('return:cmd,alt', function(w) {
 slate.bind('return:cmd,alt,shift', function(w) {
   if (typeof w == 'undefined') { return; }
 
-	w.doOperation(S.op('move', {
-		'x': 'screenOriginX',
-		'y': 'screenOriginY',
-		'width': 'screenSizeX',
-		'height': 'screenSizeY',
-	}));
+  w.doOperation(S.op('move', {
+    'x': 'screenOriginX',
+    'y': 'screenOriginY',
+    'width': 'screenSizeX',
+    'height': 'screenSizeY',
+  }));
 
   // put whatever size remains in the middle of the screen
   center(w, 'screenOriginX', 'screenSizeX', 'screenOriginY', 'screenSizeY');
@@ -43,12 +43,12 @@ slate.bind('return:cmd,alt,shift', function(w) {
 slate.bind('right:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
-	w.doOperation(S.op('move', {
-		'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
-		'y': 'screenOriginY + ' + MARGIN,
-		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2),
-	}));
+  w.doOperation(S.op('move', {
+    'x': 'screenSizeX / 2 + ' + (MARGIN / 2),
+    'y': 'screenOriginY + ' + MARGIN,
+    'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
+    'height': 'screenSizeY - ' + (MARGIN * 2),
+  }));
 
   // put whatever size remains in the middle of the right panel
   center(w, 'screenOriginX + screenSizeX / 2', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
@@ -58,12 +58,12 @@ slate.bind('right:cmd,alt', function(w) {
 slate.bind('left:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
-	w.doOperation(S.op('move', {
-		'x': 'screenOriginX + ' + MARGIN,
-		'y': 'screenOriginY + ' + MARGIN,
-		'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
-		'height': 'screenSizeY - ' + (MARGIN * 2),
-	}));
+  w.doOperation(S.op('move', {
+    'x': 'screenOriginX + ' + MARGIN,
+    'y': 'screenOriginY + ' + MARGIN,
+    'width': 'screenSizeX / 2 - ' + (MARGIN * 3 / 2),
+    'height': 'screenSizeY - ' + (MARGIN * 2),
+  }));
 
   // put whatever size remains in the middle of the left panel
   center(w, 'screenOriginX', 'screenSizeX / 2', 'screenOriginY', 'screenSizeY');
@@ -74,12 +74,13 @@ slate.bind('down:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
   w.resize({
-		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
-		'width': 'windowSizeX',
-	});
-	w.move({
-		'x': 'windowTopLeftX',
-		'y': 'screenSizeY - ' + MARGIN + ' - windowSizeY',
+    'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
+    'width': 'windowSizeX',
+  });
+
+  w.move({
+    'x': 'windowTopLeftX',
+    'y': 'screenSizeY - ' + MARGIN + ' - windowSizeY',
   });
 });
 
@@ -88,28 +89,27 @@ slate.bind('up:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
 
   w.resize({
-		'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
-		'width': 'windowSizeX',
+    'height': 'screenSizeY / 2 -' + 3 * MARGIN / 2,
+    'width': 'windowSizeX',
   });
-	w.move({
-		'x': 'windowTopLeftX',
-		'y': MARGIN,
-	});
+
+  w.move({
+    'x': 'windowTopLeftX',
+    'y': MARGIN,
+  });
 });
 
 // show window hints
 slate.bind('/:cmd,alt', function(w) {
   if (typeof w == 'undefined') { return; }
-
   w.doOperation(S.op('hint', {'characters': 'tsradpfwq'}));
 });
 
 // relaunch slate and reload configuration
 slate.bind('1:cmd,alt,shift', function(w) {
   if (typeof w == 'undefined') { return; }
-
-	w.doOperation(S.op('relaunch'));
+  w.doOperation(S.op('relaunch'));
 });
 
 // adapted from https://gist.github.com/leb2/5af57cd4b011937dc6e0
-/* vi: set et sw=2 sts=2 nolist nornu: */
+/* vi: set et sw=2 sts=2: */
