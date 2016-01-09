@@ -196,3 +196,8 @@ function somafm() {
   fi
   mpg123 -@ "http://somafm.com/startstream=$1.pls" > /dev/null 2>&1 &
 }
+
+# remove spaces, then run unquoted lines through fmt, passing arguments along
+function mailfmt() {
+  eval "sed 's/^>/.>/g' | fmt $@ | sed 's/^.>/>/g' | sed 's/\s\s+/ /g'"
+}
