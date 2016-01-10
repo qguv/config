@@ -201,3 +201,12 @@ function somafm() {
 function mailfmt() {
   eval "sed 's/^>/.>/g' | fmt $@ | sed 's/^.>/>/g' | sed 's/\s\s+/ /g'"
 }
+
+function osxdocker() {
+  docker-machine env default > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    docker-machine create --driver virtualbox default || docker-machine start default
+  fi
+  eval $(docker-machine env default)
+  eval "\\docker $@"
+}
