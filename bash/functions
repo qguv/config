@@ -5,7 +5,7 @@
 source "$XDG_CONFIG_HOME/bash/system"
 
 # Combines mkdir, cd, pwd
-function mkdircd () {
+function md () {
   mkdir -p "$@" &&
   eval cd "\"\$$#\"" &&
   eval echo "Switching to $(pwd)...";
