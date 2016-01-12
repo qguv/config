@@ -199,7 +199,7 @@ function somafm() {
 
 # remove spaces, then run unquoted lines through fmt, passing arguments along
 function mailfmt() {
-  eval "sed 's/^>/.>/g' | fmt $@ | sed 's/^.>/>/g' | sed 's/\s\s+/ /g'"
+  eval "sed 's/^>/.>/g' | fmt $@ | sed 's/^.>/>/g' | sed 's/   */ /g'"
 }
 
 function osxdocker() {
