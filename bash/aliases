@@ -45,6 +45,8 @@ alias tmuxdr="tmux attach || tmux new"
 # iTerm2's `imgcat` doesn't scale for the terminal
 alias thumb="convert -resize 600x300 - - | imgcat"
 
+# endrend
+alias endrend="python3 $XDG_CONFIG_HOME/bash/endrend.py"
 
 # System tasks
 alias reload='source ~/.zshrc'
