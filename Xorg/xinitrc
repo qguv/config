@@ -9,7 +9,9 @@ setxkbmap us colemak
 
 # set the wallpaper
 xsetroot -solid "#555" # dark gray
-#xli -quiet -fullscreen -onroot ~/wallpaper.jpg
+for wp in "$XDG_CONFIG_HOME"/wallpaper.*; do
+  feh --bg-fill "$wp"
+done
 
 # dwm status bar
 while true; do
