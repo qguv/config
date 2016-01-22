@@ -1,0 +1,26 @@
+# respect XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_DIRS="/etc/xdg"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
+export XDG_CACHE_HOME="$HOME/.cache"
+#export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
+
+# initialize shell with custom settings
+source "$XDG_CONFIG_HOME/bash/system"
+source "$XDG_CONFIG_HOME/bash/initcommands"
+source "$XDG_CONFIG_HOME/bash/functions"
+source "$XDG_CONFIG_HOME/bash/aliases"
+source "$XDG_CONFIG_HOME/bash/prompt"
+
+# ...and settings specific to zsh
+if [ -n "$ZSH_VERSION" ]; then
+  source "$XDG_CONFIG_HOME/zsh/compinstall"
+  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# use vi line-editing keybindings
+set -o vi
+
+# detect shellshock bug over ssh
+export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
