@@ -21,6 +21,8 @@ alias beep="$BEEPCOMMAND"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
 alias resume="$RESUMECOMMAND"
+alias ukman="loadkeys colemak > /dev/null 2>&1 || setxkbmap us colemak"
+alias qwfpgj="loadkeys us > /dev/null 2>&1 || setxkbmap us"
 
 # git
 alias gss="git status -s"
