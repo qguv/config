@@ -15,9 +15,7 @@ done
 
 # dwm status bar
 while true; do
-  DT="$(date '+%a %d %b %H:%M')"
-  LOAD="$(load)"
-  xsetroot -name "$LOAD  |  $DT"
+  xsetroot -name "$(date '+%a %d %b %H:%M')"
   sleep 5
 done &
 
