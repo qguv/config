@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # shell initialization
 
-# use other config files
+# use vi line-editing keybindings
 set -o vi
+
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"
