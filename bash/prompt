@@ -50,11 +50,13 @@ function __git_prompt {
     fi
 }
 
-if [[ "$USER" != 'root' ]]; then
-    setopt prompt_subst
-    export PS1='$(__prompt_char) '
-    export RPS1='%~$(__git_prompt)(%n@%m)'
-else
+if [[ "$USER" == 'root' ]]; then
     export PS1='# '
     export RPS1='%~ (%n)'
+else
+    if [[ -n "$ZSH_NAME" ]]; then
+        setopt prompt_subst
+    fi
+    export PS1='$(__prompt_char) '
+    export RPS1='%~$(__git_prompt)(%n@%m)'
 fi
