@@ -19,5 +19,7 @@ while true; do
   sleep 5
 done &
 
+compton -bc --inactive-dim 0.1
+
 # start dwm
 exec dwm
