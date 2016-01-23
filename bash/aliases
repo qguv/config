@@ -83,6 +83,7 @@ alias pa="pacaur"
 alias pm="pacman"
 alias spm="sudo pacman"
 alias sc="systemctl"
+alias scu="systemctl --user"
 alias ssc="sudo systemctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
