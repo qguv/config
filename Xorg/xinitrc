@@ -38,5 +38,7 @@ if [ $xbanish_status -eq 0 ]; then
   xbanish &
 fi
 
+dbus-update-activation-environment --all --systemd
+
 # start dwm
 exec dwm
