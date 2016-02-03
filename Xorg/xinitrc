@@ -1,17 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# avoid the rodent
-xbanish &
+# figure out what's installed
+command -v feh      >/dev/null 2>&1; feh_status=$?
+command -v compton  >/dev/null 2>&1; compton_status=$?
+command -v redshift >/dev/null 2>&1; redshift_status=$?
+command -v xbanish  >/dev/null 2>&1; xbanish_status=$?
 
 # capslock is backspace
-xmodmap "$XDG_CONFIG_HOME/Xorg/Xmodmap"
 setxkbmap us colemak
 
 # set the wallpaper
 xsetroot -solid "#555" # dark gray
-for wp in "$XDG_CONFIG_HOME"/wallpaper.*; do
-  feh --bg-fill "$wp"
-done
+if [ $feh_status -eq 0 ]; then
+  for wp in /home/qguv/.config/wallpaper.*; do
+    feh --bg-fill "$wp"
+  done
+fi
 
 # dwm status bar
 while true; do
@@ -19,7 +23,20 @@ while true; do
   sleep 5
 done &
 
-compton -bc --inactive-dim 0.1
+# window compositor
+if [ $compton_status -eq 0 ]; then
+  compton -bc --inactive-dim 0.1
+fi
+
+# adjust color temperature to time of day
+if [ $redshift_status -eq 0 ]; then
+  redshift &
+fi
+
+# avoid the rodent
+if [ $xbanish_status -eq 0 ]; then
+  xbanish &
+fi
 
 # start dwm
 exec dwm
