@@ -1,9 +1,11 @@
 [Unit]
 Description=Listen to %i on SomaFM
+After=network-online.target
 
 [Service]
 Type=simple
+ExecStartPre=-/usr/bin/killall mpg123
 ExecStart=/usr/bin/mpg123 -@ "http://somafm.com/startstream=%i.pls"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
