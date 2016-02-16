@@ -16,8 +16,9 @@ fi
 
 # dwm status bar
 while true; do
-  xsetroot -name "$(date '+%a %d %b %H:%M')"
-  sleep 5
+  secondary_layout="$(xset -q | grep -A 0 'LED' | cut -c63 | sed 's/1/*/' | sed 's/0//')"
+  xsetroot -name "$secondary_layout $(date '+%a %d %b %H:%M')"
+  sleep 2
 done &
 
 # window compositor
