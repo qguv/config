@@ -22,7 +22,7 @@ done &
 
 # window compositor
 if [ $compton_status -eq 0 ]; then
-  compton -bc --inactive-dim 0.1
+  compton -bcf --no-fading-openclose --inactive-dim 0.1
 fi
 
 # adjust color temperature to time of day
