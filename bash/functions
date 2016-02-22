@@ -261,3 +261,13 @@ function gpg_clean() {
     echo Updating keys...
     gpg2 --refresh-keys
 }
+
+function disable_powersave() {
+  xset -dpms
+  xset s off
+}
+
+function enable_powersave() {
+  xset +dpms
+  xset s on
+}
