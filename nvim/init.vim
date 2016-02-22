@@ -63,3 +63,7 @@ map <F10> :NERDTreeToggle<CR>
 
 " text documents should have linebreaks, since newlines imply paragraphs
 autocmd BufNewFile,BufRead {*.tex,*.md,*.txt} set linebreak
+
+" vim-clutch is the epitome of over-engineering
+nnoremap <silent> <F6> i
+inoremap <silent> <F6> <Nop>
