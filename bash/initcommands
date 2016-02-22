@@ -21,6 +21,9 @@ alias screen="screen -T $TERM"
 # use \dc if piping input
 alias dc="dc -e 10k -"
 
+# colored howdoi
+alias howdoi="howdoi -c"
+
 # autopep8 ignores the dumber pep8 guidelines
 # 501: lines less than 80 characters
 #   * dumb because this ain't 1970
