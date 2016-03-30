@@ -51,7 +51,7 @@ alias tmuxdr="tmux attach || tmux new"
 alias thumb="convert -resize 600x300 - - | imgcat"
 
 # endrend
-alias endrend="python3 $XDG_CONFIG_HOME/bash/endrend.py | mailfmt -w 80"
+alias endrend="python3 $XDG_CONFIG_HOME/bash/endrend.py"
 
 # System tasks
 alias reload='source ~/.zshrc'
