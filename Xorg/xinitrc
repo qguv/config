@@ -6,6 +6,9 @@ command -v compton  >/dev/null 2>&1; compton_status=$?
 command -v redshift >/dev/null 2>&1; redshift_status=$?
 command -v xbanish  >/dev/null 2>&1; xbanish_status=$?
 
+# disable mouse acceleration
+xset m 1 1
+
 # set the wallpaper
 xsetroot -solid "#555" # dark gray
 if [ $feh_status -eq 0 ]; then
