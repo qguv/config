@@ -43,6 +43,9 @@ set wildmenu
 " disable Ex mode; who needs this anyway?
 map Q <Nop>
 
+" toggle paste mode with \p
+nmap <Leader>p :set paste! paste?<CR>
+
 " arrow keys switch between split windows
 " (and shifted versions move those windows around)
 " they don't do anything else anyway
