@@ -92,3 +92,6 @@ alias be='bundle exec'
 
 # Android on Linux, uses !apkg android-file-transfer
 alias android_mount='aft-mtp-mount /mnt/android'
+
+# Geolocation by public IP
+alias whereami="curl -s http://whatismycountry.com/ | sed -n 's|.*> *\(.*\)</h3>|\1|p' | sed 's|,|, |'"
