@@ -89,3 +89,6 @@ alias ssc="sudo systemctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
 alias be='bundle exec'
+
+# Android on Linux, uses !apkg android-file-transfer
+alias android_mount='aft-mtp-mount /mnt/android'
