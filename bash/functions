@@ -128,6 +128,48 @@ function git-show-words() {
   return "$?"
 }
 
+function git-bb-remote() {
+  usage="Usage: git bb-remote [-n REMOTE_NAME] [-u USERNAME] [-o OWNER] [-r REPOSITORY]"
+
+  if [ "$1" = "--help" ]; then
+    echo "$usage"
+    return 0
+
+  # odd amount of arguments
+  elif [ $(( $# % 2 )) -ne 0 ]; then
+    echo "$usage"
+    return 2
+  fi
+
+  remote="origin"
+  bbuser="$(whoami)"
+  owner="$(whoami)"
+  repo="$(basename $(pwd))"
+
+  while (($#)); do
+    case "$1" in
+      "-n")
+        remote="$2"
+        ;;
+      "-u")
+        bbuser="$2"
+        ;;
+      "-o")
+        owner="$2"
+        ;;
+      "-r")
+        repo="$2"
+        ;;
+      *)
+        echo "$usage"
+        return 1
+    esac
+    shift; shift
+  done
+
+  git remote add "$remote" "https://${bbuser}@bitbucket.org/${owner}/${repo}"
+}
+
 function shreddir() {
   while [ $# -ne 0 ]; do
     read -q "ok?Shredding \"$1\" and children, okay? [y/N] "
