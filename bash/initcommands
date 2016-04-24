@@ -91,6 +91,7 @@ alias mutt="mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/ncmpcpp/config"
 alias startx="startx $XDG_CONFIG_HOME/Xorg/xinitrc"
 alias rtorrent="rtorrent -n -o import=$XDG_CONFIG_HOME/rtorrent/conf"
+alias info='info --vi-keys'
 
 # Disgusting hacks
 function sl3(){
