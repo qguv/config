@@ -24,6 +24,3 @@ set -o vi
 
 # detect shellshock bug over ssh
 export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
-
-# give preachy ed quote whenever a shell is launched interactively
-shuf -n 1 "$XDG_CONFIG_HOME/bash/ed_quotes.txt" | fmt -w 72
