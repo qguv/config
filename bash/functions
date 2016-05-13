@@ -129,7 +129,7 @@ function git-show-words() {
 }
 
 function git-bb-remote() {
-  usage="Usage: git bb-remote [-n REMOTE_NAME] [-u USERNAME] [-o OWNER] [-r REPOSITORY]"
+  usage="Usage: git bb-remote [-n GIT_REMOTE_NAME] [-u USERNAME] [-o OWNER] [-r REPOSITORY]"
 
   if [ "$1" = "--help" ]; then
     echo "$usage"
