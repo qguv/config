@@ -1,0 +1,8 @@
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+p {
+  text-align: justify;
+}
