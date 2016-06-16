@@ -46,6 +46,9 @@ map Q <Nop>
 " toggle paste mode with \p
 nmap <Leader>p :set paste! paste?<CR>
 
+" disable auto-indentation with \i
+nnoremap <Leader>i :setl noai nocin nosi inde=<CR>
+
 " arrow keys switch between split windows
 " (and shifted versions move those windows around)
 " they don't do anything else anyway
