@@ -23,6 +23,7 @@ alias lsaf='find . -type f -exec ls {} \;'
 alias resume="$RESUMECOMMAND"
 alias ukman="loadkeys colemak > /dev/null 2>&1 || setxkbmap us colemak"
 alias qwfpgj="loadkeys us > /dev/null 2>&1 || setxkbmap us"
+alias unique=$'perl -lne \'$x=$_;if(!grep(/^$x$/,@arr)){print; push @arr,$_ ;}\''
 
 # git
 alias gss="git status -s"
