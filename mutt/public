@@ -10,6 +10,7 @@ set postpone = yes
 # composing
 set record = "+[Gmail]/Sent Mail"
 set copy = yes
+set edit_headers
 
 # outgoing
 set smtp_url = "smtps://quint@guvernator.net@sub4.mail.dreamhost.com:465/"
