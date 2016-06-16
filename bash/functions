@@ -313,3 +313,32 @@ function enable_powersave() {
   xset +dpms
   xset s on
 }
+
+function aur() {
+  for v in "$@"; do
+    git clone git+ssh://aur@aur.archlinux.org/${v}.git
+  done
+}
+
+function cslp() {
+  ssh_remote="csci"
+  remote_dir="/tmp/cslp"
+
+  ssh "$ssh_remote" rm -rf "$remote_dir"
+  ssh "$ssh_remote" mkdir  "$remote_dir"
+
+  for local_file in "$@"; do
+    remote_file="$remote_dir/$(basename $local_file)"
+    scp "$local_file" "$ssh_remote:$remote_file"
+    ssh -X "$ssh_remote" "okular --print $remote_file > /dev/null 2>&1"
+  done
+}
+
+function rchars() {
+  if [ -z "$1" ]; then
+    echo "printable NUMBER"
+    echo "  Spits out some printable characters to the terminal."
+    return 2
+  fi
+  tr -dc "[:graph:]" < /dev/urandom | head -c"$1"
+}
