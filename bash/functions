@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # shell custom functions
 
 # Use system-specific variables

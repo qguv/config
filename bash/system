@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # system-specific commands
 
 export PYTHON3NAME='python3'
