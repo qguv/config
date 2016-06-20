@@ -14,5 +14,3 @@ export CLIPBOARDCOPY='xclip -selection clipboard'
 export CLIPBOARDPASTE='xclip -o -selection clipboard'
 export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
-
-alias e="nvim -p"

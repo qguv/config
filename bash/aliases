@@ -6,6 +6,7 @@ source "$XDG_CONFIG_HOME/bash/system"
 
 # UNIX
 alias c='clear'
+alias e="$EDITOR"
 alias s='sudo -E'
 alias la='ls -A'
 alias ll='ls -l'
