@@ -3,14 +3,14 @@
 
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python'
-export SYSTEMUPDATE=''
+export SYSTEMUPDATE='sudo pacman -Syu'
 export GOPATH="$HOME/dev/go"
 export BEEPCOMMAND='tput bel'
 export TERMINAL='st'
-export EDITOR='nvim'
+export EDITOR='nvim -p'
 export BROWSER='w3m'
 export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$PATH"
-export CLIPBOARDCOPY='xclip -selection clipboard'
-export CLIPBOARDPASTE='xclip -o -selection clipboard'
+export CLIPBOARDCOPY='xsel -bi'
+export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
