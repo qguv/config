@@ -19,11 +19,10 @@ command -v wmname   >/dev/null 2>&1; wmname_status=$?
 xset m 1 1
 
 # set the wallpaper
-xsetroot -solid "#555" # dark gray
 if [ $feh_status -eq 0 ]; then
-  for wp in /home/qguv/.config/wallpaper.*; do
-    feh --bg-fill "$wp"
-  done
+  feh --bg-fill "/usr/share/pixmaps/wallpaper.jpg"
+else
+  xsetroot -solid "#555" # dark gray
 fi
 
 # dwm status bar
