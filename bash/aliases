@@ -8,23 +8,21 @@ source "$XDG_CONFIG_HOME/bash/system"
 alias c='clear'
 alias e="$EDITOR"
 alias s='sudo -E'
+alias se="sudo -E $EDITOR"
 alias la='ls -A'
 alias ll='ls -l'
 alias lal='ls -Al'
 alias lla='ls -Al'
-alias view='vim -R'
-alias vimp='vim -p $((git ls-tree --name-only HEAD 2>/dev/null || ls -p .) | awk "! (/^\./ || /\/$/ || /^[mM]akefile$/ )")'
-alias vims='vim -S .session.vim'
-alias tgz='tar czvf'
-alias detgz='tar xvf'
-alias untgz='tar xvf'
+alias view="$EDITOR -R"
 alias beep="$BEEPCOMMAND"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
 alias resume="$RESUMECOMMAND"
+alias unique=$'perl -lne \'$x=$_;if(!grep(/^$x$/,@arr)){print; push @arr,$_ ;}\''
+
+# keyboard layouts
 alias ukman="loadkeys colemak > /dev/null 2>&1 || setxkbmap us colemak"
 alias qwfpgj="loadkeys us > /dev/null 2>&1 || setxkbmap us"
-alias unique=$'perl -lne \'$x=$_;if(!grep(/^$x$/,@arr)){print; push @arr,$_ ;}\''
 alias h.ryav="loadkeys dvorak > /dev/null 2>&1 || setxkbmap us dvorak"
 alias jsgtmab="loadkeys colemak > /dev/null 2>&1 || setxkbmap us colemak"
 
