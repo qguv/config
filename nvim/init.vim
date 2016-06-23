@@ -30,13 +30,21 @@ call plug#end()
 " don't solarize
 colo elflord
 
-" basic settings
+" appearance
 set relativenumber
+set number
 set ruler
+
+" POSIX line endings
 set fileformat=unix
+
+" default indentation behavior
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" use one space between sentences when J or gq is used
+set nojoinspaces
 
 " better filename completion in command-line
 set wildmenu
