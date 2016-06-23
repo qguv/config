@@ -11,8 +11,9 @@ Plug 'altercation/vim-colors-solarized'
 " external tool interfaces
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'  " ctags
-Plug 'rizzatti/dash.vim'  " Dash.app (mac-only)
+Plug 'majutsushi/tagbar'     " ctags
+Plug 'rizzatti/dash.vim'     " Dash.app (mac-only)
+Plug 'keith/investigate.vim' " better 'K' key
 
 " languages
 Plug 'jelera/vim-javascript-syntax'
@@ -26,7 +27,7 @@ Plug 'lepture/vim-jinja'
 
 call plug#end()
 
-" solarize
+" don't solarize
 colo elflord
 
 " basic settings
