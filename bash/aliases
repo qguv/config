@@ -67,7 +67,7 @@ alias cbp="$CLIPBOARDPASTE"
 
 # Internet
 alias servepwd="python3 -m http.server 8080"
-alias posttext="curl -F 'f:1=<-' ix.io"
+alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
 alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias textme='mailx -s autotext devqqq+autotext@gmail.com'
 alias pubip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
