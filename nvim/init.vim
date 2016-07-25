@@ -34,6 +34,7 @@ colo elflord
 set relativenumber
 set number
 set ruler
+set showcmd
 
 " POSIX line endings
 set fileformat=unix
