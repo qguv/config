@@ -9,7 +9,6 @@ export BEEPCOMMAND='tput bel'
 export TERMINAL='st'
 export EDITOR='nvim -p'
 export BROWSER='w3m'
-export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$PATH"
 export CLIPBOARDCOPY='xsel -bi'
 export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'

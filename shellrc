@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # respect XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS="/etc/xdg"
@@ -5,6 +7,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
+
+# prefer locally built packages
+export PATH="$HOME/.built/bin:$PATH"
+
+# prefer development binaries for go packages
+export PATH="$HOME/dev/go/bin:$PATH"
 
 # initialize shell with custom settings
 source "$XDG_CONFIG_HOME/bash/system"
