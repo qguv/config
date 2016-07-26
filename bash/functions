@@ -350,3 +350,14 @@ function genpasswd() {
   fi
   tr -dc A-Za-z0-9_ < /dev/urandom | head -c "$L" | xargs
 }
+
+function gist-edit() {
+  mkdir -p /tmp/gist-edit
+  TMPFILE="/tmp/gist-edit/$(openssl rand -hex 16)"
+  HDRMSG="=== USE :cq TO EXIT WITHOUT UPLOADING ==="
+  echo "$HDRMSG" > "$TMPFILE" &&
+  gist -f todo.txt -r "$DSTODO" >> "$TMPFILE" &&
+  eval "$EDITOR $TMPFILE" &&
+  grep -xv "$HDRMSG" "$TMPFILE" | gist -f todo.txt -u "$DSTODO"
+  rm -rf /tmp/gist-edit
+}
