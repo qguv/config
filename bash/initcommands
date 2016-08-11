@@ -37,9 +37,8 @@ alias howdoi="howdoi -c"
 # the rest of the rules are really good; let's stick to those
 alias autopep8="autopep8 --ignore 'E501,E201,E202,E301,E302,E303'"
 
+# suppress python3 version and copyright info in REPL
 alias python3="python3 -q"
-alias python2="python2 -q"
-alias python="python -q"
 
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
