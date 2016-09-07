@@ -30,9 +30,12 @@
 [core]
 	autocrlf = input
 	editor = nvim
+	abbrev = 12
 [push]
 	default = simple
 [hub]
 	protocol = https
 [credential]
 	helper = cache
+[pretty]
+	fixes = Fixes: %h (\"%s\")
