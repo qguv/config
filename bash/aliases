@@ -15,6 +15,7 @@ alias lal='ls -Al'
 alias lla='ls -Al'
 alias view="$EDITOR -R"
 alias beep="$BEEPCOMMAND"
+alias usermount="sudo mount -o fmask=111,dmask=000"
 alias resolve='cd "$(pwd -P)"'
 alias lsaf='find . -type f -exec ls {} \;'
 alias resume="$RESUMECOMMAND"
