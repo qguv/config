@@ -5,9 +5,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'yaifa.vim' " automatic indentation
 
-" color schemes
-Plug 'altercation/vim-colors-solarized'
-
 " external tool interfaces
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -27,10 +24,9 @@ Plug 'lepture/vim-jinja'
 
 call plug#end()
 
-" don't solarize
-colo elflord
 
 " appearance
+colo elflord
 set relativenumber
 set number
 set ruler
