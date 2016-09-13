@@ -13,7 +13,7 @@ set copy = yes
 set edit_headers
 
 # outgoing
-set smtp_url = "smtps://quint@guvernator.net@sub4.mail.dreamhost.com:465/"
+set smtp_url = "smtps://quint@guvernator.net@mail.privateemail.com:465/"
 set from = "quint@guvernator.net"
 set realname = "Quint Guvernator"
 set certificate_file = "~/.config/mutt/certificates"
