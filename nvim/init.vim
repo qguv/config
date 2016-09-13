@@ -40,6 +40,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" switch and case statements on the same indent level
+set cinoptions=:0
+
 " use one space between sentences when J or gq is used
 set nojoinspaces
 
