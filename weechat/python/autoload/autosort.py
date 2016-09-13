@@ -1,1 +1,1 @@
-../autosort.py
+../../plugin-src/weechat-autosort/autosort.py

@@ -7,3 +7,6 @@
 [submodule "nvim/vim-plug"]
 	path = nvim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+[submodule "weechat/plugin-src/weechat-autosort"]
+	path = weechat/plugin-src/weechat-autosort
+	url = https://github.com/de-vri-es/weechat-autosort
