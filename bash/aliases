@@ -61,6 +61,7 @@ alias reload='source ~/.zshrc'
 alias update="$SYSTEMUPDATE"
 alias mt="$TRASHCOMMAND"
 alias opn="$OPENCOMMAND"
+alias efistatus="sudo efibootmgr -v | sed 's:\(.\)\.:\1:g'"
 
 # Clipboard
 alias cbc="$CLIPBOARDCOPY"
