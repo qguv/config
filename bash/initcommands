@@ -25,7 +25,7 @@ alias dc="dc -e 10k -"
 alias howdoi="howdoi -c"
 
 # feh uses reasonable defaults
-#alias feh="feh -d -."
+alias feh="feh --draw-filename --scale-down"
 
 # autopep8 ignores the dumber pep8 guidelines
 # 501: lines less than 80 characters
