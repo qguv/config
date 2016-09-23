@@ -21,6 +21,7 @@ Plug 'dag/vim2hs'
 Plug 'tpope/vim-markdown'
 Plug 'ingydotnet/yaml-vim'
 Plug 'lepture/vim-jinja'
+Plug 'vivien/vim-linux-coding-style'
 
 call plug#end()
 
