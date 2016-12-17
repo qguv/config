@@ -1,11 +1,11 @@
-# OSX "Presents"
 .DS_Store
 
 gnupg/*
 !gnupg/gpg.conf
 
-irssi/config
-irssi/away.log
+hub
+
+iTerm2/
 
 ssh/*.pub
 ssh/*_rsa
@@ -19,13 +19,10 @@ ssh/authorized_keys
 
 vim/.netrwhist
 vim/viminfo
-vim/simplenoterc
 vim/plugin
 
+nvim/.netrwhist
 nvim/plugged
-
-wmii-hg/history.*
-w3m/
 
 zsh/.zcompdump
 zsh/history

@@ -2,13 +2,12 @@
 # system-specific commands
 
 export PYTHON3NAME='python3'
-export PYTHON2NAME='python'
+export PYTHON2NAME='python2'
 export SYSTEMUPDATE='sudo pacman -Syu'
-export GOPATH="$HOME/dev/go"
 export BEEPCOMMAND='tput bel'
 export TERMINAL='st'
 export EDITOR='nvim -p'
-export BROWSER='w3m'
+export BROWSER='firefox'
 export CLIPBOARDCOPY='xsel -bi'
 export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'
