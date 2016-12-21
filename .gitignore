@@ -19,7 +19,7 @@ ssh/authorized_keys
 
 vim/.netrwhist
 vim/viminfo
-vim/plugin
+vim/plugged
 
 nvim/.netrwhist
 nvim/plugged

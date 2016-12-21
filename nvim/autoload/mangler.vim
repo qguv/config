@@ -1,49 +1,16 @@
-" vim:syn=vim
-" vim custom functions
+" Quicker multi-word variable names with vk
+if exists('g:loaded_mangler')
+  finish
+endif
+let g:loaded_mangler = 1
 
-" Window/Tab Operation Functions
-function MoveToPrevTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() != 1
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabprev
-    endif
-    sp
-  else
-    close!
-    exe "0tabnew"
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
-function MoveToNextTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() < tab_nr
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabnext
-    endif
-    sp
-  else
-    close!
-    tabnew
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
+" camelCase & PascalCase languages
+" namely *.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim
+" but it should really be default, as much as I hate to admit it
+autocmd BufNewFile,BufRead,VimEnter * call VarMode("camelCase")
+" underscore_variable languages
+" mostly the exception; I can't fight this for much longer :-(
+autocmd BufNewFile,BufRead,VimEnter {*.rb,*.ruby,*.erb,*.haml,*.c,*.h,*.cc,*.hh,*.cpp,*.hpp} call VarMode("_")
 
 function CharIsUppercase(charnum)
   "65: A, 90: Z
@@ -149,35 +116,5 @@ function VariableMangler(mode)
 endfunc 
 
 function VarMode(mode)
-  execute "inoremap jf <C-R>=VariableMangler(\"" . a:mode . "\")<CR>"
-endfunc
-
-function SplitHeader()
-
-  " get the current file extension
-  let l:ext = expand('%:t:e')
-  let l:clike = (l:ext =~ '^[cC]\(pp\|PP\|++\)\?$')
-
-  " get outta here if it's not c-like
-  if (!l:clike)
-    return
-  endif
-
-  " obvious extensions
-  if (l:ext ==# 'c')
-    let l:header = 'h'
-  elseif (l:ext ==# 'C')
-    let l:header = 'H'
-
-  " should give us something interesting
-  else
-    let l:extext = substitute(l:ext, '^[cC]\(pp\|PP\|++\)\?$', '\1', 'g')
-    if (l:ext =~ '$C')
-      let l:header = 'H' . l:extext
-    else
-      let l:header = 'h' . l:extext
-    endif
-  endif
-
-  exe 'sp ' . expand('%:r') . '.' . l:header
+  execute "inoremap vk <C-R>=VariableMangler(\"" . a:mode . "\")<CR>"
 endfunc
