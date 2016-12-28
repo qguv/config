@@ -1,16 +1,20 @@
-" Quicker multi-word variable names with vk
-if exists('g:loaded_mangler')
+" shiftkiller.vim: save your pinkies while pressing long variable names
+"
+" Shiftkiller adds a mode that lets you type a variable name as a sequence of
+" words, converting it to snake_case, camelCase, PascalCase, or kebab-case. To
+" load unconditionally:
+"
+"     inoremap vk <C-R>=shiftkiller#Shiftkiller('_')<CR>
+"
+" Change the '_' to '-' or 'camelCase' or 'PascalCase' as desired. To load for
+" some filetypes:
+"
+"     autocmd BufNewFile,BufRead,VimEnter {*.go,*.hs,*.java} inoremap vk <C-R>=shiftkiller#Shiftkiller('camelCase')<CR>
+
+if exists('g:loaded_shiftkiller')
   finish
 endif
-let g:loaded_mangler = 1
-
-" camelCase & PascalCase languages
-" namely *.py,*.js,*.coffee,*.go,*.haxe,*.hs,*.haskell,*.java,*.vim
-" but it should really be default, as much as I hate to admit it
-autocmd BufNewFile,BufRead,VimEnter * call VarMode("camelCase")
-" underscore_variable languages
-" mostly the exception; I can't fight this for much longer :-(
-autocmd BufNewFile,BufRead,VimEnter {*.rb,*.ruby,*.erb,*.haml,*.c,*.h,*.cc,*.hh,*.cpp,*.hpp} call VarMode("_")
+let g:loaded_shiftkiller = 1
 
 function CharIsUppercase(charnum)
   "65: A, 90: Z
@@ -36,7 +40,7 @@ function CharCapitalize(charnum)
 endfunc
 
 " Fancy variable-mode. Allows insertion of camelCase, PascalCase, snake_case, and scheme-style variables
-function VariableMangler(mode)
+function shiftkiller#Shiftkiller(mode)
 
   let l:camelcase = (a:mode is "camelCase")
 
@@ -111,10 +115,6 @@ function VariableMangler(mode)
 
   " ended with a symbol
   let l:variable = l:variable . nr2char(l:inchar)
-  
-  return l:variable
-endfunc 
 
-function VarMode(mode)
-  execute "inoremap vk <C-R>=VariableMangler(\"" . a:mode . "\")<CR>"
+  return l:variable
 endfunc

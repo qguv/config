@@ -2,14 +2,17 @@
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'yaifa.vim' " automatic indentation
 
 " external tool interfaces
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'     " ctags
-Plug 'rizzatti/dash.vim'     " Dash.app (mac-only)
-Plug 'keith/investigate.vim' " better 'K' key
+Plug 'airblade/vim-gitgutter' " which lines changed
+Plug 'majutsushi/tagbar'      " ctags
+Plug 'rizzatti/dash.vim'      " Dash.app (mac-only)
+Plug 'keith/investigate.vim'  " better 'K' key
 
 " languages
 Plug 'jelera/vim-javascript-syntax'

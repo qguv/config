@@ -126,3 +126,12 @@ map <F10> :NERDTreeToggle<CR>
 " vim-clutch is the epitome of over-engineering
 nnoremap <silent> <F6> i
 inoremap <silent> <F6> <Nop>
+
+" rainbow parentheses for lisp-like languages
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
+" shiftkiller with vk
+inoremap vk <C-R>=shiftkiller#Shiftkiller('_')<CR>
