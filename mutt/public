@@ -18,6 +18,9 @@ set from = "quint@guvernator.net"
 set realname = "Quint Guvernator"
 set certificate_file = "~/.config/mutt/certificates"
 
+# don't leak hostname in Message-ID
+set hostname = "guvernator.net"
+
 # viewing
 set move = no
 set sort = threads # default sort messages by thread
