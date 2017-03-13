@@ -133,5 +133,8 @@ augroup rainbow_lisp
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
 
+" c defaults to kernel style
+autocmd BufNewFile,BufRead *.c LinuxCodingStyle
+
 " shiftkiller with vk
 inoremap vk <C-R>=shiftkiller#Shiftkiller('_')<CR>
