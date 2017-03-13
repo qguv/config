@@ -40,6 +40,7 @@ alias gpa='git-push-all'
 
 # Xorg
 alias resolution='xrandr | grep "*" | grep -oe "[0-9]\+x[0-9]\+"'
+alias gpus='lspci -vnnn | perl -lne '"'"'print if /^\d+\:.+(\[\S+\:\S+\])/'"'"' | grep VGA && glxinfo|egrep "OpenGL vendor|OpenGL renderer"'
 
 # versioning
 alias py='python' # System's default python installation
