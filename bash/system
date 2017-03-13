@@ -13,6 +13,6 @@ export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
 
-if ["$EDITOR" == "vi" || "$EDITOR" == "vim" || "$EDITOR" == "nvim"]; then
+if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
 fi
