@@ -14,22 +14,35 @@ command -v compton  >/dev/null 2>&1; compton_status=$?
 command -v redshift >/dev/null 2>&1; redshift_status=$?
 command -v xbanish  >/dev/null 2>&1; xbanish_status=$?
 command -v wmname   >/dev/null 2>&1; wmname_status=$?
+command -v acpi     >/dev/null 2>&1; acpi_status=$?
+command -v loadstat >/dev/null 2>&1; loadstat_status=$?
 
 # disable mouse acceleration
 xset m 1 1
 
 # set the wallpaper
 if [ $feh_status -eq 0 ]; then
-  feh --bg-fill "/usr/share/pixmaps/wallpaper.jpg"
+  WPDIR=/usr/share/pixmaps
+  feh --bg-fill "$WPDIR/$(ls $WPDIR | grep wallpaper | shuf | head -n 1)"
 else
-  xsetroot -solid "#555" # dark gray
+  xsetroot -solid "#333" # dark gray
 fi
 
 # dwm status bar
 while true; do
   secondary_layout="$(xset -q | grep -A 0 'LED' | cut -c63 | sed 's/1/*/' | sed 's/0//')"
-  load="$(loadstat | cut -d' ' -f-3)"
-  xsetroot -name "$secondary_layout $load | $(date '+%a %d %b %H:%M')"
+
+  load=""
+  if [ $loadstat_status -eq 0 ]; then
+    load="$(loadstat | cut -d' ' -f-3) | "
+  fi
+
+  bat=""
+  if [[ $acpi_status -eq 0 ]] && [[ "$(acpi -b)" =~ 'harging' ]]; then
+    bat="$(acpi -b | cut -f5 -d' ' | cut -f1-2 -d: | tr : h )m | "
+  fi
+
+  xsetroot -name "$secondary_layout $load$bat$(date '+%a %d %b %H:%M')"
   sleep 2
 done &
 
@@ -54,5 +67,3 @@ dbus-update-activation-environment --all --systemd
 if [ $wmname_status -eq 0 ]; then
   wmname LG3D &
 fi
-
-exec dwm
