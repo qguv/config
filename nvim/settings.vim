@@ -19,9 +19,12 @@ set fileformat=unix
 set fileformats=unix,mac,dos
 
 " default indentation behavior
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set tabstop=8
+set shiftwidth=8
+set noexpandtab
+let g:yaifa_max_lines=500
+let g:yaifa_tab_width=8
+let g:yaifa_indentation=3
 
 " don't fold unless we ask
 set foldmethod=manual nofoldenable
@@ -132,9 +135,6 @@ augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
-
-" c defaults to kernel style
-autocmd BufNewFile,BufRead *.c LinuxCodingStyle
 
 " shiftkiller with vk
 inoremap vk <C-R>=shiftkiller#Shiftkiller('_')<CR>
