@@ -361,3 +361,7 @@ function gist-edit() {
   grep -xv "$HDRMSG" "$TMPFILE" | gist -f todo.txt -u "$DSTODO"
   rm -rf /tmp/gist-edit
 }
+
+function vpn() {
+  sudo systemctl $@ openvpn-client@US_East
+}

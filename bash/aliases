@@ -63,6 +63,7 @@ alias update="$SYSTEMUPDATE"
 alias mt="$TRASHCOMMAND"
 alias opn="$OPENCOMMAND"
 alias efistatus="sudo efibootmgr -v | sed 's:\(.\)\.:\1:g'"
+alias lsports="sudo lsof +M -i4"
 
 # Clipboard
 alias cbc="$CLIPBOARDCOPY"
