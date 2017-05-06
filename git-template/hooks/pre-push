@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# choose from several nice tunes
+TUNE="$(ls .git/hooks | grep .wav | shuf -n 1)"
+aplay -D pulse ".git/hooks/$TUNE" &> /dev/null & disown
+
+# a nice banner for nice folks
+figlet pushed\! | lolcat -a -s 50
+echo
+
+exit 0
