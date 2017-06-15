@@ -8,10 +8,10 @@
 	templatedir = ~/.config/git/templates
 [sendemail]
 	from = Quint Guvernator <quint@guvernator.net>
-	smtpserver = sub4.mail.dreamhost.com
+	smtpserver = mail.privateemail.com
 	smtpuser = quint@guvernator.net
 	chainreplyto = false
-	smtpserverport = 465
+	smtpserverport = 587
 	smtpencryption = tls
 	confirm = auto
 [alias]
