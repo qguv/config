@@ -34,7 +34,7 @@
 [push]
 	default = simple
 [hub]
-	protocol = https
+	protocol = ssh
 [credential]
 	helper = cache
 [pretty]
