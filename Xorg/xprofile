@@ -42,7 +42,12 @@ while true; do
     bat="$(acpi -b | cut -f5 -d' ' | cut -f1-2 -d: | tr : h )m | "
   fi
 
-  xsetroot -name "$secondary_layout $load$bat$(date '+%a %d %b %H:%M')"
+  vpn_off_warning=""
+  if [ -z "$(ip addr | grep tun0)" ]; then
+    vpn_off_warning=" !!"
+  fi
+
+  xsetroot -name "$secondary_layout$vpn_off_warning $load$bat$(date '+%a %d %b %H:%M')"
   sleep 2
 done &
 
