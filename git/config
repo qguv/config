@@ -5,7 +5,7 @@
 	extendRegexp = true
 	lineNumber = true
 [init]
-	templatedir = ~/.config/git/templates
+	templatedir = ~/.config/git/template
 [sendemail]
 	from = Quint Guvernator <quint@guvernator.net>
 	smtpserver = mail.privateemail.com
