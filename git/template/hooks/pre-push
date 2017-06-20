@@ -1,11 +1,43 @@
 #!/bin/bash
 
+# figure out what's installed
+command -v lolcat >/dev/null 2>&1; lolcat_status=$? # text colorizer/animator
+command -v shuf   >/dev/null 2>&1; shuf_status=$?   # gnutils shuf
+command -v gshuf  >/dev/null 2>&1; gshuf_status=$?  # gnutils shuf, avaliable on macos homebrew
+command -v aplay  >/dev/null 2>&1; aplay_status=$?  # alsa cli media player available on linux
+command -v play   >/dev/null 2>&1; play_status=$?   # sox cli media player, avaliable on macos homebrew
+
+# if you have gshuf, you have shuf
+if [ $shuf_status -eq 0 ]; then
+  shuf=shuf
+elif [ $gshuf_status -eq 0 ]; then
+  shuf=gshuf
+  shuf_status=0
+fi
+
 # choose from several nice tunes
-TUNE="$(ls .git/hooks | grep .wav | shuf -n 1)"
-aplay -D pulse ".git/hooks/$TUNE" &> /dev/null & disown
+if [ $shuf_status -eq 0 ]; then
+  TUNE="$(ls .git/hooks | grep .wav | $shuf -n 1)"
+
+  # play said nice tunes if possible
+  if [ $aplay_status -eq 0 ]; then
+    aplay -D pulse ".git/hooks/$TUNE" &> /dev/null & disown
+  elif [ $play_status -eq 0 ]; then
+    play ".git/hooks/$TUNE" &> /dev/null & disown
+  fi
+fi
 
 # a nice banner for nice folks
-figlet pushed\! | lolcat -a -s 50
-echo
+if [ $lolcat_status -eq 0 ]; then
+  lolcat -a -s 50 << 'EOF'
+                 _              _ _
+ _ __  _   _ ___| |__   ___  __| | |
+| '_ \| | | / __| '_ \ / _ \/ _` | |
+| |_) | |_| \__ | | | |  __| (_| |_|
+| .__/ \__,_|___|_| |_|\___|\__,_(_)
+|_|
+
+EOF
+fi
 
 exit 0
