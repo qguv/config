@@ -10,3 +10,6 @@
 [submodule "weechat/plugin-src/weechat-autosort"]
 	path = weechat/plugin-src/weechat-autosort
 	url = https://github.com/de-vri-es/weechat-autosort
+[submodule "zncplayback"]
+	path = weechat/plugin-src/zncplayback
+	url = https://gist.github.com/95cd08c90a53958958886bf844f3e87e.git
