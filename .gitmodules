@@ -1,15 +1,12 @@
-[submodule "zsh/plugins/zsh-syntax-highlighting"]
+[submodule "zsh-syntax-highlighting"]
 	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "vim/vundle"]
+[submodule "vundle"]
 	path = vim/vundle
 	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "nvim/vim-plug"]
+[submodule "vim-plug"]
 	path = nvim/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule "weechat/plugin-src/weechat-autosort"]
-	path = weechat/plugin-src/weechat-autosort
-	url = https://github.com/de-vri-es/weechat-autosort
-[submodule "zncplayback"]
-	path = weechat/plugin-src/zncplayback
-	url = https://gist.github.com/95cd08c90a53958958886bf844f3e87e.git
+[submodule "weechat-official-scripts"]
+	path = weechat/src/official
+	url = https://github.com/weechat/scripts.git

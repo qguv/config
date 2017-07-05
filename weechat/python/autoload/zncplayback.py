@@ -1,1 +1,1 @@
-../../plugin-src/zncplayback/zncplayback.py
+../../src/official/python/zncplayback.py
