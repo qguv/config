@@ -5,7 +5,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'yaifa.vim' " automatic indentation
+Plug 'Raimondi/YAIFA' " automatic indentation
 
 " external tool interfaces
 Plug 'scrooloose/nerdtree'
