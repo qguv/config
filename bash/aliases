@@ -99,4 +99,5 @@ alias be='bundle exec'
 # Android on Linux, uses !apkg android-file-transfer
 alias android_mount='aft-mtp-mount /mnt/android'
 
-alias shrug="echo -n '¯\_(ツ)_/¯' | xsel -bi"
+SHRUG="¯\_(ツ)_/¯"
+alias shrug="echo -n '$SHRUG' | $CLIPBOARDCOPY && echo '$SHRUG'"
