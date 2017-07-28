@@ -40,3 +40,5 @@
 	helper = cache
 [pretty]
 	fixes = Fixes: %h (\"%s\")
+[merge]
+	tool = meld
