@@ -23,6 +23,7 @@
 	flog = log --decorate --notes --stat
 	ls = ls-tree --name-only HEAD
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
+	whoops = commit --amend --no-edit
 [interactive]
 	singlekey = true
 [http]
