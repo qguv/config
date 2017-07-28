@@ -6,6 +6,7 @@ Plug 'tpope/vim-commentary'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'Raimondi/YAIFA' " automatic indentation
+Plug 'tpope/tpope-vim-abolish' " fancy substitution with %Subvert
 
 " external tool interfaces
 Plug 'scrooloose/nerdtree'
