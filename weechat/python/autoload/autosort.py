@@ -1,1 +1,1 @@
-../../src/official/python/autosort.py
+../../plugins/python/autosort.py

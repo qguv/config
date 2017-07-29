@@ -1,1 +1,1 @@
-../src/official/perl/atcomplete.pl
+../plugins/perl/atcomplete.pl

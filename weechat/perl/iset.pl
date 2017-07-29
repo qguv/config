@@ -1,1 +1,1 @@
-../src/official/perl/iset.pl
+../plugins/perl/iset.pl

@@ -1,1 +1,1 @@
-../../src/official/perl/buffers.pl
+../../plugins/perl/buffers.pl
