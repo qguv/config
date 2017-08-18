@@ -104,7 +104,7 @@ alias android_mount='aft-mtp-mount /mnt/android'
 # Quality hacking music
 alias buzzout="cvlc http://www.buzzoutroom.com/listen.pls"
 
-SHRUG="¯\_(ツ)_/¯"
+SHRUG='¯\_(ツ)_/¯'
 alias shrug="echo -n '$SHRUG' | $CLIPBOARDCOPY && echo '$SHRUG'"
 
 alias jsonp="python -m json.tool"
