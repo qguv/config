@@ -11,11 +11,12 @@ fi
 # figure out what's installed
 command -v feh      >/dev/null 2>&1; feh_status=$?
 command -v compton  >/dev/null 2>&1; compton_status=$?
-command -v redshift >/dev/null 2>&1; redshift_status=$?
 command -v xbanish  >/dev/null 2>&1; xbanish_status=$?
 command -v wmname   >/dev/null 2>&1; wmname_status=$?
 command -v acpi     >/dev/null 2>&1; acpi_status=$?
+command -v numlockx >/dev/null 2>&1; numlockx_status=$?
 command -v loadstat >/dev/null 2>&1; loadstat_status=$?
+command -v autocutsel >/dev/null 2>&1; autocutsel_status=$?
 
 # disable mouse acceleration
 xset m 1 1
@@ -56,14 +57,19 @@ if [ $compton_status -eq 0 ]; then
   compton --inactive-dim 0.1 &
 fi
 
-# adjust color temperature to time of day
-if [ $redshift_status -eq 0 ]; then
-  redshift &
-fi
-
 # avoid the rodent
 if [ $xbanish_status -eq 0 ]; then
   xbanish &
+fi
+
+# numlock on by default
+if [$numlockx_status -eq 0 ]; then
+  numlockx &
+fi
+
+# synchronize clipboard with Xorg primary selection buffer and cutbuffer
+if [ $xbanish_status -eq 0 ]; then
+  autocutsel -fork &
 fi
 
 dbus-update-activation-environment --all --systemd
