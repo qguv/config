@@ -19,9 +19,9 @@ set fileformat=unix
 set fileformats=unix,mac,dos
 
 " default indentation behavior
-set tabstop=8
-set shiftwidth=8
-set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set expandtab
 let g:yaifa_max_lines=500
 let g:yaifa_tab_width=8
 let g:yaifa_indentation=3
