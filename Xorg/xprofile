@@ -69,7 +69,7 @@ if [$numlockx_status -eq 0 ]; then
 fi
 
 # synchronize clipboard with Xorg primary selection buffer and cutbuffer
-if [ $xbanish_status -eq 0 ]; then
+if [ $autocutsel_status -eq 0 ]; then
   autocutsel -fork &
 fi
 
