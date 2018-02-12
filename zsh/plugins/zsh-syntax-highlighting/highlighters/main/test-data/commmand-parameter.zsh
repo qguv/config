@@ -27,10 +27,11 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-x=/usr/bin/env
+local x=/usr/bin/env
 BUFFER='$x "argument"'
 
 expected_region_highlight=(
   "1 2 command" # $x
+  "4 13 default" # "argument"
   "4 13 double-quoted-argument" # "argument"
 )
