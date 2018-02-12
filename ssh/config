@@ -1,0 +1,16 @@
+Host cao
+    HostName crawl.akrasiac.org
+    User joshua
+    IdentityFile ~/.config/ssh/akrasiac_rsa
+
+Host aur
+    HostName aur.archlinux.org
+    User aur
+
+Host github
+    HostName github.com
+    User git
+
+Host bitbucket
+    HostName bitbucket.org
+    User git
