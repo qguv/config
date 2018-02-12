@@ -78,6 +78,10 @@ noremap <silent> <Leader>v :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt
 " open window as new tab with \t
 nnoremap <Leader>t :wincmd T<CR>
 
+" remove consecutive blank lines
+command! -nargs=0 -bar FixBlanks %s:\n\{3,}:\r\r:e
+nnoremap <Leader>s :FixBlanks<CR>
+
 " push current tab into {previous, next} window with \{w,W}
 nnoremap <Leader>w :call MoveToNextTab()<CR>
 nnoremap <Leader>W :call MoveToPrevTab()<CR>
