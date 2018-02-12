@@ -36,6 +36,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+You can automate the process by putting the command in your Vim configuration
+file as suggested [here][auto].
+
+[auto]: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+
 ###### Windows (PowerShell)
 
 ```powershell
@@ -73,10 +78,13 @@ $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ### Getting Help
 
-- See the [requirements] page for debugging information & tested configurations.
-- See the [FAQ] for common problems and questions.
-- Create an [issue](https://github.com/junegunn/vim-plug/issues/new).
+- See [tutorial] page to learn the basics of vim-plug
+- See [tips] and [FAQ] pages for common problems and questions
+- See [requirements] page for debugging information & tested configurations
+- Create an [issue](https://github.com/junegunn/vim-plug/issues/new)
 
+[tutorial]: https://github.com/junegunn/vim-plug/wiki/tutorial
+[tips]: https://github.com/junegunn/vim-plug/wiki/tips
 [FAQ]: https://github.com/junegunn/vim-plug/wiki/faq
 [requirements]: https://github.com/junegunn/vim-plug/wiki/requirements
 
