@@ -26,6 +26,10 @@ let g:yaifa_max_lines=500
 let g:yaifa_tab_width=8
 let g:yaifa_indentation=3
 
+" F4 or F8 retabs against four or eight spaces
+nnoremap <silent> <F4> :set softtabstop=0 tabstop=4 shiftwidth=4 noexpandtab cindent cinoptions=(0,u0,U0<CR>:%RetabIndent!<CR>
+nnoremap <silent> <F8> :set softtabstop=0 tabstop=8 shiftwidth=8 noexpandtab cindent cinoptions=(0,u0,U0<CR>:%RetabIndent!<CR>
+
 " don't fold unless we ask
 set foldmethod=manual nofoldenable
 
