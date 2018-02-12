@@ -362,10 +362,6 @@ function gist-edit() {
   rm -rf /tmp/gist-edit
 }
 
-function vpn() {
-  sudo systemctl $@ openvpn-client@US_East
-}
-
 function fingerprint () {
 	openssl s_client -connect "$1" < /dev/null 2>/dev/null | openssl x509 -fingerprint -sha1 -noout -in /dev/stdin | tr -d : | cut -d= -f2 | tr 'A-F' 'a-f'
 }
