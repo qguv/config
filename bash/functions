@@ -369,3 +369,12 @@ function fingerprint () {
 udevinfo() {
 	udevadm info -a -p "$(udevadm info -q path -n $1)"
 }
+
+function update-config-subtrees() {
+    cd "$XDG_CONFIG_HOME"
+    git sub-update https://github.com/zsh-users/zsh-syntax-highlighting zsh/plugins/zsh-syntax-highlighting
+    git sub-update https://github.com/zsh-users/zsh-autosuggestions zsh/plugins/zsh-autosuggestions
+    git sub-update https://github.com/weechat/scripts weechat/plugins
+    git sub-update https://github.com/junegunn/vim-plug nvim/vim-plug
+    git sub-update https://github.com/VundleVim/Vundle.vim vim/vundle
+}
