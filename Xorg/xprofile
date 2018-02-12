@@ -65,7 +65,7 @@ fi
 
 # numlock on by default
 if [$numlockx_status -eq 0 ]; then
-  numlockx &
+  numlockx
 fi
 
 # synchronize clipboard with Xorg primary selection buffer and cutbuffer
