@@ -88,9 +88,11 @@ alias hext='printf "%x\n" "$(date +%s)"' # or 2hex `unix`
 # Arch
 alias pa="pacaur"
 alias pm="pacman"
-alias spm="sudo pacman"
+alias pp="powerpill"
 alias sc="systemctl"
 alias scu="systemctl --user"
+alias spm="sudo -E pacman"
+alias spp="sudo -E powerpill"
 alias ssc="sudo -E systemctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
