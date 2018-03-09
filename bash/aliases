@@ -28,7 +28,7 @@ alias h.ryav="loadkeys dvorak > /dev/null 2>&1 || setxkbmap us dvorak"
 alias jsgtmab="loadkeys colemak > /dev/null 2>&1 || setxkbmap us colemak"
 
 # git
-alias gss="git status -s"
+alias gss="git status --short"
 alias gst="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
