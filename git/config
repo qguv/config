@@ -30,6 +30,7 @@
 	whoops = commit --amend --no-edit
 	sub-add = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
 	sub-update = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+	ignored = "!f() { git ls-files -v | egrep '^[a-z]' | cut -d' ' -f2-; }; f"
 [interactive]
 	singlekey = true
 [http]
