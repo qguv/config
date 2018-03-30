@@ -55,7 +55,7 @@ done &
 
 # window compositor
 if [ $compton_status -eq 0 ]; then
-  compton --inactive-dim 0.1 &
+  compton --config "$HOME/compton.conf" -b
 fi
 
 # avoid the rodent
