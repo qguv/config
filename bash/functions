@@ -377,4 +377,5 @@ function update-config-subtrees() {
     git sub-update https://github.com/weechat/scripts weechat/plugins
     git sub-update https://github.com/junegunn/vim-plug nvim/vim-plug
     git sub-update https://github.com/VundleVim/Vundle.vim vim/vundle
+    git sub-update https://github.com/wee-slack/wee-slack weechat/community/wee-slack
 }
