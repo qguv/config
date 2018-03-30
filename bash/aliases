@@ -94,6 +94,7 @@ alias scu="systemctl --user"
 alias spm="sudo -E pacman"
 alias spp="sudo -E powerpill"
 alias ssc="sudo -E systemctl"
+alias snc="sudo -E netctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
 alias be='bundle exec'
@@ -108,3 +109,4 @@ SHRUG='¯\_(ツ)_/¯'
 alias shrug="echo -n '$SHRUG' | $CLIPBOARDCOPY && echo '$SHRUG'"
 
 alias jsonp="python -m json.tool"
+alias aria='aria2c -c -x 16 -s 16'
