@@ -14,8 +14,6 @@ export PATH="$HOME/.built/bin:$PATH"
 # prefer development binaries for go packages
 export PATH="$HOME/dev/go/bin:$PATH"
 
-export PYTHONPATH="/usr/local/lib/python3.6/site-packages/"
-
 # initialize shell with custom settings
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
