@@ -1,4 +1,7 @@
+# macOS nonsense
 .DS_Store
+
+asciinema/
 
 gnupg/*
 !gnupg/gpg.conf
@@ -7,23 +10,20 @@ hub
 
 iTerm2/
 
-ssh/*.pub
-ssh/*_rsa
-ssh/*.rsa
-ssh/*_dsa
-ssh/*.dsa
-ssh/*_ecdsa
-ssh/*.ecdsa
-ssh/known_hosts
-ssh/authorized_keys
+nvim/.netrwhist
+nvim/plugged
+
+ssh/*
+!ssh/config
 
 vim/.netrwhist
 vim/viminfo
 vim/plugged
 
-nvim/.netrwhist
-nvim/plugged
-
 zsh/.zcompdump
 zsh/history
 zsh/system
+
+# csharp nonsense
+*.history
+.mono/
