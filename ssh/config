@@ -1,16 +1,16 @@
-Host cao
+Host cao crawl.akrasiac.org
     HostName crawl.akrasiac.org
     User joshua
     IdentityFile ~/.config/ssh/akrasiac_rsa
 
-Host aur
+Host aur aur.archlinux.org
     HostName aur.archlinux.org
     User aur
 
-Host github
+Host github github.com
     HostName github.com
     User git
 
-Host bitbucket
+Host bitbucket bitbucket.org
     HostName bitbucket.org
     User git
