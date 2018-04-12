@@ -91,7 +91,7 @@ To activate:
 
 To activate:
 
-    git config --global alias.release '!f(){ [ -z "$1" ] && echo "Usage: git release (qa | uat | production) [COMMIT]" && echo "  COMMIT defaults to HEAD if not specified" && return || git tag -f "$1" "$2" && git push -f origin "$1"; }; f'
+    git config --global alias.release '!f(){ [ -z "$1" ] && echo "Usage: git release (qa | uat | production) [COMMIT]" && echo "  COMMIT defaults to HEAD if not specified" && return || git tag -f "$1" "${2:-HEAD}" && git push -f origin "$1"; }; f'
     git release (qa | uat | production) [COMMIT]
 
 </details>

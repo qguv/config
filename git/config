@@ -31,7 +31,7 @@
 	whoops = commit --amend --no-edit
 	sub-add = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
 	sub-update = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
-	release = "!f(){ [ -z \"$1\" ] && echo \"Usage: git release (qa | uat | production) [COMMIT]\" && echo \"  COMMIT defaults to HEAD if not specified\" && return || git tag -f \"$1\" \"$2\" && git push -f origin \"$1\"; }; f"
+	release = "!f(){ [ -z \"$1\" ] && echo \"Usage: git release (qa | uat | production) [COMMIT]\" && echo \"  COMMIT defaults to HEAD if not specified\" && return || git tag -f \"$1\" \"${2:-HEAD}\" && git push -f origin \"$1\"; }; f"
 [interactive]
 	singlekey = true
 [http]
