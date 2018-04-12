@@ -3,7 +3,7 @@
 Some aliases from my config that may be useful:
 
 <details>
-<summary>ff: attempt a fast-forward merge; abort if not possible</summary>
+<summary>ff: attempt a fast-forward merge; abort if not possible</summary><br />
 
 To activate:
 
@@ -13,7 +13,7 @@ To activate:
 </details>
 
 <details>
-<summary>g: a more useful `git grep`</summary>
+<summary>g: a more useful `git grep`</summary><br />
 
 To activate:
 
@@ -23,7 +23,7 @@ To activate:
 </details>
 
 <details>
-<summary>ignore: ignore changes to an already-tracked file</summary>
+<summary>ignore: ignore changes to an already-tracked file</summary><br />
 
 - `ignore` tells git to ignore additional changes to an already-committed file
 - `track` counteracts a previous `ignore`
@@ -40,7 +40,7 @@ To activate:
 </details>
 
 <details>
-<summary>flog: a more comprehensive commit log</summary>
+<summary>flog: a more comprehensive commit log</summary><br />
 
 Like `log`, but shows where commits correspond to the head of a branch, any tags pointing to that commit, and any notes for that commit. Also shows which files were changed but not the contents of the patch.
 
@@ -52,7 +52,7 @@ To activate:
 </details>
 
 <details>
-<summary>ls: show which files are tracked</summary>
+<summary>ls: show which files are tracked</summary><br />
 
 To activate:
 
@@ -62,7 +62,7 @@ To activate:
 </details>
 
 <details>
-<summary>graph: a pretty log that shows branches, merge history, and tags</summary>
+<summary>graph: a pretty log that shows branches, merge history, and tags</summary><br />
 
 To activate:
 
@@ -73,7 +73,7 @@ To activate:
 </details>
 
 <details>
-<summary>whoops: alter last commit to incorporate currently staged changes</summary>
+<summary>whoops: alter last commit to incorporate currently staged changes</summary><br />
 
 Note: The commit you're altering **must not have already been pushed**! Or you'll need to force push.
 
@@ -85,7 +85,7 @@ To activate:
 </details>
 
 <details>
-<summary>release: move a tag to HEAD and push it to origin</summary>
+<summary>release: move a tag to HEAD and push it to origin</summary><br />
 
 `release` creates or moves a tag to the specified (or HEAD) commit, then pushes that tag to origin.
 
