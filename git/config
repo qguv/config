@@ -18,19 +18,20 @@
 	co = checkout
 	cm = commit
 	ff = merge --ff-only
-	pr = pull-request
+	pr = pull-request -b
 	lo = log --oneline
 	g = grep --break --heading --line-number
 	se = send-email --annotate --cover-letter --signoff
 	ignore = update-index --assume-unchanged
 	track = update-index --no-assume-unchanged
+	ignored = "!f() { git ls-files -v | egrep '^[a-z]' | cut -d' ' -f2-; }; f"
 	flog = log --decorate --notes --stat
 	ls = ls-tree --name-only HEAD
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
 	whoops = commit --amend --no-edit
 	sub-add = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
 	sub-update = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
-	ignored = "!f() { git ls-files -v | egrep '^[a-z]' | cut -d' ' -f2-; }; f"
+	release = "!f(){ [ -z \"$1\" ] && echo \"Usage: git release (qa | uat | production) [COMMIT]\" && echo \"  COMMIT defaults to HEAD if not specified\" && return || git tag -f \"$1\" \"$2\" && git push -f origin \"$1\"; }; f"
 [interactive]
 	singlekey = true
 [http]
