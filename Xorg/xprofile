@@ -25,7 +25,7 @@ xset m 1 1
 # set the wallpaper
 WPDIR="$HOME/wp/active"
 if [ $feh_status -eq 0 ]; then
-  feh --bg-fill "$(find -L $WPDIR -type f | shuf | head -n 1)"
+  feh --no-fehbg --bg-fill "$(find -L $WPDIR -type f | shuf | head -n 1)"
 else
   xsetroot -solid "#333" # dark gray
 fi
