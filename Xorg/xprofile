@@ -23,9 +23,9 @@ command -v ssh-agent  >/dev/null 2>&1; sshagent_status=$?
 xset m 1 1
 
 # set the wallpaper
+WPDIR="$HOME/wp/active"
 if [ $feh_status -eq 0 ]; then
-  WPDIR=/usr/share/pixmaps
-  feh --bg-fill "$WPDIR/$(ls $WPDIR | grep wallpaper | shuf | head -n 1)"
+  feh --bg-fill "$(find -L $WPDIR -type f | shuf | head -n 1)"
 else
   xsetroot -solid "#333" # dark gray
 fi
