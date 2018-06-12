@@ -1,0 +1,8 @@
+#!/bin/sh
+
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f "$HOME/.xprofile" ] && . "$HOME/.xprofile"
+
+setxkbmap us colemak
+
+exec bspwm
