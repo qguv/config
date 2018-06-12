@@ -71,6 +71,7 @@ fi
 # synchronize clipboard with Xorg primary selection buffer and cutbuffer
 if [ $autocutsel_status -eq 0 ]; then
   autocutsel -fork &
+  autocutsel -selection PRIMARY -fork &
 fi
 
 dbus-update-activation-environment --all --systemd
