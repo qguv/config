@@ -55,7 +55,7 @@ done &
 
 # window compositor
 if [ $compton_status -eq 0 ]; then
-  compton --config "$HOME/compton.conf" -b
+  compton --config "$HOME/.config/compton.conf" -b
 fi
 
 # avoid the rodent
