@@ -95,6 +95,9 @@ alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 # the `dotnet` command-line tool in .NET Core sends data to the mothership by default. Que tiempo!
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# the `brew` command-line tool in Mac OS sends data out to Google by default. kill me now
+export HOMEBREW_NO_ANALYTICS=1
+
 # Disgusting hacks
 function sl3(){
 	mv {$XDG_DATA_HOME/sqlite3/,~/.}sqlite_history
