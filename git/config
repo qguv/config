@@ -18,7 +18,6 @@
 	co = checkout
 	cm = commit
 	ff = merge --ff-only
-	pr = pull-request -b
 	lo = log --oneline
 	g = grep --break --heading --line-number
 	se = send-email --annotate --cover-letter --signoff
