@@ -27,6 +27,7 @@
 	flog = log --decorate --notes --stat
 	ls = ls-tree --name-only HEAD
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
+	refgraph = log --graph --decorate --pretty=oneline --abbrev-commit --simplify-by-decoration --simplify-merges
 	whoops = commit --amend --no-edit
 	sub-add = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
 	sub-update = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
