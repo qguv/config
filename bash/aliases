@@ -32,6 +32,7 @@ alias gss="git status --short"
 alias gst="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gap="git add --patch"
 
 # git, in zsh/functions
 alias gdw="git-diff-words"
@@ -110,3 +111,5 @@ alias shrug="echo -n '$SHRUG' | $CLIPBOARDCOPY && echo '$SHRUG'"
 
 alias jsonp="python -m json.tool"
 alias aria='aria2c -c -x 16 -s 16'
+
+alias strict-gcc="gcc -Werror -Wall -Wextra -Wpedantic"
