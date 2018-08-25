@@ -5,4 +5,4 @@
 
 setxkbmap us colemak
 
-exec bspwm
+exec dwm
