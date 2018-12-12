@@ -16,7 +16,6 @@ command -v wmname     >/dev/null 2>&1; wmname_status=$?
 command -v acpi       >/dev/null 2>&1; acpi_status=$?
 command -v numlockx   >/dev/null 2>&1; numlockx_status=$?
 command -v loadstat   >/dev/null 2>&1; loadstat_status=$?
-command -v autocutsel >/dev/null 2>&1; autocutsel_status=$?
 command -v ssh-agent  >/dev/null 2>&1; sshagent_status=$?
 
 # disable mouse acceleration
@@ -66,12 +65,6 @@ fi
 # numlock on by default
 if [ $numlockx_status -eq 0 ]; then
   numlockx
-fi
-
-# synchronize clipboard with Xorg primary selection buffer and cutbuffer
-if [ $autocutsel_status -eq 0 ]; then
-  autocutsel -fork &
-  autocutsel -selection PRIMARY -fork &
 fi
 
 dbus-update-activation-environment --all --systemd
