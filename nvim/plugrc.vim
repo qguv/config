@@ -33,6 +33,7 @@ Plug 'lepture/vim-jinja'
 Plug 'racer-rust/vim-racer'
 Plug 'wting/rust.vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'posva/vim-vue'
 
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
