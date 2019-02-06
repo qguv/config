@@ -158,3 +158,13 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " enable mouse
 set mouse=a
+
+" use the_silver_searcher
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
+endif
+
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack

@@ -16,7 +16,7 @@ Plug 'Raimondi/YAIFA' " automatic indentation
 Plug 'airblade/vim-gitgutter' " which lines changed
 Plug 'keith/investigate.vim'  " better 'K' key
 Plug 'majutsushi/tagbar'      " ctags
-Plug 'rizzatti/dash.vim'      " Dash.app (mac-only)
+Plug 'mileszs/ack.vim'        " search
 
 " nerdtree
 Plug 'scrooloose/nerdtree'
