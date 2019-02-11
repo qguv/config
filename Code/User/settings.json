@@ -1,0 +1,37 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "window.zoomLevel": 2,
+
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#222222",
+        "badge.foreground": "#ffffff",
+        "badge.background": "#222222",
+        "activityBarBadge.foreground": "#222222",
+        "activityBarBadge.background": "#ffffff",
+
+        "terminal.background": "#1b1b1b",       // BG
+        "terminal.foreground": "#ffffff",       // FG
+        "terminal.ansiBlack": "#3d3d3d",        // 0
+        "terminal.ansiRed": "#6673bf",          // 1
+        "terminal.ansiGreen": "#3ea290",        // 2
+        "terminal.ansiYellow": "#b0ead9",       // 3
+        "terminal.ansiBlue": "#31658c",         // 4
+        "terminal.ansiMagenta": "#596196",      // 5
+        "terminal.ansiCyan": "#8292b2",         // 6
+        "terminal.ansiWhite": "#c8cacc",        // 7
+        "terminal.ansiBrightBlack": "#4d4d4d",  // 8
+        "terminal.ansiBrightRed": "#899aff",    // 9
+        "terminal.ansiBrightGreen": "#52ad91",  // 10
+        "terminal.ansiBrightYellow": "#98c9bb", // 11
+        "terminal.ansiBrightBlue": "#477ab3",   // 12
+        "terminal.ansiBrightMagenta": "#7882bf",// 13
+        "terminal.ansiBrightCyan": "#95a7cc",   // 14
+        "terminal.ansiBrightWhite": "#edeff2",  // 15
+    },
+
+    "workbench.statusBar.feedback.visible": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000,
+    "editor.fontFamily": "\"Inconsolata-dz for Powerline\",monospace",
+}

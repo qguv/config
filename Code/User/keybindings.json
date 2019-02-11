@@ -1,0 +1,7 @@
+[
+    // ctrl+tab and ctrl+shift+tab should respect the order of tabs
+    {"key": "ctrl+tab", "command": "-workbench.action.openNextRecentlyUsedEditorInGroup"},
+    {"key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup"},
+    {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
+    {"key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup"},
+]
