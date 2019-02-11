@@ -1,9 +1,13 @@
+# compatibility
 set -g default-terminal screen-256color
 
 # change prefix to ^A
 unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
+
+# switch panes with mouse
+set -g mouse on
 
 # pretty black/white theme
 set -g status-bg black
