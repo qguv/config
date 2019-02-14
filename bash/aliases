@@ -113,3 +113,6 @@ alias jsonp="python -m json.tool"
 alias aria='aria2c -c -x 16 -s 16'
 
 alias strict-gcc="gcc -Werror -Wall -Wextra -Wpedantic"
+
+alias monitor-line-in="pactl load-module module-loopback"
+alias unmonitor-line-in="pactl unload-module module-loopback"
