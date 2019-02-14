@@ -4,4 +4,24 @@
     {"key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup"},
+
+    // vscodevim is a little aggressive with its ctrl reassignments
+    {
+        "key": "ctrl+w",
+        "command": "-extension.vim_ctrl+w",
+        "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-extension.vim_ctrl+k",
+        "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+1",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
 ]

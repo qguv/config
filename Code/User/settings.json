@@ -34,4 +34,10 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000,
     "editor.fontFamily": "\"Inconsolata-dz for Powerline\",monospace",
+    "explorer.confirmDragAndDrop": false,
+
+    // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
+    "go.formatTool": "gofmt",
+
+    "editor.lineNumbers": "relative",
 }
