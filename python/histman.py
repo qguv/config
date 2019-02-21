@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2012-2015 by nils_2 <weechatter@arcor.de>
+# Copyright (c) 2012-2018 by nils_2 <weechatter@arcor.de>
 #
 # save and restore global and/or buffer command history
 #
@@ -16,6 +16,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# 2018-08-04: nils_2 (freenode.#weechat)
+#       0.8 : add option 'save_buffer'
+#           : thanks catbeard for revise the help text
+#
+# 2018-08-01: nils_2 (freenode.#weechat)
+#       0.7 : rmodifier routine removed
+#           : bug fixes
 #
 # 2017-12-14: Sébastien Helleu <flashcode@flashtux.org>
 #       0.6 : rename command "/autosetbuffer" by "/buffer_autoset" in example
@@ -52,18 +60,18 @@ except Exception:
 
 SCRIPT_NAME     = 'histman'
 SCRIPT_AUTHOR   = 'nils_2 <weechatter@arcor.de>'
-SCRIPT_VERSION  = '0.6'
+SCRIPT_VERSION  = '0.8'
 SCRIPT_LICENSE  = 'GPL'
 SCRIPT_DESC     = 'save and restore global and/or buffer command history'
 
 OPTIONS         = { 'number'       : ('0','number of history commands/text to save. A positive number will save from oldest to latest, a negative number will save from latest to oldest. 0 = save whole history (e.g. -10 will save the last 10 history entries'),
                     'pattern'      : ('(.*password|.*nickserv|/quit)','a simple regex to ignore commands/text. Empty value disable pattern matching'),
                     'skip_double'  : ('on','skip lines that already exists (case sensitive)'),
-                    'save'         : ('all','define what should be save from history. Possible values are \"command\", \"text\", \"all\". This is a fallback option (see /help ' + SCRIPT_NAME +')'),
+                    'save'         : ('all','define what should be saved from history. Possible values are \"command\", \"text\", \"all\". This is a fallback option (see /help ' + SCRIPT_NAME +')'),
                     'history_dir'  : ('%h/history','locale cache directory for history files (\"%h\" will be replaced by WeeChat home, \"~/.weechat\" by default)'),
                     'save_global'  : ('off','save global history, possible values are \"command\", \"text\", \"all\" or \"off\"(default: off)'),
+                    'save_buffer'  : ('off','save buffer history from all buffers, possible values are \"on\", \"off\". Using this option, localvar from buffer will be ignored (default: off)'),
                     'min_length'   : ('2','minimum length of command/text (default: 2)'),
-                    'rmodifier'    : ('off','use rmodifier options to ignore commands/text (default:off)'),
                     'buffer_close' : ('off','save command history, when buffer will be closed (default: off)'),
                   }
 
@@ -75,7 +83,6 @@ history_list = []
 # =================================[ save/restore buffer history ]================================
 def save_history():
     global history_list
-
     # get buffers
     ptr_infolist_buffer = weechat.infolist_get('buffer','','')
 
@@ -83,7 +90,7 @@ def save_history():
         ptr_buffer = weechat.infolist_pointer(ptr_infolist_buffer,'pointer')
 
         # check for localvar_save_history
-        if not weechat.buffer_get_string(ptr_buffer, 'localvar_save_history'):
+        if not weechat.buffer_get_string(ptr_buffer, 'localvar_save_history') and OPTIONS['save_buffer'].lower() == 'off':
             continue
 
         plugin = weechat.buffer_get_string(ptr_buffer, 'localvar_plugin')
@@ -96,9 +103,8 @@ def save_history():
 
     weechat.infolist_free(ptr_infolist_buffer)
 
-    # global history
     if OPTIONS['save_global'].lower() != 'off':
-        get_buffer_history('')
+        get_buffer_history('')  # buffer pointer (if not set, return global history)
         if len(history_list):
             write_history(filename_global_history)
 
@@ -130,27 +136,29 @@ def add_buffer_line(line, ptr_buffer):
 
     add_line = 0
 
+    # ptr_buffer empty = global history
     if ptr_buffer: # buffer history
-        save_history = weechat.buffer_get_string(ptr_buffer, 'localvar_save_history')
+        save_history = weechat.buffer_get_string(ptr_buffer, 'localvar_save_history').lower()
         if not save_history.lower() in possible_save_options:
-            save_history = OPTIONS['save']
+            save_history = OPTIONS['save'].lower()
     else:       # global history
+        save_history = OPTIONS['save_global'].lower()
         if not OPTIONS['save_global'].lower() in possible_save_options:
-            save_history = OPTIONS['save']
+            save_history = OPTIONS['save'].lower()
 
     # no save option given? save nothing
     if save_history == '':
         return 0
 
-    if save_history.lower() == 'command':
-        command_chars = weechat.config_string(weechat.config_get('weechat.look.command_chars')) + '/'
+    if save_history == 'command':
+        command_chars = ("/%s" % weechat.config_string(weechat.config_get('weechat.look.command_chars')))
         # a valid command must have at least two chars and first and second char are not equal!
         if len(line) > 1 and line[0] in command_chars and line[0] != line[1]:
             add_line = 1
         else:
             return 0
-    elif save_history.lower() == 'text':
-        command_chars = weechat.config_string(weechat.config_get('weechat.look.command_chars')) + '/'
+    elif save_history == 'text':
+        command_chars = ("/%s" % weechat.config_string(weechat.config_get('weechat.look.command_chars')))
         # test for "//" = text
         if line[0] == line[1] and line[0] in command_chars:
             add_line = 1
@@ -159,7 +167,7 @@ def add_buffer_line(line, ptr_buffer):
             return 0
         else:
             add_line = 1
-    elif save_history.lower() == 'all':
+    elif save_history == 'all':
         add_line = 1
     else: # not one of given values. save nothing!
         return 0
@@ -179,26 +187,12 @@ def add_buffer_line(line, ptr_buffer):
         return 0
 
     pattern_matching = 0
-    # pattern matching for user option and rmodifier options
+    # pattern matching for user option
     if OPTIONS['pattern'] != '':
         filter_re=re.compile(OPTIONS['pattern'], re.I)
         # pattern matched
         if filter_re.match(line):
             pattern_matching = 1
-
-    if OPTIONS['rmodifier'].lower() == 'on' and pattern_matching == 0:
-        ptr_infolist_options = weechat.infolist_get('option','','rmodifier.modifier.*')
-        if ptr_infolist_options:
-            while weechat.infolist_next(ptr_infolist_options):
-                value = weechat.infolist_string(ptr_infolist_options,'value')
-                pattern = re.findall(r";(.*);", value)
-
-                filter_re=re.compile(pattern[0], re.I)
-                # pattern matched
-                if filter_re.match(line):
-                   pattern_matching = 1
-                   break
-            weechat.infolist_free(ptr_infolist_options)
 
     if add_line == 1 and pattern_matching == 0:
         return 1
@@ -207,6 +201,12 @@ def add_buffer_line(line, ptr_buffer):
 # =================================[ read/write history to file ]=================================
 def read_history(filename,ptr_buffer):
     global_history = 0
+
+    # get buffer_autoset_option as a fallback. could happen that the localvar is not already set to buffer
+    plugin = weechat.buffer_get_string(ptr_buffer, 'localvar_plugin')
+    name = weechat.buffer_get_string(ptr_buffer, 'localvar_name')
+    buffer_autoset_option = ('buffer_autoset.buffer.%s.%s.localvar_set_save_history' % (plugin,name))
+    buffer_autoset_option = weechat.config_get(buffer_autoset_option)
 
     # global history does not use buffer pointers!
     if filename == filename_global_history:
@@ -218,12 +218,11 @@ def read_history(filename,ptr_buffer):
     if not os.path.isfile(filename):
         return
 
-    # check for global history
-    if global_history == 0:
+    # check for buffer history (0, global = 1)
+    if global_history == 0 and OPTIONS['save_buffer'].lower() == 'off':
         # localvar_save_history exists for buffer?
-        if not ptr_buffer or not weechat.buffer_get_string(ptr_buffer, 'localvar_save_history'):
+        if not ptr_buffer and not buffer_autoset_option and not weechat.buffer_get_string(ptr_buffer, 'localvar_save_history'):
             return
-
     hdata = weechat.hdata_get('history')
     if not hdata:
         return
@@ -300,7 +299,7 @@ def create_hooks():
     weechat.hook_signal('quit', 'quit_signal_cb', '')
     weechat.hook_signal('upgrade_ended', 'upgrade_ended_cb', '')
     # low priority for hook_signal('buffer_opened') to ensure that buffer_autoset hook_signal() runs first
-    weechat.hook_signal('100|buffer_opened', 'buffer_opened_cb', '')
+    weechat.hook_signal('1000|buffer_opened', 'buffer_opened_cb', '')
     weechat.hook_config('plugins.var.python.' + SCRIPT_NAME + '.*', 'toggle_refresh', '' )
     weechat.hook_signal('buffer_closing', 'buffer_closing_cb', '')
 
@@ -311,17 +310,17 @@ def quit_signal_cb(data, signal, signal_data):
     return weechat.WEECHAT_RC_OK
 
 def buffer_opened_cb(data, signal, signal_data):
-    plugin = weechat.buffer_get_string(signal_data, 'localvar_plugin')
-    name = weechat.buffer_get_string(signal_data, 'localvar_name')
+    ptr_buffer = signal_data
+    plugin = weechat.buffer_get_string(ptr_buffer, 'localvar_plugin')
+    name = weechat.buffer_get_string(ptr_buffer, 'localvar_name')
     filename = get_filename_with_path('%s.%s' % (plugin,name))
-
-    read_history(filename,signal_data)
+    read_history(filename,ptr_buffer)
     return weechat.WEECHAT_RC_OK
 
 def buffer_closing_cb(data, signal, signal_data):
     if OPTIONS['buffer_close'].lower() == 'on' and signal_data:
         # check for localvar_save_history
-        if not weechat.buffer_get_string(signal_data, 'localvar_save_history'):
+        if not weechat.buffer_get_string(signal_data, 'localvar_save_history') and OPTIONS['save_buffer'].lower() == 'off':
             return weechat.WEECHAT_RC_OK
 
         plugin = weechat.buffer_get_string(signal_data, 'localvar_plugin')
@@ -347,7 +346,8 @@ def histman_cmd_cb(data, buffer, args):
         return weechat.WEECHAT_RC_OK
 
     if argv[0].lower() == 'save':
-        quit_signal_cb('', '', '')
+        config_create_dir()
+        save_history()
     elif argv[0].lower() == 'list':
         weechat.command('','/set *.localvar_set_save_history')
     else:
@@ -378,24 +378,26 @@ if __name__ == '__main__':
         version = weechat.info_get('version_number', '') or 0
 
         weechat.hook_command(SCRIPT_NAME, SCRIPT_DESC, '[save] || [list]',
-                            '  save: force to save command history:\n'
+                            '  save: force to save command history\n'
                             '  list: list local buffer variable(s)\n'
                             '\n'
-                            'If you \"/quit\" WeeChat, the script will automatically save the command history to file.\n'
-                            'You can also force the script to save command history, when a buffer will be closed.\n'
-                            'If you restart WeeChat again the command history will be restored, when buffer opens again.\n'
+                            'If you \"/quit\" WeeChat, the script will automatically save the command history to a file.\n'
+                            'You can also force the script to save command history, when you close a buffer with /buffer close.\n'
+                            'If you restart WeeChat, the command history will be restored, when buffer opens again.\n'
                             'To save and restore \"global\" command history, use option \"save_global\".\n'
                             '\n'
                             'The command history of a buffer will be saved \"only\", if the the local variable \"save_history\" is set.\n'
-                            'You will need script \"buffer_autoset.py\" to make local variabe persistent (see examples, below)!!\n'
+                            'You will need script \"buffer_autoset.py\" to make a local variabe persistent (see examples, below)!!\n'
                             '\n'
+                            'You can use option \"save_buffer\ to save command history for *all* buffers, localvar will be ignored using\n'
+                            'this option.\n'
                             'You can use following values for local variable:\n'
                             '  command: save commands only\n'
                             '     text: save text only (text sent to a channel buffer)\n'
                             '      all: save commands and text\n'
                             '\n'
                             'Examples:\n'
-                            ' save the command history manually (for example with /cron script):\n'
+                            ' save the command history manually (for example with /cron script or with an /trigger):\n'
                             '   /' + SCRIPT_NAME + ' save\n'
                             ' save and restore command history for buffer #weechat on freenode (text only):\n'
                             '   /buffer_autoset add irc.freenode.#weechat localvar_set_save_history text\n'

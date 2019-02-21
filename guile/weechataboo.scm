@@ -1,5 +1,5 @@
 ; WeeChat-Script to replace emotion-tags with random emoticons.
-; Copyright (C) 2017 Alvar <post@0x21.biz>
+; Copyright (C) 2017-2018 Alvar <post@0x21.biz>
 ;
 ; This program is free software: you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -53,15 +53,11 @@
       (emoticonize-line new-line)
       new-line)))
 
-; Pointer String String -> Weechat-Return 
+; Pointer ? ? String -> String
 ; This function was registered to be called when an input was submitted and
 ; will try to replace ~~EMOTIONs to emoticons.
-(define (command-run data buffer command)
-  (let*
-    ((input  (weechat:buffer_get_string buffer "input"))
-     (output (emoticonize-line input)))
-    (weechat:buffer_set buffer "input" output))
-  weechat:WEECHAT_RC_OK)
+(define (weechataboo-hook data modifier modifier-data msg)
+  (emoticonize-line msg))
 
 ; Pointer String List -> Weechat-Return
 ; Function which tells you to RTFM.
@@ -75,25 +71,28 @@
   (let*
     ; Some defaults which may be useful‥
     ((emotions
-       '(("angry" "눈_눈,(¬_¬),(｀ε´),(¬▂¬),（▽д▽）")
-         ("blush" "(´ω｀*),(‘-’*),(/ε＼*),(*ﾟ∀ﾟ*),(*´ｪ｀*)")
-         ("cry"   "（；へ：）,（πーπ）,（ｉДｉ）,(;Д;),(╥_╥)")
-         ("dance" "ヾ(^^ゞ),(ノ^o^)ノ,⌎⌈╹우╹⌉⌍,└|ﾟεﾟ|┐,┌|ﾟзﾟ|┘,(〜￣△￣)〜")
-         ("drink" "(＾-＾)＿日,(*^◇^)_旦,(　 ゜Д゜)⊃旦,~~旦_(-ω-｀｡)")
-         ("excited" "(≧∇≦*),ヽ(＾Д＾)ﾉ,(* >ω<)")
-         ("gross" "（咒）,( ≖ิ‿≖ิ ),ʅ(◔౪◔ ) ʃ")
-         ("happy" "≖‿≖,（＾ω＾）,(＾ω＾),ヽ(ヅ)ノ,(¬‿¬)")
-         ("heart" "♡＾▽＾♡,✿♥‿♥✿,(｡♥‿♥｡),ヽ(o♡o)/")
-         ("hug"   "⊂(・﹏・⊂),(っ´▽｀)っ,(づ￣ ³￣)づ,⊂(´・ω・｀⊂)")
-         ("kiss"  "|°з°|,（*＾3＾）,(´ε｀*)")
-         ("lenny" "( ͡ ͜ʖ ͡ ),( ͡~ ͜ʖ ͡°),( ͡~ ͜ʖ ͡~),ヽ( ͝° ͜ʖ͡°)ﾉ,(つ ͡° ͜ʖ ͡°)つ")
-         ("magic" "(っ・ω・）っ≡≡≡≡≡≡☆,ヽ༼ຈل͜ຈ༽⊃─☆*:・ﾟ")
-         ("sheep" "@^ェ^@,@・ェ・@")
-         ("shrug" "┐(´д｀)┌,╮(╯∀╰)╭,┐(´∀｀)┌,ʅ(́◡◝)ʃ,ヽ(~～~ )ノ")
-         ("shock" "(ﾟдﾟ；)")
-         ("shy"   "(/ω＼),(‘-’*),(´～｀ヾ),(〃´∀｀)")
-         ("smug"  "(￣ω￣),(￣ー￣),（￣ー￣）,(^～^)")
-         ("wink"  "ヾ(＾∇＾),ヾ(☆▽☆),(。-ω-)ﾉ,( ･ω･)ﾉ")))
+       '(("aggressive" "o(-`д´- ｡),凸ಠ益ಠ)凸,' ̿'̵͇̿̿з=(◕_◕)=ε/̵͇̿̿/'̿'̿ ̿,O=('-'Q),｡゜(｀Д´)゜｡,┌∩┐(ಠ_ಠ)┌∩┐")
+         ("angry"      "눈_눈,(¬_¬),(｀ε´),(¬▂¬),（▽д▽）,ಠ_ರೃ,(⋋▂⋌),(‡▼益▼),(*｀へ´*)")
+         ("blush"      "(´ω｀*),(‘-’*),(/ε＼*),(*ﾟ∀ﾟ*),(*´ｪ｀*)")
+         ("cat"        "≋≋≋≋≋̯̫⌧̯̫(ˆ•̮ ̮•ˆ)")
+         ("cry"        "（；へ：）,（πーπ）,（ｉДｉ）,(;Д;),(╥_╥),ಥ╭╮ಥ")
+         ("dance"      "ヾ(^^ゞ),(ノ^o^)ノ,⌎⌈╹우╹⌉⌍,└|ﾟεﾟ|┐,┌|ﾟзﾟ|┘,(〜￣△￣)〜")
+         ("drink"      "(＾-＾)＿日,(*^◇^)_旦,(　 ゜Д゜)⊃旦,~~旦_(-ω-｀｡)")
+         ("excited"    "(≧∇≦*),ヽ(＾Д＾)ﾉ,(* >ω<)")
+         ("gross"      "（咒）,( ≖ิ‿≖ิ ),ʅ(◔౪◔ ) ʃ")
+         ("happy"      "≖‿≖,（＾ω＾）,(＾ω＾),ヽ(ヅ)ノ,(¬‿¬),(◡‿◡✿),(❀◦‿◦),(⁎⚈᷀᷁ᴗ⚈᷀᷁⁎)")
+         ("heart"      "♡＾▽＾♡,✿♥‿♥✿,(｡♥‿♥｡),ヽ(o♡o)/,(◍•ᴗ•◍)❤,(˘︶˘).｡.:*♡,❣◕ ‿ ◕❣")
+         ("hug"        "⊂(・﹏・⊂),(っ´▽｀)っ,(づ￣ ³￣)づ,⊂(´・ω・｀⊂)")
+         ("kiss"       "|°з°|,（*＾3＾）,(´ε｀*),(っ˘з(˘⌣˘ ),（*＾3＾）/～♡")
+         ("lenny"      "( ͡ ͜ʖ ͡ ),( ͡~ ͜ʖ ͡°),( ͡~ ͜ʖ ͡~),ヽ( ͝° ͜ʖ͡°)ﾉ,(つ ͡° ͜ʖ ͡°)つ,( ͝סּ ͜ʖ͡סּ),")
+         ("magic"      "(っ・ω・）っ≡≡≡≡≡≡☆,ヽ༼ຈل͜ຈ༽⊃─☆*:・ﾟ")
+         ("sheep"      "@^ェ^@,@・ェ・@")
+         ("shock"      "(ﾟдﾟ；)")
+         ("shrug"      "┐(´д｀)┌,╮(╯∀╰)╭,┐(´∀｀)┌,ʅ(́◡◝)ʃ,ヽ(~～~ )ノ,ヽ(。_°)ノ,¯\(◉◡◔)/¯,◔_◔")
+         ("shy"        "(/ω＼),(‘-’*),(´～｀ヾ),(〃´∀｀)")
+         ("smug"       "(￣ω￣),(￣ー￣),（￣ー￣）,(^～^)")
+         ("sword"      "╰(◕ヮ◕)つ¤=[]———,╰(⇀︿⇀)つ-]═───,∩(˵☯‿☯˵)つ¤=[]:::::>")
+         ("wink"       "ヾ(＾∇＾),ヾ(☆▽☆),(。-ω-)ﾉ,( ･ω･)ﾉ")))
      (names (string-join (map car emotions) ",")))
     (and
       (weechat:config_set_plugin "emotions" names)
@@ -112,13 +111,14 @@
 
 
 (weechat:register
-  "weechataboo" "Alvar" "0.1" "GPL3"
+  "weechataboo" "Alvar" "0.1.2" "GPL3"
   "Replace emotion-tags with random emoticons" "clean-up" "")
 
 (and (eq? (weechat:config_is_set_plugin "emotions") 0)
      (initial-setup))
 
-(weechat:hook_command_run "/input return" "command-run" "")
+(weechat:hook_modifier "irc_out1_privmsg" "weechataboo-hook" "")
+
 (weechat:hook_command
   "weechataboo"
   (string-append "This script automatically replaces written emotion-keywords\n"
