@@ -32,10 +32,19 @@ This highlighter defines the following styles:
 * `path_prefix_pathseparator` - path separators in prefixes of existing filenames (`/`); if unset, `path_prefix` is used (default)
 * `globbing` - globbing expressions (`*.txt`)
 * `history-expansion` - history expansion expressions (`!foo` and `^foo^bar`)
+* `command-substitution` - command substitutions (`$(echo foo)`)
+* `command-substitution-unquoted` - an unquoted command substitution (`$(echo foo)`)
+* `command-substitution-quoted` - a quoted command substitution (`"$(echo foo)"`)
+* `command-substitution-delimiter` - command substitution delimiters (`$(` and `)`)
+* `command-substitution-delimiter-unquoted` - an unquoted command substitution delimiters (`$(` and `)`)
+* `command-substitution-delimiter-quoted` - a quoted command substitution delimiters (`"$(` and `)"`)
+* `process-substitution` - process substitutions (`<(echo foo)`)
+* `process-substitution-delimiter` - process substitution delimiters (`<(` and `)`)
 * `single-hyphen-option` - single-hyphen options (`-o`)
 * `double-hyphen-option` - double-hyphen options (`--option`)
 * `back-quoted-argument` - backtick command substitution (`` `foo` ``)
 * `back-quoted-argument-unclosed` - unclosed backtick command substitution (`` `foo ``)
+* `back-quoted-argument-delimiter` - backtick command substitution delimiters (`` ` ``)
 * `single-quoted-argument` - single-quoted arguments (`` 'foo' ``)
 * `single-quoted-argument-unclosed` - unclosed single-quoted arguments (`` 'foo ``)
 * `double-quoted-argument` - double-quoted arguments (`` "foo" ``)
@@ -49,23 +58,26 @@ This highlighter defines the following styles:
 * `assign` - parameter assignments (`x=foo` and `x=( )`)
 * `redirection` - redirection operators (`<`, `>`, etc)
 * `comment` - comments, when `setopt INTERACTIVE_COMMENTS` is in effect (`echo # foo`)
-* `arg0` - a command word other than one of those enumrated above (other than a command, precommand, alias, function, or shell builtin command).
+* `named-fd` - named file descriptor (`echo foo {fd}>&2`)
+* `arg0` - a command word other than one of those enumerated above (other than a command, precommand, alias, function, or shell builtin command).
 * `default` - everything else
 
 To override one of those styles, change its entry in `ZSH_HIGHLIGHT_STYLES`,
 for example in `~/.zshrc`:
 
-    # Declare the variable
-    typeset -A ZSH_HIGHLIGHT_STYLES
+```zsh
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
 
-    # To differentiate aliases from other command types
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-    
-    # To have paths colored instead of underlined
-    ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-    
-    # To disable highlighting of globbing expressions
-    ZSH_HIGHLIGHT_STYLES[globbing]='none'
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+
+# To have paths colored instead of underlined
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
+# To disable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+```
 
 The syntax for values is the same as the syntax of "types of highlighting" of
 the zsh builtin `$zle_highlight` array, which is documented in [the `zshzle(1)`
@@ -76,7 +88,9 @@ manual page][zshzle-Character-Highlighting].
 To avoid partial path lookups on a path, add the path to the `X_ZSH_HIGHLIGHT_DIRS_BLACKLIST` array.
 This interface is still experimental.
 
-    X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/slow_share)
+```zsh
+X_ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/slow_share)
+```
 
 ### Useless trivia
 

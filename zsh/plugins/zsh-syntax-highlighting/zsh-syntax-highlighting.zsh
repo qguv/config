@@ -28,7 +28,7 @@
 # -------------------------------------------------------------------------------------------------
 
 # First of all, ensure predictable parsing.
-zsh_highlight__aliases=`builtin alias -Lm '[^+]*'`
+typeset zsh_highlight__aliases="$(builtin alias -Lm '[^+]*')"
 # In zsh <= 5.2, `alias -L` emits aliases that begin with a plus sign ('alias -- +foo=42')
 # them without a '--' guard, so they don't round trip.
 #
@@ -57,9 +57,9 @@ fi
 # zsh-users/zsh@48cadf4 http://www.zsh.org/mla/workers//2017/msg00034.html
 autoload -Uz is-at-least
 if is-at-least 5.4; then
-  zsh_highlight__pat_static_bug=false
+  typeset -g zsh_highlight__pat_static_bug=false
 else
-  zsh_highlight__pat_static_bug=true
+  typeset -g zsh_highlight__pat_static_bug=true
 fi
 
 # Array declaring active highlighters names.
@@ -305,7 +305,7 @@ _zsh_highlight_bind_widgets()
 
   # Override ZLE widgets to make them invoke _zsh_highlight.
   local -U widgets_to_bind
-  widgets_to_bind=(${${(k)widgets}:#(.*|run-help|which-command|beep|set-local-history|yank)})
+  widgets_to_bind=(${${(k)widgets}:#(.*|run-help|which-command|beep|set-local-history|yank|yank-pop)})
 
   # Always wrap special zle-line-finish widget. This is needed to decide if the
   # current line ends and special highlighting logic needs to be applied.
@@ -363,7 +363,7 @@ _zsh_highlight_bind_widgets()
 #   1) Path to the highlighters directory.
 _zsh_highlight_load_highlighters()
 {
-  setopt localoptions noksharrays
+  setopt localoptions noksharrays bareglobqual
 
   # Check the directory exists.
   [[ -d "$1" ]] || {
@@ -373,7 +373,7 @@ _zsh_highlight_load_highlighters()
 
   # Load highlighters from highlighters directory and check they define required functions.
   local highlighter highlighter_dir
-  for highlighter_dir ($1/*/); do
+  for highlighter_dir ($1/*/(/)); do
     highlighter="${highlighter_dir:t}"
     [[ -f "$highlighter_dir${highlighter}-highlighter.zsh" ]] &&
       . "$highlighter_dir${highlighter}-highlighter.zsh"
