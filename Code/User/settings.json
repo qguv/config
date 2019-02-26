@@ -1,15 +1,21 @@
 {
+    // disable microsoft surveillance
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "window.zoomLevel": 2,
+    "workbench.statusBar.feedback.visible": false,
+
+    "editor.fontFamily": "\"Inconsolata-dz for Powerline\",Inconsolata-dz,Inconsolata,monospace",
 
     "workbench.colorCustomizations": {
+
+        // less visually aggressive colors for visual badges
         "statusBar.background": "#222222",
         "badge.foreground": "#ffffff",
         "badge.background": "#222222",
         "activityBarBadge.foreground": "#222222",
         "activityBarBadge.background": "#ffffff",
 
+        // kasugano color scheme in the terminal
         "terminal.background": "#1b1b1b",       // BG
         "terminal.foreground": "#ffffff",       // FG
         "terminal.ansiBlack": "#3d3d3d",        // 0
@@ -30,14 +36,13 @@
         "terminal.ansiBrightWhite": "#edeff2",  // 15
     },
 
-    "workbench.statusBar.feedback.visible": false,
+    // autosave every 10 seconds
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000,
-    "editor.fontFamily": "\"Inconsolata-dz for Powerline\",monospace",
-    "explorer.confirmDragAndDrop": false,
 
     // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
     "go.formatTool": "gofmt",
 
     "editor.lineNumbers": "relative",
+    "workbench.startupEditor": "newUntitledFile",
 }
