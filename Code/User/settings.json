@@ -43,6 +43,26 @@
     // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
     "go.formatTool": "gofmt",
 
+    // fix a LONGSTANDING vim issue that causes vscodevim to undo/redo recursively
+    // https://github.com/VSCodeVim/Vim/issues/2007#issuecomment-417468079
+    "vim.normalModeKeyBindingsNonRecursive": [{
+            "before": ["u"],
+            "after": [],
+            "commands": [{
+                "command": "undo",
+                "args": []
+            }]
+        },
+        {
+            "before": ["<C-r>"],
+            "after": [],
+            "commands": [{
+                "command": "redo",
+                "args": []
+            }]
+        }
+    ],
+
     "editor.lineNumbers": "relative",
     "workbench.startupEditor": "newUntitledFile",
 }
