@@ -24,4 +24,9 @@
         "key": "ctrl+1",
         "command": "-workbench.action.focusFirstEditorGroup"
     },
+    {
+        "key": "ctrl+a",
+        "command": "-editor.action.selectAll",
+        "when": "textInputFocus"
+    },
 ]
