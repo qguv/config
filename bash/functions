@@ -26,13 +26,6 @@ function hostgodoc () {
   eval "godoc" "-http=:$PORT"
 }
 
-# Push to all remotes in git
-function git-push-all () {
-  for r in $(git remote); do
-    git push "$r" "$@"
-  done
-}
-
 function texide () {
   if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     echo "Usage:"
@@ -118,6 +111,13 @@ function movetotrash() {
   return 0
 }
 
+# Push to all remotes in git
+function git-push-all () {
+  for r in $(git remote); do
+    git push "$r" "$@"
+  done
+}
+
 function git-diff-words() {
   git diff --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
   return "$?"
@@ -168,6 +168,11 @@ function git-bb-remote() {
   done
 
   git remote add "$remote" "https://${bbuser}@bitbucket.org/${owner}/${repo}"
+}
+
+# list git subtrees https://stackoverflow.com/questions/16641057/how-can-i-list-the-git-subtrees-on-the-root#18339297
+function git-sub-list() {
+   git log | grep git-subtree-dir | tr -d ' ' | cut -d ':' -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'
 }
 
 function shreddir() {
