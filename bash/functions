@@ -321,7 +321,7 @@ function enable_powersave() {
 
 function aur() {
   for v in "$@"; do
-    git clone git+ssh://aur@aur.archlinux.org/${v}.git
+    git clone ssh://aur@aur.archlinux.org/${v}
   done
 }
 
