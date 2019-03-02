@@ -489,3 +489,50 @@ giti() {(
   # ctrl-d triggers an "exit"
   printf "\033[2K\r> exit\n"
 )}
+
+function spectrogram() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp3 input file> <mp4 output file>\n" && return 1
+
+  ffmpeg -i "$1" -filter_complex \
+    "[0:a]showspectrum=s=854x480:mode=combined:slide=scroll:saturation=0.2:scale=log,format=yuv420p[v]" \
+    -map "[v]" -map 0:a \
+    -b:v 700k -b:a 360k "$2"
+}
+
+function vectorscope() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp3 input file> <mp4 output file>\n" && return 1
+
+  ffmpeg -i "$1" -filter_complex \
+    "[0:a]avectorscope=s=480x480:zoom=1.5:rc=200:gc=200:bc=200:rf=40:gf=40:bf=40,format=yuv420p[v]; \
+    [v]pad=854:480:187:0[out]" \
+    -map "[out]" -map 0:a \
+    -b:v 700k -b:a 360k "$2"
+}
+
+function wave_line() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp3 input file> <mp4 output file>\n" && return 1
+
+  ffmpeg -i "$1" -filter_complex \
+    "[0:a]showwaves=mode=point:s=hd480:colors=White[v]" \
+    -map "[v]" -map 0:a -pix_fmt yuv420p \
+    -b:a 360k -r:a 44100 "$2"
+}
+
+function wave_filled() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp3 input file> <mp4 output file>\n" && return 1
+
+  ffmpeg -i "$1" -filter_complex \
+    "[0:a]showwaves=mode=cline:s=hd480:colors=White[v]" \
+    -map "[v]" -map 0:a -pix_fmt yuv420p \
+    -b:a 360k -r:a 44100 "$2"
+}
+
+function blank() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp3 input file> <mp4 output file>\n" && return 1
+
+  ffmpeg -i "$1" -filter_complex \
+    "color=c=black:s=hd480:r=1[v]" \
+    -map "[v]" -map 0:a -pix_fmt yuv420p \
+    -b:a 360k -r:a 44100 -shortest "$2"
+}
+
