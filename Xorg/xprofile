@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# source scripts in /etc/X11/xinit/xinitrc.d/
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
-
 # figure out what's installed
 command -v feh        >/dev/null 2>&1; feh_status=$?
 command -v compton    >/dev/null 2>&1; compton_status=$?
