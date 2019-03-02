@@ -113,3 +113,5 @@ alias strict-gcc="gcc -Werror -Wall -Wextra -Wpedantic"
 
 alias monitor-line-in="pactl load-module module-loopback"
 alias unmonitor-line-in="pactl unload-module module-loopback"
+alias updsrcinfo='makepkg --printsrcinfo > .SRCINFO'
+alias whatfs='( while ! findmnt .; do cd ..; done )'
