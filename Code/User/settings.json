@@ -4,7 +4,7 @@
     "telemetry.enableTelemetry": false,
     "workbench.statusBar.feedback.visible": false,
 
-    "editor.fontFamily": "\"Inconsolata-dz for Powerline\",Inconsolata-dz,Inconsolata,monospace",
+    "editor.fontFamily": "Inconsolata-dz,Inconsolata,monospace",
 
     "workbench.colorCustomizations": {
 
