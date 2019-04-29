@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.5.2
+- Allow disabling automatic widget re-binding for better performance (#418)
+- Fix async suggestions when `SH_WORD_SPLIT` is set
+- Refactor async mode to use process substitution instead of zpty (#417)
+
+## v0.5.1
+- Speed up widget rebinding (#413)
+- Clean up global variable creations (#403)
+- Respect user's set options when running original widget (#402)
+
 ## v0.5.0
 - Don't overwrite config with default values (#335)
 - Support fallback strategies by supplying array to suggestion config var
