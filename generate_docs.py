@@ -1,8 +1,8 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
+
 from textwrap import dedent
 import wee_slack
 
@@ -60,7 +60,7 @@ with open('docs/Options.md', 'w') as file_options:
 
         """).lstrip())
 
-    for name, option in options.items():
+    for name, option in sorted(options.items()):
         file_options.write(dedent("""
             ### {}
 
