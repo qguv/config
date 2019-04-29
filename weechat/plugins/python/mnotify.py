@@ -21,6 +21,12 @@
 # Changed default settings to match new scheme
 # DCC get request show name with ip, network and size of file.
 #
+# Ver: 0.5 by Antonin Skala tony762@gmx.com 3.2019
+# Repaired DCC Get FAILED message.
+#
+# Ver: 0.6 by Antonin Skala tony762@gmx.com 3.2019
+# Support Python 2 and 3
+#
 # Help:
 # Install and configure msmtp first (msmtp.sourceforge.net/)
 # List and Change plugin settings by /set plugins.var.python.mnotify.*
@@ -29,21 +35,25 @@
 # /save
 # /upgrade
 #
+# If running from TMux:
+# /usr/bin/tmux -S /tmp/ircmux -2 new-session -d -s irc bash
+# /usr/bin/tmux -S /tmp/ircmux -2 send -t irc "export LANG=en_US.UTF-8" ENTER
+# /usr/bin/tmux -S /tmp/ircmux -2 send -t irc weechat ENTER
 
 # -----------------------------------------------------------------------------
 # Imports
 # -----------------------------------------------------------------------------
+
 import re
-import os
+import sys
 import subprocess
 from email.mime.text import MIMEText
-#import smtplib
 
 import weechat
 
 SCRIPT_NAME = 'mnotify'
 SCRIPT_AUTHOR = 'maker'
-SCRIPT_VERSION = '0.4'
+SCRIPT_VERSION = '0.6'
 SCRIPT_LICENSE = 'Beerware License'
 SCRIPT_DESC = 'Sends mail notifications upon events.'
 
@@ -68,7 +78,6 @@ SETTINGS = {
 }
 
 
-
 # -----------------------------------------------------------------------------
 # Globals
 # -----------------------------------------------------------------------------
@@ -78,7 +87,6 @@ TAGGED_MESSAGES = {
     'notice message': set(['irc_notice', 'notify_private']),
     'invite message': set(['irc_invite', 'notify_highlight']),
     'channel topic': set(['irc_topic', ]),
-    #'away status': set(['away_info', ]),
 }
 
 
@@ -374,6 +382,7 @@ def notify_dcc_get_failed(match):
     if (weechat.config_get_plugin("show_dcc") == "on"
         or (weechat.config_get_plugin("show_dcc") == "away"
             and STATE['is_away'])):
+        nick = match.group(2)
         file_name = match.group(1)
         a_notify(
             'DCC',
@@ -492,7 +501,7 @@ def humanbytes(B):
     GB = float(KB ** 3)  # 1,073,741,824
     TB = float(KB ** 4)  # 1,099,511,627,776
     if B < KB:
-        return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
+        return '{0} {1}'.format(B, 'Bytes' if 0 == B > 1 else 'Byte')
     elif KB <= B < MB:
         return '{0:.2f} KB'.format(B/KB)
     elif MB <= B < GB:
@@ -515,7 +524,10 @@ def a_notify(notification, subject, message):
         stdin=subprocess.PIPE,
 
     )
-    p.communicate(input=str(msg))
+    if sys.version_info[0] > 2:
+        p.communicate(input=str.encode(msg.as_string()))
+    else:
+        p.communicate(input=str(msg))
 
 
 # -----------------------------------------------------------------------------
@@ -527,19 +539,6 @@ def main():
     for option, value in SETTINGS.items():
         if not weechat.config_is_set_plugin(option):
             weechat.config_set_plugin(option, value)
-    # Initialize.
-    notifications = [
-        'Public',
-        'Private',
-        'Action',
-        'Notice',
-        'Invite',
-        'Highlight',
-        'Server',
-        'Channel',
-        'DCC',
-        'WeeChat'
-    ]
     # Register hooks.
     weechat.hook_signal(
         'irc_server_connected',
