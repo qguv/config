@@ -65,6 +65,7 @@ alias mt="$TRASHCOMMAND"
 alias opn="$OPENCOMMAND"
 alias efistatus="sudo efibootmgr -v | sed 's:\(.\)\.:\1:g'"
 alias lsports="sudo lsof +M -i4"
+alias lsport="sudo netstat -tulpn"
 
 # Clipboard
 alias cbc="$CLIPBOARDCOPY"
