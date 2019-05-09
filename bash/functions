@@ -429,10 +429,15 @@ function report() {
   fi
 
   # generate a message based on the command's exit status
+  cmd_name="$1"
+  if [ "$cmd_name" = "sudo" ]; then
+    cmd_name="$2"
+  fi
+
   if [ $cmd_status -eq 0 ]; then
-    msg="$1 completed ok"
+    msg="${cmd_name} completed ok"
   else
-    msg="$1 failed with status $?"
+    msg="${cmd_name} failed with status $?"
   fi
 
   # send a message to Gotify
