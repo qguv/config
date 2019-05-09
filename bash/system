@@ -12,6 +12,7 @@ export CLIPBOARDCOPY='xsel -bi'
 export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
+export GOTIFY_TOKEN=''
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"

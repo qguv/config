@@ -404,3 +404,43 @@ function pretend_usa () {
   export LC_MEASUREMENT=en_US.UTF-8
   export LC_IDENTIFICATION="en_US.UTF-8"
 }
+
+# prefix a command with `report` and a report will be pushed to Gotify when the
+# command completes if it takes more than three seconds
+function report() {
+
+  if [ -z "${GOTIFY_TOKEN}" ]; then
+    printf "No \$GOTIFY_TOKEN configured! Not running the command!\n"
+    return 1
+  fi
+
+  # get start time
+  t1=$(date -u +%s)
+
+  # run the command
+  $@
+  cmd_status=$?
+
+  # send if the command was slower than 2 seconds
+  t2=$(date -u +%s)
+  let "dt = t2 - t1"
+  if [ $dt -lt 3 ]; then
+    return
+  fi
+
+  # generate a message based on the command's exit status
+  if [ $cmd_status -eq 0 ]; then
+    msg="$1 completed ok"
+  else
+    msg="$1 failed with status $?"
+  fi
+
+  # send a message to Gotify
+  res=$(curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" -F "title=$(cat /etc/hostname)" -F "message=${msg}" -F "priority=8")
+  if [ $? -eq 0 ]; then
+    printf "Command took ${dt} seconds. Report pushed!\n"
+  else
+    printf "Report failed to send to gotify (curl status $?)! Command took ${dt} seconds.\n"
+    return 1
+  fi
+}
