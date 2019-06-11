@@ -37,3 +37,8 @@ set -o vi
 
 # detect shellshock bug over ssh
 export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
+
+# remind user to set up system aliases
+if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
+  printf "system aliases not set up!\n"
+fi

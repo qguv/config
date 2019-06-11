@@ -1,6 +1,7 @@
 #!/bin/bash
 # system-specific commands
 
+export SYSTEM_ALIASES_NOT_SET_UP=1
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python2'
 export SYSTEMUPDATE='sudo pacman -Syu'
