@@ -1,19 +1,15 @@
 {
-    // disable microsoft surveillance
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "workbench.statusBar.feedback.visible": false,
-
+    // appearance
     "editor.fontFamily": "Inconsolata-dz,Inconsolata,monospace",
-
+    "window.zoomLevel": -1,
+    "window.titleBarStyle": "custom",
+    "editor.lineNumbers": "relative",
+    "editor.smoothScrolling": true,
     "workbench.colorCustomizations": {
 
-        // less visually aggressive colors for visual badges
-        "statusBar.background": "#222222",
-        "badge.foreground": "#ffffff",
-        "badge.background": "#222222",
-        "activityBarBadge.foreground": "#222222",
-        "activityBarBadge.background": "#ffffff",
+        // less visually aggressive colors for distracting badges
+        "statusBar.background": "#222",
+        "activityBarBadge.background": "#555",
 
         // kasugano color scheme in the terminal
         "terminal.background": "#1b1b1b",       // BG
@@ -36,9 +32,16 @@
         "terminal.ansiBrightWhite": "#edeff2",  // 15
     },
 
-    // autosave every 10 seconds
+    // behavior
+    "explorer.confirmDelete": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 10000,
+    "files.autoSaveDelay": 10000, // ms
+    "editor.autoClosingBrackets": "never",
+    "terminal.integrated.inheritEnv": false,
+
+    // enable python linting
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "/usr/bin/flake8",
 
     // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
     "go.formatTool": "gofmt",
@@ -63,6 +66,11 @@
         }
     ],
 
-    "editor.lineNumbers": "relative",
-    "workbench.startupEditor": "newUntitledFile",
+    // disable microsoft surveillance
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+
+    // new settings added by GUI
 }
