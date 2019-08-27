@@ -405,6 +405,17 @@ function pretend_usa () {
   export LC_IDENTIFICATION="en_US.UTF-8"
 }
 
+function gotify() {
+  if [ -z "$*" ]; then
+    return 0
+  fi
+
+  curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" -F "title=$(cat /etc/hostname)" -F "priority=8" -F "message=$*"
+  curl_status=$?
+  printf '\n'
+  return $curl_status
+}
+
 # prefix a command with `report` and a report will be pushed to Gotify when the
 # command completes if it takes more than three seconds
 function report() {
@@ -441,7 +452,7 @@ function report() {
   fi
 
   # send a message to Gotify
-  res=$(curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" -F "title=$(cat /etc/hostname)" -F "message=${msg}" -F "priority=8")
+  gotify "${msg}"
   if [ $? -eq 0 ]; then
     printf "Command took ${dt} seconds. Report pushed!\n"
   else
