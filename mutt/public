@@ -1,16 +1,16 @@
 color index color214 default ~O
 
 # incoming
-set imap_user = "quintus.public@gmail.com"
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set postponed = "+[Gmail]/Drafts"
+set imap_user = "quint@guvernator.net"
+set spoolfile = "imaps://mail.privateemail.com:993"
+set folder = "imaps://mail.privateemail.com:993/INBOX"
+set postponed = "+Drafts"
 set postpone = yes
 
 # composing
-set record = "+[Gmail]/Sent Mail"
-set copy = yes
-set edit_headers
+set copy = yes # save copies of outgoing mail to $record folder
+set record = "+Sent"
+set edit_headers # show headers when editing mail
 
 # outgoing
 set smtp_url = "smtps://quint@guvernator.net@mail.privateemail.com:465/"
