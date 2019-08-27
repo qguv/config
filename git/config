@@ -15,6 +15,13 @@
 	smtpencryption = tls
 	confirm = auto
 [alias]
+	# Get the child commit of the current commit.
+	# Use $1 instead of 'HEAD' if given. Use $2 instead of curent branch if given.
+	child = "!bash -c 'git log --format=%H --reverse --ancestry-path ${1:-HEAD}..${2:\"$(git rev-parse --abbrev-ref HEAD)\"} | head -1' -"
+
+	# For the current (or specified) commit-ish, get the all children
+	children = "!bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -"
+
 	co = checkout
 	cm = commit
 	ff = merge --ff-only
