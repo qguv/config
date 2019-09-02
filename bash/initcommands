@@ -43,7 +43,7 @@ alias python3="python3 -q"
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
-alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/conf"
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/config"
 
 # SSH is especially bad
 export SSH_ALIAS_OPTIONS="-F $XDG_CONFIG_HOME/ssh/config -o UserKnownHostsFile=$XDG_CONFIG_HOME/ssh/known_hosts"
