@@ -40,17 +40,54 @@ def test_linkifytext_names_with_apostrophe(team):
 def test_linkifytext_names_with_subgroup_notification(team):
     subteam = team.subteams['TGX0ALBK3']
     message = 'This is a message for a subteam'
-    text = linkify_text('@{}: {}'.format(subteam.handle, message), team)
+    text = linkify_text('{}: {}'.format(subteam.handle, message), team)
 
-    assert text == '<!subteam^{}|@{}>: {}'.format(subteam.identifier, subteam.handle, message)
+    assert text == '<!subteam^{}|{}>: {}'.format(subteam.identifier, subteam.handle, message)
 
 def test_linkifytext_at_channel(team):
     text = linkify_text('@channel: my test message', team)
 
     assert text == '<!channel>: my test message'
 
+def test_linkifytext_at_everyone(team):
+    text = linkify_text('@everyone: my test message', team)
+
+    assert text == '<!everyone>: my test message'
+
+def test_linkifytext_at_group(team):
+    text = linkify_text('@group: my test message', team)
+
+    assert text == '<!group>: my test message'
+
+def test_linkifytext_at_here(team):
+    text = linkify_text('@here: my test message', team)
+
+    assert text == '<!here>: my test message'
+
 def test_linkifytext_channel(team, channel_general):
     channel_name = re.sub(r'^[#&]', '', channel_general.name)
     text = linkify_text('#{}: my test message'.format(channel_name), team)
 
     assert text == '<#{}|{}>: my test message'.format(channel_general.id, channel_name)
+
+def test_linkifytext_not_private_using_hash(team, channel_private):
+    channel_name = re.sub(r'^[#&]', '', channel_private.name)
+    text = linkify_text('#{}: my test message'.format(channel_name), team)
+
+    assert text == '#{}: my test message'.format(channel_name)
+
+def test_linkifytext_not_private_using_ampersand(team, channel_private):
+    channel_name = re.sub(r'^[#&]', '', channel_private.name)
+    text = linkify_text('&{}: my test message'.format(channel_name), team)
+
+    assert text == '&amp;{}: my test message'.format(channel_name)
+
+def test_linkifytext_not_dm(team, channel_dm):
+    text = linkify_text('#{}: my test message'.format(channel_dm.name), team)
+
+    assert text == '#{}: my test message'.format(channel_dm.name)
+
+def test_linkifytext_not_mpdm(team, channel_mpdm):
+    text = linkify_text('#{}: my test message'.format(channel_mpdm.name), team)
+
+    assert text == '#{}: my test message'.format(channel_mpdm.name)
