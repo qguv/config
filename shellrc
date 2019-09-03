@@ -29,6 +29,11 @@ if [ -n "$ZSH_VERSION" ]; then
 
 # ...and settings specific to bash
 else
+  HISTCONTROL=ignoreboth
+  HISTSIZE=1000
+  HISTFILESIZE=2000
+
+  shopt -s histappend checkwinsize globstar
   bind -m vi-insert "\C-l":clear-screen
 fi
 
