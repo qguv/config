@@ -29,7 +29,7 @@ if [ -n "$ZSH_VERSION" ]; then
 
 # ...and settings specific to bash
 else
-  bind -x '"\C-l": clear'
+  bind -m vi-insert "\C-l":clear-screen
 fi
 
 # activate dircolors if installed
