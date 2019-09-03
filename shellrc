@@ -32,6 +32,11 @@ else
   bind -x '"\C-l": clear'
 fi
 
+# activate dircolors if installed
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 # use vi line-editing keybindings
 set -o vi
 

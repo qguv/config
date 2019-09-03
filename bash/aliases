@@ -9,15 +9,11 @@ alias c='clear'
 alias e="$EDITOR"
 alias s='sudo -E'
 alias se="sudo -E $EDITOR"
-alias la='ls -A'
-alias ll='ls -l'
-alias lal='ls -Al'
-alias lla='ls -Al'
 alias view="$EDITOR -R"
 alias beep="$BEEPCOMMAND"
 alias usermount="sudo mount -o fmask=111,dmask=000"
 alias resolve='cd "$(pwd -P)"'
-alias lsaf='find . -type f -exec ls {} \;'
+alias lsaf='find . -type f -exec ls --color=auto {} \;'
 alias resume="$RESUMECOMMAND"
 alias unique=$'perl -lne \'$x=$_;if(!grep(/^$x$/,@arr)){print; push @arr,$_ ;}\''
 
