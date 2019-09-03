@@ -3,6 +3,7 @@ from __future__ import print_function, unicode_literals
 import json
 import pytest
 import random
+import ssl
 import string
 import sys
 
@@ -22,7 +23,10 @@ class fakewebsocket(object):
     def recv(self):
         return self.recv_data()[1].decode('utf-8')
     def recv_data(self, control_frame=False):
-        return ABNF.OPCODE_TEXT, self.returndata.pop(0)
+        if self.returndata:
+            return ABNF.OPCODE_TEXT, self.returndata.pop(0)
+        else:
+            raise ssl.SSLWantReadError()
     def send(self, data):
         self.sentdata.append(data)
 
@@ -33,6 +37,7 @@ def mock_websocket():
 @pytest.fixture
 def realish_eventrouter(mock_websocket, mock_weechat):
     e = EventRouter()
+    wee_slack.EVENTROUTER = e
     context = e.store_context(SlackRequest('xoxs-token', 'rtm.start', {}))
     with open('_pytest/data/http/rtm.start.json') as rtmstartfile:
         if sys.version_info.major == 2:
@@ -52,7 +57,19 @@ def team(realish_eventrouter):
 
 @pytest.fixture
 def channel_general(team):
-    return team.channels[team.get_channel_map()['general']]
+    return team.channels[team.get_channel_map()['#general']]
+
+@pytest.fixture
+def channel_private(team):
+    return team.channels[team.get_channel_map()['&some-private-channel']]
+
+@pytest.fixture
+def channel_dm(team):
+    return team.channels[team.get_channel_map()['alice']]
+
+@pytest.fixture
+def channel_mpdm(team):
+    return team.channels[team.get_channel_map()['CharlesTestuser,alice']]
 
 @pytest.fixture
 def user_alice(team):

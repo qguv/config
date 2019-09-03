@@ -36,39 +36,42 @@ Dependencies
 Setup
 -----
 
-#### 1. Install dependencies
+### 1. Install dependencies
 
-##### OSX and Linux
-```
-pip install websocket-client
-```
+**Arch Linux**: `pacman -S python2-websocket-client`
 
-Note: If you installed weechat with Homebrew, you will have to locate the python runtime environment used.
-If `--with-python@2` was used, you should use:
-```
-sudo /usr/local/opt/python@2/bin/pip2 install websocket_client
-```
+**Debian/Ubuntu**: `apt install weechat-python python-websocket`
 
-##### FreeBSD
-```
-pkg install py27-websocket-client py27-six
-```
+**Fedora**: `dnf install python3-websocket-client`
 
-#### 2. copy wee_slack.py to ~/.weechat/python
+**FreeBSD**: `pkg install py36-websocket-client`
+
+**OpenBSD**: `pkg_add weechat-python py-websocket-client`
+
+**Other**: `pip install websocket-client`
+
+Note for **macOS**: If you installed weechat with Homebrew, you will have to locate the python runtime environment used.
+If `--with-python@2` was used, you should use: `sudo /usr/local/opt/python@2/bin/pip2 install websocket_client`
+
+### 2. Download wee\_slack.py to ~/.weechat/python
+
+If you don't want wee\_slack to start automatically when weechat starts, you can skip the last command.
+
 ```
+mkdir -p ~/.weechat/python/autoload
 cd ~/.weechat/python
-wget https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
+curl -O https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
 ln -s ../wee_slack.py autoload
 ```
 
-#### 3. Start WeeChat
+### 3. Start WeeChat
 ```
 weechat
 ```
 
-**NOTE:** If weechat is already running, the script can be loaded using ``/python load python/autoload/wee_slack.py``
+**NOTE:** If weechat is already running, the script can be loaded using `/python load wee_slack.py`.
 
-#### 4. Add your Slack API key(s)
+### 4. Add your Slack API key(s)
 
 Log in to Slack:
 
@@ -107,7 +110,7 @@ If you don't want to store your API token in plaintext you can use the secure fe
 /set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}
 ```
 
-##### Optional: Connecting to multiple teams
+#### Optional: Connecting to multiple teams
 
 You can run the register command multiple times to connect to multiple teams.
 If you set the token yourself, you can use the above command with multiple
@@ -151,9 +154,12 @@ Modify 3rd previous message using regex:
 3s/old text/new text/
 ```
 
-Replace all instances of text in previous message using regex:
+The regex also supports the flags `g` for replacing all instances, `i` for
+ignoring case, `m` for making `^` and `$` match the start/end of each line and
+`s` for making `.` match a newline too. Use them by appending one or more of
+them to the regex:
 ```
-s/old text/new text/g
+s/old text/new text/gi
 ```
 
 Delete previous message:
@@ -172,7 +178,7 @@ To send a command as a normal message instead of performing the action, prefix i
  s/a/b/
 ```
 
-#### Threads
+### Threads
 
 Start a new thread on the most recent message The number indicates which message in the buffer to reply to, in reverse time order:
 ```
@@ -195,7 +201,7 @@ Label a thread with a memorable name. The above command will open a channel call
 ```
 _Note: labels do not persist once a thread buffer is closed_
 
-#### Emoji tab completions
+### Emoji tab completions
 
 To enable tab completion of emojis, copy or symlink the `weemoji.json` file to
 your weechat config directory (e.g. `~/.weechat`). If doing this after starting
@@ -207,14 +213,14 @@ e.g. like this:
 /set weechat.completion.default_template "%(nicks)|%(irc_channels)|%(emoji)"
 ```
 
-#### User group tab completions
+### User group tab completions
 To enable tab completions for usergroups append `|%(usergroups)`
 ```
 /set weechat.completion.default_template "%(nicks)|%(irc_channels)|%(usergroups)"
 ```
 The usergroup will appear in the same formats as nicks like the following `@marketing` where marketing is the handle
 
-#### Cursor and mouse mode
+### Cursor and mouse mode
 
 The cursor mode and mouse mode can be used to interact with older messages, for editing, deleting, reacting and replying to a message. Mouse mode can be toggled by pressing `Alt`+`m` and cursor mode can be entered by running `/cursor` (see `/help cursor`).
 
@@ -222,11 +228,11 @@ If mouse mode is enabled, the default behavior when right-clicking on a message 
 It can also be used as an argument to the `/slack linkarchive` command.
 
 In cursor mode, the `M` key achieves the same result (memo: the default for weechat is to paste the message with `m`, `M` simply copies the id).
-In addition, `R` will prepare a `/reply id` and `D` will delete the message (provided it’s yours).
+In addition, `R` will prepare a `/reply id` and `D` will delete the message (provided it's yours).
 `T` will open the thread associated to a message, equivalent to `/thread id`
 `L` will call the `/slack linkarchive` command behind the hood and paste it to the current input.
 
-Please see weechat’s documentation about [how to use the cursor mode](https://weechat.org/files/doc/stable/weechat_user.en.html#key_bindings_cursor_context) or [adapt the bindings](https://weechat.org/files/doc/stable/weechat_user.en.html#command_weechat_key) to your preference.
+Please see weechat's documentation about [how to use the cursor mode](https://weechat.org/files/doc/stable/weechat_user.en.html#key_bindings_cursor_context) or [adapt the bindings](https://weechat.org/files/doc/stable/weechat_user.en.html#command_weechat_key) to your preference.
 
 Default key bindings:
 ```
@@ -264,7 +270,7 @@ Show channel name in hotlist after activity
 ```
 
 Development
------------------
+-----------
 
 To run the tests, create a virtualenv and pip install from the `requirements.txt`. Then `pytest` to run them locally.
 
@@ -281,6 +287,6 @@ Dump the JSON responses in `/tmp/weeslack-debug/`. Requires a script reload.
 ```
 
 Support
---------------
+-------
 
 wee-slack is provided without any warranty whatsoever, but you are welcome to ask questions in #wee-slack on freenode.

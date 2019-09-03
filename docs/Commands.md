@@ -45,7 +45,7 @@ or unhide these channels with /slack nodistractions.
 ### help
 
 ```
-/slack help
+/slack help [command]
 ```
 
 Print help for /slack commands.
@@ -95,7 +95,7 @@ Hide or unhide all channels marked as distracting.
 ### register
 
 ```
-/slack register
+/slack register [code]
 ```
 
 Register a Slack team in wee-slack.
@@ -136,10 +136,11 @@ Run a custom slack command.
 ### status
 
 ```
-/slack status [emoji [status_message]]
+/slack status [<emoji> [<status_message>]|-delete]
 ```
 
 Lets you set your Slack Status (not to be confused with away/here).
+Prints current status if no arguments are given, unsets the status if -delete is given.
 
 ### talk
 
@@ -165,6 +166,15 @@ If no message id is specified the last thread in channel will be opened.
 ```
 
 Uploads a file to the current buffer.
+
+### usergroups
+
+```
+/slack usergroups [handle]
+```
+
+List the usergroups in the current team
+If handle is given show the members in the usergroup
 
 ### users
 
