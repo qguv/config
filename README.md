@@ -148,7 +148,7 @@ Reload .vimrc and `:PlugInstall` to install plugins.
 | ----------------------------------- | ------------------------------------------------------------------ |
 | `PlugInstall [name ...] [#threads]` | Install plugins                                                    |
 | `PlugUpdate [name ...] [#threads]`  | Install or update plugins                                          |
-| `PlugClean[!]`                      | Remove unused directories (bang version will clean without prompt) |
+| `PlugClean[!]`                      | Remove unlisted plugins (bang version will clean without prompt) |
 | `PlugUpgrade`                       | Upgrade vim-plug itself                                            |
 | `PlugStatus`                        | Check the status of plugins                                        |
 | `PlugDiff`                          | Examine changes from the previous update and the pending changes   |
@@ -234,7 +234,7 @@ In that case, use `do` option to describe the task to be performed.
 
 ```vim
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 ```
 
 If the value starts with `:`, it will be recognized as a Vim command.
@@ -257,7 +257,7 @@ function! BuildYCM(info)
   endif
 endfunction
 
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 ```
 
 Both forms of post-update hook are executed inside the directory of the plugin
@@ -299,6 +299,11 @@ The commands with `!` suffix ensure that all steps are run unconditionally.
 - [Vim plugins and startup time](http://junegunn.kr/2014/07/vim-plugins-and-startup-time)
 - ~~[Thoughts on Vim plugin dependency](http://junegunn.kr/2013/09/thoughts-on-vim-plugin-dependency)~~
     - *Support for Plugfile has been removed since 0.5.0*
+
+### Collaborators
+
+- [Jan Edmund Lazo](https://github.com/janlazo) - Windows support
+- [Jeremy Pallats](https://github.com/starcraftman) - Python installer
 
 ### License
 
