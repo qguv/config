@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# fix LXD tty bug
+if tty -s && [ "$(tty)" = "not a tty" ]; then
+  exec script -q /dev/null
+fi
+
 # respect XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS="/etc/xdg"
