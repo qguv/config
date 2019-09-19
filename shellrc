@@ -58,27 +58,25 @@ if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
   printf "system aliases not set up!\n"
 fi
 
-# when the shell is attached to a real tty
-if tty -s; then
+eval "$(ssh-agent -s)" > /dev/null
 
-  # if enabled, connect every tty-attached session to the same tmux window group
-  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ]; then
+# when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
+if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
 
-    # get the first detached session's ID
-    gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
+  # get the first detached session's ID
+  gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
 
-    # (or create one if necessary)
-    if [ -z "$gid" ]; then
-      gid="$(tmux new-session -dP)"
-    fi
-
-    # create a new session in that session group
-    sid="$(tmux new-session -dPt "$gid")"
-
-    # don't leave the session open if detached
-    (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
-
-    # attach the session
-    exec tmux attach-session -t "$sid"
+  # (or create one if necessary)
+  if [ -z "$gid" ]; then
+    gid="$(tmux new-session -dP)"
   fi
+
+  # create a new session in that session group
+  sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+
+  # don't leave the session open if detached
+  (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
+
+  # attach the session
+  exec tmux attach-session -t "$sid"
 fi
