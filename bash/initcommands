@@ -48,6 +48,7 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/config"
 # SSH is especially bad
 export SSH_ALIAS_OPTIONS="-F $XDG_CONFIG_HOME/ssh/config -o UserKnownHostsFile=$XDG_CONFIG_HOME/ssh/known_hosts"
 alias ssh="ssh $SSH_ALIAS_OPTIONS"
+alias mosh="mosh --ssh=\"ssh $SSH_ALIAS_OPTIONS\""
 alias scp="scp $SSH_ALIAS_OPTIONS"
 alias sftp="sftp $SSH_ALIAS_OPTIONS"
 export GIT_SSH_COMMAND="ssh $SSH_ALIAS_OPTIONS "$@" 2>/dev/null"
