@@ -29,6 +29,9 @@ bind b set-option -s status
 # ^A P: copy all tmux history to a file
 bind-key P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -32768 ; save-buffer %1 ; delete-buffer'
 
+# ^A ^C: kill entire tmux session
+bind-key C-c confirm-before -p 'Kill session? (y/n)' kill-session
+
 set -s command-alias[10] cd='attach-session -t . -c'
 
 # load average on window RHS
