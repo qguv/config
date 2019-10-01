@@ -8,7 +8,7 @@ source "$XDG_CONFIG_HOME/bash/system"
 alias c='clear'
 alias e="$EDITOR"
 alias s='sudo -E'
-alias se="sudo -E $EDITOR"
+alias se='sudo -e'
 alias view="$EDITOR -R"
 alias beep="$BEEPCOMMAND"
 alias usermount="sudo mount -o fmask=111,dmask=000"
