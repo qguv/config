@@ -9,6 +9,10 @@ alias c='clear'
 alias e="$EDITOR"
 alias s='sudo -E'
 alias se='sudo -e'
+alias la='ls -A'
+alias ll='ls -l'
+alias lal='ls -Al'
+alias lla='ls -Al'
 alias view="$EDITOR -R"
 alias beep="$BEEPCOMMAND"
 alias usermount="sudo mount -o fmask=111,dmask=000"
