@@ -80,3 +80,30 @@ if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
   # attach the session
   exec tmux attach-session -t "$sid"
 fi
+
+# support for github.com/aykamko/tag
+if hash ag 2>/dev/null; then
+
+  export TAG_SEARCH_PROG=ag
+
+  # if tag is installed, add aliases as expected
+  if hash tag 2>/dev/null; then
+    tag() {
+      command tag "$@"
+      source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+    }
+    alias ag=tag
+
+  # if tag is not installed, install it
+  elif hash go 2>/dev/null; then
+    tag() {
+      if hash tag 2>/dev/null; then
+        command tag "$@"
+        source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+      else
+        go get -u github.com/aykamko/tag/...
+        go install github.com/aykamko/tag
+      fi
+    }
+  fi
+fi
