@@ -1,53 +1,13 @@
 [
-    // use ctrl+1 to maximize terminal
-    {"key": "ctrl+1", "command": "workbench.action.toggleMaximizedPanel"},
-    {"key": "ctrl+1", "command": "-workbench.action.focusFirstEditorGroup"},
-
     // ctrl+tab and ctrl+shift+tab should respect the order of tabs
     {"key": "ctrl+tab", "command": "-workbench.action.openNextRecentlyUsedEditorInGroup"},
     {"key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup"},
 
-    // retain original VS Code behavior for some shortcuts remapped by vscodevim
-    {"key": "ctrl+w", "command": "-extension.vim_ctrl+w", "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"},
-    {
-        "key": "ctrl+k",
-        "command": "-extension.vim_ctrl+k",
-        "when": "editorTextFocus && vim.active && vim.use<C-k> && !inDebugRepl"
-    },
-    {
-        "key": "ctrl+shift+down",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+down",
-        "command": "-workbench.action.terminal.scrollDown",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+up",
-        "command": "-workbench.action.terminal.scrollUp",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+up",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+1",
-        "command": "workbench.action.terminal.rename",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+l",
-        "command": "workbench.action.terminal.clear",
-        "when": "terminalFocus"
-    },
+    // terminals are disposable since TTY_USE_TMUX
+    {"key": "ctrl+`", "command": "workbench.action.terminal.kill", "when": "terminalFocus"},
 
-    // use vscodevim behavior for some shortcuts overridden by VS Code
-    // (I don't think this is necessary anymore)
-    // {"key": "ctrl+a", "command": "-editor.action.selectAll", "when": "textInputFocus"},
+    // new settings added by GUI
+
 ]

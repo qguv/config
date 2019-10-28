@@ -9,6 +9,7 @@
 
         // less visually aggressive colors for distracting badges
         "statusBar.background": "#222",
+        "statusBar.noFolderBackground": "#222",
         "activityBarBadge.background": "#555",
 
         // kasugano color scheme in the terminal
@@ -37,7 +38,9 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000, // ms
     "editor.autoClosingBrackets": "never",
+
     "terminal.integrated.inheritEnv": false,
+    //"go.gopath": "",
 
     // enable python linting
     "python.linting.flake8Enabled": true,
@@ -65,6 +68,19 @@
             }]
         }
     ],
+
+    // control whether certain chords are sent to vscodevim (true) or vscode (false)
+    "vim.handleKeys": {
+
+        // use vscode keyboard shortcuts for closing a window and for opening
+        // keyboard shortcut settings
+        "<C-w>": false,
+        "<C-k>": false,
+
+        // use vscodevim behavior for page up and down commands
+        "<C-d>": true,
+        "<C-u>": true,
+    },
 
     // disable microsoft surveillance
     "telemetry.enableCrashReporter": false,
