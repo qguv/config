@@ -29,8 +29,11 @@ source "$XDG_CONFIG_HOME/bash/prompt"
 # ...and settings specific to zsh
 if [ -n "$ZSH_VERSION" ]; then
   source "$XDG_CONFIG_HOME/zsh/compinstall"
-  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
   source "$XDG_CONFIG_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
+  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=black,bg=red'
+  ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='underline,bold'
 
 # ...and settings specific to bash
 else
