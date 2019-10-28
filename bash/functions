@@ -533,6 +533,35 @@ function blank() {
     -b:a 360k -r:a 44100 -shortest "$2"
 }
 
+git-remote-daemon() {
+  # $1: remote server
+  # $2: git directory
+  ssh -L 9418:localhost:9418 "$1" git daemon --export-all --base-path="$(dirname "$2")"
+}
+
+git-old-remote-branches() {
+  remote=origin
+  branch=develop
+
+  case $# in
+    0)
+      ;;
+    1)
+      remote=origin
+      branch="$1"
+      ;;
+    2)
+      remote="$1"
+      branch="$2"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+
+  git branch --all --sort=committerdate "--merged=$remote/$branch" | sed '/[ \/]'"$branch"$'/d' | sed 's:^\s+::g'
+}
+
 function _in() {
   local e match="$1"
   shift
