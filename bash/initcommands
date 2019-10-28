@@ -45,12 +45,29 @@ alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/config"
 
-# SSH is especially bad
+# because they're too slow, blacklist SSHFS-mounted filesystems from affecting
+# the prompt
+function __blacklist_sshfs_mounts() {
+  sshfs_mounts=$(mount | grep sshfs | cut -d' ' -f3)
+  IFS=$'\n'
+  ZSH_HIGHLIGHT_DIRS_BLACKLIST=($sshfs_mounts)
+  GIT_PROMPT_DIRS_BLACKLIST=($sshfs_mounts)
+  unset IFS
+}
+__blacklist_sshfs_mounts
+
+# now make it so this happens automatically after successful calls to sshfs
+function __sshfs_then_blacklist_mounts() {
+  command sshfs "$@"
+  __blacklist_sshfs_mounts
+}
+
 export SSH_ALIAS_OPTIONS="-F $XDG_CONFIG_HOME/ssh/config -o UserKnownHostsFile=$XDG_CONFIG_HOME/ssh/known_hosts"
 alias ssh="ssh $SSH_ALIAS_OPTIONS"
 alias mosh="mosh --ssh=\"ssh $SSH_ALIAS_OPTIONS\""
 alias scp="scp $SSH_ALIAS_OPTIONS"
 alias sftp="sftp $SSH_ALIAS_OPTIONS"
+alias sshfs="__sshfs_then_blacklist_mounts $SSH_ALIAS_OPTIONS"
 export GIT_SSH_COMMAND="ssh $SSH_ALIAS_OPTIONS "$@" 2>/dev/null"
 
 # other XDG_CONFIG_HOME remedies, courtesy <github.com/woegjiub>

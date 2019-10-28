@@ -533,3 +533,11 @@ function blank() {
     -b:a 360k -r:a 44100 -shortest "$2"
 }
 
+function _in() {
+  local e match="$1"
+  shift
+  for e; do
+      [ "$e" = "$match" ] && return 0
+  done
+  return 1
+}

@@ -2,49 +2,39 @@
 # prompt settings
 
 function __prompt_char() {
-    git rev-parse --git-dir >& /dev/null
-    if [ "$?" -eq 0 ]; then
-        echo -n '±'
-    elif [ "$USER" = 'root' ]; then
-        echo -n '#'
+    if ! _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && git rev-parse --git-dir >& /dev/null; then
+        printf '±'
+    elif [ $UID -eq 0 ]; then
+        printf '#'
     else
-        echo -n ']'
+        printf ']'
     fi
 }
 
 function __git_prompt() {
-    local DIRTY="%{$fg[yellow]%}"
-    local CLEAN="%{$fg[green]%}"
-    local UNMERGED="%{$fg[red]%}"
-    local RESET="%{$terminfo[sgr0]%}"
-    git rev-parse --git-dir >& /dev/null
-    if [[ $? == 0 ]]
-    then
-        echo -n ' -'
-        if [[ `git ls-files -u >& /dev/null` == '' ]]
-        then
-            git diff --quiet >& /dev/null
-            if [[ $? == 1 ]]
-            then
-                echo -n "$DIRTY"
-            else
-                git diff --cached --quiet >& /dev/null
-                if [[ $? == 1 ]]
-                then
-                    echo -n "$DIRTY"
-                else
-                    echo -n "$CLEAN"
-                fi
-            fi
-        else
-            echo -n "$UNMERGED"
-        fi
-        echo -n `git branch | grep '* ' | sed 's/..//'`
-        echo -n "$RESET"
-        echo -n '- '
+    printf ' '
+
+    # ignore blacklisted directories
+    _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && return
+
+    # ignore non-git directories
+    git rev-parse --git-dir >& /dev/null || return
+
+    # unmerged files (red highlight)
+    if [ -n "$(git ls-files -u >& /dev/null)" ]; then
+        printf '%%F{red}%%S'
+
+    # dirty working dir (red)
+    elif ! git diff --quiet >& /dev/null || ! git diff --cached --quiet >& /dev/null; then
+        printf '%%F{red}'
+
+    # clean working dir (green)
     else
-        echo -n ' '
+        printf '%%F{green}'
     fi
+
+    # get branch name or parenthesized message describing where we are
+    printf "$(git branch | sed -n '/\* /s:::p')%%f%%s "
 }
 
 if [ -n "$ZSH_VERSION" ]; then
