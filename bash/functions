@@ -1,9 +1,6 @@
 #!/bin/bash
 # shell custom functions
 
-# Use system-specific variables
-source "$XDG_CONFIG_HOME/bash/system"
-
 # Combines mkdir, cd, pwd
 function md () {
   mkdir -p "$@" &&

@@ -1,9 +1,6 @@
 #!/bin/bash
 # shell custom aliases
 
-# Use system-specific variables
-source "$XDG_CONFIG_HOME/bash/system"
-
 # UNIX
 alias c='clear'
 alias e="$EDITOR"
