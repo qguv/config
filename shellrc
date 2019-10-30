@@ -61,8 +61,6 @@ if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
   printf "system aliases not set up!\n"
 fi
 
-eval "$(ssh-agent -s)" > /dev/null
-
 # when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
 if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
 
