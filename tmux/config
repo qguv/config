@@ -34,5 +34,9 @@ bind-key C-c confirm-before -p 'Kill session? (y/n)' kill-session
 
 set -s command-alias[10] cd='attach-session -t . -c'
 
+# use system clipboard
+bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xsel -bi"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xsel -bi"
+
 # load average on window RHS
 set -g status-right "#(uptime | cut -d' ' -f12-)"
