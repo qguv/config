@@ -575,3 +575,19 @@ function _in() {
   done
   return 1
 }
+
+phoenix() {(
+  trap true INT
+  while
+    "$@" && sleep 1
+  do
+    continue
+  done
+)}
+
+function args() {
+  local arg
+  for arg; do
+    printf "\"$arg\"\n"
+  done
+}
