@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# fix LXD tty bug
-if tty -s && [ "$(tty)" = "not a tty" ]; then
-  exec script -q /dev/null
-fi
-
 # respect XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS="/etc/xdg"
@@ -13,15 +8,43 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
 
+# fix LXD tty bug
+if tty -s && [ "$(tty)" = "not a tty" ]; then
+  exec script -q /dev/null
+fi
+
 # prefer locally built packages
 export PATH="$HOME/.built/bin:$PATH"
+
+# initialize shell with custom settings...
+source "$XDG_CONFIG_HOME/bash/system"
+source "$XDG_CONFIG_HOME/bash/initcommands"
+
+# when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
+if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
+
+  # get the first detached session's ID
+  gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
+
+  # (or create one if necessary)
+  if [ -z "$gid" ]; then
+    gid="$(tmux new-session -dP)"
+  fi
+
+  # create a new session in that session group
+  sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+
+  # don't leave the session open if detached
+  (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
+
+  # attach the session
+  exec tmux attach-session -t "$sid"
+fi
 
 # prefer development binaries for go packages
 export PATH="$HOME/dev/go/bin:$PATH"
 
-# initialize shell with custom settings
-source "$XDG_CONFIG_HOME/bash/system"
-source "$XDG_CONFIG_HOME/bash/initcommands"
+# ...custom settings, continued
 source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 source "$XDG_CONFIG_HOME/bash/prompt"
@@ -59,27 +82,6 @@ export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0
 # remind user to set up system aliases
 if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
   printf "system aliases not set up!\n"
-fi
-
-# when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
-if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
-
-  # get the first detached session's ID
-  gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
-
-  # (or create one if necessary)
-  if [ -z "$gid" ]; then
-    gid="$(tmux new-session -dP)"
-  fi
-
-  # create a new session in that session group
-  sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
-
-  # don't leave the session open if detached
-  (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
-
-  # attach the session
-  exec tmux attach-session -t "$sid"
 fi
 
 # support for github.com/aykamko/tag
