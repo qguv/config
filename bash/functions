@@ -403,13 +403,18 @@ function pretend_usa () {
 }
 
 function gotify() {
-  if [ -z "$*" ]; then
-    return 0
+  message="$*"
+  if [ "$message" = '-' ] || [ -z "$message" ]; then
+    message="$(</dev/stdin)"
   fi
 
-  curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" -F "title=$(cat /etc/hostname)" -F "priority=8" -F "message=$*"
+  curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" \
+    -F "title=$(</etc/hostname)" \
+    -F "priority=8" \
+    -F "message=$message"
   curl_status=$?
   printf '\n'
+
   return $curl_status
 }
 
