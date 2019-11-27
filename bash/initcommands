@@ -111,9 +111,10 @@ alias rtorrent="rtorrent -n -o import=$XDG_CONFIG_HOME/rtorrent/conf"
 alias info='info --vi-keys'
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
-if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
-  export MANPAGER="$EDITOR -c 'set ft=man' -"
+if [ "$EDITOR" != "${EDITOR#nvim}" ]; then
+  MANPAGER="$EDITOR -c 'set ft=man' -"
 fi
+export MANPAGER
 
 # the `dotnet` command-line tool in .NET Core sends data to the mothership by default. Que tiempo!
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
