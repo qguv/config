@@ -402,6 +402,20 @@ function pretend_usa () {
   export LC_IDENTIFICATION="en_US.UTF-8"
 }
 
+stdin_type() {
+  stdin="$(ls -l /dev/stdin)"
+  stdin="${stdin/*-> /}"
+  case "$stdin" in
+    /dev/pts/[0-9]*)
+      return terminal
+      ;;
+    pipe:\[*)
+      return pipe
+      ;;
+  esac
+  return unknown
+}
+
 function gotify() {
   message="$*"
   if [ "$message" = '-' ] || [ -z "$message" ]; then
