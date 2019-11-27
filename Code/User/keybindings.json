@@ -8,6 +8,9 @@
     // terminals are disposable since TTY_USE_TMUX
     {"key": "ctrl+`", "command": "workbench.action.terminal.kill", "when": "terminalFocus"},
 
+    // disable ctrl+q since it's too easy to press this accidentally with vi keybindings
+    {"key": "ctrl+q", "command": "-workbench.action.quit"},
+
     // new settings added by GUI
 
 ]

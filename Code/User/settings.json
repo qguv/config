@@ -1,10 +1,13 @@
 {
     // appearance
     "editor.fontFamily": "Inconsolata-dz,Inconsolata,monospace",
-    "window.zoomLevel": -1,
-    "window.titleBarStyle": "custom",
     "editor.lineNumbers": "relative",
+    "editor.minimap.scale": 2,
+    "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
+    "git.enableStatusBarSync": false,
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": -1,
     "workbench.colorCustomizations": {
 
         // less visually aggressive colors for distracting badges
@@ -34,17 +37,18 @@
     },
 
     // behavior
+    "editor.autoClosingBrackets": "never",
     "explorer.confirmDelete": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000, // ms
-    "editor.autoClosingBrackets": "never",
-
-    "terminal.integrated.inheritEnv": false,
-    //"go.gopath": "",
-
-    // enable python linting
+    "files.insertFinalNewline": true,
+    "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "/usr/bin/flake8",
+    "python.linting.pylintEnabled": false,
+    "terminal.integrated.inheritEnv": false,
+    "trailing-spaces.deleteModifiedLinesOnly": true,
+    "trailing-spaces.trimOnSave": true,
 
     // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
     "go.formatTool": "gofmt",
@@ -72,9 +76,10 @@
     // control whether certain chords are sent to vscodevim (true) or vscode (false)
     "vim.handleKeys": {
 
-        // use vscode keyboard shortcuts for closing a window and for opening
-        // keyboard shortcut settings
+        // use vscode keyboard shortcuts for closing and opening windows and for
+        // opening keyboard shortcut settings
         "<C-w>": false,
+        "<C-n>": false,
         "<C-k>": false,
 
         // use vscodevim behavior for page up and down commands
@@ -87,6 +92,7 @@
     "telemetry.enableTelemetry": false,
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
+    "editor.renderFinalNewline": false,
 
     // new settings added by GUI
 }
