@@ -1,0 +1,143 @@
+exec swayidle -w \
+	timeout 300 'swaylock -f -c 000000' \
+	timeout 600 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep 'swaylock -f -c 000000'
+
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+input {
+	* {
+		xkb_layout "us,us"
+		xkb_variant "colemak,"
+		xkb_options "grp:rctrl_rshift_toggle"
+	}
+
+	"2:7:SynPS/2_Synaptics_TouchPad" {
+		tap enabled
+
+		natural_scroll enabled
+		dwt enabled
+	}
+
+	"2:10:TPPS/2_IBM_TrackPoint" {
+		natural_scroll enabled
+		dwt enabled
+	}
+}
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+bindsym {
+
+	# spawning and deleting windows
+	$mod+Return exec $term
+	$mod+Escape kill
+	$mod+Space exec $menu | xargs swaymsg exec --
+	$mod+Shift+c reload
+	$mod+Shift+e exec swaynag -t warning -m 'Really exit?' -b 'Yes' 'swaymsg exit'
+
+	# window focus
+	$mod+$left focus left
+	$mod+$down focus down
+	$mod+$up focus up
+	$mod+$right focus right
+	$mod+Left focus left
+	$mod+Down focus down
+	$mod+Up focus up
+	$mod+Right focus right
+
+	# window move
+	$mod+Shift+$left move left
+	$mod+Shift+$down move down
+	$mod+Shift+$up move up
+	$mod+Shift+$right move right
+	$mod+Shift+Left move left
+	$mod+Shift+Down move down
+	$mod+Shift+Up move up
+	$mod+Shift+Right move right
+
+	$mod+1 workspace 1
+	$mod+Shift+1 move container to workspace 1
+
+	$mod+2 workspace 2
+	$mod+Shift+2 move container to workspace 2
+
+	$mod+3 workspace 3
+	$mod+Shift+3 move container to workspace 3
+
+	$mod+4 workspace 4
+	$mod+Shift+4 move container to workspace 4
+
+	$mod+5 workspace 5
+	$mod+Shift+5 move container to workspace 5
+
+	$mod+6 workspace 6
+	$mod+Shift+6 move container to workspace 6
+
+	$mod+7 workspace 7
+	$mod+Shift+7 move container to workspace 7
+
+	$mod+8 workspace 8
+	$mod+Shift+8 move container to workspace 8
+
+	$mod+9 workspace 9
+	$mod+Shift+9 move container to workspace 9
+
+	$mod+0 workspace O
+	$mod+Shift+0 move container to workspace O
+
+	# You can "split" the current object of your focus with
+	# $mod+b or $mod+v, for horizontal and vertical splits
+	# respectively.
+	$mod+b splith
+	$mod+v splitv
+
+	# Switch the current container between different layout styles
+	$mod+s layout stacking
+	$mod+w layout tabbed
+	$mod+e layout toggle split
+
+	# Make the current focus fullscreen
+	$mod+f fullscreen
+
+	# Toggle the current focus between tiling and floating mode
+	$mod+Shift+Space floating toggle
+
+	# Swap focus between the tiling area and the floating area
+	$mod+Tab focus mode_toggle
+
+	# Move focus to the parent container
+	$mod+a focus parent
+
+	# Sway has a "scratchpad", which is a bag of holding for windows.
+	# You can send windows there and get them back later.
+	$mod+Shift+minus move scratchpad
+
+	# Show the next scratchpad window or hide the focused scratchpad window.
+	# If there are multiple scratchpad windows, this command cycles through them.
+	$mod+minus scratchpad show
+}
+
+bindsym $mod+r mode "resize"
+mode "resize" bindsym {
+	Return mode "default"
+	Escape mode "default"
+
+	$left resize shrink width 10px
+	Left resize shrink width 10px
+
+	$down resize grow height 10px
+	Down resize grow height 10px
+
+	$up resize shrink height 10px
+	Up resize shrink height 10px
+
+	$right resize grow width 10px
+	Right resize grow width 10px
+}

@@ -1,0 +1,16 @@
+set {
+	# super
+	$mod Mod4
+
+	$term st
+	$menu dmenu_path | dmenu
+	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
+
+	$left h
+	$down j
+	$up k
+	$right l
+}
+
+include /home/qguv/.config/sway/*.sway
+include /etc/sway/config.d/*
