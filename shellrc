@@ -14,15 +14,17 @@ export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$HOME/go/bin:$PATH"
 
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
+source "$XDG_CONFIG_HOME/bash/functions"
+source "$XDG_CONFIG_HOME/bash/aliases"
 
 if tty -s; then
-  should_start_sway=false
-  if [ "$START_SWAY" = true ] && [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
-      should_start_sway=true
-  fi
+  while [ "$START_SWAY" = true ] && [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; do
+    sway
+    sleep 5
+  done
 
   # when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
-  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && [ "$should_start_sway" = false ]; then
+  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ]; then
 
     # get the first detached session's ID
     gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
@@ -41,13 +43,6 @@ if tty -s; then
     # attach the session
     exec tmux attach-session -t "$sid"
   fi
-
-  source "$XDG_CONFIG_HOME/bash/functions"
-  source "$XDG_CONFIG_HOME/bash/aliases"
-
-  while [ $should_start_sway = true ]; do
-      sway
-  done
 
   source "$XDG_CONFIG_HOME/bash/prompt"
 fi
