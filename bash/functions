@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # shell custom functions
 
 # Combines mkdir, cd, pwd
@@ -604,4 +604,20 @@ function args() {
   for arg; do
     printf "\"$arg\"\n"
   done
+}
+
+functions statusbar() {
+  if ip addr | grep -F nordvpn- > /dev/null; then
+    printf "vpn ok"
+  else
+    printf "no vpn!"
+  fi
+
+  printf " | "
+
+  printf %s "$(uptime | sed "s@^.*load average: \(.*\), \(.*\), \(.*\)@\1 \2 \3@")"
+
+  printf " | "
+
+  date "+%Y-%m-%d %H:%M"
 }

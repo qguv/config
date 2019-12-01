@@ -1,5 +1,5 @@
-#!/bin/bash
-# system-specific commands
+#!/bin/sh
+# system-specific configuration
 
 export SYSTEM_ALIASES_NOT_SET_UP=1
 export PYTHON3NAME='python3'
@@ -16,6 +16,7 @@ export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
 export GOTIFY_TOKEN=''
 export TTY_USE_TMUX='true'
+export START_SWAY='false'
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"

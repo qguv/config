@@ -1,5 +1,5 @@
-#!/bin/bash
-# prompt settings
+#!/bin/sh
+# configure interactive shell
 
 function __prompt_char() {
     if ! _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && git rev-parse --git-dir >& /dev/null; then
@@ -37,16 +37,80 @@ function __git_prompt() {
     printf "$(git branch | sed -n '/\* /s:::p')%%f%%s "
 }
 
-if [ -n "$ZSH_VERSION" ]; then
-    setopt prompt_subst
-    RPS1='%~$(__git_prompt)(%n@%m)'
-else
-    shopt -s promptvars
-fi
-
 PS1='$(__prompt_char) '
 
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 PS1='${debian_chroot:+($debian_chroot)}'"$PS1"
+
+if [ -n "$ZSH_VERSION" ]; then
+  source "$XDG_CONFIG_HOME/zsh/compinstall"
+  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
+  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=black,bg=red'
+  ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='underline,bold'
+
+  setopt prompt_subst
+  RPS1='%~$(__git_prompt)(%n@%m)'
+  autoload bashcompinit
+  bashcompinit
+  source /usr/share/bash-completion/completions/nordvpn
+
+else
+  HISTCONTROL=ignoreboth
+  HISTSIZE=1000
+  HISTFILESIZE=2000
+
+  shopt -s histappend checkwinsize globstar promptvars
+  bind -m vi-insert "\C-l":clear-screen
+fi
+
+# activate dircolors if installed
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# use vi line-editing keybindings
+set -o vi
+
+# detect shellshock bug over ssh
+export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
+
+# remind user to set up system aliases
+if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
+  printf "system aliases not set up!\n"
+fi
+
+# support for github.com/aykamko/tag
+if hash ag 2>/dev/null; then
+
+  export TAG_SEARCH_PROG=ag
+
+  # if tag is installed, add aliases as expected
+  if hash tag 2>/dev/null; then
+    tag() {
+      command tag "$@"
+      source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+    }
+    alias ag=tag
+
+  # if tag is not installed, install it
+  elif hash go 2>/dev/null; then
+    tag() {
+      if hash tag 2>/dev/null; then
+        command tag "$@"
+        source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+      else
+        go get -u github.com/aykamko/tag/...
+        go install github.com/aykamko/tag
+      fi
+    }
+  fi
+fi
+
+# fix LXD tty bug
+if tty -s && [ "$(tty)" = "not a tty" ]; then
+  exec script -q /dev/null
+fi

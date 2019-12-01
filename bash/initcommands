@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # initialization command aliases
 
 # OS X is special

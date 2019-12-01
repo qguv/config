@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# shell startup
 
 # respect XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -8,105 +9,45 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
 
-# fix LXD tty bug
-if tty -s && [ "$(tty)" = "not a tty" ]; then
-  exec script -q /dev/null
-fi
-
 # prefer locally built packages
-export PATH="$HOME/.built/bin:$PATH"
+export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$HOME/go/bin:$PATH"
 
-# initialize shell with custom settings...
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
 
-# when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
-if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && tty -s; then
-
-  # get the first detached session's ID
-  gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
-
-  # (or create one if necessary)
-  if [ -z "$gid" ]; then
-    gid="$(tmux new-session -dP)"
+if tty -s; then
+  should_start_sway=false
+  if [ "$START_SWAY" = true ] && [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
+      should_start_sway=true
   fi
 
-  # create a new session in that session group
-  sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+  # when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
+  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && [ "$should_start_sway" = false ]; then
 
-  # don't leave the session open if detached
-  (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
+    # get the first detached session's ID
+    gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
 
-  # attach the session
-  exec tmux attach-session -t "$sid"
-fi
+    # (or create one if necessary)
+    if [ -z "$gid" ]; then
+      gid="$(tmux new-session -dP)"
+    fi
 
-# prefer development binaries for go packages
-export PATH="$HOME/dev/go/bin:$PATH"
+    # create a new session in that session group
+    sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
 
-# ...custom settings, continued
-source "$XDG_CONFIG_HOME/bash/functions"
-source "$XDG_CONFIG_HOME/bash/aliases"
-source "$XDG_CONFIG_HOME/bash/prompt"
+    # don't leave the session open if detached
+    (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
 
-# ...and settings specific to zsh
-if [ -n "$ZSH_VERSION" ]; then
-  source "$XDG_CONFIG_HOME/zsh/compinstall"
-  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
-  source "$XDG_CONFIG_HOME/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=black,bg=red'
-  ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='underline,bold'
-
-# ...and settings specific to bash
-else
-  HISTCONTROL=ignoreboth
-  HISTSIZE=1000
-  HISTFILESIZE=2000
-
-  shopt -s histappend checkwinsize globstar
-  bind -m vi-insert "\C-l":clear-screen
-fi
-
-# activate dircolors if installed
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-# use vi line-editing keybindings
-set -o vi
-
-# detect shellshock bug over ssh
-export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
-
-# remind user to set up system aliases
-if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
-  printf "system aliases not set up!\n"
-fi
-
-# support for github.com/aykamko/tag
-if hash ag 2>/dev/null; then
-
-  export TAG_SEARCH_PROG=ag
-
-  # if tag is installed, add aliases as expected
-  if hash tag 2>/dev/null; then
-    tag() {
-      command tag "$@"
-      source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
-    }
-    alias ag=tag
-
-  # if tag is not installed, install it
-  elif hash go 2>/dev/null; then
-    tag() {
-      if hash tag 2>/dev/null; then
-        command tag "$@"
-        source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
-      else
-        go get -u github.com/aykamko/tag/...
-        go install github.com/aykamko/tag
-      fi
-    }
+    # attach the session
+    exec tmux attach-session -t "$sid"
   fi
+
+  source "$XDG_CONFIG_HOME/bash/functions"
+  source "$XDG_CONFIG_HOME/bash/aliases"
+
+  while [ $should_start_sway = true ]; do
+      sway
+  done
+
+  source "$XDG_CONFIG_HOME/bash/prompt"
 fi

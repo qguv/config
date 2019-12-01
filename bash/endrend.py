@@ -4,7 +4,7 @@
 Turns endnotes in the form "[[endnote]]" to normal numbered endnotes.
 
 Usage:
-    endrend [options]
+    endrend [options] < mail.txt > newmail.txt
 
 Options:
     -p PREFIX, --prepend PREFIX  Prepend a string to each endnote number.
