@@ -606,7 +606,7 @@ function args() {
   done
 }
 
-functions statusbar() {
+function statusbar() {
   if ip addr | grep -F nordvpn- > /dev/null; then
     printf "vpn ok"
   else
