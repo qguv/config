@@ -606,7 +606,7 @@ function args() {
   done
 }
 
-functions statusbar() {
+function statusbar() {
   if ip addr | grep -F nordvpn- > /dev/null; then
     printf "vpn ok"
   else
@@ -621,3 +621,35 @@ functions statusbar() {
 
   date "+%Y-%m-%d %H:%M"
 }
+
+# show only stdin lines matching a tag, but remove the tag itself
+function tagged() {(
+  while read line; do
+    unset spaces
+
+    # get part before tag, maybe with space
+    prefix="${line%%" $*"*}"
+    if [ "$prefix" = "$line" ]; then
+      prefix="${line%%"$*"*}"
+    else
+      spaces=x
+    fi
+
+    if [ "$prefix" != "$line" ]; then
+
+      # get part after tag, maybe with space
+      suffix="${line#*"$* "}"
+      if [ "$suffix" = "$line" ]; then
+        suffix="${line#*"$*"}"
+      else
+        spaces=x$spaces
+      fi
+
+      if [ $spaces = xx ]; then
+        printf '%s %s\n' "$prefix" "$suffix"
+      else
+        printf '%s%s\n' "$prefix" "$suffix"
+      fi
+    fi
+  done
+)}
