@@ -15,30 +15,62 @@
 	smtpencryption = tls
 	confirm = auto
 [alias]
-	# Get the child commit of the current commit.
-	# Use $1 instead of 'HEAD' if given. Use $2 instead of curent branch if given.
-	child = "!bash -c 'git log --format=%H --reverse --ancestry-path ${1:-HEAD}..${2:\"$(git rev-parse --abbrev-ref HEAD)\"} | head -1' -"
-
-	# For the current (or specified) commit-ish, get the all children
-	children = "!bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -"
-
+	# simple typing shortcuts
 	co = checkout
 	cm = commit
 	ff = merge --ff-only
 	lo = log --oneline
+	refgraph = log --graph --decorate --pretty=oneline --abbrev-commit --simplify-by-decoration --simplify-merges
+
+	# submit patch to lkml
+	lmkl = send-email --annotate --cover-letter --signoff
+
+	# more useful `git grep`
 	g = grep --break --heading --line-number
-	se = send-email --annotate --cover-letter --signoff
+
+	# ignore changes to an already-tracked file
 	ignore = update-index --assume-unchanged
 	track = update-index --no-assume-unchanged
-	ignored = "!f() { git ls-files -v | egrep '^[a-z]' | cut -d' ' -f2-; }; f"
+	ignored = "!f() { git ls-files -v \"$@\" | sed -n 's:^h ::p'; }; f"
+
+	# more comprehensive commit log
 	flog = log --decorate --notes --stat
+
+	# show which files are tracked
 	ls = ls-tree --name-only HEAD
+
+	# a pretty log that shows branches, merge history, and tags
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
-	refgraph = log --graph --decorate --pretty=oneline --abbrev-commit --simplify-by-decoration --simplify-merges
+
+	# alter last commit to incorporate currently staged changes
 	whoops = commit --amend --no-edit
-	sub-add = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
-	sub-update = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
-	ignored = "!f() { git ls-files -v | grep '^h'; }; f"
+
+	# move a tag to a ref (default HEAD) and push to a remote (default "origin")
+	release = "!f(){ git tag -f \"${1:?'Usage: git release TAG [REMOTE] [REF]'}\" \"${3:-HEAD}\" \"$@\" && git push -f \"${2:-origin}\" \"$1\"; }; f"
+
+	# list merged branches
+	merged-branches="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
+
+	# add/update a subtree as easily as a submodule
+	sub-add = "!f() { usage='Usage: git sub-add REPO_LINK SUBDIR'; git subtree add --prefix \"${2:?$usage}\" \"${1:?$usage}\" master --squash \"$@\"; }; f"
+	sub-update = "!f() { usage='Usage: git sub-update REPO_LINK SUBDIR'; git subtree pull --prefix \"${2:?$usage}\" \"${1:?$usage}\" master --squash \"$@\"; }; f"
+
+	# push to all remotes; takes all regular push arguments
+	push-all = "!f() { git remote | while read line; do git push \"$line\" \"$@\" || return 1; done; }; f"
+
+	# start a git daemon on remote server $1 from remote git dir $2 and
+	# make it accessible as if it were run on the local machine
+	remote-daemon="!f() { usage='Usage: git remote-daemon SERVER REMOTE_GIT_DIR'; ssh -L 9418:localhost:9418 \"${1:?$usage}\" git daemon --export-all --base-path=\"$(dirname \"${2:?$usage}\")\" \"$@\"; }; f"
+
+	# Get the child commit of the current commit.
+	# Use $1 instead of 'HEAD' if given. Use $2 instead of curent branch if given.
+	# (source unknown)
+	child = "!f() {bash -c 'git log --format=%H --reverse --ancestry-path ${1:-HEAD}..${2:\"$(git rev-parse --abbrev-ref HEAD)\"} | head -1' -}; f"
+
+	# For the current (or specified) commit-ish, get the all children
+	# (source unknown)
+	children = "!f() {bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -}; f"
+
 [interactive]
 	singlekey = true
 [http]

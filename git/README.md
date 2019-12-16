@@ -33,7 +33,7 @@ To activate:
 
     git config --global alias.ignore update-index --assume-unchanged
     git config --global alias.track update-index --no-assume-unchanged
-    git config --global alias.ignored '!f() { git ls-files -v | egrep "^[a-z]" | cut -d" " -f2-; }; f'
+    git config --global alias.ignored '!f() { git ls-files -v \"$@\" | sed -n '"'s:^h ::p'"'; }; f'
     git ignore [filename...]
     git track [filename...]
 
@@ -91,7 +91,16 @@ To activate:
 
 To activate:
 
-    git config --global alias.release '!f(){ [ -z "$1" ] && echo "Usage: git release (qa | uat | production) [COMMIT]" && echo "  COMMIT defaults to HEAD if not specified" && return || git tag -f "$1" "${2:-HEAD}" && git push -f origin "$1"; }; f'
-    git release (qa | uat | production) [COMMIT]
+    git config --global alias.release '!f(){ git tag -f \"${1:?'"'Usage: git release TAG [REMOTE] [REF]'"'}\" \"${3:-HEAD}\" \"$@\" && git push -f \"${2:-origin}\" \"$1\"; }; f'
+    git release TAG [REMOTE] [REF]
+
+</details>
+<details>
+<summary>merged-branches: list branches that have been merged into the current branch</summary><br />
+
+To activate:
+
+    git config --global alias.merged-branches '!f() { git branch --merged \"$@\" | sed -n '"'s:^  ::p'"'; }; f'
+    git merged-branches [REF]
 
 </details>

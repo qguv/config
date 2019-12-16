@@ -108,13 +108,6 @@ function movetotrash() {
   return 0
 }
 
-# Push to all remotes in git
-function git-push-all () {
-  for r in $(git remote); do
-    git push "$r" "$@"
-  done
-}
-
 function git-diff-words() {
   git diff --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
   return "$?"
@@ -552,12 +545,6 @@ function blank() {
     -b:a 360k -r:a 44100 -shortest "$2"
 }
 
-git-remote-daemon() {
-  # $1: remote server
-  # $2: git directory
-  ssh -L 9418:localhost:9418 "$1" git daemon --export-all --base-path="$(dirname "$2")"
-}
-
 git-old-remote-branches() {
   remote=origin
   branch=develop
@@ -578,7 +565,7 @@ git-old-remote-branches() {
       ;;
   esac
 
-  git branch --all --sort=committerdate "--merged=$remote/$branch" | sed '/[ \/]'"$branch"$'/d' | sed 's:^\s+::g'
+  git branch --all --sort=committerdate "--merged=$remote/$branch" | sed '/[ \/]'"$branch"$'/d' | sed 's:^\s*::g'
 }
 
 function _in() {
