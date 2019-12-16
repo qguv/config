@@ -2,7 +2,9 @@
 # configure interactive shell
 
 function __prompt_char() {
-    if ! _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && git rev-parse --git-dir >& /dev/null; then
+    if [ $? -ne 0 ]; then
+        printf '!'
+    elif ! _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && git rev-parse --git-dir >& /dev/null; then
         printf '±'
     elif [ $UID -eq 0 ]; then
         printf '#'
