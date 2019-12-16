@@ -3,6 +3,7 @@
     "editor.fontFamily": "Inconsolata-dz,Inconsolata,monospace",
     "editor.lineNumbers": "relative",
     "editor.minimap.scale": 2,
+    "editor.renderFinalNewline": false,
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
     "git.enableStatusBarSync": false,
@@ -11,9 +12,9 @@
     "workbench.colorCustomizations": {
 
         // less visually aggressive colors for distracting badges
+        "activityBarBadge.background": "#555",
         "statusBar.background": "#222",
         "statusBar.noFolderBackground": "#222",
-        "activityBarBadge.background": "#555",
 
         // kasugano color scheme in the terminal
         "terminal.background": "#1b1b1b",       // BG
@@ -55,22 +56,23 @@
 
     // fix a LONGSTANDING vim issue that causes vscodevim to undo/redo recursively
     // https://github.com/VSCodeVim/Vim/issues/2007#issuecomment-417468079
-    "vim.normalModeKeyBindingsNonRecursive": [{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
             "before": ["u"],
             "after": [],
             "commands": [{
                 "command": "undo",
-                "args": []
-            }]
+                "args": [],
+            }],
         },
         {
             "before": ["<C-r>"],
             "after": [],
             "commands": [{
                 "command": "redo",
-                "args": []
-            }]
-        }
+                "args": [],
+            }],
+        },
     ],
 
     // control whether certain chords are sent to vscodevim (true) or vscode (false)
@@ -92,7 +94,9 @@
     "telemetry.enableTelemetry": false,
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
-    "editor.renderFinalNewline": false,
+    "gitlens.advanced.telemetry.enabled": false,
+    "githubPullRequests.telemetry.enabled": false,
 
     // new settings added by GUI
+    "": {},
 }
