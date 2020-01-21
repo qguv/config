@@ -1,0 +1,6 @@
+[Unit]
+Description=Jupyter notebook server
+
+[Service]
+ExecStart=/usr/bin/jupyter-notebook --no-browser --transport=ipc
+WorkingDirectory=/home/qguv/dev
