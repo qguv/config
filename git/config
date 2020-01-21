@@ -48,8 +48,8 @@
 	# move a tag to a ref (default HEAD) and push to a remote (default "origin")
 	release = "!f(){ git tag -f \"${1:?'Usage: git release TAG [REMOTE] [REF]'}\" \"${3:-HEAD}\" \"$@\" && git push -f \"${2:-origin}\" \"$1\"; }; f"
 
-	# list merged branches
-	merged-branches="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
+	# list named parents of current HEAD; this is one way to find out if a branch has been merged into this one
+	ancestors="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
 
 	# add/update a subtree as easily as a submodule
 	sub-add = "!f() { usage='Usage: git sub-add REPO_LINK SUBDIR'; git subtree add --prefix \"${2:?$usage}\" \"${1:?$usage}\" master --squash \"$@\"; }; f"
