@@ -89,3 +89,5 @@
 	fixes = Fixes: %h (\"%s\")
 [merge]
 	tool = meld
+[fetch]
+	recurseSubmodules = on-demand
