@@ -640,3 +640,11 @@ function tagged() {(
     fi
   done
 )}
+
+function certbot-list() {
+    sudo certbot certificates 2> /dev/null | grep 'Domains: ' | sed 's/^.*Domains: //'
+}
+
+function certbot-add() {
+    sudo certbot -d "$(certbot-list | head -n 1 | tr ' ' ,),$*" --expand
+}
