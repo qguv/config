@@ -20,7 +20,7 @@ source "$XDG_CONFIG_HOME/bash/aliases"
 if tty -s; then
   while [ "$START_SWAY" = true ] && [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; do
     sway
-    sleep 5
+    sleep 5 || break
   done
 
   # when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
