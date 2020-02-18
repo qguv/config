@@ -58,8 +58,11 @@ if [ -n "$ZSH_VERSION" ]; then
   RPS1='%~$(__git_prompt)(%n@%m)'
   autoload bashcompinit
   bashcompinit
-  source /usr/share/bash-completion/completions/nordvpn
+  alias _have=hash
+  [ -r /usr/share/bash-completion/completions/nordvpn ] && source /usr/share/bash-completion/completions/nordvpn
+  [ -r /usr/share/bash-completion/completions/lxc ] && source /usr/share/bash-completion/completions/lxc
 
+# bash, most likely
 else
   HISTCONTROL=ignoreboth
   HISTSIZE=1000
