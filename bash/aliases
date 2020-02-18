@@ -116,3 +116,4 @@ alias monitor-line-in="pactl load-module module-loopback"
 alias unmonitor-line-in="pactl unload-module module-loopback"
 alias updsrcinfo='makepkg --printsrcinfo > .SRCINFO'
 alias whatfs='( while ! findmnt .; do cd ..; done )'
+alias occ='ssh cloud.guvernator.net sudo -u http /usr/share/webapps/nextcloud/occ'
