@@ -11,6 +11,10 @@
     // disable ctrl+q since it's too easy to press this accidentally with vi keybindings
     {"key": "ctrl+q", "command": "-workbench.action.quit"},
 
+    // python
+    {"key": "f5", "command": "python.runtests", "when": "!inDebugMode"},
+    {"key": "alt+p", "command": "python.datascience.showhistorypane"},
+
     // new settings added by GUI
     {},
 ]
