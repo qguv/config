@@ -32,13 +32,19 @@ if tty -s; then
     # get the first detached session's ID
     gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
 
-    # (or create one if necessary)
+    unset wid
     if [ -z "$gid" ]; then
       gid="$(tmux new-session -dP)"
+      wid="$gid"
     fi
 
     # create a new session in that session group
     sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+
+    # create window if we didn't before
+    if [ -z "$wid" ]; then
+      wid="$(tmux new-window -Pt "$sid")"
+    fi
 
     # don't leave the session open if detached
     (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
