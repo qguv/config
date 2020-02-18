@@ -47,7 +47,6 @@
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "terminal.integrated.inheritEnv": false,
     "trailing-spaces.deleteModifiedLinesOnly": true,
     "trailing-spaces.trimOnSave": true,
 
