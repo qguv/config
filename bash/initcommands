@@ -116,6 +116,10 @@ if [ "$EDITOR" != "${EDITOR#nvim}" ]; then
 fi
 export MANPAGER
 
+# pipenv should store its virtual environments locally to simplify PYTHONPATH,
+# especially for vscode's python.pythonpath option
+export PIPENV_VENV_IN_PROJECT=1
+
 # the `dotnet` command-line tool in .NET Core sends data to the mothership by default. Que tiempo!
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 

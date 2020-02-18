@@ -26,7 +26,17 @@ zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/compinstall"
 
 autoload -Uz compinit
 compinit
+
 # End of lines added by compinstall
+
+# pipenv completion
+_pipenv() {
+  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIPENV_COMPLETE=complete-zsh  pipenv)
+}
+if hash pipenv > /dev/null && [ "$(basename -- ${(%):-%x})" != _pipenv ]; then
+  compdef _pipenv pipenv
+fi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=/dev/null
 HISTSIZE=1000
