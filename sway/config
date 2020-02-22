@@ -2,7 +2,7 @@ set {
 	# super
 	$mod Mod4
 
-	$term st
+	$term alacritty
 	$menu dmenu_path | dmenu
 	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
 
