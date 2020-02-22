@@ -52,7 +52,7 @@
 	ancestors="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
 
 	# add/update a subtree as easily as a submodule
-	sub-add = "!f() { usage='Usage: git sub-add REPO_LINK SUBDIR'; git subtree add --prefix \"${2:?$usage}\" \"${1:?$usage}\" master --squash \"$@\"; }; f"
+	sub-add = "!f() { usage='Usage: git sub-add REPO_LINK SUBDIR'; repo_link=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree add --prefix \"$subdir\" \"$repo_link\" master --squash \"$@\"; }; f"
 	sub-update = "!f() { usage='Usage: git sub-update REPO_LINK SUBDIR'; git subtree pull --prefix \"${2:?$usage}\" \"${1:?$usage}\" master --squash \"$@\"; }; f"
 
 	# push to all remotes; takes all regular push arguments
