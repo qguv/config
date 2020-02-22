@@ -26,28 +26,44 @@ if tty -s; then
     sleep 5 || break
   done
 
-  # when this feature is enabled, connect every shell that's attached to a real TTY to the same tmux window group
+  # when this feature is enabled, start tmux at every interactive shell
   if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ]; then
 
-    # get the first detached session's ID
-    gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
-
     unset wid
-    if [ -z "$gid" ]; then
-      gid="$(tmux new-session -dP)"
-      wid="$gid"
+    unset gid
+    unset sid
+
+    # when enabled, all tmux windows are connected to the same window group
+    if [ "$TTY_TMUX_SHARED" = true ]; then
+
+      # get the first detached session's ID
+      gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
+
+      if [ -z "$gid" ]; then
+        gid="$(tmux new-session -dP)"
+        wid="$gid"
+      fi
+
+      # create a new session in that session group
+      sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+
+      # create window if we didn't before
+      if [ -z "$wid" ]; then
+        wid="$(tmux new-window -Pt "$sid")"
+      fi
+
+      # don't leave the session open if detached
+      (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
+
+    # otherwise start tmux in the "normal" way, just to give us scrollback and
+    # reattach support when windows crash
+    else
+
+      # to use .config/bash/initcommand we must start tmux in a subshell
+      sid="$(tmux new-session -dP)"
+
+      tmux set-option -t "$sid" status off
     fi
-
-    # create a new session in that session group
-    sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
-
-    # create window if we didn't before
-    if [ -z "$wid" ]; then
-      wid="$(tmux new-window -Pt "$sid")"
-    fi
-
-    # don't leave the session open if detached
-    (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
 
     # attach the session
     exec tmux attach-session -t "$sid"

@@ -15,8 +15,9 @@ export CLIPBOARDPASTE='xsel -bo'
 export OPENCOMMAND='xdg-open'
 export TRASHCOMMAND='movetotrash'
 export GOTIFY_TOKEN=''
-export TTY_USE_TMUX='true'
-export START_SWAY='false'
+export TTY_USE_TMUX=true
+export TTY_TMUX_SHARED=false
+export START_SWAY=false
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
