@@ -470,8 +470,34 @@ function report() {
   fi
 }
 
-beginswith() {
-  case $2 in "$1"*) true;; *) false;; esac;
+function _startswith() {
+  usage="Usage: $0 STRING PREFIX"
+  string="${1:?$usage}"
+  prefix="${2:?$usage}"
+
+  case "$string" in
+      "$prefix"*)
+          true
+          ;;
+      *)
+          false
+          ;;
+  esac
+}
+
+function _endswith() {
+  usage="Usage: $0 STRING SUFFIX"
+  string="${1:?$usage}"
+  suffix="${2:?$usage}"
+
+  case "$string" in
+      *"$suffix")
+          true
+          ;;
+      *)
+          false
+          ;;
+  esac
 }
 
 giti() {(
@@ -481,7 +507,7 @@ giti() {(
   do
 
     # some commands are treated as non-git commands
-    if beginswith 'cd ' "$line " || beginswith 'ls ' "$line " || beginswith 'mkdir ' "$line "; then
+    if _startswith "$line " 'cd ' || _startswith "$line " 'ls ' || _startswith "$line " 'mkdir '; then
       printf "\033[1A\033[2K> $line\n"
       eval "$line"
 
