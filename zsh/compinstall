@@ -33,7 +33,7 @@ compinit
 _pipenv() {
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIPENV_COMPLETE=complete-zsh  pipenv)
 }
-if hash pipenv > /dev/null && [ "$(basename -- ${(%):-%x})" != _pipenv ]; then
+if hash pipenv 2> /dev/null && [ "$(basename -- ${(%):-%x})" != _pipenv ]; then
   compdef _pipenv pipenv
 fi
 
