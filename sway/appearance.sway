@@ -8,10 +8,8 @@ default_border pixel 5
 bar {
 	position top
 
-	# When the status_command prints a new line to stdout, swaybar updates.
-	# The default just shows the current date and time.
-	#status_command while statusbar; do sleep 1; done
-	status_command while true; do printf %s '"$([ -z "$(ip addr | grep -F nordvpn-)"] && printf "no vpn!" || printf "vpn ok") | $(uptime | sed "s@^.*load average: \(.*\), \(.*\), \(.*\)@\1 \2 \3@") | $(date "+%Y-%m-%d %H:%M")";' sleep 1; done
+	status_command i3status
+	separator_symbol " | "
 
 	colors {
 		statusline #ffffff
