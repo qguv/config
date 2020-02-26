@@ -91,3 +91,4 @@
 	tool = meld
 [fetch]
 	recurseSubmodules = on-demand
+	parallel = 8
