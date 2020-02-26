@@ -44,6 +44,7 @@ bindsym {
 
 	# spawning and deleting windows
 	$mod+Escape kill
+	Mod1+F4 kill
 	$mod+Return exec $term
 	$mod+Space exec $menu | xargs swaymsg exec --
 
