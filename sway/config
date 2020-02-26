@@ -5,6 +5,7 @@ set {
 	$term alacritty
 	$menu dmenu_path | dmenu
 	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
+	$lock swaylock -f -e --indicator-idle-visible -i $wp
 
 	$left h
 	$down j
