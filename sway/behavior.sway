@@ -37,7 +37,7 @@ bindsym {
 
 	# meta
 	$mod+Shift+c reload
-	$mod+Shift+e exec printf | dmenu -p "Exit sway? [return/esc]" && swaymsg exit
+	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "Exit sway?")" = yes ] && swaymsg exit'
 
 	$mod+F5 exec networkmanager_dmenu
 	$mod+Shift+F5 exec nm-connection-editor
