@@ -11,6 +11,8 @@ bar {
 	status_command i3status
 	separator_symbol " | "
 
+	mode hide
+	modifier Mod1
 	colors {
 		statusline #ffffff
 		background #323232
