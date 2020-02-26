@@ -14,7 +14,7 @@ if [ "$1" = clean ]; then
 
 else
     find "$XDG_CONFIG_HOME/PulseEffects/community" -type f -path '*.json' | while read f; do
-        ln -fs "$f" "$XDG_CONFIG_HOME/PulseEffects/input"
+        ln -fs "$f" "$XDG_CONFIG_HOME/PulseEffects/output"
         echo "${f##*/}" >&2
     done
 fi
