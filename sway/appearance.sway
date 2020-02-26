@@ -20,6 +20,18 @@ bar {
 	}
 }
 
+output eDP-1 {
+	scale 1.5
+	mode 3200x1800@59.695999Hz
+	pos 0 528
+}
+
+output HDMI-A-2 {
+	scale 1.25
+	mode 3840x2160@30Hz
+	pos 2133 0
+}
+
 output * {
 	background $wp fill #222222
 }
