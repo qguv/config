@@ -115,6 +115,33 @@ if hash ag 2>/dev/null; then
   fi
 fi
 
+if [ "$TTY_TMUX_SHARED" != true ]; then
+    dsids="$(tmux-detached)"
+    if [ -n "$dsids" ]; then
+
+        ndsids="$(echo "$dsids" | wc -l)"
+
+        # plural
+        if [ "$ndsids" -ne 1 ]; then
+            plural='s'
+            one_it='one'
+            arg=" [$(printf "$dsids" | tr '\n' '|' | tr -d ':')]"
+
+        # singluar
+        else
+            ndsids='a'
+            plural=''
+            one_it='it'
+            arg=''
+        fi
+
+        echo "You have $ndsids detached tmux session$plural! You can resume $one_it by typing:" | fmt -w 80
+        echo "  tmux-resume$arg" | fmt -w 80
+        echo "Note: this will destroy your current session!"
+        printf '\n'
+    fi
+fi
+
 # fix LXD tty bug
 if tty -s && [ "$(tty)" = "not a tty" ]; then
   exec script -q /dev/null

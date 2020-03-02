@@ -674,3 +674,26 @@ function certbot-list() {
 function certbot-add() {
     sudo certbot -d "$(certbot-list | head -n 1 | tr ' ' ,),$*" --expand
 }
+
+function tmux-detached() {
+    tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:'
+}
+
+function tmux-resume() {
+
+    sid="$1"
+    if [ -z "$sid" ]; then
+      sid="$(tmux-detached | head -n 1)"
+      if [ -z "$sid" ]; then
+        echo 'No detached tmux session to resume!' >&2
+        return 1
+      fi
+    fi
+
+    # if not in a tmux session, just attach directly
+    [ -z "$TMUX" ] && exec tmux attach-session -t "$sid"
+
+    cid="$(tmux display-message -p '#{client_name}')"
+    tmux set-option -t "$cid" destroy-unattached on
+    tmux switch-client -c "$cid" -t "$sid"
+}
