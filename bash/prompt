@@ -135,10 +135,11 @@ if [ "$TTY_TMUX_SHARED" != true ]; then
             arg=''
         fi
 
-        echo "You have $ndsids detached tmux session$plural! You can resume $one_it by typing:" | fmt -w 80
-        echo "  tmux-resume$arg" | fmt -w 80
-        echo "Note: this will destroy your current session!"
-        printf '\n'
+        msg="You have $ndsids detached tmux session$plural! You can resume $one_it by typing:\n\n  tmux-resume$arg\n\n"
+        if [ -n "$TMUX" ]; then
+            msg="${msg}Note: this will destroy your current session!\n\n"
+        fi
+        printf "$msg" | fmt -w 80
     fi
 fi
 

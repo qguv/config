@@ -676,11 +676,10 @@ function certbot-add() {
 }
 
 function tmux-detached() {
-    tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:'
+    hash tmux >/dev/null && tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:'
 }
 
 function tmux-resume() {
-
     sid="$1"
     if [ -z "$sid" ]; then
       sid="$(tmux-detached | head -n 1)"
