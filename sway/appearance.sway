@@ -4,6 +4,9 @@ gaps inner 10
 smart_borders on
 default_border pixel 5
 
+font "pango:$font"
+for_window [title="." app_id="."] title_format "<b>%title</b> (%app_id)"
+
 # `man 5 sway-bar`
 bar {
 	position top
