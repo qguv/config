@@ -696,3 +696,14 @@ function tmux-resume() {
     tmux set-option -t "$cid" destroy-unattached on
     tmux switch-client -c "$cid" -t "$sid"
 }
+
+function docker-ip() {
+  usage="$0 CONTAINER [NETWORK]"
+  container="${1:?$usage}"
+  network="$2"
+  if [ -z "$2" ]; then
+    network=bridge
+  fi
+
+  docker inspect -f '{{ $net := index .NetworkSettings.Networks "'"$network"'" }}{{$net.IPAddress }}' "$container"
+}
