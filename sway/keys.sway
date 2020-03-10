@@ -1,52 +1,18 @@
-exec swayidle -w \
-	timeout 270 'swaymsg "output * dpms off"' \
-	resume 'swaymsg "output * dpms on"' \
-	timeout 300 '$lock' \
-	before-sleep '$lock'
-
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-input {
-	* {
-		xkb_layout "us,us"
-		xkb_variant "colemak,"
-		xkb_options "grp:rctrl_rshift_toggle"
-	}
-
-	"2:7:SynPS/2_Synaptics_TouchPad" {
-		tap enabled
-
-		natural_scroll enabled
-		dwt enabled
-	}
-
-	"2:10:TPPS/2_IBM_TrackPoint" {
-		natural_scroll enabled
-		dwt enabled
-	}
-}
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
-
 bindsym {
 
 	# meta
 	$mod+Shift+c reload
 	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "Exit sway?")" = yes ] && swaymsg exit'
-
-	$mod+F5 exec networkmanager_dmenu
-	$mod+Shift+F5 exec nm-connection-editor
-
-	# spawning and deleting windows
 	$mod+Escape kill
 	Mod1+F4 kill
-	$mod+Return exec $term
+	$mod+backslash input * xkb_variant "";
+	$mod+Shift+backslash input * xkb_variant colemak;
+
+	# launch shortcuts
 	$mod+Space exec $menu | xargs swaymsg exec --
+	$mod+Return exec $term
+	$mod+F5 exec networkmanager_dmenu
+	$mod+Shift+F5 exec nm-connection-editor
 
 	# window focus
 	$mod+$left focus left
@@ -109,7 +75,7 @@ bindsym {
 	$mod+s layout toggle split
 
 	# Make the current focus fullscreen
-	$mod+f fullscreen
+	$mod+F11 fullscreen
 
 	# Toggle the current focus between tiling and floating mode
 	$mod+Shift+Space floating toggle
@@ -119,6 +85,7 @@ bindsym {
 
 	# Move focus to the parent container
 	$mod+a focus parent
+	$mod+Shift+a focus child
 
 	# Sway has a "scratchpad", which is a bag of holding for windows.
 	# You can send windows there and get them back later.
@@ -127,12 +94,27 @@ bindsym {
 	# Show the next scratchpad window or hide the focused scratchpad window.
 	# If there are multiple scratchpad windows, this command cycles through them.
 	$mod+minus scratchpad show
+
+	# volume keys
+	XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+	XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+	XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+	XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+	# media keys
+	XF86AudioPlay exec playerctl play-pause
+	XF86AudioNext exec playerctl next
+	XF86AudioPrev exec playerctl previous
+
+	# backlight control
+	XF86MonBrightnessDown exec light -U 1; exec light -O
+	XF86MonBrightnessUp exec light -A 1; exec light -O
 }
 
-bindsym $mod+r mode "resize"
-mode "resize" bindsym {
-	Return mode "default"
-	Escape mode "default"
+bindsym $mod+r mode resize
+mode resize bindsym {
+	Return mode default
+	Escape mode default
 
 	$left resize shrink width 10px
 	Left resize shrink width 10px
@@ -146,3 +128,16 @@ mode "resize" bindsym {
 	$right resize grow width 10px
 	Right resize grow width 10px
 }
+
+bindsym $mod+asciitilde mode raw
+mode raw bindsym {
+	Escape mode default
+	$mod+asciitilde mode default
+}
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal

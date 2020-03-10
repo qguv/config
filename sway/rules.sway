@@ -1,0 +1,19 @@
+for_window {
+
+    [app_id="nm-connection-editor"] {
+        floating enable;
+        sticky enable;
+    }
+
+    # xev
+    [title="Event Tester"] {
+        floating enable;
+        sticky enable;
+    }
+
+    # visual studio code
+    [class="Code"] {
+        border pixel;
+        splitv;
+    }
+}

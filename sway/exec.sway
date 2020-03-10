@@ -1,0 +1,20 @@
+exec {
+    swayidle -w \
+        timeout 270 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        timeout 300 '$lock' \
+        before-sleep '$lock'
+
+    # notifications
+    mako
+
+    # backlight control (requires `light` binary)
+    light {
+
+            # set minimum backlight
+            -N 1
+
+            # restore previously set brightness
+            -I
+    }
+}

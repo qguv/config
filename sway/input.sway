@@ -1,0 +1,31 @@
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+input {
+	* {
+		xkb_layout us
+		xkb_variant colemak
+	}
+
+	"2:7:SynPS/2_Synaptics_TouchPad" {
+		tap enabled
+		natural_scroll enabled
+		dwt enabled
+	}
+
+	"2:10:TPPS/2_IBM_TrackPoint" {
+		natural_scroll enabled
+		dwt enabled
+	}
+}
+
+seat {
+	# hide mouse after 5 seconds of inactivity
+	* hide_cursor 5000
+
+#	# use a different seat profile for laptop keyboard and mouse
+#	internal attach {
+#		"2:7:SynPS/2_Synaptics_TouchPad"
+#		"1:1:AT_Translated_Set_2_keyboard"
+#	}
+}
