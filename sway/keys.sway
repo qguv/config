@@ -64,15 +64,13 @@ bindsym {
 	$mod+0 workspace O
 	$mod+Shift+0 move container to workspace O
 
-	# You can "split" the current object of your focus with
-	# $mod+b or $mod+v, for horizontal and vertical splits
-	# respectively.
-	$mod+b splith
-	$mod+v splitv
-
-	# Switch the current container between different layout styles
+	# layout modes
 	$mod+t layout tabbed
 	$mod+s layout toggle split
+
+	# child layout modes
+	$mod+b splith
+	$mod+v splitv
 
 	# Make the current focus fullscreen
 	$mod+F11 fullscreen
@@ -115,17 +113,15 @@ bindsym $mod+r mode resize
 mode resize bindsym {
 	Return mode default
 	Escape mode default
+	$mod+r mode default
 
 	$left resize shrink width 10px
-	Left resize shrink width 10px
-
 	$down resize grow height 10px
-	Down resize grow height 10px
-
 	$up resize shrink height 10px
-	Up resize shrink height 10px
-
 	$right resize grow width 10px
+	Left resize shrink width 10px
+	Down resize grow height 10px
+	Up resize shrink height 10px
 	Right resize grow width 10px
 }
 

@@ -1,18 +1,18 @@
 output {
 
-    # set wallpaper (with fallback)
+	# set wallpaper (with fallback)
 	* {
 		background $wp fill #222222
 	}
 
-    # laptop screen
+	# laptop screen
 	$laptop {
 		scale 1.5
 		mode 3200x1800@59.695999Hz
 		pos 0 528
 	}
 
-    # desktop monitor
+	# desktop monitor
 	HDMI-A-2 {
 		scale 1.25
 		mode 3840x2160@30Hz
