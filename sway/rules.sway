@@ -16,4 +16,7 @@ for_window {
         border pixel;
         splitv;
     }
+
+    [app_id="gnome-terminal-server"] opacity 0.95
+    [app_id="alacritty"] opacity 0.95
 }
