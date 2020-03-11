@@ -1,0 +1,88 @@
+general {
+   colors = true
+   interval = 5
+   color_good = "#ffffff"
+   markup = "pango"
+}
+
+#order += "read_file repr"
+read_file repr {
+   path = "/tmp/repr"
+   format = "%content"
+   format_bad = ""
+}
+
+order += "load"
+load {
+   max_threshold = "1,5"
+   format = '<span weight="bold" stretch="normal">%1min</span> <span weight="normal">%5min</span> %15min'
+   format_above_threshold = '🔥 <span weight="bold" stretch="normal">%1min</span> <span weight="normal">%5min</span> %15min'
+}
+
+order += "disk /"
+disk "/" {
+   format = "💾 %free"
+}
+
+order += "memory"
+memory {
+   format = ""
+   threshold_degraded = "10%"
+   format_degraded = "🤦 %free"
+}
+
+order += "ipv6"
+ipv6 {
+   format_down = ""
+}
+
+order += "wireless wlp58s0"
+wireless wlp58s0 {
+   format_up = "📶 %essid %ip (%quality, %bitrate)"
+   format_down = ""
+}
+
+order += "ethernet enp57s0f1"
+ethernet enp57s0f1 {
+   format_up = "🔗 %ip (%speed)"
+   format_down = ""
+}
+
+order += "path_exists VPN"
+path_exists VPN {
+   # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+   path = "/proc/sys/net/ipv4/conf/tun0"
+   format = "🛡️ VPN"
+   format_down = "⚠️ <s>VPN</s>"
+}
+
+order += "volume master"
+volume master {
+       format = "🔊 %volume"
+       format_muted = "🔇 <s>%volume</s>"
+       device = "pulse"
+}
+
+order += "battery 0"
+battery 0 {
+   format = "%status%remaining"
+   format_down = ""
+   status_chr = "⚡"
+   status_bat = "🔋"
+   status_unk = "🔋?"
+   status_full = "🔌"
+   path = "/sys/class/power_supply/BAT%d/uevent"
+   low_threshold = 16
+}
+
+order += "tztime local"
+tztime local {
+   format = "%Y-%m-%d %H:%M:%S"
+   hide_if_equals_localtime = true
+}
+
+order += "tztime amsterdam"
+tztime amsterdam {
+   format = "%Y-%m-%d %H:%M:%S %Z"
+   timezone = "Europe/Amsterdam"
+}

@@ -17,4 +17,6 @@ exec {
             # restore previously set brightness
             -I
     }
+
+    sh -c 'while sh ~/.config/sway/repr.sh; do sleep 1; done'
 }

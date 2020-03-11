@@ -10,9 +10,10 @@ for_window [title="." app_id="."] title_format "<b>%title</b> (%app_id)"
 # `man 5 sway-bar`
 bar {
 	position top
+	font "pango:Noto Sans ExtraCondensed ExtraLight"
 
 	status_command i3status
-	separator_symbol " | "
+	separator_symbol " · "
 
 	mode hide
 	modifier Mod1
