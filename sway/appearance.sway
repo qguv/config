@@ -7,7 +7,7 @@ default_border pixel 3
 # set wallpaper (with fallback)
 output * background $wp fill #222222
 
-font "pango:$font"
+font pango:$font $borderstyle $fontsize
 for_window [title="." app_id="."] title_format "<b>%title</b> (%app_id)"
 
 # DEFAULTS
@@ -24,8 +24,9 @@ client.focused			#ffffff #ffffff #000000 #2e9ef4 #ffffff
 
 # `man 5 sway-bar`
 bar {
+
+	font pango:$font $barstyle $fontsize
 	position top
-	font "pango:Noto Sans ExtraCondensed ExtraLight"
 
 	status_command i3status
 	separator_symbol " · "

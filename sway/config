@@ -6,7 +6,11 @@ set {
 	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
 	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
-	$font Roboto Light
+	$fontsize 9
+	$font Noto Sans
+	$barstyle ExtraCondensed ExtraLight
+	$launchstyle ExtraCondensed
+	$borderstyle Condensed Light
 
 	$left h
 	$down j

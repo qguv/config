@@ -9,7 +9,7 @@ bindsym {
 	$mod+Shift+backslash input * xkb_variant colemak;
 
 	# launcher
-	$mod+Space exec dmenu_path | bemenu -p 'run what?' | xargs swaymsg exec --
+	$mod+Space exec dmenu_path | bemenu -i --fn "$font $launchstyle $fontsize" -p 'run what?' | xargs swaymsg exec --
 
 	# launch shortcuts
 	$mod+Return exec $term
