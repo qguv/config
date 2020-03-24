@@ -14,6 +14,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # History
+# 2019-10-10, CrazyCat <crazycat@c-p-f.org>
+#  version 0.6.6: fix trouble of "b'"
+#    : fix short_own=off bug when user is @,% or +
+# 2019-10-01, Cian Butler <butlerx@notthe.cloud>
+#  version 0.6.5: make script compatible with Python 3
 # 2019-02-20, Jochen Saalfeld <privat@jochen-saalfeld.de>
 #  version 0.6.4: Fix is.gd URL pulling
 #                 (fix displaying of shortened URL for is.gd)
@@ -46,12 +51,16 @@
 
 import re
 import weechat
-from urllib import urlencode
-import urllib2
+try:
+    from urllib.parse import urlencode
+    from urllib.request import build_opener
+except ImportError:
+    from urllib import urlencode
+    from urllib2 import build_opener
 
 SCRIPT_NAME = "shortenurl"
 SCRIPT_AUTHOR = "John Anderson <sontek@gmail.com>"
-SCRIPT_VERSION = "0.6.4"
+SCRIPT_VERSION = "0.6.6"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC = "Shorten long incoming and outgoing URLs"
 
@@ -89,7 +98,7 @@ urlRe = re.compile(
 if weechat.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, SCRIPT_LICENSE,
                     SCRIPT_DESC, "", ""):
 
-    for option, default_value in settings.iteritems():
+    for option, default_value in settings.items():
         if weechat.config_get_plugin(option) == "":
             weechat.config_set_plugin(option, default_value)
 
@@ -102,6 +111,7 @@ def notify(data, buf, date, tags, displayed, hilight, prefix, msg):
     reset = weechat.color('reset')
 
     my_nick = weechat.buffer_get_string(buf, 'localvar_nick')
+    prefix = re.sub(r'^[@%+~]', r'', prefix)
     if prefix != my_nick:
         urls = find_and_process_urls(msg)
 
@@ -153,9 +163,9 @@ def get_shortened_url(url):
     if shortener == 'tinyurl':
         url = TINYURL % urlencode({'url': url})
     try:
-        opener = urllib2.build_opener()
+        opener = build_opener()
         opener.addheaders = [('User-Agent', 'weechat')]
-        return opener.open(url).read()
+        return opener.open(url).read().decode('utf-8')
     except:
         return url
 

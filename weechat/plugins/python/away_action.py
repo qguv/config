@@ -40,6 +40,10 @@
 #
 #
 #   History:
+#   2020-01-31:
+#   version 0.7: add include_text option - contributed by dargad
+#   2019-10-02:
+#   version 0.6: make compatible with python 3
 #   2014-05-10:
 #   version 0.5: change hook_print callback argument type of
 #                displayed/highlight (WeeChat >= 1.0)
@@ -54,9 +58,11 @@
 #
 ###
 
+from __future__ import print_function
+
 SCRIPT_NAME    = "away_action"
 SCRIPT_AUTHOR  = "xt <xt@bash.no>"
-SCRIPT_VERSION = "0.5"
+SCRIPT_VERSION = "0.7"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC    = "Run command on highlight and privmsg when away"
 
@@ -68,6 +74,7 @@ settings = {
 'command'        : '/mute msg ', # Command to be ran, nick and message will be inserted at the end
 'force_enabled'  : 'off',
 'include_channel': 'off', # Option to include channel in insert after command.
+'include_text'   : 'on', # Option to include message text in insert after command.
 }
 
 ignore_nick, ignore_text, ignore_channel = (), (), ()
@@ -79,8 +86,8 @@ try:
     import_ok = True
     from fnmatch import fnmatch
 except:
-    print "This script must be run under WeeChat."
-    print "Get WeeChat now at: http://www.weechat.org/"
+    print("This script must be run under WeeChat.")
+    print("Get WeeChat now at: http://www.weechat.org/")
     import_ok = False
 
 class Ignores(object):
@@ -145,11 +152,24 @@ def away_cb(data, buffer, time, tags, display, hilight, prefix, msg):
                 w.prnt('', '%s: Error: %s' %(SCRIPT_NAME, 'command must start with /'))
                 return WEECHAT_RC_OK
 
+            format = "{command}"
+            data = {
+                'command': command,
+                'nick': prefix,
+                'channel': channel,
+                'message': msg
+            }
+
             if 'channel' in locals() and \
                 w.config_get_plugin('include_channel') == 'on':
-                w.command('', '%s @%s <%s> %s' %(command, channel, prefix, msg))
-            else:
-                w.command('', '%s <%s> %s' %(command, prefix, msg))
+                format += " {channel}"
+
+            format += " {nick}"
+
+            if w.config_get_plugin('include_text') == 'on':
+                format += " {message}"
+
+            w.command('', format.format(**data))
     return WEECHAT_RC_OK
 
 def ignore_update(*args):
@@ -169,7 +189,7 @@ if __name__ == '__main__' and import_ok and \
         '', ''):
 
 
-    for opt, val in settings.iteritems():
+    for opt, val in settings.items():
         if not weechat.config_is_set_plugin(opt):
             weechat.config_set_plugin(opt, val)
 
