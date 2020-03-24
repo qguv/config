@@ -39,7 +39,7 @@ ipv6 {
 
 order += "wireless wlp58s0"
 wireless wlp58s0 {
-   format_up = "📶 %essid %ip (%quality, %bitrate)"
+   format_up = '📶 <span stretch="normal">%essid</span>%quality %bitrate'
    format_down = ""
 }
 
