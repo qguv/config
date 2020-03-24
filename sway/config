@@ -3,7 +3,6 @@ set {
 	$mod Mod4
 
 	$term alacritty
-	$menu dmenu_path | bemenu -p 'run what?'
 	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
 	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
