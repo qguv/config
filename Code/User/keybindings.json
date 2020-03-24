@@ -1,9 +1,9 @@
 [
     // ctrl+tab and ctrl+shift+tab should respect the order of tabs
-    {"key": "ctrl+tab", "command": "-workbench.action.openNextRecentlyUsedEditorInGroup"},
     {"key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup"},
-    {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
+    {"key": "ctrl+tab", "command": "-workbench.action.openNextRecentlyUsedEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup"},
+    {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
 
     // terminals are disposable since TTY_USE_TMUX
     {"when": "terminalFocus", "key": "ctrl+`", "command": "workbench.action.terminal.kill"},

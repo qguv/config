@@ -38,24 +38,40 @@
         "terminal.ansiBrightWhite": "#edeff2",  // 15
     },
 
-    // behavior
+    // assisted typing
     "editor.autoClosingBrackets": "never",
-    "explorer.confirmDelete": false,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 10000, // ms
     "files.insertFinalNewline": true,
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
     "trailing-spaces.deleteModifiedLinesOnly": true,
     "trailing-spaces.trimOnSave": true,
 
-    // pipenv
-    "python.pythonPath": "${workspaceRoot}/.venv/bin/python",
-    "python.terminal.activateEnvironment": false,
+    // filesystem
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000, // ms
+
+    // ================
+    // LANGUAGE SUPPORT
+    // ================
 
     // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
     "go.formatTool": "gofmt",
+    "[go]": {
+        "editor.formatOnSave": true,
+    },
+
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "${workspaceRoot}/.venv/bin/python",
+    "python.terminal.activateEnvironment": false,
+
+    "files.associations": {
+        "Makefile.*": "makefile",
+    },
+
+    // ==========
+    // EXTENSIONS
+    // ==========
 
     // fix a LONGSTANDING vim issue that causes vscodevim to undo/redo recursively
     // https://github.com/VSCodeVim/Vim/issues/2007#issuecomment-417468079
@@ -63,18 +79,16 @@
         {
             "before": ["u"],
             "after": [],
-            "commands": [{
-                "command": "undo",
-                "args": [],
-            }],
+            "commands": [
+                {"command": "undo", "args": []},
+            ],
         },
         {
             "before": ["<C-r>"],
             "after": [],
-            "commands": [{
-                "command": "redo",
-                "args": [],
-            }],
+            "commands": [
+                {"command": "redo", "args": []},
+            ],
         },
     ],
 
@@ -83,9 +97,9 @@
 
         // use vscode keyboard shortcuts for closing and opening windows and for
         // opening keyboard shortcut settings
-        "<C-w>": false,
-        "<C-n>": false,
         "<C-k>": false,
+        "<C-n>": false,
+        "<C-w>": false,
 
         // use vscodevim behavior for page up and down commands
         "<C-d>": true,
@@ -93,12 +107,15 @@
     },
 
     // disable microsoft surveillance
+    "githubPullRequests.telemetry.enabled": false,
+    "gitlens.advanced.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
-    "gitlens.advanced.telemetry.enabled": false,
-    "githubPullRequests.telemetry.enabled": false,
+
+    // uncomment for bright environments
+    //"workbench.colorTheme": "Quiet Light",
 
     // new settings added by GUI
     "": {},
