@@ -78,7 +78,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # activate pyenv if installed
-if hash pyenv > /dev/null; then
+if hash pyenv 2> /dev/null; then
     eval "$(pyenv init -)"
 fi
 
