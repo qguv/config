@@ -15,6 +15,10 @@
     {"key": "f5", "command": "python.runtests", "when": "!inDebugMode"},
     {"key": "alt+p", "command": "python.datascience.showhistorypane"},
 
+    // open settings in JSON mode by default
+    {"key": "ctrl+,", "command": "workbench.action.openSettingsJson"},
+    {"key": "ctrl+,", "command": "-workbench.action.openSettings"},
+
     // new settings added by GUI
     {},
 ]
