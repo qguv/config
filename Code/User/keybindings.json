@@ -29,6 +29,10 @@
     {"key": "ctrl+right", "command": "workbench.action.focusRightGroup", "when": "textInputFocus"},
     {"key": "ctrl+right", "command": "-cursorWordEndRight", "when": "textInputFocus"},
 
+    // sidebar shortcuts should also toggle sidebar visibility
+    {"key": "ctrl+shift+e", "command": "workbench.action.toggleSidebarVisibility", "when": "explorerViewletFocus"},
+    {"key": "ctrl+shift+f", "command": "workbench.action.toggleSidebarVisibility", "when": "searchViewletFocus"},
+
     // new settings added by GUI
     {},
 ]
