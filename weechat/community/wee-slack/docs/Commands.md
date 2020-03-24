@@ -95,10 +95,12 @@ Hide or unhide all channels marked as distracting.
 ### register
 
 ```
-/slack register [code]
+/slack register [code/token]
 ```
 
-Register a Slack team in wee-slack.
+Register a Slack team in wee-slack. Call this without any arguments and
+follow the instructions to register a new team. If you already have a token
+for a team, you can call this with that token to add it.
 
 ### rehistory
 
@@ -111,11 +113,21 @@ Reload the history in the current channel.
 ### reply
 
 ```
-/reply <count/message_id> <text>
+/reply [-alsochannel] [<count/message_id>] <message>
 ```
 
-Reply in a thread on the message. Specify either the message id
-or a count upwards to the message from the last message.
+
+When in a channel buffer:
+/reply [-alsochannel] <count/message_id> <message>
+Reply in a thread on the message. Specify either the message id or a count
+upwards to the message from the last message.
+
+When in a thread buffer:
+/reply [-alsochannel] <message>
+Reply to the current thread.  This can be used to send the reply to the
+rest of the channel.
+
+In either case, -alsochannel also sends the reply to the parent channel.
 
 ### showmuted
 
@@ -149,6 +161,14 @@ Prints current status if no arguments are given, unsets the status if -delete is
 ```
 
 Open a chat with the specified user(s).
+
+### teams
+
+```
+/slack teams
+```
+
+List the connected Slack teams.
 
 ### thread
 

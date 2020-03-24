@@ -5,6 +5,32 @@ A WeeChat native client for Slack.com. Provides supplemental features only avail
 
 ![animated screenshot](https://github.com/wee-slack/wee-slack/raw/master/docs/slack.gif)
 
+Table of Contents
+-----------------
+  * [Features](#features)
+  * [Dependencies](#dependencies)
+  * [Setup](#setup)
+     * [1. Install dependencies](#1-install-dependencies)
+     * [2. Download wee_slack.py to ~/.weechat/python](#2-download-wee_slackpy-to-weechatpython)
+     * [3. Start WeeChat](#3-start-weechat)
+     * [4. Add your Slack API key(s)](#4-add-your-slack-api-keys)
+        * [Optional: Connecting to multiple teams](#optional-connecting-to-multiple-teams)
+  * [Commands and options](#commands-and-options)
+     * [Threads](#threads)
+     * [Emoji characters and tab completions of emoji names](#emoji-characters-and-tab-completions-of-emoji-names)
+     * [User group tab completions](#user-group-tab-completions)
+     * [Cursor and mouse mode](#cursor-and-mouse-mode)
+  * [Removing a team](#removing-a-team)
+  * [Optional settings](#optional-settings)
+  * [FAQ](#faq)
+     * [How do I keep the buffers sorted alphabetically or with a custom order?](#how-do-i-keep-the-buffers-sorted-alphabetically-or-with-a-custom-order)
+     * [How do I group the buffers by team in the buffer list?](#how-do-i-group-the-buffers-by-team-in-the-buffer-list)
+     * [How can I get system wide notifications for messages?](#how-can-i-get-system-wide-notifications-for-messages)
+     * [How do I send messages with multiple lines?](#how-do-i-send-messages-with-multiple-lines)
+  * [Known issues](#known-issues)
+  * [Development](#development)
+  * [Support](#support)
+
 Features
 --------
   * [Threads](#threads) support
@@ -30,6 +56,7 @@ Dependencies
 ------------
   * WeeChat 1.3+ http://weechat.org/
   * websocket-client https://pypi.python.org/pypi/websocket-client/
+    * Since WeeChat 2.6, Python 3 modules are required, see https://weechat.org/blog/post/2019/07/02/Python-3-by-default
   * Some distributions package weechat's plugin functionalities in separate packages.
     Be sure that your weechat supports python plugins. Under Debian, install `weechat-python`
 
@@ -38,17 +65,17 @@ Setup
 
 ### 1. Install dependencies
 
-**Arch Linux**: `pacman -S python2-websocket-client`
+**Arch Linux**: `pacman -S python-websocket-client`
 
-**Debian/Ubuntu**: `apt install weechat-python python-websocket`
+**Debian/Ubuntu**: `apt install weechat-python python-websocket`. If using weechat 2.6 or newer, run `apt install weechat-python python3-websocket` instead.
 
 **Fedora**: `dnf install python3-websocket-client`
 
 **FreeBSD**: `pkg install py36-websocket-client`
 
-**OpenBSD**: `pkg_add weechat-python py-websocket-client`
+**OpenBSD**: `pkg_add weechat-python py3-websocket-client`
 
-**Other**: `pip install websocket-client`
+**Other**: `pip3 install websocket-client`
 
 Note for **macOS**: If you installed weechat with Homebrew, you will have to locate the python runtime environment used.
 If `--with-python@2` was used, you should use: `sudo /usr/local/opt/python@2/bin/pip2 install websocket_client`
@@ -80,14 +107,17 @@ Log in to Slack:
 ```
 
 This command prints a link you should open in your browser to authorize WeeChat
-with Slack. Once you've accomplished this, copy the "code" portion of the URL in
-the browser and pass it to this command:
+with Slack. If the page shows a different team than the one you want to add,
+you can change the team in the top right corner of the page.
+
+Once you've accomplished this, the page will show a command which you should
+run in WeeChat. The command is of the form:
 
 ```
-/slack register [CODE_FROM_URL]
+/slack register <code>
 ```
 
-Your Slack team is now added, and you can complete setup by restarting the
+Your Slack team is now added, and you can complete the setup by reloading the
 wee-slack script.
 
 ```
@@ -96,28 +126,30 @@ wee-slack script.
 
 Alternatively, you can click the "Request token" button at the
 [Slack legacy token page](https://api.slack.com/custom-integrations/legacy-tokens),
-and paste it directly into your settings:
+and use that instead of following the procedure above:
 
 ```
-/set plugins.var.python.slack.slack_api_token [YOUR_SLACK_TOKEN]
+/slack register <YOUR_SLACK_TOKEN>
 ```
 
-If you don't want to store your API token in plaintext you can use the secure features of weechat:
+The tokens you add will be stored in the option
+`plugins.var.python.slack.slack_api_token`. If you don't want to store your API
+token in plaintext you can use the secure features of WeeChat:
 
 ```
 /secure passphrase this is a super secret password
-/secure set slack_token [YOUR_SLACK_TOKEN]
+/secure set slack_token <YOUR_SLACK_TOKEN>
 /set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}
 ```
 
 #### Optional: Connecting to multiple teams
 
 You can run the register command multiple times to connect to multiple teams.
-If you set the token yourself, you can use the above command with multiple
-tokens separated by commas.
+If you set the token option yourself, you should separate the tokens with
+commas.
 
 ```
-/set plugins.var.python.slack.slack_api_token [token1],[token2],[token3]
+/set plugins.var.python.slack.slack_api_token <token1>,<token2>,<token3>
 ```
 
 Commands and options
@@ -201,24 +233,36 @@ Label a thread with a memorable name. The above command will open a channel call
 ```
 _Note: labels do not persist once a thread buffer is closed_
 
-### Emoji tab completions
+### Emoji characters and tab completions of emoji names
 
-To enable tab completion of emojis, copy or symlink the `weemoji.json` file to
-your weechat config directory (e.g. `~/.weechat`). If doing this after starting
-wee-slack, you will have to reload it by running `/python reload slack`. Then
-append `|%(emoji)` to the `weechat.completion.default_template` config option,
-e.g. like this:
+To enable rendering of emoji characters and tab completion of emoji names, copy
+or symlink the
+[`weemoji.json`](https://github.com/wee-slack/wee-slack/blob/master/weemoji.json)
+file to your weechat config directory (e.g. `~/.weechat`). If doing this after
+starting wee-slack, you will have to reload it by running `/python reload
+slack`. Then append `|%(emoji)` to the `weechat.completion.default_template`
+config option, e.g. like this:
 
 ```
 /set weechat.completion.default_template "%(nicks)|%(irc_channels)|%(emoji)"
 ```
 
+Emoji names can be completed by typing colon and the start of the emoji name
+and pressing tab.
+
 ### User group tab completions
-To enable tab completions for usergroups append `|%(usergroups)`
+
+To enable tab completions for usergroups append `|%(usergroups)` to the
+`weechat.completion.default_template` config option, e.g. like this:
+
 ```
 /set weechat.completion.default_template "%(nicks)|%(irc_channels)|%(usergroups)"
 ```
-The usergroup will appear in the same formats as nicks like the following `@marketing` where marketing is the handle
+
+If you already added `%(emoji)` to this config option, like described in the
+last section, make sure not to overwrite that. The usergroup will appear in the
+same format as nicks, like the following: `@marketing`, where marketing is the
+usergroup handle.
 
 ### Cursor and mouse mode
 
@@ -256,6 +300,11 @@ You may remove a team by removing its token from the dedicated comma-separated l
 /set plugins.var.python.slack.slack_api_token "xoxp-XXXXXXXX,xoxp-XXXXXXXX"
 ```
 
+You can use tab completion after the key to complete the current value. To see
+which token belongs to which team, run `/slack teams`.
+
+After removing the token, you have to reload wee-slack with `/python reload slack`.
+
 Optional settings
 -----------------
 
@@ -268,6 +317,85 @@ Show channel name in hotlist after activity
 ```
 /set weechat.look.hotlist_names_level 14
 ```
+
+FAQ
+---
+
+### How do I keep the buffers sorted alphabetically or with a custom order?
+
+Install the script
+[autosort.py](https://weechat.org/scripts/source/autosort.py.html/) by running
+`/script install autosort.py`. This will keep your buffer list sorted
+alphabetically by default. If you want to customize it, run `/help autosort`.
+
+### How do I group the buffers by team in the buffer list?
+
+Run `/set irc.look.server_buffer independent` and install the
+[autosort.py](https://weechat.org/scripts/source/autosort.py.html/) script
+mentioned in the previous question.
+
+### How can I get system wide notifications for messages?
+
+Install [one of the notify
+scripts](https://weechat.org/scripts/stable/tag/notify/). Note that not all
+scripts work with wee-slack. For local notifications,
+[lnotify.py](https://weechat.org/scripts/source/lnotify.py.html/) is known to
+work for Linux, and
+[notification_center.py](https://weechat.org/scripts/source/notification_center.py.html/)
+for macOS.
+
+### How do I send messages with multiple lines?
+
+You have to install a script to be able to send multiple lines, e.g. the
+`multiline.pl` script with: `/script install multiline.pl`
+
+By default it will wait for one second after you press enter, and if you type
+another character in that period, it will insert the character on a newline,
+and if you don't type anything it will send the message. If you rather want to
+use a separate key to insert a newline, and have the enter key send the message
+immediately, you can run these commands:
+
+```
+/set plugins.var.perl.multiline.magic_paste_only on
+/key bind meta-ctrl-M /input insert \n
+```
+
+This will bind meta-enter (which is usually alt-enter) to insert the newline.
+Replace `meta-ctrl-M` with something else if you want to use a different key
+combination.
+
+The `multiline.pl` script will also let you edit pasted text which incudes
+newlines before you send the message. If this is not working, you may try to
+run the commands below. At least in the `kitty` terminal, it won't work by
+default, but should work after running these commands:
+
+```
+/set plugins.var.perl.multiline.weechat_paste_fix "off"
+/key bind ctrl-J /input magic_enter
+```
+
+You may also want to disable weechats paste prompt, since that is not necessary
+when using `multiline.pl`:
+
+```
+/set weechat.look.paste_max_lines -1
+```
+
+Known issues
+------------
+
+Not all issues are listed here (see
+[issues](https://github.com/wee-slack/wee-slack/issues) for all), but these are
+some noteworthy:
+
+- For channels initially created as a public channel, but later converted to a private channel:
+  - Which messages that has been read is not synced to Slack.
+  - If the option `background_load_all_history` is false, the channel will not
+    be shown as unread when wee-slack loads, even if there are unread messages.
+    Messages which arrive after wee-slack has loaded however will mark the
+    channel as unread.
+  - The option `thread_messages_in_channel` is only working for messages which
+    arrive after the channel history has been loaded.
 
 Development
 -----------

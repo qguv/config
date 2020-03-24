@@ -40,6 +40,12 @@ slack` after changing it to take effect.
 
 **Description:** Color to use for muted channels in the buflist
 
+### color_deleted
+
+**Default:** `red`
+
+**Description:** Color to use for deleted messages and files.
+
 ### color_edited_suffix
 
 **Default:** `095`
@@ -52,11 +58,23 @@ slack` after changing it to take effect.
 
 **Description:** Color to use for the [:wave:(@user)] suffix on messages that have reactions attached to them.
 
+### color_reaction_suffix_added_by_you
+
+**Default:** `blue`
+
+**Description:** Color to use for reactions that you have added.
+
 ### color_thread_suffix
 
 **Default:** `lightcyan`
 
-**Description:** Color to use for the [thread: XXX] suffix on messages that have threads attached to them.
+**Description:** Color to use for the [thread: XXX] suffix on messages that have threads attached to them. The special value "multiple" can be used to use a different color for each thread.
+
+### color_typing_notice
+
+**Default:** `yellow`
+
+**Description:** Color to use for the typing notice.
 
 ### colorize_private_chats
 
@@ -135,6 +153,12 @@ slack` after changing it to take effect.
 **Default:** `bold`
 
 **Description:** When receiving bold text from Slack, render it as this in weechat.
+
+### render_emoji_as_string
+
+**Default:** `false`
+
+**Description:** Render emojis as :emoji_name: instead of emoji characters. Enable this if your terminal doesn't support emojis, or set to 'both' if you want to see both renderings. Note that even though this is disabled by default, you need to place https://github.com/wee-slack/wee-slack/blob/master/weemoji.json in your weechat directory to enable rendering emojis as emoji characters.
 
 ### render_italic_as
 
@@ -219,4 +243,10 @@ slack` after changing it to take effect.
 **Default:** `false`
 
 **Description:** When activity occurs on a buffer, unhide it even if it was previously hidden (whether by the user or by the distracting_channels setting).
+
+### use_full_names
+
+**Default:** `false`
+
+**Description:** Use full names as the nicks for all users. When this is false (the default), display names will be used if set, with a fallback to the full name if display name is not set.
 
