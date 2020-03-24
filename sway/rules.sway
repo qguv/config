@@ -1,22 +1,27 @@
 for_window {
 
-    [app_id="nm-connection-editor"] {
-        floating enable;
-        sticky enable;
-    }
+	[app_id="nm-connection-editor"] {
+		floating enable;
+		sticky enable;
+	}
 
-    # xev
-    [title="Event Tester"] {
-        floating enable;
-        sticky enable;
-    }
+	[app_id="pavucontrol"] {
+		floating enable;
+		sticky enable;
+	}
 
-    # visual studio code
-    [class="Code"] {
-        border pixel;
-        splitv;
-    }
+	# xev
+	[title="Event Tester"] {
+		floating enable;
+		sticky enable;
+	}
 
-    [app_id="gnome-terminal-server"] opacity 0.95
-    [app_id="alacritty"] opacity 0.95
+	# visual studio code
+	[class="Code"] {
+		border pixel;
+		splitv;
+	}
+
+	[app_id="gnome-terminal-server"] opacity 0.95
+	[app_id="alacritty"] opacity 0.95
 }
