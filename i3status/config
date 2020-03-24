@@ -32,14 +32,14 @@ ipv6 {
    format_down = ""
 }
 
-order += "wireless wlp58s0"
-wireless wlp58s0 {
+order += "wireless wlp3s0"
+wireless wlp3s0 {
    format_up = '📶 <span stretch="normal">%essid</span>%quality %bitrate'
    format_down = ""
 }
 
-order += "ethernet enp57s0f1"
-ethernet enp57s0f1 {
+order += "ethernet enp0s25"
+ethernet enp0s25 {
    format_up = "🔗 %ip (%speed)"
    format_down = ""
 }
