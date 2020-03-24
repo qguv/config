@@ -1,0 +1,17 @@
+# vim: ft=sshconfig
+
+Host github github.com
+    HostName github.com
+    User git
+
+Host gitlab gitlab.com
+    HostName gitlab.com
+    User git
+
+Host bitbucket bitbucket.org
+    HostName bitbucket.org
+    User git
+
+Host aur aur.archlinux.org
+    HostName aur.archlinux.org
+    User aur

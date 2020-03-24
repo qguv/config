@@ -1,0 +1,6 @@
+# vim: ft=sshconfig
+
+Host cao crawl.akrasiac.org
+    HostName crawl.akrasiac.org
+    User joshua
+    IdentityFile ~/.config/ssh/akrasiac_rsa
