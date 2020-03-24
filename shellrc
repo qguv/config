@@ -20,6 +20,31 @@ source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 
+# kasugano colors for linux console
+if [ "$TERM" = "linux" ]; then
+  #\e]P03d3d3d
+  /bin/echo -e "
+  \e]P0000000
+  \e]P16673bf
+  \e]P23ea290
+  \e]P3b0ead9
+  \e]P431658c
+  \e]P5596196
+  \e]P68292b2
+  \e]P7c8cacc
+  \e]P84d4d4d
+  \e]P9899aff
+  \e]PA52ad91
+  \e]PB98c9bb
+  \e]PC477ab3
+  \e]PD7882bf
+  \e]PE95a7cc
+  \e]PFedeff2
+  "
+  # get rid of artifacts
+  clear
+fi
+
 if tty -s; then
   if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
     while [ "$START_SWAY" = true ]; do
