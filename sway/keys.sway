@@ -147,3 +147,10 @@ mode raw bindsym {
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
 floating_modifier $mod normal
+
+# disable laptop display when connected to an external monitor (clamshell mode)
+# FIXME: disabled because it breaks clamshell sleep when NOT connected to an external monitor
+#bindswitch {
+	#lid:on output $laptop disable
+	#lid:off output $laptop enable
+#}

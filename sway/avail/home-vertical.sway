@@ -1,0 +1,14 @@
+output {
+	$laptop {
+		pos 0 1000
+	}
+
+	# desktop monitor
+	"Goldstar Company Ltd LG Ultra HD 0x00006FA1" {
+		mode 2560x1440@59.951Hz
+		transform 270
+		pos 2133 0
+	}
+}
+
+bar bar-0 output $laptop

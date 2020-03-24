@@ -1,28 +1,18 @@
 output {
 
-	# set wallpaper (with fallback)
-	* {
-		background $wp fill #222222
+	# work monitor
+	"Goldstar Company Ltd LG Ultra HD 0x00006FA1" {
+		mode 2560x1440@59.951Hz
 	}
 
-	# laptop screen
-	$laptop {
+	# work laptop
+	"Unknown 0x0512 0x00000000" {
 		scale 1.5
 		mode 3200x1800@59.695999Hz
-		pos 0 528
 	}
 
-	# desktop monitor
-	HDMI-A-2 {
-		scale 1.25
-		mode 3840x2160@30Hz
-		pos 2133 0
+	# ruben's monitor
+	"Unknown HP 24fw 3CM9210625   " {
+		mode 1920x1080@60Hz
 	}
 }
-
-# disable laptop display when connected to an external monitor (clamshell mode)
-# FIXME: currently breaks clamshell sleep when NOT connected to an external monitor
-#bindswitch {
-#	lid:on output $laptop disable
-#	lid:off output $laptop enable
-#}
