@@ -17,7 +17,8 @@ export TRASHCOMMAND='movetotrash'
 export GOTIFY_TOKEN=''
 export TTY_USE_TMUX=true
 export TTY_TMUX_SHARED=false
-export START_SWAY=false
+export START_SWAY=true
+export START_X=false
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"

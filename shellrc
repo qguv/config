@@ -21,10 +21,16 @@ source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 
 if tty -s; then
-  while [ "$START_SWAY" = true ] && [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; do
-    sway
-    sleep 5 || break
-  done
+  if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
+    while [ "$START_SWAY" = true ]; do
+      sway
+      sleep 5 || break
+    done
+    while [ "$START_X" = true ]; do
+      startx
+      sleep 5 || break
+    done
+  fi
 
   # when this feature is enabled, start tmux at every interactive shell
   if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ]; then
