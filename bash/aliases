@@ -117,3 +117,5 @@ alias unmonitor-line-in="pactl unload-module module-loopback"
 alias updsrcinfo='makepkg --printsrcinfo > .SRCINFO'
 alias whatfs='( while ! findmnt .; do cd ..; done )'
 alias occ='ssh cloud.guvernator.net sudo -u http /usr/share/webapps/nextcloud/occ'
+
+alias palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
