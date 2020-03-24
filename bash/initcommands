@@ -40,6 +40,17 @@ alias autopep8="autopep8 --ignore 'E501,E201,E202,E301,E302,E303'"
 # suppress python3 version and copyright info in REPL
 alias python3="python3 -q"
 
+if [ "$START_SWAY" = true ]; then
+    export MOZ_ENABLE_WAYLAND=1
+    export GDK_BACKEND=wayland
+    export CLUTTER_BACKEND=wayland
+
+# firefox smooth scrolling under Xorg
+else
+    export MOZ_USE_XINPUT2=1
+fi
+
+
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
