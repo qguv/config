@@ -103,6 +103,11 @@ bindsym {
 		XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 		XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+		# volume key external keyboard aliases
+		$mod+Prior exec pactl set-sink-volume @DEFAULT_SINK@ +4%
+		$mod+Next exec pactl set-sink-volume @DEFAULT_SINK@ -4%
+		$mod+End exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 		# media keys
 		XF86AudioPlay exec playerctl play-pause
 		XF86AudioPrev exec playerctl previous
