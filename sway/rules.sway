@@ -23,5 +23,5 @@ for_window {
 	}
 
 	[app_id="gnome-terminal-server"] opacity 0.95
-	[app_id="alacritty"] opacity 0.95
+	[app_id="Alacritty"] opacity 0.95
 }
