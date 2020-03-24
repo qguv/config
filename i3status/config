@@ -20,11 +20,6 @@ load {
    format_above_threshold = '🔥 <span weight="bold" stretch="normal">%1min</span> <span weight="normal">%5min</span> %15min'
 }
 
-order += "disk /"
-disk "/" {
-   format = "💾 %free"
-}
-
 order += "memory"
 memory {
    format = ""
@@ -55,6 +50,15 @@ path_exists VPN {
    path = "/proc/sys/net/ipv4/conf/tun0"
    format = "🛡️ VPN"
    format_down = "⚠️ <s>VPN</s>"
+}
+
+order += "disk /"
+disk "/" {
+   format = ""
+   #format = "💾 %free"
+   low_threshold = 20
+   threshold_type = "gbytes_avail"
+   format_below_threshold = "🈵 %free"
 }
 
 order += "volume master"
