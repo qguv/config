@@ -17,6 +17,15 @@ bindsym {
 	$mod+Shift+F5 exec nm-connection-editor
 	$mod+Mod1+Delete exec $lock
 
+	--release {
+
+		# screenshot a window (click) or region (drag)
+		Print exec sh ~/.config/sway/shot.sh region
+
+		# screenshot the focused monitor
+		$mod+Print exec sh ~/.config/sway/shot.sh monitor
+	}
+
 	# window focus
 	$mod+$left focus left
 	$mod+$down focus down
