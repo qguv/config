@@ -100,6 +100,9 @@ bindsym {
 
 	$mod+minus scratchpad show
 
+	# rotate current monitor
+	$mod+Shift+r exec swaymsg output "$(swaymsg --type get_outputs | jq --raw-output '.[] | select(.focused).name')" transform 90 clockwise
+
 	--locked {
 		# volume keys
 		XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%

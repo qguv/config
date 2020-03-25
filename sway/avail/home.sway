@@ -6,7 +6,6 @@ output {
 	# desktop monitor
 	"Goldstar Company Ltd LG Ultra HD 0x00006FA1" {
 		mode 2560x1440@59.951Hz
-		transform 270
 		pos 2133 0
 	}
 }
