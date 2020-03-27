@@ -1,0 +1,36 @@
+{
+  "Unknown 0x0512 0x00000000": {
+    "active": true,
+    "scale": 1.5,
+    "primary": false,
+    "transform": "normal",
+    "rect": {
+      "x": 0,
+      "y": 240,
+      "width": 2133,
+      "height": 1200
+    },
+    "current_mode": {
+      "width": 3200,
+      "height": 1800,
+      "refresh": 59696
+    }
+  },
+  "Goldstar Company Ltd LG Ultra HD 0x00006FA1": {
+    "active": true,
+    "scale": 1.0,
+    "primary": false,
+    "transform": "normal",
+    "rect": {
+      "x": 2133,
+      "y": 0,
+      "width": 2560,
+      "height": 1440
+    },
+    "current_mode": {
+      "width": 2560,
+      "height": 1440,
+      "refresh": 59951
+    }
+  }
+}
