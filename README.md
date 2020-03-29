@@ -18,7 +18,9 @@ if they're still necessary, although these will not be overwritten.
 git clone https://github.com/qguv/config ~/.config
 ln -s ~/.config/shellrc ~/.zshrc
 ln -s ~/.config/shellrc ~/.bashrc
+ln -s ~/.config/shellrc ~/.profile
 ln -s ~/.config/pam_environment ~/.pam_environment
+ln -sf ~/.config/.githooks ~/.config/.git/hooks
 ```
 
 Once installed, you can place system-specific customizations in
