@@ -46,15 +46,12 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 if tty -s; then
-  if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
-    while [ "$START_SWAY" = true ]; do
+  if [ -z "$DISPLAY" ] && [ "$(tty)" != /dev/tty6 ]; then
+    if [ "$START_SWAY" = true ]; then
       sway
-      sleep 5 || break
-    done
-    while [ "$START_X" = true ]; do
-      startx
-      sleep 5 || break
-    done
+    elif [ "$START_X" = true ]; then
+      sudo startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
+    fi
   fi
 
   # when this feature is enabled, start tmux at every interactive shell
