@@ -1,2 +1,2 @@
 #!/bin/sh
-chmod -R go= ssh
+chmod -cR go= ssh
