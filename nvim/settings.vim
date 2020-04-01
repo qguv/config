@@ -2,7 +2,7 @@ set nocompatible
 
 " appearance
 colorscheme slate
-set background=dark
+set background=light
 set t_Co=256
 set relativenumber number
 set ruler
