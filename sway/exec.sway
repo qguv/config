@@ -1,25 +1,25 @@
 exec {
-    swayidle -w \
-        timeout 270 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-        timeout 300 '$lock' \
-        before-sleep '$lock'
+	swayidle -w \
+		timeout 270 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+		timeout 300 '$lock' \
+		before-sleep '$lock'
 
-    # notifications
-    mako
+	# notifications
+	mako
 
-    # fix annoying slack bug
-    ~/.config/sway/slackfix.sh
+	# fix annoying slack bug
+	~/.config/sway/slackfix.sh
 
-    # backlight control (requires `light` binary)
-    light {
+	# backlight control (requires `light` binary)
+	light {
 
-            # set minimum backlight
-            -N 1
+			# set minimum backlight
+			-N 1
 
-            # restore previously set brightness
-            -I
-    }
+			# restore previously set brightness
+			-I
+	}
 
-    #sh -c 'while sh ~/.config/sway/repr.sh; do sleep 1; done'
+	#sh -c 'while sh ~/.config/sway/repr.sh; do sleep 1; done'
 }
