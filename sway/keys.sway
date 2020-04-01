@@ -140,6 +140,15 @@ mode resize bindsym {
 	Down resize grow height 10px
 	Up resize shrink height 10px
 	Right resize grow width 10px
+
+	Shift+$left resize shrink width 50px
+	Shift+$down resize grow height 50px
+	Shift+$up resize shrink height 50px
+	Shift+$right resize grow width 50px
+	Shift+Left resize shrink width 50px
+	Shift+Down resize grow height 50px
+	Shift+Up resize shrink height 50px
+	Shift+Right resize grow width 50px
 }
 
 bindsym $mod+asciitilde mode raw
