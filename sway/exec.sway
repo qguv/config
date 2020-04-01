@@ -3,6 +3,7 @@ exec {
 		timeout 270 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
 		timeout 300 '$lock' \
+		idlehint 310 \
 		before-sleep '$lock'
 
 	# notifications

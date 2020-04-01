@@ -15,7 +15,7 @@ bindsym {
 	$mod+Return exec $term
 	$mod+F5 exec networkmanager_dmenu
 	$mod+Shift+F5 exec nm-connection-editor
-	$mod+Mod1+Delete exec $lock
+	$mod+Mod1+Delete exec pkill -USR1 swayidle
 
 	--release {
 
