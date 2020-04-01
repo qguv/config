@@ -17,7 +17,7 @@ for_window {
 	}
 
 	# visual studio code
-	[class="Code"] {
+	[class="Code" tiling] {
 		border pixel;
 		splitv;
 	}
