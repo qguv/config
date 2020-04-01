@@ -22,6 +22,14 @@ for_window {
 		splitv;
 	}
 
+	[class="zoom" tiling] move scratchpad
+	[class="zoom" floating] {
+		sticky enable;
+		inhibit_idle open;
+	}
+
+	[class="Slack" title="Slack | Slack call.*"] inhibit_idle open
+
 	[app_id="gnome-terminal-server"] opacity 0.95
 	[app_id="Alacritty"] opacity 0.95
 }
