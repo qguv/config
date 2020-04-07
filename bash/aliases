@@ -92,8 +92,11 @@ alias spp="sudo -E powerpill"
 
 # systemd
 alias sc="systemctl"
+alias jc="journalctl"
 alias scu="systemctl --user"
+alias jcu="journalctl --user"
 alias ssc="sudo -E systemctl"
+alias sjc="sudo -E journalctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
 alias be='bundle exec'
