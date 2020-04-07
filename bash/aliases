@@ -85,15 +85,15 @@ alias unix='date "+%s"'
 alias hext='printf "%x\n" "$(date +%s)"' # or 2hex `unix`
 
 # Arch
-alias pa="pacaur"
 alias pm="pacman"
 alias pp="powerpill"
-alias sc="systemctl"
-alias scu="systemctl --user"
 alias spm="sudo -E pacman"
 alias spp="sudo -E powerpill"
+
+# systemd
+alias sc="systemctl"
+alias scu="systemctl --user"
 alias ssc="sudo -E systemctl"
-alias snc="sudo -E netctl"
 
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
 alias be='bundle exec'
