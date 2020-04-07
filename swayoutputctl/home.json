@@ -1,0 +1,36 @@
+{
+  "Seiko Epson Corporation 0x3047 0x00000000": {
+    "active": true,
+    "scale": 1.0,
+    "primary": false,
+    "transform": "normal",
+    "rect": {
+      "x": 0,
+      "y": 290,
+      "width": 1366,
+      "height": 768
+    },
+    "current_mode": {
+      "width": 1366,
+      "height": 768,
+      "refresh": 60002
+    }
+  },
+  "Goldstar Company Ltd LG Ultra HD 0x00006FA1": {
+    "active": true,
+    "scale": 1.0,
+    "primary": false,
+    "transform": "normal",
+    "rect": {
+      "x": 1366,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    "current_mode": {
+      "width": 1920,
+      "height": 1080,
+      "refresh": 60000
+    }
+  }
+}
