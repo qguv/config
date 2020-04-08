@@ -5,8 +5,8 @@ bindsym {
 	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "Exit sway?")" = yes ] && swaymsg exit'
 	$mod+Escape kill
 	Mod1+F4 kill
-	$mod+backslash input * xkb_variant "";
-	$mod+Shift+backslash input * xkb_variant colemak;
+	$mod+backslash input * xkb_variant ""
+	$mod+Shift+backslash input * xkb_variant colemak
 
 	# launcher
 	$mod+Space exec dmenu_path | bemenu -i --fn "$font $launchstyle $fontsize" -p 'run what?' | xargs swaymsg exec --
