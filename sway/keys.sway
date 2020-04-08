@@ -14,6 +14,7 @@ bindsym {
 	# notifications
 	$mod+Insert exec makoctl invoke; exec makoctl dismiss
 	$mod+Delete exec makoctl dismiss
+	$mod+F1 exec systemctl --user restart pomodoro.timer
 
 	# launch shortcuts
 	$mod+Return exec $term

@@ -1,0 +1,6 @@
+[Unit]
+Description=Trigger session idle state after 25 minutes using swayidle
+
+[Timer]
+OnActiveSec=25min
+RemainAfterElapse=no

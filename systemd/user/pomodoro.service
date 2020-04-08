@@ -1,0 +1,5 @@
+[Unit]
+Description=Manually trigger session idle state using swayidle
+
+[Service]
+ExecStart=/usr/bin/pkill -USR1 swayidle
