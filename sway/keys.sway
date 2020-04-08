@@ -11,6 +11,10 @@ bindsym {
 	# launcher
 	$mod+Space exec dmenu_path | bemenu -i --fn "$font $launchstyle $fontsize" -p 'run what?' | xargs swaymsg exec --
 
+	# notifications
+	$mod+Insert exec makoctl invoke; exec makoctl dismiss
+	$mod+Delete exec makoctl dismiss
+
 	# launch shortcuts
 	$mod+Return exec $term
 	$mod+F5 exec networkmanager_dmenu
