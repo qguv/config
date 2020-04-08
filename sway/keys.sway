@@ -23,6 +23,7 @@ bindsym {
 	$mod+Mod1+Delete exec pkill -USR1 swayidle
 	$mod+Shift+Return exec $browser
 	XF86Launch1 exec $browser
+	$mod+colon exec $browser --new-window https://calendar.google.com/calendar/r
 
 	--release {
 
