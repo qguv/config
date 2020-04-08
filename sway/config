@@ -3,7 +3,7 @@ set {
 	$mod Mod4
 
 	$term alacritty
-	$wp /home/qguv/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
+	$wp ~/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
 	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
 	$fontsize 9
@@ -18,5 +18,5 @@ set {
 	$right l
 }
 
-include /home/qguv/.config/sway/*.sway
 include /etc/sway/config.d/*
+include ~/.config/sway/*.sway
