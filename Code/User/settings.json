@@ -181,7 +181,7 @@
     "workbench.settings.enableNaturalLanguageSearch": false,
 
     // uncomment for bright environments
-    //"workbench.colorTheme": "Quiet Light",
+    "workbench.colorTheme": "Quiet Light",
 
     // new settings added by GUI
     "": {},
