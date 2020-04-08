@@ -102,3 +102,5 @@
 [fetch]
 	recurseSubmodules = on-demand
 	parallel = 8
+[submodule]
+	recurse = true
