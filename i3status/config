@@ -15,7 +15,7 @@ read_file repr {
 
 order += "load"
 load {
-   max_threshold = "1,5"
+   max_threshold = "1.5"
    format = ""
    format_above_threshold = '🔥 <span weight="bold" stretch="normal">%1min</span> <span weight="normal">%5min</span> %15min'
 }
