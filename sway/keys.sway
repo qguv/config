@@ -22,6 +22,7 @@ bindsym {
 	$mod+Shift+F5 exec nm-connection-editor
 	$mod+Mod1+Delete exec pkill -USR1 swayidle
 	$mod+Shift+Return exec $browser
+	XF86Launch1 exec $browser
 
 	--release {
 
