@@ -717,3 +717,8 @@ function docker-ip() {
 
   docker inspect -f '{{ $net := index .NetworkSettings.Networks "'"$network"'" }}{{$net.IPAddress }}' "$container"
 }
+
+function mastovid() {
+  [ $# -ne 2 ] && printf "Usage: $0 <mp4 input file> <mp4 output file>\n" && return 1
+  ffmpeg -i "$1" -vf "scale=iw/2:ih/2" -vcodec libx264 -crf 24 "$2" && ls -lh "$2"
+}
