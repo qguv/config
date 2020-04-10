@@ -8,6 +8,15 @@ function md () {
   eval echo "Switching to $(pwd)...";
 }
 
+# create null pulseaudio sync (for routing audio between applications)
+function paloop() {
+	if [ -n '$1' ]; then
+		pactl load-module module-null-sink "sink_name=$1" "sink_properties=\"device.description='$1'\""
+	else
+		pactl load-module module-null-sink
+	fi
+}
+
 # Quickly edit programs in your $PATH
 function editex () {
   eval "$EDITOR" "$(which $1)" ${@:2}
