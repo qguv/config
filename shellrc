@@ -20,6 +20,9 @@ source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"
 source "$XDG_CONFIG_HOME/bash/aliases"
 
+# automatically configure hooks for the config files themselves
+git config -f "$XDG_CONFIG_HOME/.git/config" core.hooksPath git/hooks
+
 # kasugano colors for linux console
 if [ "$TERM" = "linux" ]; then
   #\e]P03d3d3d

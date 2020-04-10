@@ -16,13 +16,13 @@ if they're still necessary, although these will not be overwritten.
 
 ```
 git clone https://github.com/qguv/config ~/.config
-git config -f ~/.config/.git/config core.hooksPath .githooks
 ln -s ~/.config/shellrc ~/.zshrc
 ln -s ~/.config/shellrc ~/.bashrc
 ln -s ~/.config/shellrc ~/.profile
 ln -s ~/.config/pam_environment ~/.pam_environment
-ln -sf ~/.config/.githooks ~/.config/.git/hooks
 ```
+
+Then reload your shell.
 
 Once installed, you can place system-specific customizations in
 `~/.config/bash/system`.
