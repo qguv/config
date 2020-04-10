@@ -2,10 +2,38 @@
 
 remote="$1"
 url="$2"
+repo_name="${url##*/}"
 
+# convention: private things begin with dunder
+private_remote="$(	[ -z "${remote##__*}" ]		&& echo true || echo false)"
+private_repo="$(	[ -z "${repo_name##__*}" ]	&& echo true || echo false)"
+
+doomed=false
 while read local_ref local_sha remote_ref remote_sha; do
-	if [ -z "${local_ref##refs/heads/_*}" ]; then
-		echo "Are you sure you want to push ${local_ref##refs/heads/} to ${url}?"
-		exit 1
+	obj_name="${local_ref##*/}"
+
+	ref_type="${local_ref%/*}"
+	ref_type="${ref_type#*/}"
+	ref_type="${ref_type%s}"
+	if [ "$ref_type" = head ]; then
+		ref_type=branch
+	fi
+
+	# convention: private things begin with dunder
+	private_obj="$(	[ -z "${obj_name##__*}" ]	&& echo true || echo false)"
+
+	if [ "$private_obj" = true ]; then
+		if [ "$private_remote" = false ]; then
+			doomed=true
+			printf 'Refusing to push private %s "%s" to public remote "%s"!\n' "$ref_type" "$obj_name" "$remote"
+		elif [ "$private_repo" = false ]; then
+			doomed=true
+			printf 'Refusing to push private %s "%s" to public remote at %s!\n' "$ref_type" "$obj_name" "$url"
+		fi
 	fi
 done
+
+if [ "$doomed" = true ]; then
+	echo "Run again with --no-verify to continue anyway."
+	exit 1
+fi
