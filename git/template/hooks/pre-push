@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eo pipefail
 
 remote="$1"
 url="$2"
@@ -10,6 +11,7 @@ private_repo="$(	[ -z "${repo_name##__*}" ]	&& echo true || echo false)"
 
 doomed=false
 while read local_ref local_sha remote_ref remote_sha; do
+
 	obj_name="${local_ref##*/}"
 
 	ref_type="${local_ref%/*}"
