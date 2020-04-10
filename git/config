@@ -104,3 +104,5 @@
 	parallel = 8
 [submodule]
 	recurse = true
+[pull]
+	ff = only
