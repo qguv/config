@@ -27,5 +27,7 @@ exec {
 			-I
 	}
 
+	wl-paste -t text --watch clipman store
+
 	#sh -c 'while sh ~/.config/sway/repr.sh; do sleep 1; done'
 }
