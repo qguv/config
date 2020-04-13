@@ -50,8 +50,8 @@ fi
 
 if tty -s; then
   if [ -z "$DISPLAY" ] && [ "$(tty)" != /dev/tty6 ]; then
-    if [ "$START_SWAY" = true ]; then
-      sway
+    if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway; then
+      exec sway
     elif [ "$START_X" = true ]; then
       sudo startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
     fi
