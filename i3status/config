@@ -61,11 +61,19 @@ disk "/" {
    format_below_threshold = "🈵 %free"
 }
 
-order += "volume master"
-volume master {
-       format = "🔊 %volume"
-       format_muted = "🔇 <s>%volume</s>"
-       device = "pulse"
+order += "volume output"
+volume output {
+   format = "🔊 %volume"
+   format_muted = "🔇 <s>%volume</s>"
+   device = "pulse"
+}
+
+# currently broken, see https://github.com/i3/i3status/issues/241
+#order += "volume input"
+volume input {
+   format = "🎙️"
+   format_muted = "🙊"
+   mixer = "Capture"
 }
 
 order += "battery 0"
