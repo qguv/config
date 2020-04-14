@@ -1,7 +1,7 @@
 set nocompatible
 
 " appearance
-colorscheme slate
+colorscheme peachpuff
 set background=light
 set t_Co=256
 set relativenumber number
