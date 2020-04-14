@@ -121,6 +121,7 @@ bindsym {
 		$mod+Prior exec pactl set-sink-volume @DEFAULT_SINK@ +4%
 		$mod+Next exec pactl set-sink-volume @DEFAULT_SINK@ -4%
 		$mod+End exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		$mod+Home exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 		# media keys
 		XF86AudioPlay exec playerctl play-pause
