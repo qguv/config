@@ -173,6 +173,8 @@ mode raw bindsym {
 # mouse button for dragging.
 floating_modifier $mod normal
 
+focus_wrapping no
+
 # disable laptop display when connected to an external monitor (clamshell mode)
 # FIXME: disabled because it breaks clamshell sleep when NOT connected to an external monitor
 #bindswitch {
