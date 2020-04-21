@@ -61,19 +61,28 @@ disk "/" {
    format_below_threshold = "🈵 %free"
 }
 
-order += "volume output"
-volume output {
+order += "volume master"
+volume master {
    format = "🔊 %volume"
    format_muted = "🔇 <s>%volume</s>"
    device = "pulse"
 }
 
 # currently broken, see https://github.com/i3/i3status/issues/241
-#order += "volume input"
-volume input {
+#order += "volume capture"
+volume capture {
    format = "🎙️"
    format_muted = "🙊"
+   device = "hw:0"
    mixer = "Capture"
+   mixer_idx = 0
+}
+
+order += "read_file mic"
+read_file mic {
+   path = "/tmp/mic"
+   format = "%content"
+   format_bad = ""
 }
 
 order += "battery 0"
