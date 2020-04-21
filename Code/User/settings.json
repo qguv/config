@@ -112,6 +112,7 @@
     "gitlens.advanced.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "webhint.enableTelemetry": "disabled",
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
 
