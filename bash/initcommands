@@ -50,7 +50,6 @@ else
     export MOZ_USE_XINPUT2=1
 fi
 
-
 # my own XDG_CONFIG_HOME remedy aliases
 alias irssi="irssi --home=$XDG_CONFIG_HOME/irssi"
 alias vim="vim -i $XDG_CONFIG_HOME/vim/viminfo -u $XDG_CONFIG_HOME/vim/vimrc"
@@ -106,6 +105,7 @@ export PSQL_HISTORY="$XDG_DATA_HOME/psql/history"
 export PYLINTHOME="$XDG_DATA_HOME/pylint"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/pycache"
 #export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd.sock"
 export TERMINFO="$XDG_CONFIG_HOME/terminfo"
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"
