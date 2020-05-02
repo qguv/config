@@ -53,7 +53,7 @@ if tty -s; then
     if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway; then
       exec sway
     elif [ "$START_X" = true ]; then
-      sudo startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
+      exec startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
     fi
   fi
 
