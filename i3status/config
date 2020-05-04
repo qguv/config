@@ -1,6 +1,6 @@
 general {
    colors = true
-   interval = 5
+   interval = 1
    color_good = "#ffffff"
    color_degraded = "#888888"
    markup = "pango"
