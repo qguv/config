@@ -96,7 +96,7 @@ bindsym {
 	$mod+F11 fullscreen
 
 	# float current window
-	$mod+Shift+Space floating toggle
+	$mod+Shift+Space floating toggle; sticky enable
 
 	# focus floating windows
 	$mod+Tab focus mode_toggle
