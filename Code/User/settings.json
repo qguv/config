@@ -14,9 +14,8 @@
     "workbench.colorCustomizations": {
 
         // less visually aggressive colors for distracting badges
-        "activityBarBadge.background": "#555",
-        "statusBar.background": "#222",
-        "statusBar.noFolderBackground": "#222",
+        "activityBarBadge.background": "#0005",
+        "activityBarBadge.foreground": "#fff",
 
         // kasugano color scheme in the terminal
         "terminal.background": "#1b1b1b",       // BG
@@ -37,6 +36,17 @@
         "terminal.ansiBrightMagenta": "#7882bf",// 13
         "terminal.ansiBrightCyan": "#95a7cc",   // 14
         "terminal.ansiBrightWhite": "#edeff2",  // 15
+
+        // muted activity bar
+        "activityBar.foreground": "#999",
+
+        // muted status bar
+        "statusBar.background": "#0000",
+        "statusBar.noFolderBackground": "#0000",
+        "statusBarItem.remoteBackground": "#0000",
+        "statusBar.foreground": "#999",
+        "statusBar.noFolderForeground": "#999",
+        "statusBarItem.remoteForeground": "#999",
     },
 
     // assisted typing
