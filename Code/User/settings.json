@@ -7,9 +7,10 @@
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
     "git.enableStatusBarSync": false,
-    "window.titleBarStyle": "custom",
-    "window.zoomLevel": -1,
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 0,
     "workbench.tree.indent": 16,
+
     "workbench.colorCustomizations": {
 
         // less visually aggressive colors for distracting badges
