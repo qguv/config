@@ -32,7 +32,7 @@ bar {
 	font pango:$font $barstyle $fontsize
 	position top
 
-	status_command i3status
+	swaybar_command waybar
 	separator_symbol " · "
 
 	modifier Mod1

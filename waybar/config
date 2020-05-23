@@ -1,0 +1,122 @@
+[{
+    "layer": "bottom",
+    "position": "top",
+
+    "modules-left": [
+        "sway/workspaces",
+        "idle_inhibitor"
+    ],
+
+    "modules-center": [
+        "sway/window"
+    ],
+
+    "modules-right": [
+        "temperature",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "tray",
+        "pulseaudio",
+        "network",
+        "clock#date",
+        "clock#time"
+    ],
+
+    "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": true
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-deactivated": "",
+        "format-icons": {
+            "activated": ""
+        }
+    },
+
+    "sway/window": {
+        "max-length": 80,
+        "tooltip": false
+    },
+
+    "temperature": {
+        "format": "",
+        "thermal-zone": 1,
+        "critical-threshold": 70,
+        "format-critical": "<span foreground='#ff5c57'></span> {temperatureC}°C"
+    },
+
+    "cpu": {
+        "interval": 3,
+        "format": "<span foreground='#929292'></span> {usage}%"
+    },
+
+    "memory": {
+        "interval": 3,
+        "format": "<span foreground='#929292'></span> {percentage}%",
+        "format-abundant": "",
+        "states": {
+            "abundant": 60
+        }
+    },
+
+    "disk": {
+        "format": "<span foreground='#929292'></span> {free}"
+    },
+
+    "battery": {
+        "format-icons": ["", "", "", "", ""],
+        "format": "",
+        "format-full": "",
+        "format-discharging": "<span foreground='#ffffff'>{icon}</span> {time}",
+        "format-charging": "<span foreground='#ffcc92'>{icon}+</span> {time}",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 18
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "<span foreground='#929292'></span>",
+        "format-icons": {
+            "default": ["<span foreground='#929292'></span>"],
+            "headphones": ["<span foreground='#929292'></span>"]
+        },
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +4%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -4%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "swaymsg exec pavucontrol",
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": "<span foreground='#929292'></span> {essid} <span foreground='#929292'>{frequency}MHz {signalStrength}%</span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
+        "format-ethernet": "<span foreground='#929292'></span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
+        "format-disconnected": "",
+        "on-click-right": "nm-connection-editor",
+        "tooltip": false
+    },
+
+    "clock#date": {
+        "interval": 360,
+        "format": "{:<span foreground='#606060'>%Y</span> <span foreground='#929292'>%m</span> %d}",
+        "tooltip": false
+    },
+
+    "clock#time": {
+        "interval": 1,
+        "format": "{:%H <span foreground='#929292'>%M</span> <span foreground='#606060'>%S</span>}",
+        "on-click-right": "swaymsg inhibit_idle open",
+        "tooltip": false
+    }
+}]

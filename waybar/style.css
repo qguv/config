@@ -1,0 +1,96 @@
+/* colorscheme */
+@define-color background rgba(34, 34, 34, 0.7);
+@define-color active rgba(68, 68, 68, 0.8);
+@define-color warning rgba(243, 249, 157, 1);
+@define-color alert rgba(255, 92, 87, 1);
+@define-color white rgba(239, 240, 235, 1);
+@define-color muted rgba(239, 240, 235, 0.7);
+@define-color darkgrey rgba(73, 73, 73, 1);
+@define-color grey rgba(146, 146, 146, 1);
+
+@define-color red rgba(255, 92, 87, 1);
+@define-color orange rgba(255, 200, 87, 1);
+@define-color yellow rgba(243, 249, 157, 1);
+@define-color blue rgba(10, 108, 245, 1);
+@define-color purple rgba(159, 120, 255, 1);
+@define-color green rgba(90, 247, 142, 1);
+@define-color cyan rgba(154, 237, 254, 1);
+
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   "Noto Sans", "Font Awesome 5 Free Regular", "Font Awesome 5 Free Solid", "Font Awesome 5 Brands";
+    font-size:     12px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0s;
+}
+
+window {
+    color:      @white;
+    background: @background;
+}
+
+#workspaces {
+    padding-right: 30px;
+}
+
+#workspaces button {
+    font-weight: 800;
+    background: transparent;
+    padding:    0 10px;
+    color:   @muted;
+    min-width:  20px;
+    border-top: 1px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    color: @white;
+    border-bottom: 2px solid @white;
+}
+
+#workspaces button.urgent {
+    color:      @alert;
+    border-bottom: 2px solid @alert;
+}
+
+#tray, #mode, #battery, #cpu, #memory, #network, #pulseaudio, #temperature, #clock, #disk {
+    margin:     0px 16px 0px 0px;
+}
+
+#clock.date {
+    border-bottom: 2px solid @blue;
+}
+
+#clock.time {
+    border-bottom: 2px solid @purple;
+}
+
+#network {
+    border-bottom: 2px solid @green;
+}
+
+#network.speed {
+    border-bottom: 0px;
+}
+
+#battery {
+    border-bottom: 2px solid @yellow;
+}
+
+#pulseaudio {
+    border-bottom: 2px solid @orange;
+}
+
+#battery.warning {
+   color:       rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color:      rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color:      rgba(217, 216, 216, 1);
+}

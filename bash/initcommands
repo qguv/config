@@ -89,6 +89,7 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 # Thankfully, this is only needed for gstreamer0.10; 1.0 has a sane default
 export GST_REGISTRY="$XDG_CACHE_HOME/gstreamer/registry-$(uname -m).bin"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export GTK_THEME="Adwaita:dark"
 export HISTFILE="$XDG_DATA_HOME/bash/history"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
