@@ -81,8 +81,8 @@ bindsym {
 	$mod+9 workspace 9
 	$mod+Shift+9 move container to workspace 9
 
-	$mod+0 workspace O
-	$mod+Shift+0 move container to workspace O
+	$mod+0 workspace 10
+	$mod+Shift+0 move container to workspace 10
 
 	# layout modes
 	$mod+t layout tabbed
