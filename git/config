@@ -16,8 +16,8 @@
 	confirm = auto
 [alias]
 	# simple typing shortcuts
-	co = checkout
-	cm = commit
+	sw = switch
+	c = commit
 	ff = merge --ff-only
 	lo = log --oneline
 	refgraph = log --graph --decorate --pretty=oneline --abbrev-commit --simplify-by-decoration --simplify-merges
