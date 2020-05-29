@@ -1,6 +1,8 @@
 # compatibility
 set -g default-terminal screen-256color
 
+set -g history-limit 1000000
+
 # change prefix to ^A
 unbind C-b
 set -g prefix C-a
