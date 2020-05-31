@@ -1,0 +1,21 @@
+[Unit]
+Description=i3 clone for wayland
+Documentation=man:sway(5)
+OnFailure=getty@tty1.service
+Conflicts=getty@tty1.service
+After=graphical.target
+
+[Service]
+User=qguv
+ExecStart=/usr/bin/sway
+WorkingDirectory=/home/qguv
+TTYPath=/dev/tty1
+PAMName=login
+EnvironmentFile=/home/qguv/.config/sway/env
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+Restart=on-success
+
+[Install]
+WantedBy=graphical.target
