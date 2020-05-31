@@ -162,7 +162,6 @@ mode resize bindsym {
 
 bindsym $mod+asciitilde mode raw
 mode raw bindsym {
-	Escape mode default
 	$mod+asciitilde mode default
 }
 
