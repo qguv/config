@@ -4,6 +4,7 @@
 
     "modules-left": [
         "sway/workspaces",
+        "sway/mode",
         "idle_inhibitor"
     ],
 
