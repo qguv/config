@@ -11,6 +11,9 @@ bind C-a send-prefix
 # switch panes with mouse
 set -g mouse on
 
+# support vim plugin github.com/airblade/vim-gitgutter
+set -g focus-events on
+
 # when the sessions of two connected clients are in the same session group, but
 # different windows have focus, then the smaller client's terminal size should
 # not constrain the size of the larger client's window

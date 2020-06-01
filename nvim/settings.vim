@@ -15,6 +15,9 @@ set ignorecase smartcase
 " prefer prompting to failing when interpreting user commands
 set confirm
 
+" support for plugin github.com/airblade/gitgutter
+set updatetime=100
+
 " POSIX line endings
 set fileformat=unix
 set fileformats=unix,mac,dos
