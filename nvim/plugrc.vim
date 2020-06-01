@@ -6,6 +6,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-speeddating'   " increment dates, or letters in visual mode
 Plug 'tpope/tpope-vim-abolish' " fancy substitution with %Subvert
 Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-dispatch'      " :Make and :Make!/:Copen
 
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'junegunn/rainbow_parentheses.vim'
