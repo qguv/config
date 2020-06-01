@@ -1,8 +1,9 @@
 set nocompatible
 
 " appearance
-colorscheme elflord
+colorscheme slate
 set background=dark
+set t_Co=256
 set relativenumber number
 set ruler
 set showcmd
