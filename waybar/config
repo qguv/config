@@ -13,13 +13,15 @@
     ],
 
     "modules-right": [
+        "tray",
+        "custom/btheadphones",
         "temperature",
         "cpu",
         "memory",
         "disk",
+        "pulseaudio#source",
+        "pulseaudio#sink",
         "battery",
-        "tray",
-        "pulseaudio",
         "network",
         "clock#date",
         "clock#time"
@@ -70,8 +72,8 @@
 
     "battery": {
         "format-icons": ["", "", "", "", ""],
-        "format": "",
-        "format-full": "",
+        "format": "<span foreground='#929292'>{icon}</span> ??",
+        "format-full": "<span foreground='#929292'>{icon}</span> 100%",
         "format-discharging": "<span foreground='#ffffff'>{icon}</span> {time}",
         "format-charging": "<span foreground='#ffcc92'>{icon}+</span> {time}",
         "interval": 30,
@@ -86,12 +88,19 @@
         "icon-size": 18
     },
 
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "<span foreground='#929292'></span>",
+    "custom/btheadphones": {
+        "format": "",
+        "on-click": "bluetoothctl connect 38:18:4C:D3:FB:DA",
+        "on-click-right": "bluetoothctl disconnect 38:18:4C:D3:FB:DA"
+    },
+
+    "pulseaudio#sink": {
+        "format": "<span foreground='#929292'>{icon}</span> {volume}%",
+        "format-bluetooth": "<span foreground='#929292'></span> {volume}%",
+        "format-muted": "<span foreground='#929292'></span> <s>{volume}%</s>",
         "format-icons": {
-            "default": ["<span foreground='#929292'></span>"],
-            "headphones": ["<span foreground='#929292'></span>"]
+            "default": [""],
+            "headphones": [""]
         },
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +4%",
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -4%",
@@ -100,24 +109,34 @@
         "tooltip": false
     },
 
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "<span foreground='#929292'></span>",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +4%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -4%",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right": "swaymsg exec pavucontrol",
+        "tooltip": false
+    },
+
     "network": {
         "format-wifi": "<span foreground='#929292'></span> {essid} <span foreground='#929292'>{frequency}MHz {signalStrength}%</span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
-        "format-ethernet": "<span foreground='#929292'></span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
+        "format-ethernet": "<span foreground='#929292'></span> <span stretch='extracondensed'>{ipaddr}/{cidr}</span>",
         "format-disconnected": "",
         "on-click-right": "nm-connection-editor",
         "tooltip": false
     },
 
     "clock#date": {
-        "interval": 360,
-        "format": "{:<span foreground='#606060'>%Y</span> <span foreground='#929292'>%m</span> %d}",
+        "interval": 60,
+        "format": "{:<span stretch='extracondensed' foreground='#929292'>%Y</span> %m %d}",
         "tooltip": false
     },
 
     "clock#time": {
         "interval": 1,
-        "format": "{:%H <span foreground='#929292'>%M</span> <span foreground='#606060'>%S</span>}",
-        "on-click-right": "swaymsg inhibit_idle open",
+        "format": "{:%H %M <span foreground='#929292'>%S</span>}",
         "tooltip": false
     }
 }]

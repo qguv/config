@@ -59,28 +59,32 @@ window {
     margin:     0px 16px 0px 0px;
 }
 
-#clock.date {
-    border-bottom: 2px solid @blue;
-}
-
-#clock.time {
-    border-bottom: 2px solid @purple;
-}
-
-#network {
-    border-bottom: 2px solid @green;
-}
-
 #network.speed {
     border-bottom: 0px;
+}
+
+#pulseaudio.source {
+    border-bottom: 2px solid @red;
+}
+
+#pulseaudio.sink {
+    border-bottom: 2px solid @orange;
 }
 
 #battery {
     border-bottom: 2px solid @yellow;
 }
 
-#pulseaudio {
-    border-bottom: 2px solid @orange;
+#network {
+    border-bottom: 2px solid @green;
+}
+
+#clock.date {
+    border-bottom: 2px solid @blue;
+}
+
+#clock.time {
+    border-bottom: 2px solid @purple;
 }
 
 #battery.warning {
