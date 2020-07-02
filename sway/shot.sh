@@ -1,11 +1,48 @@
-GRIM="$HOME/build/grim/build/grim"
-SLURP="$HOME/build/slurp/build/slurp"
+#!/bin/sh
 
-case "$1" in
+usage='./shot.sh (region | monitor) [animate]'
+
+if killall -HUP wf-recorder 2>/dev/null; then
+	exit 0
+fi
+
+if [ "${2:-}" = animate ]; then
+	case "${1:-}" in
 	region)
-		exec "$GRIM" -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | "$SLURP")"
+		flag="-g"
+		arg="$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)"
 		;;
 	monitor)
-		exec "$GRIM" -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')"
+		flag="-o"
+		arg="$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')"
 		;;
-esac
+	*)
+		echo "$usage" 1>&2
+		exit 1
+		;;
+	esac
+
+	f="screencast_$(date +%11s)"
+	vid="/tmp/$f.mp4"
+	gif="$HOME/$f.gif"
+
+	wf-recorder "$flag" "$arg" -f "$vid"
+
+	ffmpeg -i "$vid" -vf 'fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse' -loop 0 "$gif"
+
+	rm "$vid"
+	echo "$gif"
+else
+	case "${1:-}" in
+	region)
+		exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)"
+		;;
+	monitor)
+		exec grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')"
+		;;
+	*)
+		echo "$usage" 1>&2
+		exit 1
+		;;
+	esac
+fi

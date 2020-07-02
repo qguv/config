@@ -28,10 +28,12 @@ bindsym {
 	--release {
 
 		# screenshot a window (click) or region (drag)
-		Print exec sh ~/.config/sway/shot.sh region
+		Print			exec bash ~/.config/sway/shot.sh region
+		Shift+Print		exec bash ~/.config/sway/shot.sh region animated
 
 		# screenshot the focused monitor
-		$mod+Print exec sh ~/.config/sway/shot.sh monitor
+		$mod+Print		exec bash ~/.config/sway/shot.sh monitor
+		$mod+Shift+Print	exec bash ~/.config/sway/shot.sh monitor animated
 	}
 
 	# window focus
