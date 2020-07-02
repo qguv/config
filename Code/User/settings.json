@@ -110,7 +110,6 @@
         // use vscode keyboard shortcuts for closing and opening windows and for
         // opening keyboard shortcut settings
         "<C-k>": false,
-        "<C-n>": false,
         "<C-w>": false,
 
         // use vscodevim behavior for page up and down commands
