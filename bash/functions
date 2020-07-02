@@ -722,3 +722,42 @@ function mastovid() {
   [ $# -ne 2 ] && printf "Usage: $0 <mp4 input file> <mp4 output file>\n" && return 1
   ffmpeg -i "$1" -vf "scale=iw/2:ih/2" -vcodec libx264 -crf 24 "$2" && ls -lh "$2"
 }
+
+# require nm connection to be up to run this command, but take connection down once all such commands are complete
+with_nm_connection() {(
+  set +e
+
+  working_dir=/tmp/with_nm_connection
+  connection="$1"; shift
+
+  mkdir -p "$working_dir"
+  counter="$working_dir/$connection.counter"
+  lock="$working_dir/$connection.lock"
+
+  (flock --timeout 1 9
+    if ! [ -f "$counter" ]; then
+      echo 1 > "$counter"
+      nmcli c up "$connection"
+    else
+      n="$(cat "$counter")"
+      n=$(($n + 1))
+      printf '%s\n' "$n" > "$counter"
+    fi
+  ) 9>"$lock"
+
+  "$@"
+  r=$?
+
+  (flock --timeout 1 9
+    n="$(cat "$counter")"
+    if [ "$n" -eq 1 ]; then
+      nmcli c down "$connection"
+      rm "$counter"
+    else
+      n=$(($n - 1))
+      printf '%s\n' "$n" > "$counter"
+    fi
+  ) 9>"$lock"
+
+  return $r
+)}
