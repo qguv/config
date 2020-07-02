@@ -131,4 +131,10 @@
 
     // new settings added by GUI
     "": {},
+    "json.schemaDownload.enable": false,
+    "python.languageServer": "Microsoft",
+    "python.showStartPage": false,
+    "rust-client.rustupPath": "/home/qguv/.cargo/bin/rustup",
+    "search.useGlobalIgnoreFiles": true,
+    "yaml.validate": false,
 }
