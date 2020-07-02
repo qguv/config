@@ -12,9 +12,6 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
 
-# prefer locally built packages
-export PATH="$HOME/.built/bin:$HOME/dev/go/bin:$HOME/go/bin:$PATH"
-
 source "$XDG_CONFIG_HOME/bash/system"
 source "$XDG_CONFIG_HOME/bash/initcommands"
 source "$XDG_CONFIG_HOME/bash/functions"

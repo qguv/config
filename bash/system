@@ -23,3 +23,25 @@ export START_X=false
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
 fi
+
+# reset path to its original form for idempotence
+if [ -n "$OLD_PATH" ]; then
+    PATH="$OLD_PATH"
+else
+    OLD_PATH="$PATH"
+fi
+
+# include platformio build toolchain
+PATH="$PATH:$HOME/.platformio/penv/bin"
+
+# include locally compiled golang packages
+PATH="$PATH:$HOME/go/bin"
+
+# prefer locally built packages
+#PATH="$HOME/.built/bin:$PATH"
+
+# manage rust executables with rustup
+PATH="$HOME/.cargo/bin:$PATH"
+
+# manage python executables with pyenv
+PATH="$HOME/build/pyenv/bin:$PATH"
