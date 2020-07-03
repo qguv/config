@@ -44,6 +44,8 @@ if [ "$START_SWAY" = true ]; then
     export MOZ_ENABLE_WAYLAND=1
     export GDK_BACKEND=wayland
     export CLUTTER_BACKEND=wayland
+    #export QT_PLUGIN_PATH=/usr/lib/qt/plugins
+    export QT_QPA_PLATFORM=wayland
 
 # firefox smooth scrolling under Xorg
 else
