@@ -76,16 +76,24 @@
         "editor.formatOnSave": true,
     },
 
+    "json.schemaDownload.enable": false,
+
+    "files.associations": {
+        "Makefile.*": "makefile",
+    },
+
     "python.jediEnabled": false,
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.pythonPath": "${workspaceRoot}/.venv/bin/python",
     "python.terminal.activateEnvironment": false,
+    "python.languageServer": "Microsoft",
+    "python.showStartPage": false,
 
-    "files.associations": {
-        "Makefile.*": "makefile",
-    },
+    "rust-client.rustupPath": "/home/qguv/.cargo/bin/rustup",
+
+    "yaml.validate": false,
 
     // ==========
     // EXTENSIONS
@@ -137,10 +145,4 @@
 
     // new settings added by GUI
     "": {},
-    "json.schemaDownload.enable": false,
-    "python.languageServer": "Microsoft",
-    "python.showStartPage": false,
-    "rust-client.rustupPath": "/home/qguv/.cargo/bin/rustup",
-    "search.useGlobalIgnoreFiles": true,
-    "yaml.validate": false,
 }
