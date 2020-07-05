@@ -63,6 +63,9 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000, // ms
 
+    // search
+    "search.useGlobalIgnoreFiles": true,
+
     // ================
     // LANGUAGE SUPPORT
     // ================
