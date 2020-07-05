@@ -55,6 +55,9 @@
     "trailing-spaces.deleteModifiedLinesOnly": true,
     "trailing-spaces.trimOnSave": true,
 
+    // support colemak
+    "keyboard.dispatch": "keyCode",
+
     // filesystem
     "explorer.confirmDelete": false,
     "files.autoSave": "afterDelay",
