@@ -1,22 +1,11 @@
 for_window {
 
-	[floating] sticky enable;
+	[app_id="nm-connection-editor"] floating enable
 
-	[app_id="nm-connection-editor"] {
-		floating enable;
-		sticky enable;
-	}
-
-	[app_id="pavucontrol"] {
-		floating enable;
-		sticky enable;
-	}
+	[app_id="pavucontrol"] floating enable
 
 	# xev
-	[title="Event Tester"] {
-		floating enable;
-		sticky enable;
-	}
+	[title="Event Tester"] floating enable
 
 	# visual studio code
 	[class="Code" tiling] {
@@ -26,6 +15,7 @@ for_window {
 
 	[class="zoom" tiling] move scratchpad
 	[class="zoom" floating] {
+		sticky enable;
 		inhibit_idle open;
 	}
 
