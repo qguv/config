@@ -5,6 +5,9 @@
     {"key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup"},
     {"key": "ctrl+shift+tab", "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"},
 
+    // use enter to accept completions, not tab
+    {"key": "tab", "command": "-acceptSelectedSuggestion", "when": "suggestWidgetVisible && textInputFocus"},
+
     // terminals are disposable since TTY_USE_TMUX
     {"when": "terminalFocus", "key": "ctrl+`", "command": "workbench.action.terminal.kill"},
 
