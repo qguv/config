@@ -91,6 +91,11 @@
     "python.languageServer": "Microsoft",
     "python.showStartPage": false,
 
+    "rgbdsz80.formatting.capitalization": {
+        "language": "lower",
+        "language.keyword.sectiondeclaration": "upper",
+    },
+
     "rust-client.rustupPath": "/home/qguv/.cargo/bin/rustup",
 
     "yaml.validate": false,
