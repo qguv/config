@@ -137,10 +137,14 @@
     },
 
     // disable microsoft surveillance
+    "code-runner.enableAppInsights": false,
+    "extensions.autoUpdate": false,
+    "extensions.ignoreRecommendations": true,
     "githubPullRequests.telemetry.enabled": false,
     "gitlens.advanced.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "update.mode":"none",
     "webhint.enableTelemetry": "disabled",
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
