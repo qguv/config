@@ -59,8 +59,11 @@ if [ -n "$ZSH_VERSION" ]; then
   autoload bashcompinit
   bashcompinit
   alias _have=hash
-  [ -r /usr/share/bash-completion/completions/nordvpn ] && source /usr/share/bash-completion/completions/nordvpn
-  [ -r /usr/share/bash-completion/completions/lxc ] && source /usr/share/bash-completion/completions/lxc
+  for f in /usr/share/bash-completion/completions/{nordvpn,lxc}; do
+    if [ -r "$f" ]; then
+        source "$f"
+    fi
+  done
 
 # bash, most likely
 else
