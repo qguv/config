@@ -26,6 +26,8 @@ for_window {
 
 	[class="bgb.exe"] floating enable
 
+	[shell="xwayland"] border normal 0
+
 	[class="scrcpy"] {
 		floating enable;
 		sticky enable;
