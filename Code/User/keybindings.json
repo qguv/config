@@ -25,13 +25,13 @@
     {"key": "ctrl+,", "command": "-workbench.action.openSettings"},
 
     // when split, use ctrl+direction to focus an adjacent editor
-    {"key": "ctrl+down", "command": "workbench.action.focusBelowGroup", "when": "textInputFocus"},
+    {"key": "down", "command": "workbench.action.focusBelowGroup", "when": "textInputFocus"},
     {"key": "ctrl+down", "command": "-scrollLineDown", "when": "textInputFocus"},
-    {"key": "ctrl+up", "command": "workbench.action.focusAboveGroup", "when": "textInputFocus"},
+    {"key": "up", "command": "workbench.action.focusAboveGroup", "when": "textInputFocus"},
     {"key": "ctrl+up", "command": "-scrollLineUp", "when": "textInputFocus"},
-    {"key": "ctrl+left", "command": "workbench.action.focusLeftGroup", "when": "textInputFocus"},
+    {"key": "left", "command": "workbench.action.focusLeftGroup", "when": "textInputFocus"},
     {"key": "ctrl+left", "command": "-cursorWordStartLeft", "when": "textInputFocus"},
-    {"key": "ctrl+right", "command": "workbench.action.focusRightGroup", "when": "textInputFocus"},
+    {"key": "right", "command": "workbench.action.focusRightGroup", "when": "textInputFocus"},
     {"key": "ctrl+right", "command": "-cursorWordEndRight", "when": "textInputFocus"},
 
     // sidebar shortcuts should also toggle sidebar visibility
