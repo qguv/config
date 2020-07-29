@@ -25,4 +25,10 @@ for_window {
 	[app_id="Alacritty"] opacity 0.95
 
 	[class="bgb.exe"] floating enable
+
+	[class="scrcpy"] {
+		floating enable;
+		sticky enable;
+		border pixel;
+	}
 }
