@@ -154,4 +154,7 @@
 
     // new settings added by GUI
     "": {},
+    "files.exclude": {
+        "**/*.pyc": true
+    },
 }
