@@ -19,10 +19,10 @@ export TTY_USE_TMUX=true
 export TTY_TMUX_SHARED=false
 export START_SWAY=true
 export START_X=false
-export DESIRED_GROUP=
-export ASK_CHANGE_GROUP=true
-export DESIRED_UMASK=006
-export ASK_CHANGE_UMASK=false
+export GROUP_DESIRED=
+export GROUP_SWITCH=false
+export UMASK_DESIRED=006
+export UMASK_SWITCH=true
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"

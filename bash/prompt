@@ -123,7 +123,25 @@ if hash ag 2>/dev/null; then
   fi
 fi
 
-if [ "$TTY_TMUX_SHARED" != true ]; then
+# fix LXD tty bug
+if tty -s && [ "$(tty)" = "not a tty" ]; then
+  exec script -q /dev/null
+fi
+
+if [ -n "$GID_DESIRED" ] && ! [ "$GID" = "$GID_DESIRED" ]; then
+    printf "[WARN] Your primary group is \"%s\" which is different than the expected \"%s\"! To switch, run: exec newgrp %s\n" "$GROUP_ORIGINAL" "$GROUP_DESIRED" "$GROUP_DESIRED" >&2
+fi
+
+if [ -n "$UMASK_DESIRED" ] && ! [ "$(umask)" = "$UMASK_DESIRED" ]; then
+    printf "[WARN] Your umask is %s which is different than the expected %s! To switch, run: umask %s\n" "$UMASK_ORIGINAL" "$UMASK_DESIRED" "$UMASK_DESIRED" >&2
+fi
+
+# escaped out of tmux
+if [ -z "$TMUX" ] && [ "$TTY_USE_TMUX" = true ]; then
+    printf "[DEBUG] Press ^D again to exit.\n" >&2
+
+# list attached tmux sessions
+elif ! [ "$TTY_TMUX_SHARED" = true ]; then
     dsids="$(tmux-detached)"
     if [ -n "$dsids" ]; then
 
@@ -132,75 +150,21 @@ if [ "$TTY_TMUX_SHARED" != true ]; then
         # plural
         if [ "$ndsids" -ne 1 ]; then
             plural='s'
-            one_it='one'
             arg=" [$(printf "$dsids" | tr '\n' '|' | tr -d ':')]"
 
         # singluar
         else
             ndsids='a'
             plural=''
-            one_it='it'
             arg=''
         fi
 
-        msg="You have $ndsids detached tmux session$plural! You can resume $one_it by typing:\n\n  tmux-resume$arg\n\n"
+        warn_destroy=''
         if [ -n "$TMUX" ]; then
-            msg="${msg}Note: this will destroy your current session!\n\n"
+            warn_destroy=" (Note: this will destroy your current session!)"
         fi
-        printf "$msg" | fmt -w 80
-    fi
-fi
 
-# fix LXD tty bug
-if tty -s && [ "$(tty)" = "not a tty" ]; then
-  exec script -q /dev/null
-fi
-
-if [ -z "$ORIGINAL_GID" ]; then
-    export ORIGINAL_GID="$GID"
-    if [ -n "$DESIRED_GROUP" ]; then
-
-        __desired_gid="$(getent group "$DESIRED_GROUP" | cut -d: -f3)"
-        if [ -z "$__desired_gid" ]; then
-            printf 'Desired group does not exist! Change line in %s/bash/system from:\n\n\tDESIRED_GROUP=%s\n\n' "$XDG_CONFIG_HOME" "$DESIRED_GROUP"
-        else
-            if ! [ "$ORIGINAL_GID" = "$__desired_gid" ]; then
-
-                if [ "$ASK_CHANGE_GROUP" = false ]; then
-                    ok='y'
-                else
-                    printf "Change group from %s to group %s? [y/N] " "$ORIGINAL_GID" "$DESIRED_GROUP"
-                    read ok
-                fi
-
-                if [ "$ok" = 'y' ]; then
-                    exec newgrp "$DESIRED_GROUP"
-                fi
-
-                unset ok
-            fi
-        fi
-    fi
-
-fi
-
-if [ -z "$ORIGINAL_UMASK" ]; then
-    ORIGINAL_UMASK="$(umask)"
-    if [ -n "$DESIRED_UMASK" ]; then
-
-        if ! [ "$ORIGINAL_UMASK" = "$DESIRED_UMASK" ]; then
-            if [ "$ASK_CHANGE_UMASK" = false ]; then
-                ok=y
-            else
-                printf "Change umask from %s to %s? [y/N] " "$ORIGINAL_UMASK" "$DESIRED_UMASK"
-                read ok
-            fi
-
-            if [ "$ok" = 'y' ]; then
-                umask "$DESIRED_UMASK"
-            fi
-
-            unset ok
-        fi
+        printf "[WARN] You have %s detached tmux session%s! To resume, run: \`tmux-resume%s\`%s\n" \
+            "$ndsids" "$plural" "$arg" "$warn_destroy" >&2
     fi
 fi

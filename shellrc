@@ -96,7 +96,44 @@ if tty -s; then
     fi
 
     # attach the session
-    exec tmux attach-session -t "$sid"
+    tmux attach-session -t "$sid"
+
+    if [ -f /tmp/escape-tmux ]; then
+        rm /tmp/escape-tmux
+    else
+        exit
+    fi
+  fi
+
+  if [ -z "$GID_ORIGINAL" ]; then
+      export GID_ORIGINAL="$GID"
+
+      # only for eventual error message in ./prompt
+      export GROUP_ORIGINAL="$(groups)"
+      GROUP_ORIGINAL="${GROUP_ORIGINAL%% *}"
+
+      # `groups` is unreliable in `newgrp` shell; use GID instead
+      if [ -n "$GROUP_DESIRED" ]; then
+          export GID_DESIRED="$(getent group "$GROUP_DESIRED" | cut -d: -f3)"
+          if [ -z "$GID_DESIRED" ]; then
+            printf "You specified a nonexisting group GROUP_DESIRED=\"%s\" in %s/bash/system!" "$GROUP_DESIRED" "$XDG_CONFIG_HOME"
+            unset GROUP_DESIRED
+          fi
+      fi
+
+      # if GID is different than the GID of the desired group, switch if requested
+      if [ -n "$GID_DESIRED" ] && ! [ "$GID_ORIGINAL" = "$GID_DESIRED" ] && [ "$GROUP_SWITCH" = true ]; then
+          exec newgrp "$GROUP_DESIRED"
+      fi
+  fi
+
+  if [ -z "$UMASK_ORIGINAL" ]; then
+      UMASK_ORIGINAL="$(umask)"
+
+      # if umask is different than the desired umask, switch if requested
+      if [ -n "$UMASK_DESIRED" ] && ! [ "$UMASK_ORIGINAL" = "$UMASK_DESIRED" ] && [ "$UMASK_SWITCH" = true ]; then
+          umask "$UMASK_DESIRED"
+      fi
   fi
 
   source "$XDG_CONFIG_HOME/bash/prompt"
