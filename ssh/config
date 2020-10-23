@@ -1,5 +1,6 @@
 # vim: ft=sshconfig
 
 AddKeysToAgent yes
+IdentitiesOnly yes
 
 Include ~/.config/ssh/hosts.d/*
