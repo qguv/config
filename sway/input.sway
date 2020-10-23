@@ -7,27 +7,7 @@ input {
 		xkb_variant colemak
 		xkb_options compose:sclk
 	}
-
-	2:7:SynPS/2_Synaptics_TouchPad {
-		tap enabled
-		natural_scroll enabled
-		dwt enabled
-	}
-
-	2:10:TPPS/2_IBM_TrackPoint {
-		natural_scroll enabled
-		dwt enabled
-	}
 }
 
-seat {
-	# hide mouse after 5 seconds of inactivity
-	* hide_cursor 5000
-
-	# use a different seat profile for laptop keyboard and mouse
-	# FIXME: currently disabled because swayidle doesn't support multi-seat
-#	internal attach {
-#		2:7:SynPS/2_Synaptics_TouchPad
-#		1:1:AT_Translated_Set_2_keyboard
-#	}
-}
+# hide mouse after 5 seconds of inactivity
+seat * hide_cursor 5000
