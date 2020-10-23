@@ -81,6 +81,10 @@
     "files.associations": {
         "Makefile.*": "makefile",
     },
+    "files.exclude": {
+        "**/*.pyc": true
+    },
+
 
     "python.jediEnabled": false,
     "python.linting.enabled": true,
@@ -154,7 +158,4 @@
 
     // new settings added by GUI
     "": {},
-    "files.exclude": {
-        "**/*.pyc": true
-    },
 }
