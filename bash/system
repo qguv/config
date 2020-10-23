@@ -41,6 +41,9 @@ PATH="$PATH:$HOME/.platformio/penv/bin"
 # include locally compiled golang packages
 PATH="$PATH:$HOME/go/bin"
 
+# initialize ruby gems
+#PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+
 # prefer locally built packages
 #PATH="$HOME/.built/bin:$PATH"
 
