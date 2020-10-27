@@ -13,7 +13,6 @@ for_window {
 		splitv;
 	}
 
-	[class="zoom" tiling] move scratchpad
 	[class="zoom" floating] {
 		sticky enable;
 		inhibit_idle open;
