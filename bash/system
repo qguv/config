@@ -2,19 +2,21 @@
 # system-specific configuration
 
 export SYSTEM_ALIASES_NOT_SET_UP=1
+source /etc/profile
+
 export PYTHON3NAME='python3'
 export PYTHON2NAME='python2'
-export SYSTEMUPDATE='sudo pacman -Syu'
+export SYSTEMUPDATE='sudo dnf update -y'
 export BEEPCOMMAND='notify-send "$TTY" beep'
 export TERMINAL='alacritty'
 export EDITOR='nvim -p'
 export TAG_CMD_FMT_STRING='nvim -c "call cursor({{.LineNumber}}, {{.ColumnNumber}})" "{{.Filename}}"'
-export BROWSER='firefox'
+export BROWSER='firefox-wayland'
 export BROWSER_PRIVATE_FLAG='--private-window'
 export CLIPBOARDCOPY='wl-copy'
 export CLIPBOARDPASTE='wl-paste'
 export OPENCOMMAND='xdg-open'
-export TRASHCOMMAND='movetotrash'
+export TRASHCOMMAND='trash'
 export GOTIFY_TOKEN=''
 export TTY_USE_TMUX=true
 export TTY_TMUX_SHARED=false

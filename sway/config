@@ -2,9 +2,9 @@ set {
 	# super
 	$mod Mod4
 
-	$term alacritty
+	$term gnome-terminal
 	$wp ~/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
-	$browser firefox
+	$browser firefox-wayland
 	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
 	$fontsize 9
@@ -12,6 +12,7 @@ set {
 	$barstyle ExtraCondensed ExtraLight
 	$launchstyle ExtraCondensed
 	$borderstyle Condensed Light
+	$clipman_path ~/go/bin/clipman
 
 	$left h
 	$down j
@@ -19,5 +20,5 @@ set {
 	$right l
 }
 
-include /etc/sway/config.d/*
+include /etc/sway/sway.d/*
 include ~/.config/sway/*.sway
