@@ -26,6 +26,9 @@ bindsym {
 	$mod+Shift+Return exec $browser
 	XF86Launch1 exec $browser
 	$mod+colon exec $browser --new-window https://calendar.google.com/calendar/r
+	$mod+c exec $clipman_path pick --tool=bemenu --tool-args='--index=1 --wrap'
+	$mod+Mod1+c exec $clipman_path clear --tool=bemenu
+	$mod+Shift+Mod1+c exec $clipman_path clear -a; exec notify-send --expire-time=3000 clipman 'Clipboard history cleared!'
 
 	--release {
 
