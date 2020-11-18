@@ -23,6 +23,8 @@ for_window {
 	[app_id="gnome-terminal-server"] opacity 0.95
 	[app_id="Alacritty"] opacity 0.95
 
+	[app_id="firefox"] layout tabbed
+
 	[class="bgb.exe"] floating enable
 
 	[shell="xwayland"] border normal 0
