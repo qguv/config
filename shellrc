@@ -48,6 +48,8 @@ fi
 if tty -s; then
   if [ -z "$DISPLAY" ] && [ "$(tty)" != /dev/tty6 ]; then
     if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway; then
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=sway
       sway
       exit
     elif [ "$START_X" = true ]; then
