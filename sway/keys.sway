@@ -51,6 +51,7 @@ bindsym {
 	$mod+Down focus down
 	$mod+Up focus up
 	$mod+Right focus right
+	Mod1+tab focus output right
 
 	# window move
 	$mod+Shift+$left move left
