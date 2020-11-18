@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export GRIM_DEFAULT_DIR="$HOME/Pictures/Screenshots"
 usage='./shot.sh (region | monitor) [animate]'
 
 if killall -HUP wf-recorder 2>/dev/null; then
