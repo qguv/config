@@ -5,7 +5,7 @@ set {
 	$term alacritty
 	$wp ~/wp/active/pexels/forest-roads/dark-footbridge-forest-5968.jpg
 	$browser firefox
-	$lock ~/.config/sway/scripts/lock.sh
+	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
 	$fontsize 9
 	$font Noto Sans
