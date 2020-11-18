@@ -63,7 +63,7 @@ bindsym {
 	$mod+Shift+Up move up
 	$mod+Shift+Right move right
 
-	# window move
+	# workspace move
 	$mod+Mod1+$left move workspace to output left
 	$mod+Mod1+$down move workspace to output down
 	$mod+Mod1+$up move workspace to output up
