@@ -9,7 +9,7 @@ font:
   size: 9 # pt
 
 # kasugano from terminal.sexy
-colors:
+-colors:
 
   # Default colors
   primary:
@@ -40,7 +40,7 @@ colors:
 
 # atelierforest.light from terminal.sexy. to enable, remove leading hyphen and
 # add leading hyphen to currently active colors section
--colors:
+colors:
   # Default colors
   primary:
     background: '0xf1efee'
