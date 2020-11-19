@@ -12,6 +12,10 @@ for_window {
 		border pixel;
 		splitv;
 	}
+	[class="code-oss" tiling] {
+		border pixel;
+		splitv;
+	}
 
 	[class="zoom" floating] {
 		sticky enable;
