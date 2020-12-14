@@ -12,7 +12,7 @@ bindsym {
 	# launcher
 	$mod+Space exec dmenu_path | bemenu -i --fn "$font $launchstyle $fontsize" -p 'run what?' | xargs swaymsg exec --
 	$mod+Shift+b exec find ~/wp -type f | bemenu -i --fn "$font $launchstyle $fontsize" -p 'choose background' | xargs -I : swaymsg output '*' background : fill #222222
-	$mod+F12 exec scrcpy -s "$(adb devices | awk 'NR==2 {print $1}')" --stay-awake --turn-screen-off --show-touches --shortcut-mod lctrl
+	$mod+F12 exec scrcpy -s "$(adb devices | awk 'NR==2 {print $1}')" --stay-awake --turn-screen-off --shortcut-mod lctrl
 
 	# notifications
 	$mod+Insert exec makoctl invoke; exec makoctl dismiss
