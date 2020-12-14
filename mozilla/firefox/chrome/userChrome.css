@@ -1,0 +1,10 @@
+#TabsToolbar {
+	visibility: collapse !important;
+	min-height: 0 !important;
+	height: 0 !important;
+	max-height: unset !important;
+}
+
+#webrtcIndicator {
+	display: none;
+}
