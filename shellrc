@@ -47,7 +47,7 @@ fi
 
 if tty -s; then
   if [ -z "$DISPLAY" ] && [ "$(tty)" != /dev/tty6 ]; then
-    if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway; then
+    if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway >/dev/null && hash sway 2>/dev/null; then
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
       sway
@@ -59,7 +59,7 @@ if tty -s; then
   fi
 
   # when this feature is enabled, start tmux at every interactive shell
-  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ]; then
+  if [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && hash tmux 2>/dev/null; then
 
     unset wid
     unset gid
