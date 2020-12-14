@@ -766,3 +766,73 @@ with_nm_connection() {(
 
   return $r
 )}
+
+lxc_connect () {
+  container="$1"
+  shift
+
+  # connect to container on test infrastructure
+  if [ "${container#test-}" != "${container}" ]; then
+    if [ -z "$(nmcli -f GENERAL.STATE c show Surfly)" ]; then
+      disable_vpn_when_done=true
+      printf "Enabling Surfly VPN..."
+      out="$(nmcli connection up Surfly 2>&1)"
+      err=$?
+      if [ $err -eq 0 ]; then
+        printf "\r                      \r"
+      else
+        printf '%s\n' ' failed!' "$out"
+        return $err
+      fi
+    fi
+
+    printf "Connecting...\r"
+    ssh_err=0
+    ssh ti-wake -t lxc exec "${container}" -- su --login client 2>/dev/null
+    ssh_err=$?
+    if [ $ssh_err -ne 0 ]; then
+      printf 'failed!\n'
+    fi
+
+    if [ "$disable_vpn_when_done" = true ]; then
+      printf "Disabling Surfly VPN..."
+      out="$(nmcli connection down Surfly 2>&1)"
+      err=$?
+      if [ $err -eq 0 ]; then
+        printf "\r                       \r"
+      else
+        printf '%s\n' ' failed!' "$out"
+        return $err
+      fi
+    fi
+
+    return $ssh_err
+  fi
+
+  # try to start local container if it doesn't exist already
+  if lxc info "$container" | grep 'Status: Stopped' >/dev/null; then
+    printf "Starting..."
+    out="$(lxc start "$container" 2>&1)"
+    if [ $? -ne 0 ]; then
+      printf " failed!\n$out"
+      return 1
+    fi
+    printf "\r           \r"
+  fi
+
+  # restore container to a snapshot called 'clean'
+  if [ "$*" = clean ]; then
+    printf %s "You're sure? (type yes) " >&2
+    read line
+    [ "$line" = yes ] || return 1
+    lxc restore "$container" clean
+
+  # connect a shell to the tty or run a command
+  elif [ $# -eq 0 ]; then
+    lxc exec "$container" -- su --login "$USER"
+
+  # run a command in the tty
+  else
+    lxc exec "$container" -- sudo -u "$USER" $*
+  fi
+}
