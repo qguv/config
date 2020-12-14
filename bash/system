@@ -24,6 +24,7 @@ export GROUP_DESIRED=
 export GROUP_SWITCH=false
 export UMASK_DESIRED=006
 export UMASK_SWITCH=true
+export GTK_THEME="Adwaita:dark"
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
