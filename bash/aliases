@@ -102,6 +102,9 @@ alias sjc="sudo -E journalctl"
 alias pdfcat='gs -dNOPAUSE -sDEVICE=pdfwrite -q -sOutputFile=- -dBATCH'
 alias be='bundle exec'
 
+# procfs
+alias uuid='cat /proc/sys/kernel/random/uuid'
+
 # Android on Linux, uses !apkg android-file-transfer
 alias android_mount='aft-mtp-mount /mnt/android'
 
