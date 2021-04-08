@@ -6,6 +6,7 @@
 	lineNumber = true
 [init]
 	templatedir = ~/.config/git/template
+	defaultBranch = main
 [sendemail]
 	from = Quint Guvernator <quint@guvernator.net>
 	smtpserver = mail.privateemail.com
