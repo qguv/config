@@ -49,8 +49,11 @@ PATH="$PATH:$HOME/go/bin"
 # prefer locally built packages
 #PATH="$HOME/.built/bin:$PATH"
 
+# pipx
+#PATH="$PATH:$HOME/.local/bin"
+
 # manage rust executables with rustup
-PATH="$HOME/.cargo/bin:$PATH"
+PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
 # manage python executables with pyenv
 PATH="$HOME/build/pyenv/bin:$PATH"
