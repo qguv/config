@@ -120,6 +120,8 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 alias ag="ag --pager='less -R' -p $XDG_CONFIG_HOME/ag/agignore"
 alias mutt="mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/ncmpcpp/config"
