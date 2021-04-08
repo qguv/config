@@ -76,7 +76,19 @@
         "editor.formatOnSave": true,
     },
 
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "json.maxItemsComputed": 50000,
     "json.schemaDownload.enable": false,
+
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
 
     "files.associations": {
         "Makefile.*": "makefile",
