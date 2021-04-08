@@ -36,4 +36,6 @@ for_window {
 		sticky enable;
 		border pixel;
 	}
+
+	[title="Bitwarden — Mozilla Firefox"] floating enable
 }
