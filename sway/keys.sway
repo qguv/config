@@ -20,11 +20,12 @@ bindsym {
 	$mod+F1 exec systemctl --user restart pomodoro.timer
 
 	# launch shortcuts
-	$mod+Return exec $term
+	$mod+Shift+Space exec $term
 	$mod+F5 exec networkmanager_dmenu
 	$mod+Shift+F5 exec nm-connection-editor
 	$mod+Mod1+Delete exec pkill -USR1 swayidle
-	$mod+Shift+Return exec $browser
+	$mod+Return exec $browser
+	$mod+Shift+Return exec $browser --private-window
 	XF86Launch1 exec $browser
 	$mod+colon exec $browser --new-window https://calendar.google.com/calendar/r
 	$mod+c exec $clipman_path pick --tool=bemenu --tool-args='--index=1 --wrap'
