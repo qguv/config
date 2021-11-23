@@ -43,6 +43,7 @@
 
 	# a pretty log that shows branches, merge history, and tags
 	graph = log --graph --decorate --pretty=oneline --abbrev-commit
+	ga = log --all --graph --decorate --pretty=oneline --abbrev-commit
 
 	# alter last commit to incorporate currently staged changes
 	whoops = commit --amend --no-edit
