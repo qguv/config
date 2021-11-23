@@ -168,6 +168,8 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
+let g:man_hardwrap = 0
+
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack

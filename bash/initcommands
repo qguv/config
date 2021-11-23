@@ -132,9 +132,9 @@ alias info='info --vi-keys'
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
 if [ "$EDITOR" != "${EDITOR#nvim}" ]; then
-  MANPAGER="$EDITOR -c 'set ft=man' -"
+  export MANPAGER="$EDITOR +Man!"
+  export MANWIDTH=999
 fi
-export MANPAGER
 
 # pipenv should store its virtual environments locally to simplify PYTHONPATH,
 # especially for vscode's python.pythonpath option
