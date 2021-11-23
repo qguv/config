@@ -8,14 +8,8 @@ for_window {
 	[title="Event Tester"] floating enable
 
 	# visual studio code
-	[class="Code" tiling] {
-		border pixel;
-		splitv;
-	}
-	[class="code-oss" tiling] {
-		border pixel;
-		splitv;
-	}
+	[class="Code" tiling] border pixel
+	[class="code-oss" tiling] border pixel
 
 	[class="zoom" floating] {
 		sticky enable;
