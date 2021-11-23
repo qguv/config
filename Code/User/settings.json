@@ -70,11 +70,12 @@
     // LANGUAGE SUPPORT
     // ================
 
-    // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
-    "go.formatTool": "gofmt",
     "[go]": {
         "editor.formatOnSave": true,
     },
+    // for some reason, this defaults to goreturns which has seriously different behavior, at least around using tabs for alignment
+    "go.formatTool": "gofmt",
+    "go.toolsManagement.autoUpdate": true,
 
     "[json]": {
         "editor.defaultFormatter": "HookyQR.beautify"
