@@ -165,6 +165,7 @@
     "gitlens.advanced.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "update.mode":"none",
     "webhint.enableTelemetry": "disabled",
     "workbench.enableExperiments": false,
