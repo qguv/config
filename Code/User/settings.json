@@ -90,6 +90,10 @@
         "editor.defaultFormatter": "HookyQR.beautify"
     },
 
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+    },
+
     "files.associations": {
         "Makefile.*": "makefile",
     },
