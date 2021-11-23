@@ -10,4 +10,7 @@ input {
 }
 
 # hide mouse after 5 seconds of inactivity
-seat * hide_cursor 5000
+seat * hide_cursor {
+        5000
+        when-typing enable
+}
