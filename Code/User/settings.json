@@ -9,6 +9,8 @@
     "git.enableStatusBarSync": false,
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 0,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.startupEditor": "none",
     "workbench.tree.indent": 16,
 
     "workbench.colorCustomizations": {
