@@ -15,8 +15,8 @@ bindsym {
 	$mod+F12 exec scrcpy -s "$(adb devices | awk 'NR==2 {print $1}')" --stay-awake --turn-screen-off --shortcut-mod lctrl
 
 	# notifications
-	$mod+Insert exec makoctl invoke; exec makoctl dismiss
-	$mod+Delete exec makoctl dismiss
+	$mod+Delete exec makoctl invoke; exec makoctl dismiss
+	$mod+Shift+Delete exec makoctl dismiss
 	$mod+F1 exec systemctl --user restart pomodoro.timer
 
 	# launch shortcuts
@@ -115,7 +115,7 @@ bindsym {
 	$mod+F11 fullscreen
 
 	# float current window
-	$mod+Shift+Space floating toggle; sticky enable
+	$mod+Insert floating toggle; sticky enable
 
 	# focus floating windows
 	$mod+Tab focus mode_toggle
