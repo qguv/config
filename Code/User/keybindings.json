@@ -38,6 +38,14 @@
     {"key": "ctrl+shift+e", "command": "workbench.action.toggleSidebarVisibility", "when": "explorerViewletFocus"},
     {"key": "ctrl+shift+f", "command": "workbench.action.toggleSidebarVisibility", "when": "searchViewletFocus"},
 
+    // use vim next/previous suggestion bindings in quick open menu
+    {"key": "ctrl+p", "command": "-workbench.action.quickOpenNavigateNextInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+    {"key": "ctrl+e", "command": "-workbench.action.quickOpenNavigateNextInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+    {"key": "ctrl+shift+e", "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+    {"key": "ctrl+shift+p", "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+    {"key": "ctrl+n", "command": "workbench.action.quickOpenNavigateNextInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+    {"key": "ctrl+p", "command": "workbench.action.quickOpenNavigatePreviousInFilePicker", "when": "inFilesPicker && inQuickOpen"},
+
     // new settings added by GUI
     {},
 ]
