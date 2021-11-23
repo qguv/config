@@ -22,6 +22,7 @@
 	ff = merge --ff-only
 	lo = log --oneline
 	refgraph = log --graph --decorate --pretty=oneline --abbrev-commit --simplify-by-decoration --simplify-merges
+	rc = rebase --continue
 
 	# submit patch to lkml
 	lmkl = send-email --annotate --cover-letter --signoff
