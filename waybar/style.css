@@ -55,8 +55,14 @@ window {
     border-bottom: 2px solid @alert;
 }
 
-#tray, #mode, #battery, #cpu, #memory, #network, #pulseaudio, #temperature, #clock, #disk {
+#tray, #mode, #battery, #cpu, #memory, #pulseaudio, #temperature, #clock, #disk {
     margin:     0px 16px 0px 0px;
+}
+
+.ethspeed {
+    color:   @muted;
+    padding-left: 6px;
+    font-stretch: extra-condensed;
 }
 
 #network.speed {
@@ -75,12 +81,13 @@ window {
     border-bottom: 2px solid @yellow;
 }
 
-#network {
+#network, .ethspeed {
     border-bottom: 2px solid @green;
 }
 
 #clock.date {
     border-bottom: 2px solid @blue;
+    margin-left: 16px;
 }
 
 #clock.time {

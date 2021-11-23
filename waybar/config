@@ -23,6 +23,7 @@
         "pulseaudio#sink",
         "battery",
         "network",
+        "custom/ethspeed",
         "clock#date",
         "clock#time"
     ],
@@ -126,6 +127,12 @@
         "format-disconnected": "",
         "on-click-right": "nm-connection-editor",
         "tooltip": false
+    },
+
+    "custom/ethspeed": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "$XDG_CONFIG_HOME/waybar/ethspeed.sh"
     },
 
     "clock#date": {
