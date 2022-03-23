@@ -25,6 +25,7 @@ export GROUP_SWITCH=false
 export UMASK_DESIRED=006
 export UMASK_SWITCH=true
 export GTK_THEME="Adwaita:dark"
+export PYENV_ROOT="$HOME/.local/share/pyenv"
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
@@ -56,9 +57,7 @@ PATH="$PATH:$HOME/go/bin"
 PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
 # manage python executables with pyenv
-export PYENV_ROOT="$HOME/build/pyenv"
-PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+PATH="$PYENV_ROOT/shims:$PATH"
+pyenv rehash
 
 export PATH
