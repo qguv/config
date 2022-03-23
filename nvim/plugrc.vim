@@ -36,6 +36,7 @@ Plug 'wting/rust.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'EmmaEwert/vim-rgbds'
+Plug 'sirtaj/vim-openscad'
 
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
