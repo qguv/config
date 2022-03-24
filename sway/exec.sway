@@ -1,5 +1,8 @@
 exec_always {
 	~/.config/sway/scripts/swayoutputctl/swayoutputctl auto
+
+        # remove splits where possible
+        ~/.config/sway/scripts/sway-reap/sway-reap.sh
 }
 
 exec {
