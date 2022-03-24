@@ -113,6 +113,7 @@
     "python.terminal.activateEnvironment": false,
     "python.languageServer": "Microsoft",
     "python.showStartPage": false,
+    "python.languageServer": "Microsoft",
 
     "rgbdsz80.formatting.capitalization": {
         "language": "lower",
