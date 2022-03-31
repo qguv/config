@@ -2,7 +2,13 @@
 # configure interactive shell
 
 function __prompt_char() {
-    if [ $? -ne 0 ]; then
+    _last_exit=$?
+
+    if [ "$USER_EXPECTED" != "$USER" ]; then
+        printf '%%n '
+    fi
+
+    if [ $_last_exit -ne 0 ]; then
         printf '!'
     elif ! _in "$PWD" "${GIT_PROMPT_DIRS_BLACKLIST[@]}" && git rev-parse --git-dir >& /dev/null; then
         printf '±'
@@ -55,7 +61,7 @@ if [ -n "$ZSH_VERSION" ]; then
   ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='underline,bold'
 
   setopt prompt_subst
-  RPS1='%~$(__git_prompt)(%n@%m)'
+  RPS1='%~$(__git_prompt)%F{cyan}%m%f %T'
   autoload bashcompinit
   bashcompinit
   alias _have=hash

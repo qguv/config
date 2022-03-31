@@ -24,6 +24,7 @@ export GROUP_DESIRED=
 export GROUP_SWITCH=false
 export UMASK_DESIRED=006
 export UMASK_SWITCH=true
+export USER_EXPECTED=qguv
 export GTK_THEME="Adwaita:dark"
 export PYENV_ROOT="$HOME/.local/share/pyenv"
 
