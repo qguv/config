@@ -11,11 +11,13 @@ simplify() {
     swaymsg -t get_tree | jq -f useless_splits.jq | while read id; do
         swaymsg "[con_id=$id]" split none
     done
+    echo "simplify"
 }
 
 timer_cancel() {
     if [ -n "$waiting" ]; then
         kill "$waiting"
+        echo "timer cancel $waiting"
     fi
 }
 
@@ -28,9 +30,12 @@ timer_start() {
         kill -s USR1 $$ &&
 
         # and simplify tree
-        simplify
+        simplify &&
+
+        echo "timer complete"
     ) &
     waiting=$!
+    echo "timer start $waiting"
 }
 
 while true; do
@@ -38,6 +43,7 @@ while true; do
             swaymsg -t subscribe '["binding", "workspace", "shutdown", "window"]' |
             jq -rf subscribe.jq
     )"
+    printf '> %s\n' "$cmd"
     case "$cmd" in
         split|layout)
             timer_cancel
