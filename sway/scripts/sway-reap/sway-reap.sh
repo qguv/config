@@ -7,17 +7,19 @@ _trap() {
 }
 trap _trap USR1
 
-reap() {
+simplify() {
     swaymsg -t get_tree | jq -f useless_splits.jq | while read id; do
         swaymsg "[con_id=$id]" split none
     done
 }
 
-defer_reap() {
+timer_cancel() {
     if [ -n "$waiting" ]; then
         kill "$waiting"
     fi
+}
 
+timer_start() {
     (
         # if no action taken in 2 seconds
         sleep 2 &&
@@ -25,8 +27,8 @@ defer_reap() {
         # then clear out the "waiting" variable
         kill -s USR1 $$ &&
 
-        # and reap windows
-        reap
+        # and simplify tree
+        simplify
     ) &
     waiting=$!
 }
@@ -38,16 +40,19 @@ while true; do
     )"
     case "$cmd" in
         split|layout)
-            defer_reap
+            timer_cancel
+            timer_start
             ;;
-        reload|exit)
+        reload|exit|"")
+            timer_cancel
             exit
             ;;
         *)
             if [ -n "$waiting" ]; then
-                defer_reap
+                timer_cancel
+                timer_start
             else
-                reap
+                simplify
             fi
             ;;
     esac
