@@ -50,6 +50,12 @@ if tty -s; then
     if [ "$START_SWAY" = true ] && ! pgrep -u "$UID" sway >/dev/null && hash sway 2>/dev/null; then
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
+
+      # Connect to and initalize gnome-keyring-daemon when in sway session
+      if [ "$DESKTOP_SESSION" = "sway" ]; then
+          export $(gnome-keyring-daemon --start)
+      fi
+
       sway
       exit
     elif [ "$START_X" = true ]; then
