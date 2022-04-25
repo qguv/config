@@ -33,5 +33,4 @@ exec {
 	wl-paste -t text --watch $clipman_path store
 
 	#sh -c 'while sh ~/.config/sway/repr.sh; do sleep 1; done'
-	sh -c 'while sh ~/.config/sway/scripts/mic.sh; do sleep 1; done'
 }
