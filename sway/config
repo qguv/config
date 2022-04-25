@@ -8,7 +8,7 @@ set {
 	$lock swaylock -f -e --indicator-idle-visible -i $wp
 	$laptop eDP-1
 	$fontsize 9
-	$font Noto Sans
+	$font Open Sans
 	$barstyle ExtraCondensed ExtraLight
 	$launchstyle ExtraCondensed
 	$borderstyle Condensed Light
