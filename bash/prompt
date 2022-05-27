@@ -142,12 +142,8 @@ if [ -n "$UMASK_DESIRED" ] && ! [ "$(umask)" = "$UMASK_DESIRED" ]; then
     printf "[WARN] Your umask is %s which is different than the expected %s! To switch, run: umask %s\n" "$UMASK_ORIGINAL" "$UMASK_DESIRED" "$UMASK_DESIRED" >&2
 fi
 
-# escaped out of tmux
-if [ -z "$TMUX" ] && [ "$TTY_USE_TMUX" = true ]; then
-    printf "[DEBUG] Press ^D again to exit.\n" >&2
-
 # list attached tmux sessions
-elif ! [ "$TTY_TMUX_SHARED" = true ]; then
+if [ -n "$TMUX" ] && ! [ "$TTY_TMUX_SHARED" = true ]; then
     dsids="$(tmux-detached)"
     if [ -n "$dsids" ]; then
 
