@@ -609,6 +609,11 @@ git-old-remote-branches() {
   git branch --all --sort=committerdate "--merged=$remote/$branch" | sed '/[ \/]'"$branch"$'/d' | sed 's:^\s*::g'
 }
 
+new-repo() {
+  ssh git.guvernator.net env -C /usr/share/gitweb/src/ git init --bare "$1"
+  echo "ssh://git.guvernator.net/usr/share/gitweb/src/$1"
+}
+
 function _in() {
   local e match="$1"
   shift
