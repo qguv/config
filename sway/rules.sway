@@ -32,4 +32,9 @@ for_window {
 	}
 
 	[title="Bitwarden — Mozilla Firefox"] floating enable
+
+	[title="firewall-applet"] {
+		floating enable;
+		sticky enable;
+	}
 }
