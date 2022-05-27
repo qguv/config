@@ -123,6 +123,9 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# re-enable Chromium password autofill (requires gnome-wallet or kwallet)
+export CHROMIUM_USER_FLAGS=--password-store=detect
+
 alias ag="ag --pager='less -R' -p $XDG_CONFIG_HOME/ag/agignore"
 alias mutt="mutt -F $XDG_CONFIG_HOME/mutt/muttrc"
 alias ncmpcpp="ncmpcpp -c $XDG_CONFIG_HOME/ncmpcpp/config"
