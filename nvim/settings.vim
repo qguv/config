@@ -132,6 +132,10 @@ function MoveToNextTab()
   exe "b".l:cur_buf
 endfunc
 
+" ninja build with F5
+nnoremap <F5> :!ninja -v<CR>
+inoremap <F5> <C-O>:!ninja -v<CR>
+
 " ctags with F9
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
