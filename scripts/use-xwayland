@@ -1,0 +1,49 @@
+#!/bin/sh
+set -e
+
+function whereis_runnerup() {
+    own_name="${0##*/}"
+    own_path="$(dirname "$(realpath "$0")")"
+
+    # for each path component
+    printf '%s\n' "$PATH" | tr : '\n' | while read -r x; do
+
+        # remove trailing slash
+        x="${x%/}"
+
+        # ignore this directory
+        if [ "$x" = "$own_path" ]; then
+            continue
+        fi
+
+        # print and stop if the executable exists in this dir
+        runnerup="$x/$own_name"
+        if [ -x "$runnerup" ]; then
+            printf '%s\n' "$runnerup"
+            return
+        fi
+    done
+
+    printf 'error: no other binary called %s was found on PATH\n' "$own_name" >&2
+    printf '%s\n' \
+        "" \
+        "Hint: to force xwayland for a particular program in your PATH:" \
+        "" \
+        "- make sure this script is readable and executable by all users (chown/chmod)" \
+        "- choose a directory that's earlier in your path than the original program" \
+        "- in this directory, create a simlink (ln -s) to this script with the same name as the program that should be run in xwayland" \
+        "" \
+        "For example, if you have PATH=/usr/local/bin:/usr/bin:/bin and you wanted to force /usr/bin/code to use xwayland, you could run:" \
+        "ln -s THIS_SCRIPT /usr/local/bin/code" \
+    >&2
+    exit 1
+}
+
+# force xwayland (legacy X11 layer)
+unset CLUTTER_BACKEND
+unset GDK_BACKEND
+unset QT_QPA_PLATFORM
+unset XDG_SESSION_TYPE
+
+runnerup="$(whereis_runnerup)"
+"$runnerup" "$@"
