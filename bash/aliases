@@ -133,3 +133,4 @@ alias palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e 
 alias lxcl='lxc list --format=csv --columns=n'
 
 alias urldecode='awk -niord '"'"'{printf RT?$0chr("0x"substr(RT,2)):$0}'"'"' RS=%..'
+alias eml2txt='python -c "import sys,quopri;quopri.decode(sys.stdin,sys.stdout.buffer)"'
