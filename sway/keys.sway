@@ -114,11 +114,11 @@ bindsym {
 	# fullscreen current window
 	$mod+F11 fullscreen
 
-	# float current window
-	$mod+Insert floating toggle; sticky enable
-
-	# focus floating windows
-	$mod+Tab focus mode_toggle
+	# floating windows
+	$mod+Delete focus floating
+	$mod+Insert focus tiling
+	$mod+Shift+Delete floating enable; sticky enable
+	$mod+Shift+Insert floating disable; sticky disable
 
 	$mod+a focus parent
 	$mod+Shift+a focus child
