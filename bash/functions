@@ -453,7 +453,7 @@ function report() {
   t1=$(date -u +%s)
 
   # run the command
-  $@
+  "$@"
   cmd_status=$?
 
   # send if the command was slower than 2 seconds
