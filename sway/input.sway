@@ -2,6 +2,8 @@
 # Read `man 5 sway-input` for more information about this section.
 
 input {
+	type:touchpad natural_scroll enabled
+
 	type:keyboard {
 		xkb_layout us
 		xkb_variant colemak
