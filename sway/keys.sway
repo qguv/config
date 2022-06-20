@@ -16,8 +16,6 @@ bindsym {
 	$mod+Shift+F12 exec sh ~/.config/sway/scripts/scrcpy_resize/scrcpy_resize.sh
 
 	# notifications
-	$mod+Delete exec makoctl invoke; exec makoctl dismiss
-	$mod+Shift+Delete exec makoctl dismiss
 	$mod+F1 exec systemctl --user restart pomodoro.timer
 
 	# launch shortcuts
@@ -184,6 +182,15 @@ mode resize bindsym {
 bindsym $mod+asciitilde mode raw
 mode raw bindsym {
 	$mod+asciitilde mode default
+}
+
+bindsym $mod+Shift+V mode notifications
+mode notifications bindsym {
+	Escape mode default
+	$mod+Shift+V mode default
+
+	Return exec makoctl invoke; exec makoctl dismiss
+	Delete exec makoctl dismiss
 }
 
 # Drag floating windows by holding down $mod and left mouse button.
