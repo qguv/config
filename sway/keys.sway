@@ -2,7 +2,7 @@ bindsym {
 
 	# meta
 	$mod+Shift+c reload
-	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "Exit sway?")" = yes ] && swaymsg exit'
+	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "exit sway? ")" = yes ] && swaymsg exit'
 	$mod+Escape kill
 	Mod1+F4 kill
 	button2 kill
@@ -10,8 +10,8 @@ bindsym {
 	$mod+Shift+backslash input * xkb_variant colemak
 
 	# launcher
-	$mod+Space exec dmenu_path | bemenu -i --fn "$font $launchstyle $fontsize" -p 'run what?' | xargs swaymsg exec --
-	$mod+Shift+b exec find ~/wp -type f | bemenu -i --fn "$font $launchstyle $fontsize" -p 'choose background' | xargs -I : swaymsg output '*' background : fill #222222
+	$mod+Space exec dmenu_path | bemenu -i -p 'run what? ' | xargs swaymsg exec --
+	$mod+Shift+b exec find ~/wp -type f | bemenu -i -p 'which background? ' | xargs -I : swaymsg output '*' background : fill #222222
 	$mod+F12 exec scrcpy -s "$(adb devices | awk 'NR==2 {print $1}')" --stay-awake --turn-screen-off --shortcut-mod lctrl
 	$mod+Shift+F12 exec sh ~/.config/sway/scripts/scrcpy_resize/scrcpy_resize.sh
 

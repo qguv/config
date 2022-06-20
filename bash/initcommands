@@ -27,6 +27,27 @@ alias howdoi="howdoi -c"
 # feh uses reasonable defaults
 alias feh="feh --draw-filename --scale-down"
 
+# style bemenu to match sway
+export BEMENU_OPTS="\
+--monitor all \
+--line-height 27 \
+--list 30 \
+--scrollbar autohide \
+--width-factor 0.5 \
+--tb '#ffffff' \
+--tf '#5d5d5d' \
+--fb '#5d5d5d' \
+--ff '#ffffff' \
+--nb '#5d5d5d' \
+--nf '#ffffff' \
+--hb '#808080' \
+--hf '#ffffff' \
+--sb '#5d5d5d' \
+--sf '#ffffff' \
+--scb '#222222' \
+--scf '#ffffff' \
+"
+
 # autopep8 ignores the dumber pep8 guidelines
 # 501: lines less than 80 characters
 #   * dumb because this ain't 1970
