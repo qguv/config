@@ -25,11 +25,7 @@ for_window {
 
 	[shell="xwayland"] border normal 0
 
-	[class="scrcpy"] {
-		floating enable;
-		sticky enable;
-		border pixel;
-	}
+	[class="scrcpy"] border pixel
 
 	[title="Bitwarden — Mozilla Firefox"] floating enable
 
