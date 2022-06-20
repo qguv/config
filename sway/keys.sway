@@ -161,23 +161,41 @@ mode resize bindsym {
 	Escape mode default
 	$mod+r mode default
 
-	$left resize shrink width 10px
-	$down resize grow height 10px
-	$up resize shrink height 10px
-	$right resize grow width 10px
-	Left resize shrink width 10px
-	Down resize grow height 10px
-	Up resize shrink height 10px
-	Right resize grow width 10px
+	Control+Shift+$left resize shrink width 1px
+	Control+Shift+$down resize grow height 1px
+	Control+Shift+$up resize shrink height 1px
+	Control+Shift+$right resize grow width 1px
+	Control+Shift+Left resize shrink width 1px
+	Control+Shift+Down resize grow height 1px
+	Control+Shift+Up resize shrink height 1px
+	Control+Shift+Right resize grow width 1px
 
-	Shift+$left resize shrink width 50px
-	Shift+$down resize grow height 50px
-	Shift+$up resize shrink height 50px
-	Shift+$right resize grow width 50px
-	Shift+Left resize shrink width 50px
-	Shift+Down resize grow height 50px
-	Shift+Up resize shrink height 50px
-	Shift+Right resize grow width 50px
+	Control+$left resize shrink width 10px
+	Control+$down resize grow height 10px
+	Control+$up resize shrink height 10px
+	Control+$right resize grow width 10px
+	Control+Left resize shrink width 10px
+	Control+Down resize grow height 10px
+	Control+Up resize shrink height 10px
+	Control+Right resize grow width 10px
+
+	$left resize shrink width 100px
+	$down resize grow height 100px
+	$up resize shrink height 100px
+	$right resize grow width 100px
+	Left resize shrink width 100px
+	Down resize grow height 100px
+	Up resize shrink height 100px
+	Right resize grow width 100px
+
+	Shift+$left resize shrink width 500px
+	Shift+$down resize grow height 500px
+	Shift+$up resize shrink height 500px
+	Shift+$right resize grow width 500px
+	Shift+Left resize shrink width 500px
+	Shift+Down resize grow height 500px
+	Shift+Up resize shrink height 500px
+	Shift+Right resize grow width 500px
 }
 
 bindsym $mod+asciitilde mode raw
