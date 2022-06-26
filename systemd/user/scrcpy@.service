@@ -1,0 +1,10 @@
+[Unit]
+Description=Show Android device on screen
+ConditionEnvironment=SWAYSOCK
+
+[Service]
+Type=simple
+ExecStart=env -C ${HOME}/.config/sway/scripts/m1a_connected ./m1a_connected.sh %i
+
+[Install]
+WantedBy=default.target
