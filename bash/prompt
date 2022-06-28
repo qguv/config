@@ -1,8 +1,20 @@
 #!/bin/sh
 # configure interactive shell
 
+if [ -n "$BASH_VERSION" ]; then
+    # place the prompt on the bottom of the window
+    PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
+fi
+
 function __prompt_char() {
     _last_exit=$?
+
+    if [ -n "$ZSH_VERSION" ]; then
+        # place the prompt on the bottom of the window
+        printf '%%{'
+        tput cup "$LINES"
+        printf '%%}'
+    fi
 
     if [ "$USER_EXPECTED" != "$USER" ]; then
         printf '%%n '
