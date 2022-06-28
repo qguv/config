@@ -33,4 +33,6 @@ for_window {
 		floating enable;
 		sticky enable;
 	}
+
+	[title="TIDAL"] shortcuts_inhibitor disable
 }
