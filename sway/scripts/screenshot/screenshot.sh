@@ -1,52 +1,104 @@
 #!/bin/sh
+cd -- "$(dirname -- "$0")"
 
-export GRIM_DEFAULT_DIR="$HOME/Pictures/Screenshots/$(date +%Y/%m)"
-usage='./shot.sh (region | monitor) [animate]'
+arg_animated=false
+arg_delay=0
+arg_region=false
+arg_focused=
+ncmd=0
+region=
+label=
 
-if killall -HUP wf-recorder 2>/dev/null; then
+exit_usage() {
+	printf 'Usage:\n' >&2
+	printf '  %s %s\n' "$0" '[--animated] [--delay SECONDS] --region' >&2
+	printf '  %s %s\n' "$0" '[--animated] [--delay SECONDS] --focused (window | monitor)' >&2
+	exit 1
+}
+
+# kill any existing recordings
+if pkill -INT -x wf-recorder; then
 	exit 0
 fi
 
-if [ "${2:-}" = animate ]; then
-	case "${1:-}" in
-	region)
-		flag="-g"
-		arg="$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)"
-		;;
-	monitor)
-		flag="-o"
-		arg="$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')"
-		;;
-	*)
-		echo "$usage" 1>&2
-		exit 1
-		;;
+# parse cli arguments
+while [ "$#" -gt 0 ]; do
+	case "$1" in
+		'--animated')
+			arg_animated=true
+			;;
+
+		'--delay')
+			shift || exit_usage
+			arg_delay="$1"
+			;;
+
+		'--region')
+			arg_region=true
+			ncmd=$((ncmd + 1))
+			;;
+
+		'--focused')
+			shift || exit_usage
+			arg_focused="$1"
+			ncmd=$((ncmd + 1))
+			;;
+
+		*)
+			exit_usage
+			;;
 	esac
+	shift
+done
 
-	f="screencast_$(date +%11s)"
-	vid="/tmp/$f.mp4"
-	gif="$GRIM_DEFAULT_DIR/$f.gif"
+# exit if there's nothing to do
+if [ "$ncmd" -ne 1 ]; then
+	exit_usage
+fi
 
-	mkdir -p "$GRIM_DEFAULT_DIR"
-	wf-recorder "$flag" "$arg" -f "$vid"
+# get region of screen
+if [ "$arg_region" = true ]; then
+	out="$(swaymsg -t get_tree | jq --raw-output -f regions.jq | slurp -f '%x,%y %wx%h:%l\n')"
+	region="${out%%:*}"
+	label="${out#*:}"
+	if [ "$?" -ne 0 ]; then
+		printf '%s\n' "couldn't get region!"
+		exit 1
+	fi
+elif [ "$arg_focused" = monitor ]; then
+	out="$(swaymsg -t get_outputs | jq --raw-output -f focused_output_region.jq)"
+	region="${out%%:*}"
+	label="${out#*:}"
+	if [ "$?" -ne 0 ]; then
+		printf '%s\n' "couldn't get focused monitor!"
+		exit 1
+	fi
+elif [ "$arg_focused" = window ]; then
+	out="$(swaymsg -t get_tree | jq --raw-output -f focused_window_region.jq)"
+	region="${out%%:*}"
+	label="${out#*:}"
+	if [ "$?" -ne 0 ]; then
+		printf '%s\n' "couldn't get focused window!"
+		exit 1
+	fi
+fi
 
-	ffmpeg -i "$vid" -vf 'fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse' -loop 0 "$gif"
+# prepare output filename
+stamp="$(date '+%Y%m%d_%Hh%Mm%Ss')"
+outdir="$HOME/Pictures/Screenshots/$(date +%Y/%m)"
+mkdir -p "$outdir"
+if [ -n "$label" ]; then
+	stamp="$stamp $label"
+fi
 
-	rm "$vid"
-	echo "$gif"
+# wait
+if [ "$arg_delay" -gt 0 ]; then
+	sleep "$arg_delay"
+fi
+
+# take screenshot
+if [ $arg_animated = true ]; then
+	exec wf-recorder -c gif -g "$region" -f "$outdir/$(date '+%Y%m%d_%Hh%Mm%Ss').gif"
 else
-	case "${1:-}" in
-	region)
-		mkdir -p "$GRIM_DEFAULT_DIR"
-		exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)"
-		;;
-	monitor)
-		mkdir -p "$GRIM_DEFAULT_DIR"
-		exec grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')"
-		;;
-	*)
-		echo "$usage" 1>&2
-		exit 1
-		;;
-	esac
+	exec grim -g "$region" "$outdir/$stamp.png"
 fi
