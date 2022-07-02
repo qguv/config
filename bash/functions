@@ -425,27 +425,43 @@ stdin_type() {
 }
 
 function gotify() {
+
+  if [ -z "${GOTIFY_TOKEN}" ]; then
+    printf "[ERROR] no \$GOTIFY_TOKEN configured!\n" >&2
+    return 1
+  fi
+
+  title="$(</etc/hostname)"
+  if [ "$1" = "-t" ]; then
+    title="$title: $2"
+    shift 2
+  fi
+
   message="$*"
   if [ "$message" = '-' ] || [ -z "$message" ]; then
     message="$(</dev/stdin)"
   fi
 
-  curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" \
-    -F "title=$(</etc/hostname)" \
-    -F "priority=8" \
-    -F "message=$message"
+  curl_output="$(
+    curl -sX POST "https://push.guvernator.net/message?token=${GOTIFY_TOKEN}" \
+      -F "title=$title" \
+      -F "priority=8" \
+      -F "message=$message"
+  )"
   curl_status=$?
-  printf '\n'
-
+  if [ $curl_status -ne 0 ]; then
+    printf '[ERROR] gotify message failed to send:\n%s\n' "$curl_output" >&2
+  fi
   return $curl_status
 }
 
 # prefix a command with `report` and a report will be pushed to Gotify when the
 # command completes if it takes more than three seconds
 function report() {
+  cmd="$*"
 
   if [ -z "${GOTIFY_TOKEN}" ]; then
-    printf "No \$GOTIFY_TOKEN configured! Not running the command!\n"
+    printf "No \$GOTIFY_TOKEN configured! Not running the command!\n" >&2
     return 1
   fi
 
@@ -470,17 +486,23 @@ function report() {
   fi
 
   if [ $cmd_status -eq 0 ]; then
-    msg="${cmd_name} completed ok"
+    title="${cmd_name} ok"
+    msg="Completed OK after ${dt} seconds"
   else
-    msg="${cmd_name} failed with status $?"
+    title="${cmd_name} failed"
+    msg="Failed ($?) after ${dt} seconds"
   fi
 
+  printf '%s\n' "$msg" >&2
+
   # send a message to Gotify
-  gotify "${msg}"
-  if [ $? -eq 0 ]; then
-    printf "Command took ${dt} seconds. Report pushed!\n"
+  gotify -t "${title}" "${msg}: ${cmd}"
+  gotify_status=$?
+
+  if [ $gotify_status -eq 0 ]; then
+    printf "Report pushed!\n" >&2
   else
-    printf "Report failed to send to gotify (curl status $?)! Command took ${dt} seconds.\n"
+    printf "Report failed to send to gotify (curl status $?)! Command took ${dt} seconds.\n" >&2
     return 1
   fi
 }
