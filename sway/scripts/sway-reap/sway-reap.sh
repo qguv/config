@@ -16,8 +16,9 @@ simplify() {
 
 timer_cancel() {
     if [ -n "$waiting" ]; then
+        printf 'cancel %d' "$waiting"
         kill "$waiting"
-        echo "timer cancel $waiting"
+        printf ' ok\n'
     fi
 }
 
@@ -27,15 +28,15 @@ timer_start() {
         sleep 2 &&
 
         # then clear out the "waiting" variable
-        kill -s USR1 $$ &&
+        kill -s USR1 "$$" &&
 
         # and simplify tree
+        printf '  simplify %d' "$$" &&
         simplify &&
-
-        echo "timer complete"
+        printf ' ok\n'
     ) &
     waiting=$!
-    echo "timer start $waiting"
+    printf 'in 2s (%d)... ' "$waiting"
 }
 
 while true; do
@@ -45,6 +46,8 @@ while true; do
     )"
     printf '> %s\n' "$cmd"
     case "$cmd" in
+        title)
+            ;;
         split|layout)
             timer_cancel
             timer_start
@@ -58,7 +61,9 @@ while true; do
                 timer_cancel
                 timer_start
             else
-                simplify
+                printf 'simplify (via "%s")' "$cmd" &&
+                simplify &&
+                printf ' ok\n'
             fi
             ;;
     esac
