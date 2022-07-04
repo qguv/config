@@ -23,6 +23,7 @@ bindsym {
 	$mod+F5 exec networkmanager_dmenu
 	$mod+Shift+F5 exec nm-connection-editor
 	$mod+Mod1+Delete exec pkill -USR1 swayidle
+	XF86ScreenSaver exec pkill -USR1 swayidle
 	$mod+Return exec $browser
 	$mod+Shift+Return exec $browser --private-window
 	XF86Launch1 exec $browser
