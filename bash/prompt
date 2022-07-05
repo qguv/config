@@ -9,6 +9,8 @@ fi
 function __prompt_char() {
     _last_exit=$?
 
+    printf '\n'
+
     if [ -n "$ZSH_VERSION" ]; then
         # place the prompt on the bottom of the window
         printf '%%{'
