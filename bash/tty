@@ -1,0 +1,94 @@
+#!/bin/sh
+# prepare a tty or remote shell
+
+function _notify_drop_login() {
+  _status=$1
+  _name=$2
+  printf 'The %s process that was started automatically has exited with status: %s.\n' "$_name" "$_status" >&2
+  printf "Returning to the login shell. Type '%s' to restart %s, or press ^D to log out.\n" "$_name" "$_name" >&2
+}
+
+function _should_autostart_gui() {
+  if [ -n "$DISPLAY" ]; then
+    _defer_fail 'DISPLAY in use'
+  fi
+
+  if _failed "won't autostart GUI"; then
+    return 1
+  fi
+}
+
+function _should_autostart_sway() {
+  if ! [ "$START_SWAY" = true ]; then
+    _defer_fail 'START_SWAY is not true'
+  fi
+
+  if ! hash sway 2>/dev/null; then
+    _defer_fail 'sway is not installed'
+  fi
+
+  if pgrep -u "$UID" sway >/dev/null; then
+    _defer_fail 'sway is already running'
+  fi
+
+  if _failed "won't autostart sway"; then
+    return 1
+  fi
+
+  printf '%s\n' "autostarting sway..."
+}
+
+function _should_autostart_x() {
+  if ! [ "$START_X" = true ]; then
+    _defer_fail 'START_X is not true'
+  fi
+
+  if _failed "won't autostart X"; then
+    return 1
+  fi
+
+  printf '%s\n' "autostarting x..."
+}
+
+if _should_autostart_gui; then
+
+  if _should_autostart_sway; then
+    export XDG_SESSION_TYPE=wayland
+    export XDG_CURRENT_DESKTOP=sway
+
+    # Connect to and initalize gnome-keyring-daemon when in sway session
+    if [ "$DESKTOP_SESSION" = "sway" ] && hash gnome-keyring-daemon >/dev/null; then
+      export $(gnome-keyring-daemon --start)
+    fi
+
+    sway
+    notify_drop_login "$?" sway
+
+  elif _should_autostart_x; then
+    startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
+    notify_drop_login "$?" startx
+  fi
+fi
+
+# kasugano colors for linux console
+if [ "$TERM" = linux ]; then
+  #\e]P03d3d3d
+  /bin/echo -e "
+  \e]P0000000
+  \e]P16673bf
+  \e]P23ea290
+  \e]P3b0ead9
+  \e]P431658c
+  \e]P5596196
+  \e]P68292b2
+  \e]P7c8cacc
+  \e]P84d4d4d
+  \e]P9899aff
+  \e]PA52ad91
+  \e]PB98c9bb
+  \e]PC477ab3
+  \e]PD7882bf
+  \e]PE95a7cc
+  \e]PFedeff2
+  "
+fi

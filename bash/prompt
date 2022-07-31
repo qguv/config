@@ -1,5 +1,5 @@
 #!/bin/sh
-# configure interactive shell
+# configure shell prompts
 
 if [ -n "$BASH_VERSION" ]; then
     # place the prompt on the bottom of the window
@@ -93,94 +93,4 @@ else
 
   shopt -s histappend checkwinsize globstar promptvars
   bind -m vi-insert "\C-l":clear-screen
-fi
-
-# activate dircolors if installed
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-# activate pyenv if installed
-if hash pyenv 2> /dev/null; then
-    eval "$(pyenv init -)"
-fi
-
-# use vi line-editing keybindings
-set -o vi
-
-# detect shellshock bug over ssh
-export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
-
-# remind user to set up system aliases
-if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
-  printf "system aliases not set up!\n"
-fi
-
-# support for github.com/aykamko/tag
-if hash ag 2>/dev/null; then
-
-  export TAG_SEARCH_PROG=ag
-
-  # if tag is installed, add aliases as expected
-  if hash tag 2>/dev/null; then
-    tag() {
-      command tag "$@"
-      source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
-    }
-    alias ag=tag
-
-  # if tag is not installed, install it
-  elif hash go 2>/dev/null; then
-    tag() {
-      if hash tag 2>/dev/null; then
-        command tag "$@"
-        source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
-      else
-        go get -u github.com/aykamko/tag/...
-        go install github.com/aykamko/tag
-      fi
-    }
-  fi
-fi
-
-# fix LXD tty bug
-if tty -s && [ "$(tty)" = "not a tty" ]; then
-  exec script -q /dev/null
-fi
-
-if [ -n "$GID_DESIRED" ] && ! [ "$GID" = "$GID_DESIRED" ]; then
-    printf "[WARN] Your primary group is \"%s\" which is different than the expected \"%s\"! To switch, run: exec newgrp %s\n" "$GROUP_ORIGINAL" "$GROUP_DESIRED" "$GROUP_DESIRED" >&2
-fi
-
-if [ -n "$UMASK_DESIRED" ] && ! [ "$(umask)" = "$UMASK_DESIRED" ]; then
-    printf "[WARN] Your umask is %s which is different than the expected %s! To switch, run: umask %s\n" "$UMASK_ORIGINAL" "$UMASK_DESIRED" "$UMASK_DESIRED" >&2
-fi
-
-# list attached tmux sessions
-if [ -n "$TMUX" ] && ! [ "$TTY_TMUX_SHARED" = true ]; then
-    dsids="$(tmux-detached)"
-    if [ -n "$dsids" ]; then
-
-        ndsids="$(echo "$dsids" | wc -l)"
-
-        # plural
-        if [ "$ndsids" -ne 1 ]; then
-            plural='s'
-            arg=" [$(printf "$dsids" | tr '\n' '|' | tr -d ':')]"
-
-        # singluar
-        else
-            ndsids='a'
-            plural=''
-            arg=''
-        fi
-
-        warn_destroy=''
-        if [ -n "$TMUX" ]; then
-            warn_destroy=" (Note: this will destroy your current session!)"
-        fi
-
-        printf "[WARN] You have %s detached tmux session%s! To resume, run: \`tmux-resume%s\`%s\n" \
-            "$ndsids" "$plural" "$arg" "$warn_destroy" >&2
-    fi
 fi

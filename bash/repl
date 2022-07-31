@@ -1,0 +1,199 @@
+#!/bin/sh
+# prepare interactive shell
+
+function _should_autostart_tmux() {
+  if ! [ "$TTY_USE_TMUX" = true ]; then
+    _defer_fail 'TTY_USE_TMUX is not true'
+  fi
+
+  if ! hash tmux 2>/dev/null; then
+    _defer_fail 'tmux is not installed'
+  fi
+
+  if [ -n "$TMUX" ]; then
+    _defer_fail 'tmux is already running'
+  fi
+
+  if _failed 'will not autostart tmux'; then
+    return 1
+  fi
+
+  printf '%s\n' "autostarting tmux..."
+}
+
+function _start_tmux() {
+  unset wid
+  unset gid
+  unset sid
+
+  # when enabled, all tmux windows are connected to the same window group
+  if [ "$TTY_TMUX_SHARED" = true ]; then
+
+    # get the first detached session's ID
+    gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
+
+    if [ -z "$gid" ]; then
+      gid="$(tmux new-session -dP)"
+      wid="$gid"
+    fi
+
+    # create a new session in that session group
+    sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
+
+    # create window if we didn't before
+    if [ -z "$wid" ]; then
+      wid="$(tmux new-window -Pt "$sid")"
+    fi
+
+    # don't leave the session open if detached
+    (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
+
+  # otherwise start tmux in the "normal" way, just to give us scrollback and
+  # reattach support when windows crash
+  else
+
+    # to use .config/bash/initcommand we must start tmux in a subshell
+    sid="$(tmux new-session -dP)"
+
+    tmux set-option -t "$sid" status off
+  fi
+
+  # attach the session
+  tmux attach-session -t "$sid"
+}
+
+# tmux auto-start
+if _should_autostart_tmux; then
+  _start_tmux
+  if [ -f /tmp/escape-tmux ]; then
+    rm /tmp/escape-tmux
+  else
+    exit
+  fi
+fi
+
+# automatically configure hooks for the config files themselves
+git config -f "$XDG_CONFIG_HOME/.git/config" core.hooksPath git/hooks
+
+# use vi line-editing keybindings
+set -o vi
+
+# switch to (or notify about) preferred group
+if [ -z "$GID_ORIGINAL" ]; then
+    export GID_ORIGINAL="$GID"
+
+    # only for eventual error message
+    export GROUP_ORIGINAL="$(groups)"
+    GROUP_ORIGINAL="${GROUP_ORIGINAL%% *}"
+
+    # `groups` is unreliable in `newgrp` shell; use GID instead
+    if [ -n "$GROUP_DESIRED" ]; then
+        export GID_DESIRED="$(getent group "$GROUP_DESIRED" | cut -d: -f3)"
+        if [ -z "$GID_DESIRED" ]; then
+          printf "You specified a nonexisting group GROUP_DESIRED=\"%s\" in %s/bash/system!" "$GROUP_DESIRED" "$XDG_CONFIG_HOME"
+          unset GROUP_DESIRED
+        fi
+    fi
+
+    # if GID is different than the GID of the desired group, switch if requested
+    if [ -n "$GID_DESIRED" ] && ! [ "$GID_ORIGINAL" = "$GID_DESIRED" ]; then
+        if [ "$GROUP_SWITCH" = true ]; then
+            exec newgrp "$GROUP_DESIRED"
+        else
+            printf "[WARN] Your primary group is \"%s\" which is different than the expected \"%s\"! To switch, run: exec newgrp %s\n" "$GROUP_ORIGINAL" "$GROUP_DESIRED" "$GROUP_DESIRED" >&2
+        fi
+    fi
+fi
+
+# switch to (or notify about) preferred umask
+if [ -z "$UMASK_ORIGINAL" ]; then
+    UMASK_ORIGINAL="$(umask)"
+
+    # if umask is different than the desired umask, switch if requested
+    if [ -n "$UMASK_DESIRED" ] && ! [ "$UMASK_ORIGINAL" = "$UMASK_DESIRED" ]; then
+        if [ "$UMASK_SWITCH" = true ]; then
+            umask "$UMASK_DESIRED"
+        else
+            printf "[WARN] Your umask is %s which is different than the expected %s! To switch, run: umask %s\n" "$UMASK_ORIGINAL" "$UMASK_DESIRED" "$UMASK_DESIRED" >&2
+        fi
+    fi
+fi
+
+# detect shellshock bug over ssh
+export LC_SHOCKED="() { :;};echo \$'\\033[1;31mTHIS HOST IS SHELL SHOCKED\\033[0m'"
+
+# remind user to set up system aliases
+if [ -n "$SYSTEM_ALIASES_NOT_SET_UP" ]; then
+  printf "system aliases not set up!\n"
+fi
+
+# activate dircolors if installed
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# activate pyenv if installed
+if hash pyenv 2> /dev/null; then
+    eval "$(pyenv init -)"
+fi
+
+# support for github.com/aykamko/tag
+if hash ag 2>/dev/null; then
+
+  export TAG_SEARCH_PROG=ag
+
+  # if tag is installed, add aliases as expected
+  if hash tag 2>/dev/null; then
+    tag() {
+      command tag "$@"
+      source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+    }
+    alias ag=tag
+
+  # if tag is not installed, install it
+  elif hash go 2>/dev/null; then
+    tag() {
+      if hash tag 2>/dev/null; then
+        command tag "$@"
+        source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null
+      else
+        go get -u github.com/aykamko/tag/...
+        go install github.com/aykamko/tag
+      fi
+    }
+  fi
+fi
+
+# fix LXD tty bug
+if tty -s && [ "$(tty)" = "not a tty" ]; then
+  exec script -q /dev/null
+fi
+
+# list attached tmux sessions
+if [ -n "$TMUX" ] && ! [ "$TTY_TMUX_SHARED" = true ]; then
+    dsids="$(tmux-detached)"
+    if [ -n "$dsids" ]; then
+
+        ndsids="$(echo "$dsids" | wc -l)"
+
+        # plural
+        if [ "$ndsids" -ne 1 ]; then
+            plural='s'
+            arg=" [$(printf "$dsids" | tr '\n' '|' | tr -d ':')]"
+
+        # singluar
+        else
+            ndsids='a'
+            plural=''
+            arg=''
+        fi
+
+        warn_destroy=''
+        if [ -n "$TMUX" ]; then
+            warn_destroy=" (Note: this will destroy your current session!)"
+        fi
+
+        printf "[WARN] You have %s detached tmux session%s! To resume, run: \`tmux-resume%s\`%s\n" \
+            "$ndsids" "$plural" "$arg" "$warn_destroy" >&2
+    fi
+fi

@@ -36,7 +36,7 @@ fi
 if [ -n "$OLD_PATH" ]; then
     PATH="$OLD_PATH"
 else
-    OLD_PATH="$PATH"
+    export OLD_PATH="$PATH"
 fi
 
 # include platformio build toolchain

@@ -1,0 +1,19 @@
+#!/bin/sh
+# debug dotfiles
+
+_err=
+function _defer_fail() {
+  fmt="$1"
+  shift
+  _err="$_err  - $(printf "$fmt"'\n' "$@")
+"
+}
+function _failed() {
+  if [ -z "$_err" ]; then
+    return 1
+  fi
+  if [ "$DEBUG_DOTFILES" = true ]; then
+    printf '%s\n' "$*" "$_err" >&2
+  fi
+  _err=
+}

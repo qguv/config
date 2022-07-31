@@ -12,148 +12,38 @@ export XDG_DATA_DIRS="/usr/local/share/:/usr/share/"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XDG_RUNTIME_DIR="$HOME/$TMPDIR"
 
-source "$XDG_CONFIG_HOME/bash/system"
-source "$XDG_CONFIG_HOME/bash/initcommands"
-source "$XDG_CONFIG_HOME/bash/functions"
-source "$XDG_CONFIG_HOME/bash/aliases"
+source "$XDG_CONFIG_HOME/bash/debug"
 
-# automatically configure hooks for the config files themselves
-git config -f "$XDG_CONFIG_HOME/.git/config" core.hooksPath git/hooks
+case "$(tty)" in
+  "not a tty")
+    ;;
 
-# kasugano colors for linux console
-if [ "$TERM" = "linux" ]; then
-  #\e]P03d3d3d
-  /bin/echo -e "
-  \e]P0000000
-  \e]P16673bf
-  \e]P23ea290
-  \e]P3b0ead9
-  \e]P431658c
-  \e]P5596196
-  \e]P68292b2
-  \e]P7c8cacc
-  \e]P84d4d4d
-  \e]P9899aff
-  \e]PA52ad91
-  \e]PB98c9bb
-  \e]PC477ab3
-  \e]PD7882bf
-  \e]PE95a7cc
-  \e]PFedeff2
-  "
-fi
+  /dev/tty6)
+    printf 'DOTFILE RECOVERY MODE: skipping the rest of shellrc. Good luck! <3\n'
+    ;;
 
-function notify_drop_login() {
-  _status=$1
-  _name=$2
-  printf 'The %s process that was started automatically has exited with status: %s.\n' "$_name" "$_status" >&2
-  printf "Returning to the login shell. Type '%s' to restart %s, or press ^D to log out.\n" "$_name" "$_name" >&2
-}
+  /dev/tty*)
+    source "$XDG_CONFIG_HOME/bash/system"
+    source "$XDG_CONFIG_HOME/bash/initcommands"
+    source "$XDG_CONFIG_HOME/bash/functions"
+    source "$XDG_CONFIG_HOME/bash/aliases"
 
-# all interactive shells
-if tty -s; then
+    if ! [ "$TTY_SETUP" = true ]; then
+      source "$XDG_CONFIG_HOME/bash/tty"
 
-  # gui auto-start
-  if [ -z "$DISPLAY" ] && [ "$(tty)" != /dev/tty6 ]; then
-
-    # sway
-    if [ "$START_SWAY" = true ] && hash sway 2>/dev/null && ! pgrep -u "$UID" sway >/dev/null; then
-      export XDG_SESSION_TYPE=wayland
-      export XDG_CURRENT_DESKTOP=sway
-
-      # Connect to and initalize gnome-keyring-daemon when in sway session
-      if [ "$DESKTOP_SESSION" = "sway" ] && hash gnome-keyring-daemon >/dev/null; then
-        export $(gnome-keyring-daemon --start)
-      fi
-
-      sway
-      notify_drop_login "$?" "sway"
-
-    # X11
-    elif [ "$START_X" = true ]; then
-      startx "$XDG_CONFIG_HOME/Xorg/xinitrc"
-      notify_drop_login "$?" "startx"
+      source "$XDG_CONFIG_HOME/bash/prompt"
+      source "$XDG_CONFIG_HOME/bash/repl"
+      export TTY_SETUP=true
     fi
+    ;;
 
-  # tmux auto-start
-  elif [ "$TTY_USE_TMUX" = true ] && [ -z "$TMUX" ] && hash tmux 2>/dev/null; then
-    unset wid
-    unset gid
-    unset sid
+  *)
+    source "$XDG_CONFIG_HOME/bash/system"
+    source "$XDG_CONFIG_HOME/bash/initcommands"
+    source "$XDG_CONFIG_HOME/bash/functions"
+    source "$XDG_CONFIG_HOME/bash/aliases"
 
-    # when enabled, all tmux windows are connected to the same window group
-    if [ "$TTY_TMUX_SHARED" = true ]; then
-
-      # get the first detached session's ID
-      gid="$(tmux list-sessions 2>/dev/null | grep -ve '(attached)$' | grep -oe '^[0-9]\+:' | head -n 1)"
-
-      if [ -z "$gid" ]; then
-        gid="$(tmux new-session -dP)"
-        wid="$gid"
-      fi
-
-      # create a new session in that session group
-      sid="$(tmux new-session -dPc "$(pwd)" -t "$gid")"
-
-      # create window if we didn't before
-      if [ -z "$wid" ]; then
-        wid="$(tmux new-window -Pt "$sid")"
-      fi
-
-      # don't leave the session open if detached
-      (sleep 1; tmux set-option -t "$sid" destroy-unattached on) &
-
-    # otherwise start tmux in the "normal" way, just to give us scrollback and
-    # reattach support when windows crash
-    else
-
-      # to use .config/bash/initcommand we must start tmux in a subshell
-      sid="$(tmux new-session -dP)"
-
-      tmux set-option -t "$sid" status off
-    fi
-
-    # attach the session
-    tmux attach-session -t "$sid"
-
-    if [ -f /tmp/escape-tmux ]; then
-      rm /tmp/escape-tmux
-    else
-      exit
-    fi
-  fi
-
-  if [ -z "$GID_ORIGINAL" ]; then
-      export GID_ORIGINAL="$GID"
-
-      # only for eventual error message in ./prompt
-      export GROUP_ORIGINAL="$(groups)"
-      GROUP_ORIGINAL="${GROUP_ORIGINAL%% *}"
-
-      # `groups` is unreliable in `newgrp` shell; use GID instead
-      if [ -n "$GROUP_DESIRED" ]; then
-          export GID_DESIRED="$(getent group "$GROUP_DESIRED" | cut -d: -f3)"
-          if [ -z "$GID_DESIRED" ]; then
-            printf "You specified a nonexisting group GROUP_DESIRED=\"%s\" in %s/bash/system!" "$GROUP_DESIRED" "$XDG_CONFIG_HOME"
-            unset GROUP_DESIRED
-          fi
-      fi
-
-      # if GID is different than the GID of the desired group, switch if requested
-      if [ -n "$GID_DESIRED" ] && ! [ "$GID_ORIGINAL" = "$GID_DESIRED" ] && [ "$GROUP_SWITCH" = true ]; then
-          exec newgrp "$GROUP_DESIRED"
-      fi
-  fi
-
-  if [ -z "$UMASK_ORIGINAL" ]; then
-      UMASK_ORIGINAL="$(umask)"
-
-      # if umask is different than the desired umask, switch if requested
-      if [ -n "$UMASK_DESIRED" ] && ! [ "$UMASK_ORIGINAL" = "$UMASK_DESIRED" ] && [ "$UMASK_SWITCH" = true ]; then
-          umask "$UMASK_DESIRED"
-      fi
-  fi
-
-
-  source "$XDG_CONFIG_HOME/bash/prompt"
-fi
+    source "$XDG_CONFIG_HOME/bash/prompt"
+    source "$XDG_CONFIG_HOME/bash/repl"
+    ;;
+esac
