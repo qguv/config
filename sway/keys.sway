@@ -216,8 +216,9 @@ mode notifications bindsym {
 	Escape mode default
 	$mod+Shift+V mode default
 
-	Return exec makoctl invoke; exec makoctl dismiss
-	Delete exec makoctl dismiss
+	Return exec makoctl invoke; exec makoctl dismiss; mode default
+	Delete exec makoctl dismiss; mode default
+	Shift+Delete exec makoctl dismiss -a; mode default
 }
 
 # Drag floating windows by holding down $mod and left mouse button.
