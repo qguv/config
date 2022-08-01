@@ -7,6 +7,9 @@ exec_always {
 
 exec {
 
+        # auth
+        lxqt-policykit-agent
+
 	swayidle -w \
 		timeout 270 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
