@@ -47,6 +47,16 @@ export BEMENU_OPTS="\
 --scb '#222222' \
 --scf '#ffffff' \
 "
+if hash bemenu 2>/dev/null; then
+  bmv="$(bemenu --version)"
+  bmv="${bmv##* v}"
+  if printf '%s\n' 0.6.8 "$bmv" | sort --version-sort --check=quiet; then
+    BEMENU_OPTS="$BEMENU_OPTS\
+--ab '#5d5d5d' \
+--af '#ffffff' \
+"
+  fi
+fi
 
 # autopep8 ignores the dumber pep8 guidelines
 # 501: lines less than 80 characters
