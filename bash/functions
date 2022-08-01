@@ -863,3 +863,50 @@ lxc_connect () {
     lxc exec "$container" -- sudo -u "$USER" $*
   fi
 }
+
+ala() {
+  if [ "$#" -lt 2 ]; then
+    printf 'Usage: ala [--save] VERSION PKGS...\n'
+    return 1
+  fi
+
+  save=false
+  if [ "$1" = '--save' ]; then
+    save=true
+    shift
+  fi
+
+  version="$1"
+  shift
+
+  if [ "$save" = true ]; then
+    _ala_filenames "$save" "$version" "$@" | while read url; do
+      printf '%s\n' "${url##*/}"
+      curl --progress-bar --remote-name "$url"
+    done
+  else
+    _ala_filenames "$save" "$version" "$@" | xargs -o sudo pacman -U
+  fi
+}
+
+# $1 save (true or false)
+# $2 version
+# $3... pkgs
+_ala_filenames() {
+  save="$1"
+  shift
+
+  version="$1"
+  shift
+
+  while [ "$#" -ne 0 ]; do
+    pkg="$1"
+    first_letter="$(printf '%.1s' "$pkg")"
+    url="$(printf 'https://archive.archlinux.org/packages/%s/%s/%s-x86_64.pkg.tar.zst' "$first_letter" "$pkg" "$pkg-$version")"
+    printf '%s\n' "$url"
+    if [ "$save" = 'true' ]; then
+      printf '%s.sig\n' "$url"
+    fi
+    shift
+  done
+}
