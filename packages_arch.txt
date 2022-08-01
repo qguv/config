@@ -1,0 +1,29 @@
+alacritty
+base-devel
+bemenu
+curl
+dmenu # dmenu_path
+firefox
+git
+grim
+jq
+libnotify # notify-send
+libpulse
+light
+lxqt-policykit # lxqt-policykit-agent
+mako
+ncurses # tput
+neovim # nvim
+playerctl
+pyenv
+scrcpy
+sway
+swayidle
+swaylock
+tmux
+trash-cli # trash
+ttf-opensans
+wf-recorder
+wl-clipboard # wl-copy wl-paste
+xdg-utils # xdg-open
+zsh
