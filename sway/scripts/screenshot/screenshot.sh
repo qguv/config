@@ -88,6 +88,7 @@ stamp="$(date '+%Y%m%d_%Hh%Mm%Ss')"
 outdir="$HOME/Pictures/Screenshots/$(date +%Y/%m)"
 mkdir -p "$outdir"
 if [ -n "$label" ]; then
+	label="$(printf "$label" | tr -c 'a-zA-Z0-9 _.-' '_')"
 	stamp="$stamp $label"
 fi
 
