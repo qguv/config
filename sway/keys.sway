@@ -156,12 +156,12 @@ bindsym {
 		XF86AudioPlay exec playerctl play-pause
 		XF86AudioPrev exec playerctl previous
 		XF86AudioNext exec playerctl next
-	}
 
-	# backlight control
-	XF86MonBrightnessDown exec light -U 1; exec light -O
-	XF86MonBrightnessUp exec light -A 1; exec light -O
-	XF86TouchpadToggle input type:touchpad events toggle enabled disabled
+		# backlight control
+		XF86MonBrightnessDown exec light -U 1; exec light -O
+		XF86MonBrightnessUp exec light -A 1; exec light -O
+		XF86TouchpadToggle input type:touchpad events toggle enabled disabled
+	}
 }
 
 bindsym $mod+r mode resize
