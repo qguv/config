@@ -910,3 +910,16 @@ _ala_filenames() {
     shift
   done
 }
+
+stripdir() {
+  if [ $# -ne 1 ]; then
+    printf 'Usage: stripdir DIR\n' >&2
+    return 1
+  fi
+
+  dir="$(realpath "$1")"
+  dirp="$(dirname "$dir")"
+
+  find "$dir" -mindepth 1 -maxdepth 1 -print0 | xargs -0 mv -it "$dirp"
+  rmdir "$dir"
+}
