@@ -55,8 +55,8 @@
 	ancestors="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
 
 	# add/update a subtree as easily as a submodule
-	sub-add = "!f() { usage='Usage: git sub-add REPO_LINK SUBDIR'; repo_link=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree add --prefix \"$subdir\" \"$repo_link\" master --squash \"$@\"; }; f"
-	sub-update = "!f() { usage='Usage: git sub-update REPO_LINK SUBDIR'; repo_link=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree pull --prefix \"$subdir\" \"$repo_link\" master --squash \"$@\"; }; f"
+	sub-add = "!f() { usage='Usage: git sub-add REPO_URL REF SUBDIR'; repo_link=\"${1:?$usage}\"; shift; ref=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree add --prefix \"$subdir\" \"$repo_link\" \"$ref\" --squash \"$@\"; }; f"
+	sub-update = "!f() { usage='Usage: git sub-update REPO_URL REF SUBDIR'; repo_link=\"${1:?$usage}\"; shift; ref=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree pull --prefix \"$subdir\" \"$repo_link\" \"$ref\" --squash \"$@\"; }; f"
 
 	# push to all remotes; takes all regular push arguments
 	push-all = "!f() { git remote | while read line; do git push \"$line\" \"$@\" || return 1; done; }; f"
