@@ -64,6 +64,7 @@
     "explorer.confirmDelete": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 10000, // ms
+    "security.workspace.trust.untrustedFiles": "open",
 
     // search
     "search.useGlobalIgnoreFiles": true,
