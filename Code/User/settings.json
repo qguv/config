@@ -111,7 +111,7 @@
     "python.linting.pylintEnabled": false,
     "python.pythonPath": "${workspaceRoot}/.venv/bin/python",
     "python.terminal.activateEnvironment": false,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "python.showStartPage": false,
     "python.languageServer": "Microsoft",
 
