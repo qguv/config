@@ -178,3 +178,14 @@ cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
+
+
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  au!
+  au BufReadPost *.bin set binary
+  au BufReadPost *.bin set display=uhex
+
+  au BufReadPost *.exe set binary
+  au BufReadPost *.exe set display=uhex
+augroup END
