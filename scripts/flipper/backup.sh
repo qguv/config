@@ -6,7 +6,7 @@ export GIT_SSH_COMMAND="ssh -o 'StrictHostKeyChecking no' -i '$SSH_KEY'"
 
 dump="$(mktemp -d /tmp/flipper-backup-dump-XXXXX)"
 systemd-notify --status="copying files from /media/flippersd to $dump"
-rsync --exclude '.Trash-*' --exclude 'nfc/assets/mf_classic_dict.nfc' -av /media/flippersd/ "$dump"
+rsync --exclude '.Trash-*' -av /media/flippersd/ "$dump"
 
 clone="$(mktemp -d /tmp/flipper-backup-clone-XXXXX)"
 systemd-notify --status="downloading latest repository to $clone"
