@@ -36,4 +36,7 @@ exec {
         # clipboard manager (requires `clipman`)
 	wl-paste -t text --watch $clipman_path store
         #clipman restore
+
+	# display hotplug
+	sh ~/.config/sway/scripts/fix_external_monitor.sh
 }
