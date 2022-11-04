@@ -45,8 +45,8 @@ export BEMENU_OPTS="\
 --nf '#ffffff' \
 --hb '#808080' \
 --hf '#ffffff' \
---sb '#5d5d5d' \
---sf '#ffffff' \
+--sb '#ffffff' \
+--sf '#5d5d5d' \
 --scb '#222222' \
 --scf '#ffffff' \
 "
