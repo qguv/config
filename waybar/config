@@ -14,7 +14,6 @@
 
     "modules-right": [
         "tray",
-        "custom/btheadphones",
         "temperature",
         "cpu",
         "memory",
@@ -89,10 +88,6 @@
         "icon-size": 18
     },
 
-    "custom/btheadphones": {
-        "format": "",
-        "on-click": "bluetoothctl connect 38:18:4C:D3:FB:DA",
-        "on-click-right": "bluetoothctl disconnect 38:18:4C:D3:FB:DA"
     },
 
     "pulseaudio#sink": {
