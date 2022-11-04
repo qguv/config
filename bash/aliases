@@ -31,6 +31,7 @@ alias gsw="git switch"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gap="git add --patch"
+alias gga="git graph --all"
 
 # git, in zsh/functions
 alias gdw="git-diff-words"
