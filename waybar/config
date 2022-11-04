@@ -125,6 +125,7 @@
         "format-wifi": "<span foreground='#929292'></span> {essid} <span foreground='#929292'>{frequency}GHz {signalStrength}%</span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
         "format-ethernet": "<span foreground='#929292'></span> <span stretch='extracondensed'>{ipaddr}/{cidr}</span>",
         "format-disconnected": "",
+        "on-click": "networkmanager_dmenu",
         "on-click-right": "nm-connection-editor",
         "tooltip": false
     },
