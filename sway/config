@@ -13,6 +13,8 @@ set {
 	$launchstyle ExtraCondensed
 	$borderstyle Condensed Light
 
+	$clipman_path /usr/bin/clipman
+
 	$left h
 	$down j
 	$up k

@@ -33,5 +33,7 @@ exec {
 			-I
 	}
 
+        # clipboard manager (requires `clipman`)
 	wl-paste -t text --watch $clipman_path store
+        #clipman restore
 }
