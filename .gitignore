@@ -10,6 +10,8 @@ hub
 
 iTerm2/
 
+pijul/secretkey.json
+
 nvim/.netrwhist
 nvim/plugged
 
