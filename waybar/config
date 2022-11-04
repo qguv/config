@@ -14,6 +14,7 @@
 
     "modules-right": [
         "tray",
+        "custom/flippersd",
         "temperature",
         "cpu",
         "memory",
@@ -88,6 +89,10 @@
         "icon-size": 18
     },
 
+    "custom/flippersd": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "systemctl is-active media-flippersd.mount >/dev/null && printf '\uf7c2'"
     },
 
     "pulseaudio#sink": {
