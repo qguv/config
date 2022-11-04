@@ -24,6 +24,9 @@ alias dc="dc -e 10k -"
 # colored howdoi
 alias howdoi="howdoi -c"
 
+# colored diff
+alias diff="diff --color=auto"
+
 # feh uses reasonable defaults
 alias feh="feh --draw-filename --scale-down"
 
