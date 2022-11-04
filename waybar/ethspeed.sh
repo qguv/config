@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/bin/sh
+set -e
 
 SPEED="$(cat /sys/class/net/enp57s0f1/speed)"
 UNIT_SHORT="M"
