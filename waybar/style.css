@@ -21,57 +21,63 @@
     border-radius: 0;
     font-family:   "Open Sans", "Font Awesome 6 Free";
     font-size:     12px;
-    box-shadow:    none;
     text-shadow:   none;
     transition-duration: 0s;
     padding: 0;
 }
 
-window {
-    color:      @white;
+#waybar {
     background: @background;
 }
 
-#workspaces {
-    padding-right: 30px;
+label {
+    color: @white;
+}
+:hover {
+    background: @white;
+}
+:hover label {
+    color: black;
 }
 
 #workspaces button {
     font-weight: 800;
-    background: transparent;
     padding:    0 10px;
-    color:   @muted;
     min-width:  20px;
     border-top: 1px solid transparent;
     border-bottom: 2px solid transparent;
 }
-
+#workspaces button:not(:hover) label {
+    color: @muted;
+}
 #workspaces button.focused {
-    color: @white;
     border-bottom: 2px solid @white;
 }
-
+#workspaces button.focused label {
+    color: @white;
+}
+#workspaces button.focused:hover {
+    background: transparent;
+}
 #workspaces button.urgent {
-    color:      @alert;
-    border-bottom: 2px solid @alert;
+    color: @alert;
 }
 
-#tray, #mode, #battery, #cpu, #memory, #pulseaudio, #temperature, #clock, #disk {
-    margin:     0px 16px 0px 0px;
+.modules-center {
+    padding: 0 1em;
 }
 
-.ethspeed {
-    color:   @muted;
-    padding-left: 6px;
-    font-stretch: extra-condensed;
-}
-
-#network.speed {
-    border-bottom: 0px;
+.modules-right box, .modules-right button {
+    margin: 0 8px;
 }
 
 #pulseaudio.source {
     border-bottom: 2px solid @red;
+}
+#pulseaudio.source:not(.source-muted) {
+    background: @red;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 #pulseaudio.sink {
@@ -81,28 +87,44 @@ window {
 #battery {
     border-bottom: 2px solid @yellow;
 }
+#battery.charging {
+    color: @orange;
+}
+#battery.warning:not(.charging) {
+    background: @yellow;
+}
+#battery.critical:not(.charging) {
+    background: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(1,0,.8,1);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes blink {
+    to {
+        background-color: @white;
+        color: black;
+    }
+}
 
 #network, .ethspeed {
     border-bottom: 2px solid @green;
 }
+#network {
+    margin-right: 0;
+}
+#custom-ethspeed {
+    color:   @muted;
+    margin-left: 0;
+    padding-left: 4px;
+    font-stretch: extra-condensed;
+}
 
 #clock.date {
     border-bottom: 2px solid @blue;
-    margin-left: 16px;
 }
 
 #clock.time {
     border-bottom: 2px solid @purple;
-}
-
-#battery.warning {
-   color:       rgba(255, 210, 4, 1);
-}
-
-#battery.critical {
-    color:      rgba(238, 46, 36, 1);
-}
-
-#battery.charging {
-    color:      rgba(217, 216, 216, 1);
 }
