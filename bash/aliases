@@ -58,7 +58,7 @@ alias thumb="convert -resize 600x300 - - | imgcat"
 alias endrend="python3 $XDG_CONFIG_HOME/bash/endrend.py"
 
 # System tasks
-alias reload='source ~/.zshrc'
+alias reload='source "$HOME/.profile"'
 alias update="$SYSTEMUPDATE"
 alias mt="$TRASHCOMMAND"
 alias opn="$OPENCOMMAND"
