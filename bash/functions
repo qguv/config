@@ -923,3 +923,39 @@ stripdir() {
   find "$dir" -mindepth 1 -maxdepth 1 -print0 | xargs -0 mv -it "$dirp"
   rmdir "$dir"
 }
+
+# adapted from https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+colortest() {
+  T="  ${*:-OwO}  "
+  ansi_fwd="\x1b[%sC"
+
+  # move cursor to second column
+  printf "$ansi_fwd" 9
+
+  # move cursor to third column
+  printf "$ansi_fwd" "${#T}"
+
+  # print each column label
+  left_pad="$(( (${#T} - 3) / 2))"
+  right_pad="$(( ${#T} - 2 - $left_pad ))"
+  for col in $(seq 40 47); do
+    printf "$ansi_fwd" "$left_pad"
+    printf '%sm' "$col"
+    printf "$ansi_fwd" "$right_pad"
+  done
+
+  printf '\n'
+
+  for fg_color in '' $(seq 30 37); do
+    for fg_bold in 0 1; do
+      FG="$fg_bold;$fg_color"
+      FG="${FG%;}"
+      FG="${FG#0;}"
+      printf '%6sm \x1b[%sm%s' "$FG" "$FG" "$T"
+      for BG in $(seq 40 47); do
+        printf ' \x1b[%s;%sm%s\x1b[0m' "$FG" "$BG" "$T"
+      done
+      printf '\n'
+    done
+  done
+}
