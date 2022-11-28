@@ -9,12 +9,12 @@ font:
   size: 9 # pt
 
 # kasugano from terminal.sexy
--colors:
+colors:
 
   # Default colors
   primary:
-    background: '0x1b1b1b'
-    foreground: '0xffffff'
+    foreground: '0x1b1b1b'
+    background: '0xffffff'
 
   # Normal colors
   normal:
@@ -37,33 +37,3 @@ font:
     magenta: '0x7882bf'
     cyan:    '0x95a7cc'
     white:   '0xedeff2'
-
-# atelierforest.light from terminal.sexy. to enable, remove leading hyphen and
-# add leading hyphen to currently active colors section
-colors:
-  # Default colors
-  primary:
-    background: '0xf1efee'
-    foreground: '0x68615e'
-
-  # Normal colors
-  normal:
-    black:   '0x1b1918'
-    red:     '0xf22c40'
-    green:   '0x5ab738'
-    yellow:  '0xd5911a'
-    blue:    '0x407ee7'
-    magenta: '0x6666ea'
-    cyan:    '0x00ad9c'
-    white:   '0xa8a19f'
-
-  # Bright colors
-  bright:
-    black:   '0x766e6b'
-    red:     '0xf22c40'
-    green:   '0x5ab738'
-    yellow:  '0xd5911a'
-    blue:    '0x407ee7'
-    magenta: '0x6666ea'
-    cyan:    '0x00ad9c'
-    white:   '0xf1efee'

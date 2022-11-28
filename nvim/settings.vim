@@ -1,7 +1,6 @@
 set nocompatible
 
 " appearance
-colorscheme peachpuff
 set background=light
 set t_Co=256
 set relativenumber number
