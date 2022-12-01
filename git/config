@@ -74,16 +74,6 @@
 	# (source unknown)
 	children = "!f() {bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -}; f"
 
-# use ssh urls when cloning from known git remotes
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-[url "ssh://git@gitlab.com/"]
-	insteadOf = https://gitlab.com/
-[url "ssh://git@bitbucket.org/"]
-	insteadOf = https://bitbucket.org/
-[url "ssh://aur@aur.archlinux.org/"]
-	insteadOf = https://aur.archlinux.org/
-
 [interactive]
 	singlekey = true
 [http]
