@@ -22,13 +22,19 @@ git config core.autocrlf true
 git config user.name 'Flipper SD'
 git config user.email 'flippersd@guvernator.net'
 
-systemd-notify --status="committing changes"
+systemd-notify --status="checking for changes"
 git add .
 git restore --staged .gitignore
-git commit -m 'update from SD'
 
-systemd-notify --status="pushing changes"
-git push -f origin sd
+if git diff --cached --exit-code --quiet; then
+    printf '%s\n' "no changes!"
+else
+    systemd-notify --status="committing changes"
+    git commit -m 'update from SD'
+
+    systemd-notify --status="pushing changes"
+    git push -f origin sd
+fi
 
 systemd-notify --status="cleaning up"
 rm -rf "$dump"
