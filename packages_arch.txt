@@ -16,6 +16,7 @@ ncurses # tput
 neovim # nvim
 playerctl
 pyenv
+rsync
 scrcpy
 sway
 swayidle
