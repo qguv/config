@@ -39,10 +39,6 @@ bindsym {
 	$mod+Control+c exec sh ~/.config/sway/scripts/clipman.sh '$clipman_path'
 	$mod+Mod1+c exec $clipman_path clear --tool=bemenu
 	$mod+Shift+Mod1+c exec $clipman_path clear -a; exec notify-send --expire-time=3000 clipman 'Clipboard history cleared!'
-	F1 exec wtype -M ctrl -k c -m ctrl
-	F2 exec wtype -M ctrl -k a -k c -m ctrl
-	F3 exec wtype -M ctrl -k a -k v -m ctrl
-	F4 exec sh ~/.config/sway/scripts/clipman.sh; mode default
 
 	--release {
 
