@@ -959,3 +959,12 @@ colortest() {
     done
   done
 }
+
+swayw() {
+  swaymsg -t get_tree | jq '
+    recurse(.nodes[], .floating_nodes[])
+    | select(.type == "floating_con" or .type == "con")
+    | select(.nodes | length == 0)
+    | select(.floating_nodes | length == 0)
+  '
+}
