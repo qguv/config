@@ -1,11 +1,16 @@
 bindsym {
 
 	# meta
-	$mod+Shift+c reload
 	$mod+Shift+e exec '[ "$(printf "%s\n" no yes | bemenu -p "exit sway? ")" = yes ] && swaymsg exit'
+	$mod+Control+e reload
+	$mod+Shift+c exec notify-send 'Deprecated binding!' 'Use Super+Ctrl+e to reload sway config.'
+
+	# closing windows
 	$mod+Escape kill
 	Mod1+F4 kill
 	button2 kill
+
+	# input
 	$mod+backslash input * xkb_variant ""
 	$mod+Shift+backslash input * xkb_variant colemak
 
