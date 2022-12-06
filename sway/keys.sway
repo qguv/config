@@ -33,7 +33,10 @@ bindsym {
 	$mod+Shift+Return exec $browser --private-window
 	XF86Launch1 exec $browser
 	$mod+colon exec $browser --new-window https://calendar.google.com/calendar/r
+
+	# clipboard
 	$mod+c exec $clipman_path pick --tool=bemenu --tool-args='--index=1 --wrap'
+	$mod+Control+c exec sh ~/.config/sway/scripts/clipman.sh '$clipman_path'
 	$mod+Mod1+c exec $clipman_path clear --tool=bemenu
 	$mod+Shift+Mod1+c exec $clipman_path clear -a; exec notify-send --expire-time=3000 clipman 'Clipboard history cleared!'
 	F1 exec wtype -M ctrl -k c -m ctrl
@@ -69,6 +72,12 @@ bindsym {
 	$mod+Down focus down
 	$mod+Up focus up
 	$mod+Right focus right
+
+	--whole-window --input-device=type:pointer {
+		button6 focus left
+		button7 focus right
+	}
+
 	Mod1+tab focus output right
 
 	# window move
