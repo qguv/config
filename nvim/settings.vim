@@ -179,7 +179,6 @@ cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
 
-
 " vim -b : edit binary using xxd-format!
 augroup Binary
   au!
@@ -189,3 +188,8 @@ augroup Binary
   au BufReadPost *.exe set binary
   au BufReadPost *.exe set display=uhex
 augroup END
+
+" change a word and all other occurrences
+" https://stackoverflow.com/a/53932698
+nnoremap c* *<c-o>cgn
+nnoremap c# #<C-o>cgn
