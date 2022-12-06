@@ -111,6 +111,9 @@ function __sshfs_then_blacklist_mounts() {
   __blacklist_sshfs_mounts
 }
 
+# https://wiki.archlinux.org/title/SSH_keys#Start_ssh-agent_with_systemd_user
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 export SSH_ALIAS_OPTIONS="-F $XDG_CONFIG_HOME/ssh/config -o UserKnownHostsFile=$XDG_CONFIG_HOME/ssh/known_hosts"
 alias ssh="ssh $SSH_ALIAS_OPTIONS"
 alias mosh="mosh --ssh=\"ssh $SSH_ALIAS_OPTIONS\""
