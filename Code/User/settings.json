@@ -83,6 +83,9 @@
     "[json]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
+    "[jsonc]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
     "json.maxItemsComputed": 50000,
     "json.schemaDownload.enable": false,
 
