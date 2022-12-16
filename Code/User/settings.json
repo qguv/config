@@ -167,6 +167,7 @@
     "extensions.ignoreRecommendations": true,
     "githubPullRequests.telemetry.enabled": false,
     "gitlens.advanced.telemetry.enabled": false,
+    "gitlens.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "telemetry.telemetryLevel": "off",
