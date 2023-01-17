@@ -1,5 +1,5 @@
 " load plugin config (shared with vim)
-call plug#begin(stdpath('config') . '/plugged')
+call plug#begin()
 exec ':so ' . stdpath('config') . '/plugrc.vim'
 call plug#end()
 
