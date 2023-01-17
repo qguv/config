@@ -55,8 +55,8 @@
 	ancestors="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
 
 	# add/update a subtree as easily as a submodule
-	sub-add = "!f() { usage='Usage: git sub-add REPO_URL REF SUBDIR'; repo_link=\"${1:?$usage}\"; shift; ref=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree add --prefix \"$subdir\" \"$repo_link\" \"$ref\" --squash \"$@\"; }; f"
-	sub-update = "!f() { usage='Usage: git sub-update REPO_URL REF SUBDIR'; repo_link=\"${1:?$usage}\"; shift; ref=\"${1:?$usage}\"; shift; subdir=\"${1:?$usage}\"; shift; git subtree pull --prefix \"$subdir\" \"$repo_link\" \"$ref\" --squash \"$@\"; }; f"
+	sub-add = "!f() { usage='Usage: git sub-add REPO_URL[@REF] SUBDIR [OPTS...]'; repo_arg=\"${1:?$usage}\"; subdir=\"${2:?$usage}\"; shift 2; repo_url=\"${repo_arg%%@*}\"; if [ \"$repo_url\" = \"$repo_arg\" ]; then git subtree add --squash --prefix \"$subdir\" \"$@\" \"$repo_url\"; else ref=\"${repo_arg#*@}\"; git subtree add --squash --prefix \"$subdir\" \"$@\" \"$repo_url\" \"$ref\"; fi; }; f"
+	sub-update = "!f() { usage='Usage: git sub-update REPO_URL[@REF] SUBDIR [OPTS...]'; repo_arg=\"${1:?$usage}\"; subdir=\"${2:?$usage}\"; shift 2; repo_url=\"${repo_arg%%@*}\"; if [ \"$repo_url\" = \"$repo_arg\" ]; then git subtree pull --squash --prefix \"$subdir\" \"$@\" \"$repo_url\"; else ref=\"${repo_arg#*@}\"; git subtree pull --squash --prefix \"$subdir\" \"$@\" \"$repo_url\" \"$ref\"; fi; }; f"
 
 	# push to all remotes; takes all regular push arguments
 	push-all = "!f() { git remote | while read line; do git push \"$line\" \"$@\" || return 1; done; }; f"
