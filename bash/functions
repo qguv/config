@@ -387,7 +387,14 @@ function update-config-subtrees() {(
     git subtree pull --squash --prefix zsh/plugins/zsh-autosuggestions      https://github.com/zsh-users/zsh-autosuggestions HEAD
     git subtree pull --squash --prefix zsh/plugins/zsh-syntax-highlighting  https://github.com/zsh-users/zsh-syntax-highlighting HEAD
     git subtree pull --squash --prefix kujeger/swayoutputctl                https://gitlab.com/kujeger/swayoutputctl HEAD
+
+    git subtree pull --squash --prefix PulseEffects/community/Digitalone1   https://github.com/Digitalone1/EasyEffects-Presets HEAD
+    git subtree pull --squash --prefix PulseEffects/community/JackHack96    https://github.com/JackHack96/EasyEffects-Presets HEAD
+    git subtree pull --squash --prefix PulseEffects/community/rkdhanda      https://github.com/rkdhanda/PulseEffects-Preset HEAD
     echo Subtrees updated
+
+    sh PulseEffects/community/install.sh clean
+    sh PulseEffects/community/install.sh
 )}
 
 eag () {
