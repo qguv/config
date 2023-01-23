@@ -4,8 +4,7 @@
 
     "modules-left": [
         "sway/workspaces",
-        "sway/mode",
-        "idle_inhibitor"
+        "sway/mode"
     ],
 
     "modules-center": [
@@ -31,14 +30,6 @@
     "sway/workspaces": {
         "format": "{name}",
         "disable-scroll": true
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-deactivated": "",
-        "format-icons": {
-            "activated": ""
-        }
     },
 
     "sway/window": {
