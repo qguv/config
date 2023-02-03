@@ -1,1 +1,2 @@
 networkmanager-dmenu-git # networkmanager_dmenu
+ntfy

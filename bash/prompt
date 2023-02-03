@@ -94,3 +94,9 @@ else
   shopt -s histappend checkwinsize globstar promptvars
   bind -m vi-insert "\C-l":clear-screen
 fi
+
+if hash ntfy 2>/dev/null; then
+    eval "$(ntfy shell-integration --foreground-too)"
+else
+    printf 'ntfy not installed!\n'
+fi
