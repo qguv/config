@@ -74,6 +74,8 @@
 	# (source unknown)
 	children = "!f() {bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -}; f"
 
+    resub = submodule update --init --recursive --force
+
 [interactive]
 	singlekey = true
 [http]
