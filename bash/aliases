@@ -135,3 +135,6 @@ alias lxcl='lxc list --format=csv --columns=n'
 
 alias urldecode='awk -niord '"'"'{printf RT?$0chr("0x"substr(RT,2)):$0}'"'"' RS=%..'
 alias eml2txt='python -c "import sys,quopri;quopri.decode(sys.stdin,sys.stdout.buffer)"'
+
+alias ldused='ldconfig -v 2>/dev/null | sed -n '"'"'s/^\([^:]*\):.*/\1/p'"'"
+alias ldpaths='ld --verbose | grep -o '"'"'SEARCH_DIR("\([^"]*\)");'"'"' | cut -d\" -f2'
