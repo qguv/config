@@ -194,4 +194,4 @@ function sl3(){
 }
 
 # https://ntfy.readthedocs.io/en/latest/#shell-integration
-export AUTO_NTFY_DONE_IGNORE="e se nvim tmux bpytop sl svm lxc_connect gap report less"
+export AUTO_NTFY_DONE_IGNORE="e se nvim tmux bpytop sl svm lxc_connect gap report less man gga gdc gd minicom"
