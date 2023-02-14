@@ -186,6 +186,13 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # the `brew` command-line tool in Mac OS sends data out to Google by default. kill me now
 export HOMEBREW_NO_ANALYTICS=1
 
+# wow, google is sucking its community dry again, i am totally flabbergasted
+# https://git.sr.ht/~sircmpwn/dotfiles/tree/master/item/.profile
+export GOPROXY=direct
+export GOSUMDB=off
+export GOTELEMETRY=off
+export GOTOOLCHAIN=local
+
 # Disgusting hacks
 function sl3(){
 	mv {$XDG_DATA_HOME/sqlite3/,~/.}sqlite_history
