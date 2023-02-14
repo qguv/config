@@ -3,7 +3,7 @@
     "editor.fontFamily": "Inconsolata-dz,Inconsolata,monospace",
     "editor.lineNumbers": "relative",
     "editor.minimap.scale": 2,
-    "editor.renderFinalNewline": false,
+    "editor.renderFinalNewline": "off",
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
     "git.enableStatusBarSync": false,
