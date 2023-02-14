@@ -18,6 +18,7 @@
         "cpu",
         "memory",
         "disk",
+        "custom/co2",
         "pulseaudio#source",
         "pulseaudio#sink",
         "battery",
@@ -60,6 +61,14 @@
 
     "disk": {
         "format": "<span foreground='#929292'></span> {free}"
+    },
+
+    "custom/co2": {
+        "format": "{} <span foreground='#929292'>PPM</span>",
+        "on-click": "xdg-open \"$CO2_GRAPH_URL\"",
+        "exec": "$XDG_CONFIG_HOME/waybar/co2.sh",
+        "return-type": "json",
+        "restart-interval": 1
     },
 
     "battery": {

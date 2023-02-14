@@ -90,10 +90,14 @@ label {
 #battery.charging {
     color: @orange;
 }
-#battery.warning:not(.charging) {
+
+#custom-co2.warning, #battery.warning:not(.charging) {
+    color: black;
     background: @yellow;
+    border-left-color: @yellow;
+    border-right-color: @yellow;
 }
-#battery.critical:not(.charging) {
+#custom-co2.critical, #battery.critical:not(.charging) {
     background: @red;
     animation-name: blink;
     animation-duration: 0.5s;

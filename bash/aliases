@@ -138,3 +138,5 @@ alias eml2txt='python -c "import sys,quopri;quopri.decode(sys.stdin,sys.stdout.b
 
 alias ldused='ldconfig -v 2>/dev/null | sed -n '"'"'s/^\([^:]*\):.*/\1/p'"'"
 alias ldpaths='ld --verbose | grep -o '"'"'SEARCH_DIR("\([^"]*\)");'"'"' | cut -d\" -f2'
+
+alias co2='mosquitto_sub -L "$MQTT_URL/$MQTT_TOPIC_CO2" -C 1'
