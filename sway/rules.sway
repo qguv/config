@@ -36,3 +36,7 @@ for_window {
 
 	[title="TIDAL"] shortcuts_inhibitor disable
 }
+
+no_focus {
+    [title="im-emoji-picker"]
+}

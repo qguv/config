@@ -32,4 +32,7 @@ exec {
 
         # clipboard manager (requires `copyq`)
         copyq
+
+	# https://wiki.archlinux.org/title/Fcitx5
+	fcitx5 -d
 }

@@ -56,6 +56,16 @@ if _should_autostart_gui; then
     export XDG_SESSION_TYPE=wayland
     export XDG_CURRENT_DESKTOP=sway
 
+    if hash fcitx5 2>/dev/null; then
+        export GTK_IM_MODULE=fcitx
+        export QT_IM_MODULE=fcitx
+        export XMODIFIERS=@im=fcitx
+        # for some games that use a vendor-modified SDL2 library
+        #export SDL_IM_MODULE=fcitx
+        # for `kitty`
+        #export GLFW_IM_MODULE=ibus
+    fi
+
     # Connect to and initalize gnome-keyring-daemon when in sway session
     if [ "$DESKTOP_SESSION" = "sway" ] && hash gnome-keyring-daemon >/dev/null; then
       export $(gnome-keyring-daemon --start)
