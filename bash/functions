@@ -975,3 +975,111 @@ swayw() {
     | select(.floating_nodes | length == 0)
   '
 }
+
+_modal_filter_end() {
+    mode="$1"
+    case "$mode" in
+        rewrite)
+            printf '\e[1K\r' >&2
+            ;;
+    esac
+}
+
+modal_filter() {
+    if [ "$#" -ne 7 ]; then
+        printf 'Usage:\n\tmodal_filter INIT_MODE --rewrite-after LINE --bypass-after LINE --swallow-after LINE\n' 2>&1
+        return 16
+    fi
+
+    mode="$1"
+    rewrite_after="$3"
+    bypass_after="$5"
+    swallow_after="$7"
+
+    while read line; do
+
+        # maybe detect mode change
+        new_mode=
+        case "$line" in
+            "$rewrite_after")
+                new_mode=rewrite
+                ;;
+            "$bypass_after")
+                new_mode=bypass
+                ;;
+            "$swallow_after")
+                new_mode=swallow
+                ;;
+        esac
+        if [ -n "$new_mode" ]; then
+            _modal_filter_end "$mode"
+            mode="$new_mode"
+            continue
+        fi
+
+        # handle text in current mode
+        case "$mode" in
+            rewrite)
+                printf '\e[1K\r%s' "$line" >&2
+                ;;
+            bypass)
+                printf '%s\n' "$line"
+                ;;
+            swallow)
+                ;;
+        esac
+    done
+    _modal_filter_end "$mode"
+}
+
+iperf3_filter() {
+    modal_filter \
+        rewrite \
+        --rewrite-after '' \
+        --bypass-after  '- - - - - - - - - - - - - - - - - - - - - - - - -' \
+        --swallow-after 'iperf Done.'
+}
+
+_sleep() {
+    seconds="$1"
+    shift
+    msg="${*:-sleeping for}"
+
+    for i in $(seq "$seconds" -1 1); do
+        plural=s
+        if [ $i -eq 1 ]; then
+            plural=
+        fi
+        printf '%s %d more second%s...' "$msg" "$i" "$plural"
+        sleep 1
+        printf '\e[1K\r'
+    done
+
+    printf '(slept for %d seconds)\n' "$seconds"
+}
+
+is_pipe_empty() {
+    ret=0
+    while read line; do
+        ret=1
+        printf '%s\n' "$line"
+    done
+    return "$ret"
+}
+
+_iperf3() {
+    backoff=1
+    while stdbuf -i0 -o0 -e0 iperf3 "$@" | iperf3_filter | is_pipe_empty; do
+        _sleep "$backoff" 'retrying after'
+        backoff=$(($backoff * 2))
+        printf 'retrying...\n'
+    done
+}
+
+speedtest() {
+    printf 'download:\n'
+    _iperf3 --client speedtest.wtnet.de --port 5200 --version4 --parallel 1
+
+    printf '\nupload:\n'
+    _iperf3 --client speedtest.wtnet.de --port 5200 --version4 --parallel 1 --reverse
+}

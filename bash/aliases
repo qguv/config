@@ -73,10 +73,11 @@ alias cbp="$CLIPBOARDPASTE"
 # Internet
 alias servepwd='python3 -m http.server $(shuf -i 8001-8999 -n 1) --bind 127.0.0.1'
 alias posttext="curl -F 'sprunge=<-' http://sprunge.us"
-alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias textme='mailx -s autotext devqqq+autotext@gmail.com'
 alias myip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
-alias whereami="curl -s http://whatismycountry.com/ | sed -n 's|.*> *\(.*\)</h3>|\1|p' | sed 's|,|, |'"
+# country, city, postal code, IP, coordinates
+alias whereami="curl -Ls https://whatismycountry.com/ | pup 'h4 text{}' | sed -n '2p;4p;5p;7p;8p'"
+
 
 # Number systems
 alias 2dec="printf '%d\n'"
