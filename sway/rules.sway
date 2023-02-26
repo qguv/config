@@ -35,4 +35,6 @@ for_window {
 	}
 
 	[title="TIDAL"] shortcuts_inhibitor disable
+
+	[app_id="com.github.hluk.copyq"] floating enable
 }
