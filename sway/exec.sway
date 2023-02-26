@@ -20,9 +20,6 @@ exec {
 	# notifications
 	mako
 
-	# fix annoying slack bug
-	~/.config/sway/slackfix.sh
-
 	# backlight control (requires `light` binary)
 	light {
 
