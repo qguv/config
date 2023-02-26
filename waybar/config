@@ -122,12 +122,14 @@
     },
 
     "network": {
-        "format-wifi": "<span foreground='#929292'></span> {essid} <span foreground='#929292'>{frequency}GHz {signalStrength}%</span> <span foreground='#929292' stretch='extracondensed'>{ipaddr}/{cidr}</span>",
-        "format-ethernet": "<span foreground='#929292'></span> <span stretch='extracondensed'>{ipaddr}/{cidr}</span>",
-        "format-disconnected": "",
+        "format": "<span foreground='#929292'></span>",
+        "format-wifi": "<span foreground='#929292'></span>",
+        "format-ethernet": "<span foreground='#929292'></span>",
         "on-click": "networkmanager_dmenu",
         "on-click-right": "nm-connection-editor",
-        "tooltip": false
+        "tooltip-format-wifi": "\t<big><b>{essid}</b>\t{frequency}GHz</big>\n\t{signaldBm}dBm\t({signalStrength}%)\n\n<b>{ifname}</b>\t{ipaddr}/{cidr}\n<b>gateway</b>\t{gwaddr}\n\n⇣{bandwidthDownBytes} \t⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "\t<big><b>ethernet</b></big>\n\n<b>{ifname}</b>\t{ipaddr}/{cidr}\n<b>gateway</b>\t{gwaddr}\n\n⇣{bandwidthDownBytes} \t⇡{bandwidthUpBytes}",
+        "interval": 1
     },
 
     "custom/ethspeed": {
