@@ -3,21 +3,24 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-speeddating'   " increment dates, or letters in visual mode
-Plug 'tpope/tpope-vim-abolish' " fancy substitution with %Subvert
+Plug 'tpope/vim-speeddating'    " increment dates, or letters in visual mode
+Plug 'tpope/vim-abolish'        " fancy substitution with %Subvert
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-dispatch'      " :Make and :Make!/:Copen
+Plug 'tpope/vim-dispatch'       " :Make and :Make!/:Copen
 
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
+" from abandoned plugin: bronson/vim-trailing-whitespace
+cnoreabbrev FixWhitespace echo 'Use :StripWhitespace'
+
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'Raimondi/YAIFA' " automatic indentation
-"Plug 'vim-scripts/Smart-Tabs' " tabs for indentation, spaces for alignment
+Plug 'Raimondi/YAIFA'           " automatic indentation
+"Plug 'vim-scripts/Smart-Tabs'   " tabs for indentation, spaces for alignment
 
 " external tool interfaces
-Plug 'airblade/vim-gitgutter' " which lines changed
-Plug 'keith/investigate.vim'  " better 'K' key
-Plug 'majutsushi/tagbar'      " ctags
-Plug 'mileszs/ack.vim'        " search
+Plug 'airblade/vim-gitgutter'   " which lines changed
+Plug 'keith/investigate.vim'    " better 'K' key
+Plug 'majutsushi/tagbar'        " ctags
+Plug 'mileszs/ack.vim'          " search
 
 " nerdtree
 Plug 'scrooloose/nerdtree'
