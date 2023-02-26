@@ -96,17 +96,23 @@ label {
     background: @yellow;
     border-left-color: @yellow;
     border-right-color: @yellow;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 #custom-co2.critical, #battery.critical:not(.charging) {
     background: @red;
+    border-bottom-color: @red;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(1,0,.8,1);
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 @keyframes blink {
     to {
+        border-bottom-color: @white;
         background-color: @white;
         color: black;
     }
