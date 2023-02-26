@@ -13,6 +13,7 @@ bindsym {
 	# input
 	$mod+backslash input * xkb_variant ""
 	$mod+Shift+backslash input * xkb_variant colemak
+	$mod+e exec emote
 
 	# launcher
 	$mod+Space exec dmenu_path | bemenu -i -p 'run what? ' | xargs swaymsg exec --
