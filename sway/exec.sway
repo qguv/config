@@ -32,7 +32,4 @@ exec {
 
         # clipboard manager (requires `copyq`)
         copyq
-
-	# display hotplug
-	sh ~/.config/sway/scripts/fix_external_monitor.sh
 }
