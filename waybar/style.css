@@ -67,7 +67,7 @@ label {
     padding: 0 1em;
 }
 
-.modules-right label {
+.modules-right > widget > * {
     margin: 0 8px;
 }
 
