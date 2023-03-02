@@ -32,21 +32,22 @@
     min-width:  20px;
     min-height: 25px;
     border-bottom: 2px solid transparent;
-}
-#workspaces button:not(:hover) label {
     color: @muted;
 }
+#workspaces button.visible {
+    color: white;
+}
+#workspaces button.visible,
 #workspaces button.focused {
-    border-bottom: 2px solid @white;
+    border-bottom: 2px solid white;
 }
-#workspaces button.focused label {
-    color: @white;
-}
-#workspaces button.focused:hover {
-    background: transparent;
+#workspaces button.focused {
+    background: white;
+    color: black;
 }
 #workspaces button.urgent {
-    color: @alert;
+    background: @alert;
+    color: white;
 }
 
 .modules-center {
