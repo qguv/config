@@ -16,35 +16,21 @@
 @define-color green rgba(90, 247, 142, 1);
 @define-color cyan rgba(154, 237, 254, 1);
 
-* {
-    border:        none;
-    border-radius: 0;
-    font-family:   "Open Sans", "Font Awesome 6 Free";
-    font-size:     12px;
-    text-shadow:   none;
-    transition-duration: 0s;
-    padding: 0;
+*, :hover {
+    all: unset;
 }
 
 #waybar {
+    font-family: "Open Sans", "Font Awesome 6 Free";
+    font-size: 12px;
     background: @background;
-}
-
-label {
-    color: @white;
-}
-:hover {
-    background: @white;
-}
-:hover label {
-    color: black;
 }
 
 #workspaces button {
     font-weight: 800;
     padding:    0 10px;
     min-width:  20px;
-    border-top: 1px solid transparent;
+    min-height: 25px;
     border-bottom: 2px solid transparent;
 }
 #workspaces button:not(:hover) label {
