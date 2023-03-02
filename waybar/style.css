@@ -126,12 +126,13 @@ label {
 }
 #custom-ethspeed {
     color:   @muted;
-    margin-left: 0;
+    margin: 0;
     padding-left: 4px;
     font-stretch: extra-condensed;
 }
 
 #clock.date {
+    margin-left: 16px;
     border-bottom: 2px solid @blue;
 }
 
