@@ -3,6 +3,12 @@ set -e
 
 usage='Usage: git rewrite FROM_REF'
 from_ref="${1?$usage}"
+if ! git show-ref -- "$from_ref" >/dev/null; then
+    printf 'no such ref: "%s"\n' "$from_ref" >&2
+    printf '%s\n' "$usage" >&2
+    exit 1
+fi
+
 branch="$(git branch --show-current)"
 branch="${branch:?no branch checked out}"
 tmp="$(mktemp -d)"
