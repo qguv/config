@@ -7,6 +7,7 @@
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
     "git.enableStatusBarSync": false,
+    "scm.diffDecorationsIgnoreTrimWhitespace": "true",
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 0,
     "workbench.editor.untitled.hint": "hidden",
