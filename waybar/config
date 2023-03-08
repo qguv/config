@@ -86,6 +86,8 @@
     },
 
     "tray": {
+        "spacing": 12,
+        "reverse-direction": true,
         "icon-size": 18
     },
 
