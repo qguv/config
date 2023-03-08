@@ -30,7 +30,7 @@ export GTK_THEME="Adwaita:dark"
 export PYENV_ROOT="$HOME/.local/share/pyenv"
 export MQTT_URL='mqtt://mosquitto:password@homeassistant.local'
 export MQTT_TOPIC_CO2='operame'
-export CO2_GRAPH_URL='https://homeassistant.local/history?entity_id=sensor.co2_concentration'
+export CO2_GRAPH_URL='http://homeassistant.local:8123/history?entity_id=sensor.co2_concentration'
 export MQTT_PRESENCE_WIFI_PROFILE='comet'
 export MQTT_PRESENCE_ETH_MAC='c4:04:15:92:f0:f1'
 export MQTT_PRESENCE_ETH_IF='enp57s0f1'
