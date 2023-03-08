@@ -66,6 +66,7 @@
 	helper = cache
 [pretty]
 	fixes = Fixes: %h (\"%s\")
+	dates = format:%C(auto)%h%d%n%s%n%Cred%ai%Creset | %Cgreen%ci%Creset%n
 [merge]
 	tool = meld
 [fetch]
