@@ -2,22 +2,30 @@
 # add/update a subtree as easily as a submodule
 set -e
 
-usage="$(printf '%s\n' \
-    'Usage:' \
-    '  git st list' \
-    '  git st (add | update) REPO_URL[@REF] SUBDIR [OPTS...]' \
-)"
+usage() {
+    printf '%s\n' \
+        'Usage:' \
+        '  git st list' \
+        '  git st (add | update) REPO_URL[@REF] SUBDIR [OPTS...]' \
+    >&2
+    if [ -n "$1" ]; then
+        printf 'failed to parse "%s" argument\n' "$*"
+        exit 16
+    fi
+    exit
+}
 
 cmd_get() {
-    subtree_cmd="${1:?$usage}"
-    repo_arg="${2:?$usage}"
-    subdir="${3:?$usage}"
+    subtree_cmd="${1:?$(usage subtree_cmd)}"
+    repo_arg="${2:?$(usage repo_url)}"
+    subdir="${3:?$(usage subdir)}"
     shift 3
 
+    repo_url="${repo_arg%@*}"
     if [ "$repo_url" = "$repo_arg" ]; then
         git subtree "$subtree_cmd" --squash --prefix "$subdir" "$@" "$repo_url"
     else
-        ref="${repo_arg#*@}"
+        ref="${repo_arg##*@}"
         git subtree "$subtree_cmd" --squash --prefix "$subdir" "$@" "$repo_url" "$ref"
     fi
 }
@@ -33,7 +41,10 @@ cmd_list() {
     | xargs -I {} bash -c 'if [ -d "$(git rev-parse --show-toplevel)"/{} ] ; then echo {}; fi'
 }
 
-case "$st_cmd" in
+subcommand="${1:?$(usage subcommand)}"
+shift
+
+case "$subcommand" in
     add)
         cmd_get add "$@"
         ;;
@@ -44,7 +55,6 @@ case "$st_cmd" in
         cmd_list "$@"
         ;;
     *)
-        printf '%s\n' "$usage" >&2
-        exit 1
+        usage subcommand
         ;;
 esac
