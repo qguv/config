@@ -22,6 +22,12 @@ pushd "$worktree"
 # rewrite history up from $from_ref to HEAD, recreating named refs on the new commits
 git rebase -i --update-refs "${from_ref}^"
 
+while git rebase --show-current-patch 2>/dev/null; do
+    printf '\nDropping to a shell; press ^D to continue rebase.\n'
+    "$SHELL"
+    git rebase --continue || true
+done
+
 # remove the second checkout and return to the original directory
 popd
 git worktree remove "$worktree"
