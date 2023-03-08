@@ -1,5 +1,6 @@
 /* colorscheme */
 @define-color background rgba(34, 34, 34, 0.7);
+@define-color popup rgba(34, 34, 34, 0.9);
 @define-color active rgba(68, 68, 68, 0.8);
 @define-color warning rgba(243, 249, 157, 1);
 @define-color alert rgba(255, 92, 87, 1);
@@ -24,6 +25,21 @@
     font-family: "Open Sans", "Font Awesome 6 Free";
     font-size: 12px;
     background: @background;
+}
+
+decoration {
+    color: white;
+    background: @popup;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+/*
+    disable inheritance, otherwise context menus (#tray menu) are affected
+*/
+.popup * {
+    background: transparent;
+    border: none;
+    border-radius: 0px;
 }
 
 #workspaces button {
@@ -56,17 +72,21 @@
 }
 
 #tray menuitem {
-    color: black;
-    background: @muted;
+    color: white;
+    background: @popup;
 }
 #tray menu > * > * {
     margin: 2px;
     padding: 0 2px;
 }
 #tray menuitem:hover {
-    color: @white;
-    background: black;
-    font-weight: 800;
+    color: black;
+    background: @white;
+}
+#tray separator {
+    min-height: 3px;
+    background: transparent;
+    color: transparent;
 }
 
 #pulseaudio.source {
