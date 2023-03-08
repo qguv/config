@@ -1,0 +1,7 @@
+#!/bin/sh
+# push to all remotes; takes all regular push arguments
+set -e
+
+git remote | while read line; do
+    git push "$line" "$@" || return 1
+done

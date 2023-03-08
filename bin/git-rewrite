@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+usage='Usage: git rewrite FROM_REF'
+from_ref="${1?$usage}"
+branch="$(git branch --show-current)"
+branch="${branch:?no branch checked out}"
+tmp="$(mktemp -d)"
+worktree="$tmp/rewrite"
+
+# checkout the current branch in a new worktree
+git switch --detach
+git worktree add "$worktree" "$branch"
+pushd "$worktree"
+
+# rewrite history up from $from_ref to HEAD, recreating named refs on the new commits
+git rebase -i --update-refs "${from_ref}^"
+
+# remove the second checkout and return to the original directory
+popd
+git worktree remove "$worktree"
+rmdir "$tmp"
+git switch "$branch"

@@ -1,0 +1,7 @@
+#!/bin/sh
+# show tracked files whose changes have been ignored
+# see also: alias.ignore and alias.track in ../git/config
+set -e
+
+git ls-files -v \"$@\" \
+| sed -n 's:^h ::p'

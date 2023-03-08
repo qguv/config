@@ -1,0 +1,50 @@
+#!/bin/sh
+# add/update a subtree as easily as a submodule
+set -e
+
+usage="$(printf '%s\n' \
+    'Usage:' \
+    '  git st list' \
+    '  git st (add | update) REPO_URL[@REF] SUBDIR [OPTS...]' \
+)"
+
+cmd_get() {
+    subtree_cmd="${1:?$usage}"
+    repo_arg="${2:?$usage}"
+    subdir="${3:?$usage}"
+    shift 3
+
+    if [ "$repo_url" = "$repo_arg" ]; then
+        git subtree "$subtree_cmd" --squash --prefix "$subdir" "$@" "$repo_url"
+    else
+        ref="${repo_arg#*@}"
+        git subtree "$subtree_cmd" --squash --prefix "$subdir" "$@" "$repo_url" "$ref"
+    fi
+}
+
+# list git subtrees https://stackoverflow.com/questions/16641057/how-can-i-list-the-git-subtrees-on-the-root#18339297
+cmd_list() {
+    git log "$@" \
+    | grep git-subtree-dir \
+    | tr -d ' ' \
+    | cut -d ':' -f2 \
+    | sort \
+    | uniq \
+    | xargs -I {} bash -c 'if [ -d "$(git rev-parse --show-toplevel)"/{} ] ; then echo {}; fi'
+}
+
+case "$st_cmd" in
+    add)
+        cmd_get add "$@"
+        ;;
+    update)
+        cmd_get pull "$@"
+        ;;
+    list)
+        cmd_list "$@"
+        ;;
+    *)
+        printf '%s\n' "$usage" >&2
+        exit 1
+        ;;
+esac

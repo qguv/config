@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+dims="$(stty size)"
+width="${dims#* }"
+
+git show --color-words "$@" \
+| fold -s -w "$width" \
+| less -R

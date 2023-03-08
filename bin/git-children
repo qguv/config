@@ -1,0 +1,11 @@
+#!/bin/sh
+# For the current (or specified) commit-ish, get the all children
+# (source unknown)
+set -e
+
+ref="${1:-HEAD}"
+commit="$(git rev-parse "$ref")"
+
+git rev-list --all --not "$ref"^@ --children \
+| grep "$commit" \
+| tail +2

@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+remote=origin
+branch=develop
+case $# in
+    0)
+        ;;
+    1)
+        branch="$1"
+        ;;
+    2)
+        remote="$1"
+        branch="$2"
+        ;;
+    *)
+        return 1
+        ;;
+esac
+
+git branch --all --sort=committerdate "--merged=$remote/$branch" \
+| sed '/[ \/]'"$branch"$'/d' \
+| sed 's:^\s*::g'

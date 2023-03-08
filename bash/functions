@@ -117,63 +117,6 @@ function movetotrash() {
   return 0
 }
 
-function git-diff-words() {
-  git diff --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
-  return "$?"
-}
-
-function git-show-words() {
-  git show --color-words "$@" | fold -s -w "$(stty size | cut -d ' ' -f 2)" | less -R
-  return "$?"
-}
-
-function git-bb-remote() {
-  usage="Usage: git bb-remote [-n GIT_REMOTE_NAME] [-u USERNAME] [-o OWNER] [-r REPOSITORY]"
-
-  if [ "$1" = "--help" ]; then
-    echo "$usage"
-    return 0
-
-  # odd amount of arguments
-  elif [ $(( $# % 2 )) -ne 0 ]; then
-    echo "$usage"
-    return 2
-  fi
-
-  remote="origin"
-  bbuser="$(whoami)"
-  owner="$(whoami)"
-  repo="$(basename $(pwd))"
-
-  while (($#)); do
-    case "$1" in
-      "-n")
-        remote="$2"
-        ;;
-      "-u")
-        bbuser="$2"
-        ;;
-      "-o")
-        owner="$2"
-        ;;
-      "-r")
-        repo="$2"
-        ;;
-      *)
-        echo "$usage"
-        return 1
-    esac
-    shift; shift
-  done
-
-  git remote add "$remote" "https://${bbuser}@bitbucket.org/${owner}/${repo}"
-}
-
-# list git subtrees https://stackoverflow.com/questions/16641057/how-can-i-list-the-git-subtrees-on-the-root#18339297
-function git-sub-list() {
-   git log | grep git-subtree-dir | tr -d ' ' | cut -d ':' -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'
-}
-
 function shreddir() {
   while [ $# -ne 0 ]; do
     read -q "ok?Shredding \"$1\" and children, okay? [y/N] "
@@ -611,34 +554,6 @@ function blank() {
     "color=c=black:s=hd480:r=1[v]" \
     -map "[v]" -map 0:a -pix_fmt yuv420p \
     -b:a 360k -r:a 44100 -shortest "$2"
-}
-
-git-old-remote-branches() {
-  remote=origin
-  branch=develop
-
-  case $# in
-    0)
-      ;;
-    1)
-      remote=origin
-      branch="$1"
-      ;;
-    2)
-      remote="$1"
-      branch="$2"
-      ;;
-    *)
-      return 1
-      ;;
-  esac
-
-  git branch --all --sort=committerdate "--merged=$remote/$branch" | sed '/[ \/]'"$branch"$'/d' | sed 's:^\s*::g'
-}
-
-new-repo() {
-  ssh git.guvernator.net env -C /usr/share/gitweb/src/ git init --bare "$1"
-  echo "ssh://git.guvernator.net/usr/share/gitweb/src/$1"
 }
 
 function _in() {
@@ -1082,26 +997,3 @@ speedtest() {
     _iperf3 --client speedtest.wtnet.de --port 5200 --version4 --parallel 1 --reverse
 }
 
-git-rewrite() {(
-    set -e
-
-    base="${1?no base specified}"
-    branch="$(git branch --show-current)"
-    branch="${branch:?no branch checked out}"
-    tmp="$(mktemp -d)"
-    worktree="$tmp/rewrite"
-
-    # checkout the current branch in a new worktree
-    git switch --detach
-    git worktree add "$worktree" "$branch"
-    pushd "$worktree"
-
-    # rewrite history up from $base to HEAD, recreating named refs on the new commits
-    git rebase -i --update-refs "${base}^"
-
-    # remove the second checkout and return to the original directory
-    popd
-    git worktree remove "$worktree"
-    rmdir "$tmp"
-    git switch "$branch"
-)}

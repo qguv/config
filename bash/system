@@ -34,6 +34,7 @@ export CO2_GRAPH_URL='https://homeassistant.local/history?entity_id=sensor.co2_c
 export MQTT_PRESENCE_WIFI_PROFILE='comet'
 export MQTT_PRESENCE_ETH_MAC='c4:04:15:92:f0:f1'
 export MQTT_PRESENCE_ETH_IF='enp57s0f1'
+export GITWEB_REMOTE='ssh://git.guvernator.net/usr/share/gitweb/src'
 
 if [[ "$EDITOR" =~ '^n?vi.*' ]]; then
   export MANPAGER="$EDITOR -c 'set ft=man' -"
@@ -45,6 +46,9 @@ if [ -n "$OLD_PATH" ]; then
 else
     export OLD_PATH="$PATH"
 fi
+
+# include custom scripts
+PATH="$PATH:$XDG_CONFIG_HOME/bin"
 
 # include platformio build toolchain
 PATH="$PATH:$HOME/.platformio/penv/bin"

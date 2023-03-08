@@ -1,0 +1,10 @@
+#!/bin/sh
+# move a tag to a ref (default HEAD) and push to a remote (default "origin")
+set -e
+
+usage='Usage: git release TAG [REMOTE] [REF]'
+tag="${1:?$usage}"
+remote="${2:-origin}"
+ref="${3:-HEAD}"
+
+git tag -f "$tag" "$ref" && git push -f "$remote" "$tag"

@@ -1,0 +1,19 @@
+#!/bin/sh
+# create a new repo at $GITWEB_REMOTE
+set -e
+
+usage='Usage: git new REPO_NAME'
+
+repo="${1:?$usage}"
+url="${GITWEB_REMOTE%/}"
+if [ -z "$url" ]; then
+    printf 'GITWEB_REMOTE not defined in %s/bash/system\n' "$XDG_CONFIG_HOME" >&2
+    exit 16
+fi
+
+noproto="${url#ssh://}"
+host="${noproto%%/*}"
+path="/${noproto#*/}"
+
+ssh "$host" env -C "$path" git init --bare "$repo"
+printf '%s/%s\n' "$url" "$repo"

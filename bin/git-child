@@ -1,0 +1,11 @@
+#!/bin/sh
+# Get the child commit of the current commit.
+# Use $1 instead of 'HEAD' if given. Use $2 instead of curent branch if given.
+# (source unknown)
+set -e
+
+ref=${1:-HEAD}
+branch=${2:"$(git rev-parse --abbrev-ref HEAD)"}
+
+git log --format=%H --reverse --ancestry-path "$ref..$branch" \
+| head -1

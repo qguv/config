@@ -1,0 +1,11 @@
+#!/bin/sh
+# start a git daemon on remote server $1 from remote git dir $2 and
+# make it accessible as if it were run on the local machine
+set -e
+
+usage='Usage: git remote-daemon SERVER REMOTE_GIT_DIR'
+server="${1:?$usage}"
+remote_git_dir="${2:?$usage}"
+shift 2
+
+ssh -L 9418:localhost:9418 "$server" git daemon --export-all --base-path="$(dirname "$remote_git_dir")" "$@"

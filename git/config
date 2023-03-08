@@ -31,9 +31,9 @@
 	g = grep --break --heading --line-number
 
 	# ignore changes to an already-tracked file
+	# see also: ../bin/git-ignored
 	ignore = update-index --assume-unchanged
 	track = update-index --no-assume-unchanged
-	ignored = "!f() { git ls-files -v \"$@\" | sed -n 's:^h ::p'; }; f"
 
 	# more comprehensive commit log
 	flog = log --decorate --notes --stat
@@ -48,33 +48,7 @@
 	# alter last commit to incorporate currently staged changes
 	whoops = commit --amend --no-edit
 
-	# move a tag to a ref (default HEAD) and push to a remote (default "origin")
-	release = "!f(){ git tag -f \"${1:?'Usage: git release TAG [REMOTE] [REF]'}\" \"${3:-HEAD}\" && git push -f \"${2:-origin}\" \"$1\"; }; f"
-
-	# list named parents of current HEAD; this is one way to find out if a branch has been merged into this one
-	ancestors="!f() { git branch --merged \"$@\" | sed -n 's:^  ::p'; }; f"
-
-	# add/update a subtree as easily as a submodule
-	sub-add = "!f() { usage='Usage: git sub-add REPO_URL[@REF] SUBDIR [OPTS...]'; repo_arg=\"${1:?$usage}\"; subdir=\"${2:?$usage}\"; shift 2; repo_url=\"${repo_arg%%@*}\"; if [ \"$repo_url\" = \"$repo_arg\" ]; then git subtree add --squash --prefix \"$subdir\" \"$@\" \"$repo_url\"; else ref=\"${repo_arg#*@}\"; git subtree add --squash --prefix \"$subdir\" \"$@\" \"$repo_url\" \"$ref\"; fi; }; f"
-	sub-update = "!f() { usage='Usage: git sub-update REPO_URL[@REF] SUBDIR [OPTS...]'; repo_arg=\"${1:?$usage}\"; subdir=\"${2:?$usage}\"; shift 2; repo_url=\"${repo_arg%%@*}\"; if [ \"$repo_url\" = \"$repo_arg\" ]; then git subtree pull --squash --prefix \"$subdir\" \"$@\" \"$repo_url\"; else ref=\"${repo_arg#*@}\"; git subtree pull --squash --prefix \"$subdir\" \"$@\" \"$repo_url\" \"$ref\"; fi; }; f"
-
-	# push to all remotes; takes all regular push arguments
-	push-all = "!f() { git remote | while read line; do git push \"$line\" \"$@\" || return 1; done; }; f"
-
-	# start a git daemon on remote server $1 from remote git dir $2 and
-	# make it accessible as if it were run on the local machine
-	remote-daemon="!f() { usage='Usage: git remote-daemon SERVER REMOTE_GIT_DIR'; ssh -L 9418:localhost:9418 \"${1:?$usage}\" git daemon --export-all --base-path=\"$(dirname \"${2:?$usage}\")\" \"$@\"; }; f"
-
-	# Get the child commit of the current commit.
-	# Use $1 instead of 'HEAD' if given. Use $2 instead of curent branch if given.
-	# (source unknown)
-	child = "!f() {bash -c 'git log --format=%H --reverse --ancestry-path ${1:-HEAD}..${2:\"$(git rev-parse --abbrev-ref HEAD)\"} | head -1' -}; f"
-
-	# For the current (or specified) commit-ish, get the all children
-	# (source unknown)
-	children = "!f() {bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $*' -}; f"
-
-    resub = submodule update --init --recursive --force
+	resub = submodule update --init --recursive --force
 
 [interactive]
 	singlekey = true

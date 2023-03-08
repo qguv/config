@@ -1,0 +1,6 @@
+#!/bin/sh
+# list named parents of current HEAD; this is one way to find out if a branch has been merged into this one
+set -e
+
+git branch --merged "$@" \
+| sed -n 's:^  ::p'
