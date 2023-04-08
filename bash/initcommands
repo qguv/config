@@ -2,13 +2,15 @@
 # initialization command aliases
 
 # OS X is special
-uname="$(uname)"
-if [[ "$uname" == "Darwin" ]]; then
-	alias ls='ls -G'
-	alias docker='osxdocker'
-elif [[ "$uname" == "Linux" ]]; then
-	alias ls='ls --color=auto --group-directories-first'
-fi
+case "$(uname)" in
+    Darwin)
+        alias ls='ls -G'
+        alias docker='osxdocker'
+        ;;
+    Linux)
+        alias ls='ls --color=auto --group-directories-first'
+        ;;
+esac
 
 # safe mv/cp
 alias mv="mv -i"

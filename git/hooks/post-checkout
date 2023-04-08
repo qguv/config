@@ -1,2 +1,6 @@
 #!/bin/sh
-chmod -cR go= ssh
+if [ "$(uname)" = Darwin ]; then
+    exec chmod -R go= ssh
+else
+    exec chmod -cR go= ssh
+fi
